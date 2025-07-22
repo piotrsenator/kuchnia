@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title | default: site.title }} - {{ site.title }}</title>
-    <meta name="description" content="{{ page.description | default: site.description }}">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+    <link rel="icon" type="image/png" href="{{ "/assets/images/favicon.png" | relative_url }}">
+
     <style>
         /* Source Sans 3 - Regular */
         @font-face {
@@ -31,51 +31,13 @@
             font-weight: 700; /* Bold */
             font-style: normal;
         }
-
-        /* Użycie fontów w CSS */
-        body {
-            font-family: 'Source Sans 3', sans-serif;
-        }
-
-        h1, h2, h3, h4, h5, h6,
-        .site-title,
-        .recipe-card-title,
-        .category-card-title,
-        .recipe-title,
-        .note-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700; /* Domyślna waga dla nagłówków */
-        }
-        
-        /* Jeśli potrzebujesz konkretnie wagi regular dla Playfair Display (np. dla jakiegoś podnagłówka) */
-        .site-subtitle,
-        .recipe-description {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400; /* Regular */
-        }
-
-        .recipe-ingredients ul,
-        .recipe-preparation ol,
-        .recipe-details p,
-        .note-date,
-        .back-to-categories-link,
-        .back-to-home-notes-link,
-        .site-description-short p {
-            font-family: 'Source Sans 3', sans-serif; /* Monospace dla detali */
-        }
     </style>
 </head>
 <body>
+    **{% include header.html %}** {# <-- WAŻNE: To wstawia zawartość _includes/header.html. Upewnij się, że to jest tutaj! #}
 
-    {% include header.html %}
-
-    <main class="content">
-        {{ content }}
-    </main>
+    {{ content }} {# To wstawia treść z aktualnie renderowanej strony (np. index.html) #}
 
     {% include footer.html %}
-
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-
 </body>
 </html>
