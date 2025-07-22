@@ -3,7 +3,7 @@ layout: note
 title: Fermentacja Domowa: Moja Nowa Fascynacja Kimchi
 date: 2025-08-01
 ---
-
+### Zalety sezonowego jedzenia
 Przez ostatnie tygodnie w mojej kuchni unosi się specyficzny, ale intrygujący zapach. To zasługa mojej nowej obsesji – **fermentacji domowej**, a konkretnie **kimchi**. Zawsze podziwiałam tradycyjne metody konserwacji żywności, a teraz postanowiłam zanurzyć się w świat kiszonek.
 
 Zaczęło się niewinnie, od ogórków małosolnych, które szybko zniknęły ze słoików. Ale prawdziwą przygodę rozpoczęłam z kimchi. To koreańskie danie z fermentowanej kapusty napa i innych warzyw, doprawione pastą z chilli (gochugaru), czosnku i imbiru, okazało się zaskakująco proste do przygotowania, choć wymaga cierpliwości.
