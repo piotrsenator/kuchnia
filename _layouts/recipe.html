@@ -1,15 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="/assets/css/style.css">
-</head>
-<body>
-  <main class="recipe">
-    <h1>{{ page.title }}</h1>
-    {{ content }}
-    <a href="/">← Back to home</a>
-  </main>
-</body>
-</html>
+---
+layout: default
+---
+
+<article class="recipe-single">
+    <header class="recipe-header">
+        <h1 class="recipe-title">{{ page.title }}</h1>
+        <p class="recipe-description">{{ page.description }}</p>
+    </header>
+
+    <div class="recipe-content-wrapper">
+        <div class="recipe-main-info">
+            {% assign image_src = page.image_main | default: site.defaults | where: "type", "recipes" | map: "values" | map: "image_main" | first %}
+            {% if image_src %}
+                <img src="{{ image_src | relative_url }}" alt="{{ page.title }}" class="recipe-main-image">
+            {% else %}
+                <img src="{{ '/images/general/placeholder-recipe.jpg' | relative_url }}" alt="Brak zdjęcia przepisu" class="recipe-main-image">
+            {% endif %}
+
+            <div class="recipe-details">
+                <p><strong>Czas przygotowania:</strong> {{ page.time }}</p>
+                <p><strong>Liczba porcji:</strong> {{ page.portions }}</p>
+                <p><strong>Poziom trudności:</strong> {{ page.difficulty }}</p>
+                {% if page.notes %}
+                    <p><strong>Uwagi:</strong> {{ page.notes }}</p>
+                {% endif %}
+                <button class="print-button" onclick="window.print()">Drukuj przepis</button>
+            </div>
+        </div>
+
+        <section class="recipe-ingredients">
+            <h2>Składniki</h2>
+            <ul>
+                {% for ingredient in page.ingredients %}
+                    <li>{{ ingredient }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section class="recipe-preparation">
+            <h2>Przygotowanie</h2>
+            <ol>
+                {% for step in page.preparation %}
+                    <li>{{ step }}</li>
+                {% endfor %}
+            </ol>
+        </section>
+    </div>
+</article>
