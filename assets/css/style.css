@@ -36,8 +36,8 @@ h1, h2, h3, h4, h5, h6,
 .category-card-title,
 .recipe-title,
 .recipe-description,
-.note-title
-.site-description-short { /* Dodano wszystkie elementy, które mają używać Playfair Display */
+.note-title,
+.site-description-short {
     font-family: 'Playfair Display', serif; /* Nagłówki i tytuły */
 }
 
@@ -89,7 +89,7 @@ a:hover {
 .site-title {
     font-weight: 700; /* Bold dla tytułu strony */
     color: #A9643E; /* Kolor akcentu */
-    font-size: 3.5rem; /* Domyślny rozmiar (dla desktopu lub większego mobile) */
+    font-size: 3rem; /* Zmniejszono główny tytuł */
     margin-bottom: 0.5rem;
 }
 
@@ -105,8 +105,8 @@ a:hover {
     max-width: 700px;
     margin: 0 auto 2rem auto; /* Ten margines 2rem od dołu będzie odpowiadał za odstęp od kolejnej sekcji */
     color: #2E2E2E; /* Kolor tekstu głównego */
-    font-size: 1rem;
-    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.2rem; /* Zwiększono podpis pod tytułem */
+    font-family: 'Playfair Display', serif; /* Upewniamy się, że to Playfair Display */
 }
 
 .site-description-short p {
@@ -473,12 +473,16 @@ a:hover {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Na małych ekranach mogą być 2 kolumny, jeśli ekran jest wystarczająco szeroki */
         gap: 1.5rem; /* Mniejsze odstępy na mobilnych */
     }
+
+    h2 { /* Zmniejszono nazwy sekcji na mobilnych */
+        font-size: 2rem;
+    }
 }
 
 /* Tablet (breakpoint: >= 768px) */
 @media (min-width: 768px) {
     .site-title {
-        font-size: 4rem;
+        font-size: 3.5rem; /* Zmniejszono tytuł na tablecie */
     }
     .site-subtitle {
         font-size: 1.5rem;
@@ -500,12 +504,16 @@ a:hover {
     .note-single {
         padding: 2rem;
     }
+
+    h2 { /* Zmniejszono nazwy sekcji na tablecie */
+        font-size: 2rem;
+    }
 }
 
 /* Desktop (breakpoint: >= 1024px) */
 @media (min-width: 1024px) {
     .site-title {
-        font-size: 5rem;
+        font-size: 4rem; /* Zmniejszono główny tytuł */
     }
     .site-subtitle {
         font-size: 1.7rem;
@@ -520,6 +528,10 @@ a:hover {
     }
     .categories-grid {
         grid-template-columns: repeat(4, 1fr); /* 4 kolumny na desktopie */
+    }
+
+    h2 { /* Zmniejszono nazwy sekcji na desktopie */
+        font-size: 2.2rem;
     }
 }
 
