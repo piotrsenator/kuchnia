@@ -5,18 +5,29 @@ permalink: /category/:category/
 
 <div class="content">
     <header class="page-header">
-        {% assign category_name_raw = page.category %}
-        {% assign category_name_formatted = category_name_raw | replace: '-', ' ' | replace: '_', ' ' | capitalize %}
+        {# Pobieramy slug kategorii z URL-a (np. "dania-glowne-miesne") #}
+        {% assign category_slug = page.category %}
+        
+        {# Formatujemy slug na czytelną nazwę (np. "Dania Główne Mięsne") #}
+        {% assign category_name_formatted = category_slug | replace: '-', ' ' | replace: '_', ' ' | capitalize %}
+        
+        {# Dodatkowo, spróbujmy znaleźć opis kategorii z _data/categories.yml #}
+        {% assign current_category_data = site.data.categories | where: "slug", category_slug | first %}
+
         <h1>Kategoria: {{ category_name_formatted }}</h1>
-        <p class="page-description">Wszystkie przepisy w kategorii {{ category_name_formatted }}.</p>
+        {% if current_category_data.description %}
+            <p class="page-description">{{ current_category_data.description }}</p>
+        {% else %}
+            <p class="page-description">Wszystkie przepisy w kategorii {{ category_name_formatted }}.</p>
+        {% endif %}
     </header>
 
     <section class="recipes-grid-section">
         <h2 class="section-title">Przepisy</h2>
         <div class="recipes-grid">
-            {% comment %} Filtruj przepisy tylko dla tej kategorii {% endcomment %}
-            {% assign current_category_slug = page.category %}
-            {% assign filtered_recipes = site.posts | where_exp:"item", "item.categories and item.categories contains current_category_slug or item.category == current_category_slug" %}
+            {# Filtrujemy przepisy z kolekcji 'recipes' na podstawie kategorii #}
+            {# Sprawdzamy, czy 'item.category' jest równe slugowi LUB czy 'item.categories' (jeśli istnieje) zawiera slug #}
+            {% assign filtered_recipes = site.recipes | where_exp:"item", "item.category == category_slug or (item.categories and item.categories contains category_slug)" %}
             
             {% if filtered_recipes.size > 0 %}
                 {% for recipe in filtered_recipes %}
@@ -27,5 +38,8 @@ permalink: /category/:category/
             {% endif %}
         </div>
     </section>
-    <p class="back-to-categories-link"><a href="{{ '/categories/' | relative_url }}">Wróć do wszystkich kategorii</a></p>
+    
+    <div class="button-container">
+        <a href="{{ '/categories/' | relative_url }}" class="button secondary-button">Wróć do wszystkich kategorii</a>
+    </div>
 </div>
