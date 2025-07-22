@@ -1,37 +1,68 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuchnia Senatora - Przepisy</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        h1 {
-            color: #5cb85c;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Witaj w Kuchni Senatora!</h1>
-        <p>Moja osobista kolekcja przepisów z Polski i ze świata, wszystko w języku polskim.</p>
-        <p>Strona jest w budowie, ale już wkrótce znajdziesz tu wiele smacznych inspiracji.</p>
-        <p>Smacznego!</p>
-        <p>Pozdrawiam, Piotr Senator</p>
-    </div>
-</body>
-</html>
+---
+layout: default
+title: Strona główna
+description: Gotuję dla bliskich — nie z obowiązku, tylko z przyjemności. Na tej stronie zbieram sprawdzone przepisy i kulinarne eksperymenty.
+---
+
+<div class="main-page-content">
+
+    <section class="featured-recipes-section">
+        <h2 class="section-title">Wybrane przepisy</h2>
+        <div class="featured-recipes-grid grid-container">
+            {% assign featured_recipes = site.recipes | where: "featured", true | sample: 6 %} {# Wybiera do 6 losowych przepisów z flagą featured: true #}
+            {% if featured_recipes.size > 0 %}
+                {% for recipe in featured_recipes %}
+                    {% include recipe_card.html recipe=recipe %}
+                {% endfor %}
+            {% else %}
+                <p>Brak wyróżnionych przepisów do wyświetlenia.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="latest-recipes-section">
+        <h2 class="section-title">Najnowsze przepisy</h2>
+        <div class="latest-recipes-grid grid-container">
+            {% assign latest_recipes = site.recipes | sort: "date" | reverse | limit: 9 %} {# Pobiera 9 najnowszych przepisów #}
+            {% if latest_recipes.size > 0 %}
+                {% for recipe in latest_recipes %}
+                    {% include recipe_card.html recipe=recipe %}
+                {% endfor %}
+            {% else %}
+                <p>Brak najnowszych przepisów do wyświetlenia.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="categories-section">
+        <h2 class="section-title">Kategorie</h2>
+        <div class="categories-grid grid-container">
+            {% for category in site.data.categories %}
+                <a href="{{ '/categories/' | relative_url }}{{ category.slug }}.html" class="category-card-link">
+                    <div class="category-card">
+                        <h3 class="category-card-title">{{ category.name }}</h3>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="notatki-z-kuchni" class="notes-section"> {# Ważne: ID dla linku powrotnego z notatki #}
+        <h2 class="section-title">Notatki z kuchni</h2>
+        <div class="notes-list">
+            {% assign latest_notes = site.notes | sort: "date" | reverse | limit: 3 %} {# Pobiera 3 najnowsze notatki #}
+            {% if latest_notes.size > 0 %}
+                {% for note in latest_notes %}
+                    <div class="note-entry">
+                        <h3><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
+                        <p>{{ note.excerpt | strip_html | truncatewords: 30 }}</p> {# Wyświetla fragment notatki #}
+                        <a href="{{ note.url | relative_url }}" class="read-more-link">Czytaj dalej →</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Brak najnowszych notatek do wyświetlenia.</p>
+            {% endif %}
+        </div>
+    </section>
+
+</div>
