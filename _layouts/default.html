@@ -17,10 +17,11 @@
         }
 
         /* Playfair Display - Regular */
-        @font-family: 'Playfair Display';
-        src: url('{{ "/assets/fonts/playfair-display-v39-latin_latin-ext-regular.woff2" | relative_url }}') format('woff2');
-        font-weight: 400; /* Regular */
-        font-style: normal;
+        @font-face {
+            font-family: 'Playfair Display';
+            src: url('{{ "/assets/fonts/playfair-display-v39-latin_latin-ext-regular.woff2" | relative_url }}') format('woff2');
+            font-weight: 400; /* Regular */
+            font-style: normal;
         }
 
         /* Playfair Display - Bold */
@@ -33,9 +34,9 @@
     </style>
 </head>
 <body>
-    **{% include header.html %}** {# <-- To wstawia nagłówek z pliku _includes/header.html #}
+    {% include header.html %}
 
-    {{ content }} {# To wstawia treść właściwej strony (np. index.html) #}
+    {{ content }}
 
     {% include footer.html %}
 </body>
