@@ -102,14 +102,14 @@ a:hover {
 
 .site-description-short {
     max-width: 700px;
-    margin: 0 auto 2rem auto;
+    margin: 0 auto 2rem auto; /* Ten margines 2rem od dołu będzie odpowiadał za odstęp od kolejnej sekcji */
     color: #2E2E2E; /* Kolor tekstu głównego */
     font-size: 1rem;
     font-family: 'Source Sans 3', sans-serif;
 }
 
 .site-description-short p {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.5em; /* Odstęp między akapitami w opisie, jeśli będzie ich więcej */
 }
 
 .site-footer {
@@ -146,6 +146,7 @@ a:hover {
     padding: 1.5rem;
 }
 
+/* Podstawowy kontener siatki - bardzo ważne! */
 .grid-container {
     display: grid;
     gap: 2rem; /* Odstęp między elementami siatki */
@@ -166,16 +167,20 @@ a:hover {
     margin-top: 0;
 }
 
-/* Siatka dla sekcji wybranych/najnowszych przepisów */
+/* Siatki dla sekcji przepisów (wybrane, najnowsze, wszystkie) - kluczowe poprawki! */
 .featured-recipes-grid,
 .latest-recipes-grid,
 .recipes-grid {
+    display: grid; /* Upewniamy się, że to jest siatka */
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Zmniejszono min-width dla kafelków */
+    gap: 2rem; /* Odstęp między kafelkami */
 }
 
-/* Siatka dla kategorii */
+/* Siatka dla kategorii - kluczowe poprawki! */
 .categories-grid {
+    display: grid; /* Upewniamy się, że to jest siatka */
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Zmniejszono min-width dla kafelków kategorii */
+    gap: 2rem; /* Odstęp między kafelkami */
 }
 
 
@@ -460,6 +465,13 @@ a:hover {
         padding: 1rem; /* Mniejszy padding na mobilnych */
     }
     /* Wszystkie siatki będą miały 1 kolumnę na bardzo małych ekranach domyślnie, dzięki auto-fit */
+    .featured-recipes-grid,
+    .latest-recipes-grid,
+    .recipes-grid,
+    .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Na małych ekranach mogą być 2 kolumny, jeśli ekran jest wystarczająco szeroki */
+        gap: 1.5rem; /* Mniejsze odstępy na mobilnych */
+    }
 }
 
 /* Tablet (breakpoint: >= 768px) */
@@ -503,10 +515,10 @@ a:hover {
     .featured-recipes-grid,
     .latest-recipes-grid,
     .recipes-grid {
-        grid-template-columns: repeat(4, 1fr); /* Zmieniono na 4 kolumny na desktopie */
+        grid-template-columns: repeat(4, 1fr); /* 4 kolumny na desktopie */
     }
     .categories-grid {
-        grid-template-columns: repeat(4, 1fr); /* Zmieniono na 4 kolumny na desktopie */
+        grid-template-columns: repeat(4, 1fr); /* 4 kolumny na desktopie */
     }
 }
 
