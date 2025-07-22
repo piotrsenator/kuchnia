@@ -11,16 +11,17 @@ permalink: /notes/
     </header>
 
     <section class="notes-list-section">
-        {% if site.notes.size > 0 %} {# Zmieniamy site.posts na site.notes #}
+        {% if site.notes.size > 0 %}
             <ul class="notes-list">
-                {% for note in site.notes reversed %} {# Iterujemy po site.notes, reversed dla najnowszych #}
+                {% for note in site.notes reversed %} {# Iterujemy po kolekcji 'notes', od najnowszych #}
                     <li class="note-item">
                         <h3 class="note-title"><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
                         <p class="note-meta">
                             <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%d.%m.%Y" }}</time>
                             {% if note.author %} by {{ note.author }}{% endif %}
                         </p>
-                        <p class="note-excerpt">{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
+                        {# Jeśli chcesz krótsze wprowadzenie zamiast całego excerptu, użyj: #}
+                        {# <p class="note-excerpt">{{ note.excerpt | strip_html | truncatewords: 30 }}</p> #}
                         <a href="{{ note.url | relative_url }}" class="read-more-link">Czytaj więcej &raquo;</a>
                     </li>
                 {% endfor %}
