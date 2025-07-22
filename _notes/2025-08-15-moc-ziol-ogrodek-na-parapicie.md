@@ -1,8 +1,8 @@
 ---
 layout: note
-title: OMoc ziół: dlaczego warto mieć ogródek na parapecie
+title: Moc ziół: dlaczego warto mieć ogródek na parapecie
 date: 2025-08-15
-
+image_main: "/images/notes/o-tym-ze-znow-rabarbar-main.jpg"
 ---
 
 Odkąd pamiętam, uwielbiałam świeże zioła. Ale dopiero w tym roku, gdy założyłam swój mały **ogródek na parapicie**, naprawdę doceniłam ich moc. Nie ma nic lepszego niż zerwanie kilku listków bazylii prosto z doniczki do sosu pomidorowego, czy świeżej mięty do letniej lemoniady.
