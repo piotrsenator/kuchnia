@@ -77,13 +77,13 @@ title: Strona Główna
                             <h3>{{ note.title }}</h3>
                         </a>
                         <p class="note-excerpt">{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
-                        <a href="{{ note.url | relative_url }}" class="read-more">Czytaj więcej &raquo;</a>
                     </div>
                 {% endfor %}
             {% else %}
                 <p>Brak notatek do wyświetlenia.</p>
             {% endif %}
         </div>
+        {# Elegancki odsyłacz do wszystkich notatek, tylko jeden przycisk pod ramkami #}
         <div class="button-container">
             <a href="{{ '/notes/' | relative_url }}" class="button secondary-button">Wszystkie notatki</a>
         </div>
