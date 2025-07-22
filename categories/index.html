@@ -1,0 +1,29 @@
+---
+layout: default
+permalink: /category/:category/
+---
+
+<div class="content">
+    <header class="page-header">
+        {% assign category_name = page.category | replace: '-', ' ' | capitalize %}
+        <h1>Kategoria: {{ category_name }}</h1>
+        <p class="page-description">Wszystkie przepisy w kategorii {{ category_name }}.</p>
+    </header>
+
+    <section class="recipes-grid-section">
+        <h2 class="section-title">Przepisy</h2>
+        <div class="recipes-grid">
+            {% comment %} Filtruj przepisy tylko dla tej kategorii {% endcomment %}
+            {% assign current_category_slug = page.category %}
+            {% assign filtered_recipes = site.posts | where_exp:"item", "item.categories contains current_category_slug or item.category contains current_category_slug" %}
+
+            {% if filtered_recipes.size > 0 %}
+                {% for recipe in filtered_recipes %}
+                    {% include recipe_card.html recipe=recipe %}
+                {% endfor %}
+            {% else %}
+                <p>Brak przepisów w tej kategorii.</p>
+            {% endif %}
+        </div>
+    </section>
+</div>
