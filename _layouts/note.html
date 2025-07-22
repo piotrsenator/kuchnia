@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<article class="note-single">
+    <header class="note-header">
+        <h1 class="note-title">{{ page.title }}</h1>
+        <p class="note-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d.%m.%Y" }}</time></p>
+    </header>
+
+    <div class="note-content">
+        {% comment %} Główna zawartość notatki, która pochodzi z pliku Markdown {% endcomment %}
+        {{ content }}
+    </div>
+
+    <a href="{{ '/' | relative_url }}#notatki-z-kuchni" class="back-to-home-notes-link">← Wróć do sekcji notatek na stronie głównej</a>
+</article>
