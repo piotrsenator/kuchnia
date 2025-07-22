@@ -13,19 +13,19 @@ permalink: /notes/
     <section class="notes-list-section">
         {% if site.notes.size > 0 %}
             <ul class="notes-list">
-                {% for note in site.notes reversed %} {# Iterujemy po kolekcji 'notes', od najnowszych #}
-                    <li class="note-item">
+                {% for note in site.notes reversed %} <li class="note-item">
                         <h3 class="note-title"><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
                         <p class="note-meta">
                             <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%d.%m.%Y" }}</time>
                             {% if note.author %} by {{ note.author }}{% endif %}
                         </p>
-                        {# Użyj excerptu (skrótu) notatki. Jekyll generuje go automatycznie lub możesz go zdefiniować w Front Matter. #}
-                        {# Jeśli excerpt jest pusty, można użyć truncatewords, ale lepiej polegać na wbudowanym exceprcie. #}
+                        {% comment %}
+                            Użyj excerptu (skrótu) notatki. Jekyll generuje go automatycznie lub możesz go zdefiniować w Front Matter.
+                            Jeśli excerpt jest pusty, można użyć truncatewords, ale lepiej polegać na wbudowanym exceprcie.
+                        {% endcomment %}
                         {% if note.excerpt %}
                             <p class="note-excerpt">{{ note.excerpt | strip_html }}</p>
                         {% else %}
-                            {# Opcjonalnie: backup jeśli excerpt nie istnieje #}
                             <p class="note-excerpt">{{ note.content | strip_html | truncatewords: 30 }}</p>
                         {% endif %}
                         <a href="{{ note.url | relative_url }}" class="read-more-link">Czytaj więcej &raquo;</a>
