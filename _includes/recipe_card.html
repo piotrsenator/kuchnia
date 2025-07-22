@@ -1,14 +1,17 @@
-{% comment %}
-   Ten include przyjmuje zmienną 'recipe', która jest obiektem przepisu z kolekcji site.recipes.
-   Używa jej do wyświetlenia danych przepisu w formie karty.
-{% endcomment %}
-
-<div class="recipe-card">
-    <a href="{{ recipe.url | relative_url }}" class="recipe-card-link">
+<a href="{{ recipe.url | relative_url }}" class="recipe-card-link">
+    <div class="recipe-card">
         <div class="recipe-card-image-container">
-            {% assign image_src = recipe.image_main | default: '/images/general/placeholder-recipe.jpg' %}
-            <img src="{{ image_src | relative_url }}" alt="{{ recipe.title | escape }}">
+            {% comment %}
+            Logika wyświetlania obrazka dla karty:
+            Preferuje recipe.image_main.
+            Jeśli recipe.image_main jest puste, używa site.data.placeholders.recipe_image.
+            W ostateczności używa domyślnej ścieżki /images/general/placeholder-recipe.jpg.
+            {% endcomment %}
+            {% assign default_placeholder_path = '/images/general/placeholder-recipe.jpg' %}
+            {% assign final_card_image_path = recipe.image_main | default: site.data.placeholders.recipe_image | default: default_placeholder_path %}
+            
+            <img src="{{ final_card_image_path | relative_url }}" alt="{{ recipe.title | default: 'Brak zdjęcia przepisu' }}">
         </div>
         <h3 class="recipe-card-title">{{ recipe.title }}</h3>
-    </a>
-</div>
+    </div>
+</a>
