@@ -5,7 +5,7 @@ category: desery
 time: "1 godzina 15 minut"
 portions: "4-6"
 difficulty: "średni"
-image_main: "/images/recipes/knedle-ze-sliwka-main.jpg"
+image_main: "/images/recipes/knedle-ze-sliwek-main.jpg"
 description: Tradycyjne knedle ziemniaczane z soczystymi śliwkami, serwowane z bułką tartą i masłem. Słodka klasyka.
 ---
 
