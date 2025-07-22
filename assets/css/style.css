@@ -29,8 +29,18 @@ body {
 
 /* --- 1. Typografia --- */
 
+h1, h2, h3, h4, h5, h6,
+.site-title,
+.site-subtitle,
+.recipe-card-title,
+.category-card-title,
+.recipe-title,
+.recipe-description,
+.note-title { /* Dodano wszystkie elementy, które mają używać Playfair Display */
+    font-family: 'Playfair Display', serif; /* Nagłówki i tytuły */
+}
+
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif; /* Nagłówki */
     font-weight: 700; /* Domyślna waga dla nagłówków */
     color: #A9643E; /* Kolor akcentu - dla nagłówków */
     margin-bottom: 0.8em;
@@ -76,16 +86,14 @@ a:hover {
 }
 
 .site-title {
-    font-family: 'Playfair Display', serif; /* Tytuł strony */
-    font-weight: 700; /* Bold */
+    font-weight: 700; /* Bold dla tytułu strony */
     color: #A9643E; /* Kolor akcentu */
     font-size: 3.5rem; /* Domyślny rozmiar (dla desktopu lub większego mobile) */
     margin-bottom: 0.5rem;
 }
 
 .site-subtitle {
-    font-family: 'Playfair Display', serif; /* Podtytuł strony */
-    font-weight: 400; /* Regular */
+    font-weight: 400; /* Regular dla podtytułu strony */
     color: #2E2E2E; /* Kolor tekstu głównego */
     font-size: 1.3rem;
     font-style: italic;
@@ -209,8 +217,7 @@ a:hover {
 }
 
 .recipe-card-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
+    font-weight: 700; /* Bold dla tytułu przepisu */
     font-size: 1.2rem; /* Zmniejszono rozmiar fontu tytułu przepisu */
     margin-bottom: 0.5rem;
     color: #A9643E; /* Kolor akcentu */
@@ -234,6 +241,12 @@ a:hover {
     text-align: center;
     transition: background-color 0.3s ease;
     border: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
+    
+    min-height: 120px; /* Dodano stałą minimalną wysokość dla spójności */
+    display: flex; /* Użyjemy flexboxa, aby wyśrodkować zawartość w pionie */
+    flex-direction: column;
+    justify-content: center; /* Wyśrodkuj zawartość pionowo */
+    align-items: center; /* Wyśrodkuj zawartość poziomo */
 }
 
 .category-card:hover {
@@ -241,8 +254,7 @@ a:hover {
 }
 
 .category-card-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
+    font-weight: 700; /* Bold dla tytułu kategorii */
     font-size: 1.4rem; /* Zmniejszono rozmiar fontu tytułu kategorii */
     color: #A9643E; /* Kolor akcentu */
     margin: 0;
@@ -264,8 +276,7 @@ a:hover {
 }
 
 .notes-section .note-entry h3 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
+    font-weight: 700; /* Bold dla nagłówka notatki */
     font-size: 1.6rem;
     color: #A9643E; /* Kolor akcentu */
     margin-bottom: 0.5rem;
@@ -293,6 +304,242 @@ a:hover {
 }
 
 .recipe-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
+    font-weight: 700; /* Bold dla tytułu przepisu na stronie */
     font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.recipe-description {
+    font-weight: 400; /* Regular dla opisu przepisu */
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #2E2E2E; /* Kolor tekstu głównego */
+    margin-bottom: 2rem;
+}
+
+.recipe-content-wrapper {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr; /* Domyślnie jedna kolumna dla mobile */
+}
+
+@media (min-width: 768px) { /* Tablet i desktop */
+    .recipe-content-wrapper {
+        grid-template-columns: 1fr 2fr; /* Obraz po lewej, tekst po prawej na desktop */
+    }
+}
+
+.recipe-main-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Wyśrodkowanie w pionie dla mobile */
+}
+
+@media (min-width: 768px) {
+    .recipe-main-info {
+        align-items: flex-start; /* Dopasowanie do lewej na desktop */
+    }
+}
+
+.recipe-main-image {
+    width: 100%;
+    max-width: 400px; /* Ogranicz szerokość obrazu dla spójności */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    /* Proporcje 4:3 w CSS dla obrazów przepisów */
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.recipe-details {
+    width: 100%;
+    padding: 1rem;
+    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
+    border-radius: 8px;
+    border: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
+}
+
+.recipe-details p {
+    margin-bottom: 0.5rem;
+    font-family: 'Source Sans 3', sans-serif;
+    color: #2E2E2E; /* Kolor tekstu głównego */
+}
+.recipe-details strong {
+    color: #A9643E; /* Kolor akcentu */
+}
+
+.recipe-ingredients,
+.recipe-preparation {
+    padding: 1.5rem 0;
+}
+
+/* Strona pojedynczej notatki */
+.note-single {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.note-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.note-title {
+    font-weight: 700; /* Bold dla tytułu notatki */
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.note-date {
+    font-family: 'Source Sans 3', sans-serif;
+    color: #2E2E2E; /* Kolor tekstu głównego */
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.note-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.note-content h2, .note-content h3, .note-content h4 {
+    font-weight: 700; /* Bold dla nagłówków w notatce */
+    color: #A9643E; /* Kolor akcentu */
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.note-content p {
+    margin-bottom: 1rem;
+    color: #2E2E2E; /* Kolor tekstu głównego */
+}
+
+.note-content ul, .note-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.note-content blockquote {
+    border-left: 4px solid #A9643E; /* Kolor akcentu */
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #2E2E2E; /* Kolor tekstu głównego */
+}
+
+.back-to-categories-link,
+.back-to-home-notes-link {
+    display: inline-block;
+    margin-top: 2rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.9rem;
+    color: #A9643E; /* Kolor akcentu */
+}
+
+/* --- 5. Media Queries (Responsywność) --- */
+
+/* Mobilne i małe tablety */
+@media (max-width: 767px) {
+    .site-title {
+        font-size: 2.5rem; /* Mniejszy rozmiar na małych ekranach */
+    }
+    .site-subtitle {
+        font-size: 1.1rem; /* Mniejszy podtytuł */
+    }
+    .content {
+        padding: 1rem; /* Mniejszy padding na mobilnych */
+    }
+    /* Wszystkie siatki będą miały 1 kolumnę na bardzo małych ekranach domyślnie, dzięki auto-fit */
+}
+
+/* Tablet (breakpoint: >= 768px) */
+@media (min-width: 768px) {
+    .site-title {
+        font-size: 4rem;
+    }
+    .site-subtitle {
+        font-size: 1.5rem;
+    }
+    .content {
+        padding: 2rem;
+    }
+    .featured-recipes-grid,
+    .latest-recipes-grid,
+    .recipes-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 kolumny na tabletach */
+    }
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 kolumny na tabletach */
+    }
+    .recipe-single {
+        padding: 2rem;
+    }
+    .note-single {
+        padding: 2rem;
+    }
+}
+
+/* Desktop (breakpoint: >= 1024px) */
+@media (min-width: 1024px) {
+    .site-title {
+        font-size: 5rem;
+    }
+    .site-subtitle {
+        font-size: 1.7rem;
+    }
+    .content {
+        padding: 3rem;
+    }
+    .featured-recipes-grid,
+    .latest-recipes-grid,
+    .recipes-grid {
+        grid-template-columns: repeat(4, 1fr); /* Zmieniono na 4 kolumny na desktopie */
+    }
+    .categories-grid {
+        grid-template-columns: repeat(4, 1fr); /* Zmieniono na 4 kolumny na desktopie */
+    }
+}
+
+/* --- Strona błędu 404 --- */
+.error-404-page {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    max-width: 700px;
+    margin: 2rem auto;
+    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.error-title {
+    color: #A9643E; /* Kolor akcentu - dla tytułu błędu */
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.error-message,
+.error-suggestion {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #2E2E2E; /* Kolor tekstu głównego */
+}
+
+.error-image {
+    max-width: 100%;
+    width: 400px;
+    height: auto;
+    display: block;
+    margin: 2rem auto 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
