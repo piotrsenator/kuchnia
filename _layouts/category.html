@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<div class="category-page-wrapper">
+    <header class="category-header">
+        <h1 class="category-title">{{ page.title }}</h1>
+        <p class="category-description">{{ page.description }}</p>
+    </header>
+
+    <a href="{{ '/' | relative_url }}" class="back-to-categories-link">← Wróć do wszystkich kategorii</a>
+
+    <div class="recipes-grid">
+        {% assign category_name = page.title | downcase %}
+        {% assign category_slug = category_name | slugify %}
+
+        {% comment %} Filtrowanie przepisów należących do bieżącej kategorii {% endcomment %}
+        {% assign filtered_recipes = site.recipes | where: "category", category_slug %}
+
+        {% if filtered_recipes.size > 0 %}
+            {% for recipe in filtered_recipes %}
+                {% include recipe_card.html recipe=recipe %}
+            {% endfor %}
+        {% else %}
+            <p class="no-recipes-message">Brak przepisów w tej kategorii. Wróć tu wkrótce!</p>
+        {% endif %}
+    </div>
+</div>
