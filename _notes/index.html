@@ -1,0 +1,32 @@
+---
+layout: default
+title: Wszystkie notatki
+permalink: /notes/
+---
+
+<div class="content">
+    <header class="page-header">
+        <h1>{{ page.title }}</h1>
+        <p class="page-description">Tutaj znajdziesz wszystkie moje przemyślenia, wskazówki i krótkie wpisy.</p>
+    </header>
+
+    <section class="notes-list-section">
+        {% if site.notes.size > 0 %} {# Zmieniamy site.posts na site.notes #}
+            <ul class="notes-list">
+                {% for note in site.notes reversed %} {# Iterujemy po site.notes, reversed dla najnowszych #}
+                    <li class="note-item">
+                        <h3 class="note-title"><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
+                        <p class="note-meta">
+                            <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%d.%m.%Y" }}</time>
+                            {% if note.author %} by {{ note.author }}{% endif %}
+                        </p>
+                        <p class="note-excerpt">{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
+                        <a href="{{ note.url | relative_url }}" class="read-more-link">Czytaj więcej &raquo;</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Brak notatek do wyświetlenia.</p>
+        {% endif %}
+    </section>
+</div>
