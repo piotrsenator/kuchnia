@@ -323,31 +323,58 @@ a:hover {
     margin-bottom: 2rem;
 }
 
-/* === KLUCZOWA ZMIANA DLA UKŁADU PRZEPISU NA STRONIE === */
+/* === KLUCZOWE ZMIANY DLA UKŁADU PRZEPISU NA STRONIE === */
 .recipe-content-wrapper {
-    display: block; /* Ustawia układ blokowy, aby elementy układały się jeden pod drugim */
-    width: 100%;    /* Zapewnia, że kontener zajmuje całą dostępną szerokość */
-    gap: 2rem; /* Ten gap nie będzie miał już znaczenia dla display: block, ale zostawiamy na wszelki wypadek */
+    display: grid; /* Powrót do układu siatki */
+    gap: 2rem; /* Odstęp między kolumnami */
+    grid-template-columns: 1fr; /* Domyślnie jedna kolumna na mobilnych */
 }
 
-/* Zapewnij, że wszystkie sekcje wewnątrz rozciągają się na pełną szerokość i mają odstępy */
-.recipe-main-info,
-.recipe-ingredients,
+@media (min-width: 768px) { /* Tablet i desktop */
+    .recipe-content-wrapper {
+        /* Lewa kolumna (obraz, detale) ~1/3 szerokości, Prawa kolumna (składniki) ~2/3 szerokości */
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+/* Ustawienie elementów w siatce */
+.recipe-main-info {
+    grid-column: 1 / 2; /* Zawsze w pierwszej kolumnie */
+    display: flex; /* Aby obrazek i detale układały się pionowo */
+    flex-direction: column;
+    align-items: center; /* Wyśrodkowanie w pionie dla mobile */
+    margin-bottom: 0; /* Usunięcie marginesu, bo gap w gridzie */
+}
+
+@media (min-width: 768px) {
+    .recipe-main-info {
+        align-items: flex-start; /* Dopasowanie do lewej na desktop */
+    }
+}
+
+.recipe-ingredients {
+    grid-column: 1 / -1; /* Domyślnie na całą szerokość na mobilnych */
+    margin-bottom: 0; /* Usunięcie marginesu, bo gap w gridzie */
+}
+
+@media (min-width: 768px) {
+    .recipe-ingredients {
+        grid-column: 2 / 3; /* W drugiej kolumnie na tabletach/desktopach */
+    }
+}
+
+
 .recipe-preparation,
 .recipe-additional-content {
-    width: 100%; /* Upewnij się, że zajmują pełną szerokość swojego rodzica */
-    margin-bottom: 2rem; /* Dodaj odstęp między sekcjami */
-}
-
-/* Usuń dolny margines z ostatniej sekcji, aby uniknąć nadmiernej przestrzeni na końcu */
-.recipe-content-wrapper > *:last-child {
-    margin-bottom: 0;
+    grid-column: 1 / -1; /* Zawsze na całą szerokość (rozciąga się na wszystkie kolumny) */
+    margin-top: 2rem; /* Dodaj odstęp od sekcji powyżej */
 }
 
 .recipe-main-image {
-    max-width: 100%;
+    max-width: 250px; /* Mniejszy rozmiar obrazka */
+    width: 100%; /* Upewnij się, że skaluje się w dół */
     height: auto;
-    border-radius: 8px; /* Zachowaj zaokrąglenia na stronie */
+    border-radius: 8px;
     margin-bottom: 1.5rem;
     aspect-ratio: 4 / 3; /* Zachowaj proporcje na stronie */
     object-fit: cover;
@@ -359,7 +386,7 @@ a:hover {
     background-color: #F1EBE3;
     border-radius: 8px;
     border: 1px solid #BDB7AF;
-    margin-top: 0; /* Usuń górny margines, jeśli jest niepotrzebny */
+    margin-top: 0; /* Usunięcie marginesu, bo obrazek ma swój */
 }
 
 .recipe-details p {
