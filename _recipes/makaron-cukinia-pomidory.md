@@ -3,7 +3,7 @@ layout: recipe
 title: Szybki Makaron z Cukinią i Suszonymi Pomidorami
 description: Lekki i aromatyczny makaron z cukinią, słodkimi suszonymi pomidorami i świeżą bazylią. Idealny na szybki obiad.
 image_main: /images/recipes/makaron-cukinia-pomidory-main.jpg # Pamiętaj o dodaniu tego zdjęcia!
-featured: false # Czy chcesz, żeby ten przepis był wyróżniony na stronie głównej?
+featured: true # Czy chcesz, żeby ten przepis był wyróżniony na stronie głównej?
 category: Dania Główne / Wegetariańskie
 time: "20 minut"
 portions: "2"
