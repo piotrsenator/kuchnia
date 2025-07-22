@@ -10,7 +10,7 @@ description: Gotuję dla bliskich — nie z obowiązku, tylko z przyjemności. N
     <h2 class="section-title">Wybrane przepisy</h2>
     <div class="featured-recipes-grid grid-container">
         {% comment %} Wybiera do 3 losowych przepisów z flagą featured: true {% endcomment %}
-        {% assign featured_recipes = site.recipes | where: "featured", true | sample: 3 %} {# Zmieniono z 6 na 3 #}
+        {% assign featured_recipes = site.recipes | where: "featured", true | sample: 3 %}
         {% assign recipes_count = featured_recipes | size %}
         
         {% for recipe in featured_recipes %}
@@ -59,7 +59,7 @@ description: Gotuję dla bliskich — nie z obowiązku, tylko z przyjemności. N
         </div>
     </section>
 
-    <section id="notatki-z-kuchni" class="notes-section"> !-- Ważne: ID dla linku powrotnego z notatki -->
+    <section id="notatki-z-kuchni" class="notes-section"> <!-- Ważne: ID dla linku powrotnego z notatki -->
         <h2 class="section-title">Notatki z kuchni</h2>
         <div class="notes-list">
             {% comment %} Pobiera 3 najnowsze notatki {% endcomment %}
