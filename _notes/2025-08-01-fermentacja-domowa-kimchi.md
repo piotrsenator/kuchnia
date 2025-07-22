@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Fermentacja Domowa: Moja Nowa Fascynacja Kimchi
+title: Fermentacja Domowa - Moja Nowa Fascynacja Kimchi
 date: 2025-08-01
 ---
 
