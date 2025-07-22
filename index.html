@@ -6,20 +6,30 @@ description: Gotuję dla bliskich — nie z obowiązku, tylko z przyjemności. N
 
 <div class="main-page-content">
 
-    <section class="featured-recipes-section">
-        <h2 class="section-title">Wybrane przepisy</h2>
-        <div class="featured-recipes-grid grid-container">
-            {% comment %} Wybiera do 6 losowych przepisów z flagą featured: true {% endcomment %}
-            {% assign featured_recipes = site.recipes | where: "featured", true | sample: 6 %}
-            {% if featured_recipes.size > 0 %}
-                {% for recipe in featured_recipes %}
-                    {% include recipe_card.html recipe=recipe %}
-                {% endfor %}
-            {% else %}
-                <p>Brak wyróżnionych przepisów do wyświetlenia.</p>
-            {% endif %}
-        </div>
-    </section>
+<section class="featured-recipes-section">
+    <h2 class="section-title">Wybrane przepisy</h2>
+    <div class="featured-recipes-grid grid-container">
+        {% comment %} Wybiera do 3 losowych przepisów z flagą featured: true {% endcomment %}
+        {% assign featured_recipes = site.recipes | where: "featured", true | sample: 3 %} {# Zmieniono z 6 na 3 #}
+        {% assign recipes_count = featured_recipes | size %}
+        
+        {% for recipe in featured_recipes %}
+            {% include recipe_card.html recipe=recipe %}
+        {% endfor %}
+
+        {% comment %} Dodaj puste karty, jeśli jest mniej niż 3 przepisy, aby zachować układ siatki {% endcomment %}
+        {% if recipes_count < 3 %} 
+            {% assign empty_cards_to_add = 3 | minus: recipes_count %} 
+            {% for i in (1..empty_cards_to_add) %}
+                <div class="recipe-card empty-card"></div> 
+            {% endfor %}
+        {% endif %}
+
+        {% if featured_recipes.size == 0 %}
+            <p>Brak wyróżnionych przepisów do wyświetlenia.</p>
+        {% endif %}
+    </div>
+</section>
 
     <section class="latest-recipes-section">
         <h2 class="section-title">Najnowsze przepisy</h2>
