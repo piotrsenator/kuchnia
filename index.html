@@ -3,64 +3,106 @@ layout: default
 title: Strona Główna
 ---
 
-<main class="main-page-content content">
+<div class="main-content">
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="site-title">{{ site.title }}</h1>
+            <p class="site-subtitle">{{ site.subtitle }}</p>
+            {% if site.description_short %}
+                <p class="site-description-short">{{ site.description_short }}</p>
+            {% endif %}
+            <a href="{{ '/przepisy/' | relative_url }}" class="button primary-button">Przejdź do przepisów</a>
+        </div>
+    </section>
+
+    ---
 
     <section class="featured-recipes-section">
-        <h2>Wybrane Przepisy</h2>
-        <div class="featured-recipes-grid recipes-grid">
+        <h2 class="section-title">Wybrane Przepisy</h2>
+        <div class="recipes-grid">
             {% comment %}
-            Pętla dla wybranych przepisów. Limit ustawiony na 4.
-            Upewnij się, że masz co najmniej 4 przepisy z 'featured: true' w front matter.
+            Pętla dla wybranych przepisów. Limit ustawiony na 4, posortowane od najnowszych.
+            Upewnij się, że masz przepisy z 'featured: true' w front matter.
             {% endcomment %}
-            {% assign featured_recipes = site.recipes | where: "featured", true | sort: "date" | reverse %}
-            {% for recipe in featured_recipes limit: 4 %}
-                {% include recipe_card.html recipe=recipe %}
-            {% endfor %}
+            {% assign featured_recipes = site.recipes | where: "featured", true | sort: "date" | reverse | limit: 4 %}
+            {% if featured_recipes.size > 0 %}
+                {% for recipe in featured_recipes %}
+                    {% include recipe_card.html recipe=recipe %}
+                {% endfor %}
+            {% else %}
+                <p>Brak wybranych przepisów do wyświetlenia.</p>
+            {% endif %}
         </div>
-
+        <div class="button-container">
+            <a href="{{ '/przepisy/' | relative_url }}" class="button secondary-button">Wszystkie przepisy</a>
+        </div>
     </section>
+
+    ---
 
     <section class="latest-recipes-section" id="najnowsze-przepisy">
-        <h2>Najnowsze Przepisy</h2>
-        <div class="latest-recipes-grid recipes-grid">
+        <h2 class="section-title">Najnowsze Przepisy</h2>
+        <div class="recipes-grid">
             {% comment %}
-            Pętla dla najnowszych przepisów. Limit ustawiony na 4.
+            Pętla dla najnowszych przepisów. Limit ustawiony na 4, posortowane od najnowszych.
             {% endcomment %}
-            {% for recipe in site.recipes limit: 4 %}
-                {% include recipe_card.html recipe=recipe %}
-            {% endfor %}
+            {% assign latest_recipes = site.recipes | sort: "date" | reverse | limit: 4 %}
+            {% if latest_recipes.size > 0 %}
+                {% for recipe in latest_recipes %}
+                    {% include recipe_card.html recipe=recipe %}
+                {% endfor %}
+            {% else %}
+                <p>Brak najnowszych przepisów do wyświetlenia.</p>
+            {% endif %}
         </div>
-
+        <div class="button-container">
+            <a href="{{ '/przepisy/' | relative_url }}" class="button secondary-button">Wszystkie przepisy</a>
+        </div>
     </section>
 
-<section class="categories-section" id="kategorie">
-    <h2>Kategorie</h2>
-    <div class="categories-grid">
-        {% for category in site.data.categories %}
-            <a href="{{ '/category/' | append: category.slug | append: '/' | relative_url }}" class="category-card">
-                <h3 class="category-card-title">{{ category.name }}</h3>
-            </a>
-        {% endfor %}
-    </div>
-</section>
+    ---
 
     <section class="notes-section" id="notatki-z-kuchni">
-        <h2>Notatki z Kuchni</h2>
+        <h2 class="section-title">Notatki z Kuchni</h2>
         <div class="notes-grid">
             {% comment %}
             Wyświetlanie 3 najnowszych notatek.
             {% endcomment %}
-            {% for note in site.notes limit: 3 %}
-                <div class="note-entry">
-                    <a href="{{ note.url | relative_url }}">
-                        <h3>{{ note.title }}</h3>
-                    </a>
-                    <p class="note-excerpt">{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
-                    <a href="{{ note.url | relative_url }}" class="read-more">Czytaj więcej &raquo;</a>
-                </div>
-            {% endfor %}
+            {% assign latest_notes = site.notes | sort: "date" | reverse | limit: 3 %}
+            {% if latest_notes.size > 0 %}
+                {% for note in latest_notes %}
+                    <div class="note-entry">
+                        <a href="{{ note.url | relative_url }}">
+                            <h3>{{ note.title }}</h3>
+                        </a>
+                        <p class="note-excerpt">{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
+                        <a href="{{ note.url | relative_url }}" class="read-more">Czytaj więcej &raquo;</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Brak notatek do wyświetlenia.</p>
+            {% endif %}
         </div>
-        <a href="{{ '/notes.html' | relative_url }}" class="button">Wszystkie notatki</a>
+        <div class="button-container">
+            <a href="{{ '/notes/' | relative_url }}" class="button secondary-button">Wszystkie notatki</a>
+        </div>
     </section>
 
-</main>
+    ---
+
+    <section class="categories-section" id="kategorie">
+        <h2 class="section-title">Kategorie</h2>
+        <div class="categories-grid">
+            {% for category in site.data.categories %}
+                <a href="{{ '/category/' | append: category.slug | append: '/' | relative_url }}" class="category-card">
+                    <h3 class="category-card-title">{{ category.name }}</h3>
+                </a>
+            {% endfor %}
+        </div>
+        <div class="button-container">
+            <a href="{{ '/categories/' | relative_url }}" class="button secondary-button">Wszystkie kategorie</a>
+        </div>
+    </section>
+
+</div>
