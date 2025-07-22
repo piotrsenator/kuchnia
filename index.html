@@ -1,81 +1,90 @@
 ---
 layout: default
-title: Strona główna
-description: Gotuję dla bliskich — nie z obowiązku, tylko z przyjemności. Na tej stronie zbieram sprawdzone przepisy i kulinarne eksperymenty.
+title: Strona Główna
 ---
 
-<div class="main-page-content">
-   
-<section class="featured-recipes-section">
-    <h2 class="section-title">Wybrane przepisy</h2>
-    <div class="featured-recipes-grid grid-container">
-        {% comment %} Wybiera do 3 losowych przepisów z flagą featured: true {% endcomment %}
-        {% assign featured_recipes = site.recipes | where: "featured", true | sample: 3 %}
-        {% assign recipes_count = featured_recipes | size %}
-        
-        {% for recipe in featured_recipes %}
-            {% include recipe_card.html recipe=recipe %}
-        {% endfor %}
-
-        {% comment %} Dodaj puste karty, jeśli jest mniej niż 3 przepisy, aby zachować układ siatki {% endcomment %}
-        {% if recipes_count < 3 %} 
-            {% assign empty_cards_to_add = 3 | minus: recipes_count %} 
-            {% for i in (1..empty_cards_to_add) %}
-                <div class="recipe-card empty-card"></div> 
-            {% endfor %}
-        {% endif %}
-
-        {% if featured_recipes.size == 0 %}
-            <p>Brak wyróżnionych przepisów do wyświetlenia.</p>
-        {% endif %}
+<header class="site-header">
+    <div class="site-branding">
+        <a href="{{ '/' | relative_url }}" class="site-title-link">
+            <h1 class="site-title">{{ site.title }}</h1>
+        </a>
+        <p class="site-subtitle">{{ site.subtitle }}</p>
     </div>
-</section>
+    <nav class="site-nav">
+        <ul>
+            <li><a href="{{ '/' | relative_url }}">Strona główna</a></li>
+            <li><a href="{{ '/#notatki-z-kuchni' | relative_url }}">Notatki z kuchni</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Kategorie</a>
+                <div class="dropdown-content">
+                    {% for category in site.data.categories %}
+                        <a href="{{ '/categories/' | relative_url }}{{ category.slug }}.html">{{ category.name }}</a>
+                    {% endfor %}
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-    <section class="latest-recipes-section">
-        <h2 class="section-title">Najnowsze przepisy</h2>
-        <div class="latest-recipes-grid grid-container">
-            {% comment %} Pobiera 9 najnowszych przepisów {% endcomment %}
-            {% assign latest_recipes = site.recipes | sort: "date" | reverse | limit: 9 %}
-            {% if latest_recipes.size > 0 %}
-                {% for recipe in latest_recipes %}
-                    {% include recipe_card.html recipe=recipe %}
-                {% endfor %}
-            {% else %}
-                <p>Brak najnowszych przepisów do wyświetlenia.</p>
-            {% endif %}
+<main class="main-page-content content">
+
+    <section class="featured-recipes-section">
+        <h2>Wybrane Przepisy</h2>
+        <div class="featured-recipes-grid recipes-grid">
+            {% comment %}
+            Pętla dla wybranych przepisów. Limit ustawiony na 4.
+            Upewnij się, że masz co najmniej 4 przepisy z 'featured: true' w front matter.
+            {% endcomment %}
+            {% assign featured_recipes = site.recipes | where: "featured", true | sort: "date" | reverse %}
+            {% for recipe in featured_recipes limit: 4 %}
+                {% include recipe_card.html recipe=recipe %}
+            {% endfor %}
         </div>
+        <a href="{{ '/categories/index.html' | relative_url }}" class="button">Więcej przepisów</a>
     </section>
 
-    <section class="categories-section">
-        <h2 class="section-title">Kategorie</h2>
-        <div class="categories-grid grid-container">
+    <section class="latest-recipes-section" id="najnowsze-przepisy">
+        <h2>Najnowsze Przepisy</h2>
+        <div class="latest-recipes-grid recipes-grid">
+            {% comment %}
+            Pętla dla najnowszych przepisów. Limit ustawiony na 4.
+            {% endcomment %}
+            {% for recipe in site.recipes limit: 4 %}
+                {% include recipe_card.html recipe=recipe %}
+            {% endfor %}
+        </div>
+        <a href="{{ '/categories/index.html' | relative_url }}" class="button">Wszystkie przepisy</a>
+    </section>
+
+    <section class="categories-section" id="kategorie">
+        <h2>Kategorie</h2>
+        <div class="categories-grid">
             {% for category in site.data.categories %}
-                <a href="{{ '/categories/' | relative_url }}{{ category.slug }}.html" class="category-card-link">
-                    <div class="category-card">
-                        <h3 class="category-card-title">{{ category.name }}</h3>
-                    </div>
+                <a href="{{ '/categories/' | relative_url }}{{ category.slug }}.html" class="category-card">
+                    <h3 class="category-card-title">{{ category.name }}</h3>
                 </a>
             {% endfor %}
         </div>
+        <a href="{{ '/categories/index.html' | relative_url }}" class="button">Wszystkie kategorie</a>
     </section>
 
-    <section id="notatki-z-kuchni" class="notes-section"> <!-- Ważne: ID dla linku powrotnego z notatki -->
-        <h2 class="section-title">Notatki z kuchni</h2>
-        <div class="notes-list">
-            {% comment %} Pobiera 3 najnowsze notatki {% endcomment %}
-            {% assign latest_notes = site.notes | sort: "date" | reverse | limit: 3 %}
-            {% if latest_notes.size > 0 %}
-                {% for note in latest_notes %}
-                    <div class="note-entry">
-                        <h3><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
-                        <p>{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
-                        <a href="{{ note.url | relative_url }}" class="read-more-link">Czytaj dalej →</a>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <p>Brak najnowszych notatek do wyświetlenia.</p>
-            {% endif %}
+    <section class="notes-section" id="notatki-z-kuchni">
+        <h2>Notatki z Kuchni</h2>
+        <div class="notes-grid">
+            {% comment %}
+            Wyświetlanie 3 najnowszych notatek.
+            {% endcomment %}
+            {% for note in site.notes limit: 3 %}
+                <div class="note-entry">
+                    <a href="{{ note.url | relative_url }}">
+                        <h3>{{ note.title }}</h3>
+                    </a>
+                    <p class="note-excerpt">{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
+                    <a href="{{ note.url | relative_url }}" class="read-more">Czytaj więcej &raquo;</a>
+                </div>
+            {% endfor %}
         </div>
+        <a href="{{ '/notes.html' | relative_url }}" class="button">Wszystkie notatki</a>
     </section>
 
-</div>
+</main>
