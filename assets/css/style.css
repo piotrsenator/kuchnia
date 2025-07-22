@@ -36,7 +36,8 @@ h1, h2, h3, h4, h5, h6,
 .category-card-title,
 .recipe-title,
 .recipe-description,
-.note-title { /* Dodano wszystkie elementy, które mają używać Playfair Display */
+.note-title
+.site-description-short { /* Dodano wszystkie elementy, które mają używać Playfair Display */
     font-family: 'Playfair Display', serif; /* Nagłówki i tytuły */
 }
 
