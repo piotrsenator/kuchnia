@@ -5,45 +5,73 @@ layout: default
 <article class="recipe-single">
     <header class="recipe-header">
         <h1 class="recipe-title">{{ page.title }}</h1>
-        <p class="recipe-description">{{ page.description }}</p>
+        {% if page.description %}
+            <p class="recipe-description">{{ page.description }}</p>
+        {% endif %}
+
+        {# Opcjonalne wyświetlanie daty publikacji/modyfikacji #}
+        {% if page.date %}
+            <p class="recipe-date">Opublikowano: <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time></p>
+        {% endif %}
+        {% if page.last_modified_at %}
+            <p class="recipe-date">Ostatnia aktualizacja: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%d %b %Y" }}</time></p>
+        {% endif %}
     </header>
 
     <div class="recipe-content-wrapper">
-        <div class="recipe-main-info">
-            {% assign image_src = page.image_main | default: site.defaults | where: "type", "recipes" | map: "values" | map: "image_main" | first %}
-            {% if image_src %}
-                <img src="{{ image_src | relative_url }}" alt="{{ page.title }}" class="recipe-main-image">
-            {% else %}
-                <img src="{{ '/images/general/placeholder-recipe.jpg' | relative_url }}" alt="Brak zdjęcia przepisu" class="recipe-main-image">
-            {% endif %}
-
+        <aside class="recipe-main-info"> {# Zmieniono z div na aside dla lepszej semantyki #}
+            {% comment %}
+            Logika wyświetlania obrazka:
+            Preferuje page.image_main.
+            Jeśli page.image_main jest puste, używa site.data.placeholders.recipe_image (jeśli zdefiniowane w _data/placeholders.yml).
+            W ostateczności używa domyślnej ścieżki /images/general/placeholder-recipe.jpg.
+            {% endcomment %}
+            {% assign placeholder_image = site.data.placeholders.recipe_image | default: '/images/general/placeholder-recipe.jpg' %}
+            <img src="{{ page.image_main | default: placeholder_image | relative_url }}" alt="{{ page.title | default: 'Brak zdjęcia przepisu' }}" class="recipe-main-image">
+            
             <div class="recipe-details">
-                <p><strong>Czas przygotowania:</strong> {{ page.time }}</p>
-                <p><strong>Liczba porcji:</strong> {{ page.portions }}</p>
-                <p><strong>Poziom trudności:</strong> {{ page.difficulty }}</p>
+                {% if page.time %}
+                    <p><strong>Czas przygotowania:</strong> {{ page.time }}</p>
+                {% endif %}
+                {% if page.portions %}
+                    <p><strong>Liczba porcji:</strong> {{ page.portions }}</p>
+                {% endif %}
+                {% if page.difficulty %}
+                    <p><strong>Poziom trudności:</strong> {{ page.difficulty }}</p>
+                {% endif %}
                 {% if page.notes %}
                     <p><strong>Uwagi:</strong> {{ page.notes }}</p>
                 {% endif %}
-                <button class="print-button" onclick="window.print()">Drukuj przepis</button>
+                <button class="print-button" onclick="window.print()" aria-label="Drukuj przepis">Drukuj przepis</button>
             </div>
-        </div>
+        </aside>
 
-        <section class="recipe-ingredients">
-            <h2>Składniki</h2>
-            <ul>
-                {% for ingredient in page.ingredients %}
-                    <li>{{ ingredient }}</li>
-                {% endfor %}
-            </ul>
-        </section>
+        {% if page.ingredients %}
+            <section class="recipe-ingredients">
+                <h2>Składniki</h2>
+                <ul>
+                    {% for ingredient in page.ingredients %}
+                        <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
 
-        <section class="recipe-preparation">
-            <h2>Przygotowanie</h2>
-            <ol>
-                {% for step in page.preparation %}
-                    <li>{{ step }}</li>
-                {% endfor %}
-            </ol>
-        </section>
+        {% if page.preparation %}
+            <section class="recipe-preparation">
+                <h2>Przygotowanie</h2>
+                <ol>
+                    {% for step in page.preparation %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ol>
+            </section>
+        {% endif %}
+
+        {% if page.additional_content %} {# Jeśli masz dodatkową treść w markdown po frontmatter #}
+            <section class="recipe-additional-content">
+                {{ content }} {# To renderuje treść markdown po front matter #}
+            </section>
+        {% endif %}
     </div>
 </article>
