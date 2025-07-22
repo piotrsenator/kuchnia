@@ -9,7 +9,8 @@ description: Gotuję dla bliskich — nie z obowiązku, tylko z przyjemności. N
     <section class="featured-recipes-section">
         <h2 class="section-title">Wybrane przepisy</h2>
         <div class="featured-recipes-grid grid-container">
-            {% assign featured_recipes = site.recipes | where: "featured", true | sample: 6 %} {# Wybiera do 6 losowych przepisów z flagą featured: true #}
+            {% comment %} Wybiera do 6 losowych przepisów z flagą featured: true {% endcomment %}
+            {% assign featured_recipes = site.recipes | where: "featured", true | sample: 6 %}
             {% if featured_recipes.size > 0 %}
                 {% for recipe in featured_recipes %}
                     {% include recipe_card.html recipe=recipe %}
@@ -23,7 +24,8 @@ description: Gotuję dla bliskich — nie z obowiązku, tylko z przyjemności. N
     <section class="latest-recipes-section">
         <h2 class="section-title">Najnowsze przepisy</h2>
         <div class="latest-recipes-grid grid-container">
-            {% assign latest_recipes = site.recipes | sort: "date" | reverse | limit: 9 %} {# Pobiera 9 najnowszych przepisów #}
+            {% comment %} Pobiera 9 najnowszych przepisów {% endcomment %}
+            {% assign latest_recipes = site.recipes | sort: "date" | reverse | limit: 9 %}
             {% if latest_recipes.size > 0 %}
                 {% for recipe in latest_recipes %}
                     {% include recipe_card.html recipe=recipe %}
@@ -50,12 +52,13 @@ description: Gotuję dla bliskich — nie z obowiązku, tylko z przyjemności. N
     <section id="notatki-z-kuchni" class="notes-section"> {# Ważne: ID dla linku powrotnego z notatki #}
         <h2 class="section-title">Notatki z kuchni</h2>
         <div class="notes-list">
-            {% assign latest_notes = site.notes | sort: "date" | reverse | limit: 3 %} {# Pobiera 3 najnowsze notatki #}
+            {% comment %} Pobiera 3 najnowsze notatki {% endcomment %}
+            {% assign latest_notes = site.notes | sort: "date" | reverse | limit: 3 %}
             {% if latest_notes.size > 0 %}
                 {% for note in latest_notes %}
                     <div class="note-entry">
                         <h3><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
-                        <p>{{ note.excerpt | strip_html | truncatewords: 30 }}</p> {# Wyświetla fragment notatki #}
+                        <p>{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
                         <a href="{{ note.url | relative_url }}" class="read-more-link">Czytaj dalej →</a>
                     </div>
                 {% endfor %}
