@@ -1,12 +1,15 @@
 /*
  * style.css
  * Globalne style dla kuchnia.senator.lu
- * Kolorystyka: naturalna, spokojna, elegancka (najnowsza paleta)
+ * Kolorystyka: naturalna, spokojna, elegancka
  * Typografia: czytelna, z charakterem (Source Sans 3, Playfair Display)
- * Siatka: oparta na 12 kolumnach, responsywna
+ * Siatka: responsywna
  */
 
-/* --- 0. Podstawowe resetowanie i ogólne style --- */
+/* ==========================================================================
+   0. Podstawowe resetowanie i ogólne style
+   ========================================================================== */
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -27,7 +30,9 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- 1. Typografia --- */
+/* ==========================================================================
+   1. Typografia i linki
+   ========================================================================== */
 
 h1, h2, h3, h4, h5, h6,
 .site-title,
@@ -37,15 +42,12 @@ h1, h2, h3, h4, h5, h6,
 .recipe-title,
 .recipe-description,
 .note-title,
-.site-description-short { /* Dodano wszystkie elementy, które mają używać Playfair Display */
+.site-description-short {
     font-family: 'Playfair Display', serif; /* Nagłówki i tytuły */
-}
-
-h1, h2, h3, h4, h5, h6 {
     font-weight: 700; /* Domyślna waga dla nagłówków */
     color: #A9643E; /* Kolor akcentu - dla nagłówków */
-    margin-bottom: 0.8em;
     line-height: 1.2;
+    margin-bottom: 0.8em;
 }
 
 h1 { font-size: 2.8rem; }
@@ -53,10 +55,10 @@ h2 { font-size: 2.2rem; }
 h3 { font-size: 1.8rem; }
 h4 { font-size: 1.5rem; }
 
-/* Styl dla listy składników i przygotowania */
+/* Styl dla list w przepisach */
 .recipe-ingredients ul,
 .recipe-preparation ol {
-    font-family: 'Source Sans 3', sans-serif; /* Działa jako monospace */
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.95rem;
     line-height: 1.8;
     color: #2E2E2E; /* Kolor tekstu głównego */
@@ -65,9 +67,11 @@ h4 { font-size: 1.5rem; }
 }
 
 .recipe-ingredients ul li::marker,
-.recipe-preparation ol li::marker { color: #A9643E; } /* Kolor akcentu */
+.recipe-preparation ol li::marker {
+    color: #A9643E; /* Kolor akcentu */
+}
 
-
+/* Ogólne style dla linków */
 a {
     color: #A9643E; /* Kolor akcentu - dla linków */
     text-decoration: none;
@@ -78,7 +82,9 @@ a:hover {
     color: #BDB7AF; /* Kolor dla elementów drugorzędnych - dla hover linków */
 }
 
-/* --- 2. Kolorystyka i podstawowe elementy --- */
+/* ==========================================================================
+   2. Elementy globalne strony (Header, Footer, Przyciski)
+   ========================================================================== */
 
 .site-header {
     background-color: #FAF5EF; /* Tło główne */
@@ -87,8 +93,6 @@ a:hover {
 }
 
 .site-title {
-    font-weight: 700; /* Bold dla tytułu strony */
-    color: #A9643E; /* Kolor akcentu */
     font-size: 3rem; /* Zmniejszono główny tytuł */
     margin-bottom: 0.5rem;
 }
@@ -103,14 +107,13 @@ a:hover {
 
 .site-description-short {
     max-width: 700px;
-    margin: 0 auto 2rem auto; /* Ten margines 2rem od dołu będzie odpowiadał za odstęp od kolejnej sekcji */
+    margin: 0 auto 2rem auto;
     color: #2E2E2E; /* Kolor tekstu głównego */
-    font-size: 1.2rem; /* Zwiększono podpis pod tytułem */
-    font-family: 'Playfair Display', serif; /* Upewniamy się, że to Playfair Display */
+    font-size: 1.2rem;
 }
 
 .site-description-short p {
-    margin-bottom: 0.5em; /* Odstęp między akapitami w opisie, jeśli będzie ich więcej */
+    margin-bottom: 0.5em; /* Odstęp między akapitami w opisie */
 }
 
 .site-footer {
@@ -122,9 +125,49 @@ a:hover {
     margin-top: 3rem;
 }
 
+/* Style dla przycisków */
+.button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-family: 'Source Sans 3', sans-serif;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    text-align: center; /* Aby tekst był wyśrodkowany, jeśli przycisk jest szerszy */
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 2rem; /* Odstęp nad przyciskiem, jeśli jest w osobnym kontenerze */
+}
+
+.button.primary-button {
+    background-color: #A9643E; /* Kolor akcentu */
+    color: #FAF5EF; /* Kontrastowy do akcentu */
+    border: none;
+}
+
+.button.primary-button:hover {
+    background-color: #2E2E2E; /* Ciemniejszy dla hover */
+    color: #FAF5EF;
+}
+
+.button.secondary-button {
+    background-color: transparent;
+    color: #A9643E; /* Kolor akcentu */
+    border: 1px solid #A9643E;
+}
+
+.button.secondary-button:hover {
+    background-color: #A9643E; /* Kolor akcentu */
+    color: #FAF5EF;
+}
+
+/* Specyficzny styl dla przycisku drukowania */
 .print-button {
     background-color: #A9643E; /* Kolor akcentu */
-    color: #FAF5EF; /* Kontrastowy do akcentu (tło główne) */
+    color: #FAF5EF; /* Kontrastowy do akcentu */
     border: none;
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
@@ -132,14 +175,16 @@ a:hover {
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-    margin-top: 1.5rem;
+    margin-top: 1.5rem; /* Zostawione, jeśli ma mieć specyficzny margines */
 }
 
 .print-button:hover {
-    background-color: #2E2E2E; /* Ciemniejszy dla hover (tekst główny) */
+    background-color: #2E2E2E; /* Ciemniejszy dla hover */
 }
 
-/* --- 3. Układ siatki i responsywność (minimalistyczna siatka 12 kolumn) --- */
+/* ==========================================================================
+   3. Układ strony (Content, Grid, Margins)
+   ========================================================================== */
 
 .content {
     max-width: 1200px; /* Maksymalna szerokość strony */
@@ -147,60 +192,78 @@ a:hover {
     padding: 1.5rem;
 }
 
-/* Podstawowy kontener siatki - bardzo ważne! */
-.grid-container {
-    display: grid;
-    gap: 2rem; /* Odstęp między elementami siatki */
-    padding: 1rem 0;
+/* Główny kontener strony głównej */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem; /* Padding tylko po bokach, sekcje kontrolują pionowe odstępy */
 }
 
 /* Odstępy między głównymi sekcjami strony */
+.hero-section,
 .featured-recipes-section,
 .latest-recipes-section,
 .categories-section,
-.notes-section {
-    margin-top: 4rem; /* Zwiększony odstęp od góry każdej sekcji */
-    margin-bottom: 2rem; /* Utrzymanie odstępu od dołu */
+.notes-section,
+.about-me-section { /* Dodano również about-me-section, jeśli zostanie włączona */
+    margin-top: 4rem;
+    margin-bottom: 2rem;
 }
 
-/* Pierwsza sekcja nie potrzebuje górnego marginesu, aby nie tworzyć pustej przestrzeni na początku strony */
-.main-page-content .featured-recipes-section:first-child {
+/* Pierwsza sekcja na stronie głównej nie potrzebuje górnego marginesu */
+.main-content .hero-section:first-child,
+.main-content .featured-recipes-section:first-child {
     margin-top: 0;
 }
 
-/* Siatki dla sekcji przepisów (wybrane, najnowsze, wszystkie) - kluczowe poprawki! */
+/* Siatki dla sekcji (przepisy, kategorie, notatki) */
+.recipes-grid, /* Ogólna klasa dla siatek przepisów */
 .featured-recipes-grid,
-.latest-recipes-grid,
-.recipes-grid {
-    display: grid; /* Upewniamy się, że to jest siatka */
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Zmniejszono min-width dla kafelków */
-    gap: 2rem; /* Odstęp między kafelkami */
+.latest-recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
 }
 
-/* Siatka dla kategorii - kluczowe poprawki! */
 .categories-grid {
-    display: grid; /* Upewniamy się, że to jest siatka */
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Zmniejszono min-width dla kafelków kategorii */
-    gap: 2rem; /* Odstęp między kafelkami */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
 }
 
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Notatki mogą być trochę szersze */
+    gap: 2rem;
+}
 
-/* --- 4. Style dla poszczególnych sekcji / komponentów --- */
+/* ==========================================================================
+   4. Style dla poszczególnych komponentów i stron
+   ========================================================================== */
 
-/* Karty przepisów (na stronie głównej i kategoriach) */
+/* --- Karty przepisów (na stronie głównej i kategoriach) --- */
 .recipe-card {
     background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
     border: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
     border-radius: 8px;
     overflow: hidden;
     text-align: center;
-    padding-bottom: 0.8rem; /* Zmniejszono padding */
+    padding-bottom: 0.8rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease;
 }
 
 .recipe-card:hover {
     transform: translateY(-5px);
+}
+
+.recipe-card-link {
+    display: block;
+    color: inherit;
+}
+
+.recipe-card-link:hover .recipe-card-title {
+    color: #2E2E2E; /* Ciemniejszy dla hover */
 }
 
 .recipe-card-image-container {
@@ -223,36 +286,23 @@ a:hover {
 }
 
 .recipe-card-title {
-    font-weight: 700; /* Bold dla tytułu przepisu */
-    font-size: 1.2rem; /* Zmniejszono rozmiar fontu tytułu przepisu */
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: #A9643E; /* Kolor akcentu */
 }
 
-.recipe-card-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-}
-.recipe-card-link:hover .recipe-card-title {
-    color: #2E2E2E; /* Kolor tekstu głównego (ciemniejszy dla hover) */
-}
-
-
-/* Kafelki kategorii (bez zdjęć) */
+/* --- Kafelki kategorii (bez zdjęć) --- */
 .category-card {
     background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
-    padding: 1.2rem; /* Zmniejszono padding */
+    border: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
     border-radius: 8px;
+    padding: 1.2rem;
     text-align: center;
     transition: background-color 0.3s ease;
-    border: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
-    
-    min-height: 120px; /* Dodano stałą minimalną wysokość dla spójności */
-    display: flex; /* Użyjemy flexboxa, aby wyśrodkować zawartość w pionie */
+    min-height: 120px;
+    display: flex;
     flex-direction: column;
-    justify-content: center; /* Wyśrodkuj zawartość pionowo */
-    align-items: center; /* Wyśrodkuj zawartość poziomo */
+    justify-content: center;
+    align-items: center;
 }
 
 .category-card:hover {
@@ -260,46 +310,42 @@ a:hover {
 }
 
 .category-card-title {
-    font-weight: 700; /* Bold dla tytułu kategorii */
-    font-size: 1.4rem; /* Zmniejszono rozmiar fontu tytułu kategorii */
-    color: #A9643E; /* Kolor akcentu */
+    font-size: 1.4rem;
     margin: 0;
     transition: color 0.3s ease;
 }
+
 .category-card:hover .category-card-title {
-    color: #FAF5EF; /* Tło główne (kontrastowy na hover) */
+    color: #FAF5EF; /* Kontrastowy na hover */
 }
 
-
-/* Sekcja Notatki z kuchni na stronie głównej */
+/* --- Sekcja Notatek z kuchni na stronie głównej --- */
 .notes-section .note-entry {
-    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
-    border: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
+    background-color: #F1EBE3;
+    border: 1px solid #BDB7AF;
     border-radius: 8px;
     padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0; /* Usunięty margines, bo siatka nim zarządza */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
 }
 
 .notes-section .note-entry h3 {
-    font-weight: 700; /* Bold dla nagłówka notatki */
     font-size: 1.6rem;
-    color: #A9643E; /* Kolor akcentu */
     margin-bottom: 0.5rem;
 }
 
 .notes-section .note-entry p {
     font-size: 1rem;
-    color: #2E2E2E; /* Kolor tekstu głównego */
+    color: #2E2E2E;
     margin-bottom: 0.8rem;
 }
 
-/* Strona pojedynczego przepisu */
+/* --- Strona pojedynczego przepisu --- */
 .recipe-single {
     max-width: 900px;
     margin: 2rem auto;
     padding: 1.5rem;
-    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
+    background-color: #F1EBE3;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
@@ -310,83 +356,58 @@ a:hover {
 }
 
 .recipe-title {
-    font-weight: 700; /* Bold dla tytułu przepisu na stronie */
     font-size: 3rem;
     margin-bottom: 1rem;
 }
 
 .recipe-description {
-    font-weight: 400; /* Regular dla opisu przepisu */
+    font-weight: 400;
     font-size: 1.2rem;
     font-style: italic;
-    color: #2E2E2E; /* Kolor tekstu głównego */
+    color: #2E2E2E;
     margin-bottom: 2rem;
 }
 
-/* === KLUCZOWE ZMIANY DLA UKŁADU PRZEPISU NA STRONIE === */
 .recipe-content-wrapper {
-    display: grid; /* Powrót do układu siatki */
-    gap: 2rem; /* Odstęp między kolumnami */
+    display: grid;
+    gap: 2rem;
     grid-template-columns: 1fr; /* Domyślnie jedna kolumna na mobilnych */
 }
 
-@media (min-width: 768px) { /* Tablet i desktop */
-    .recipe-content-wrapper {
-        /* Lewa kolumna (obraz, detale), Prawa kolumna (składniki) */
-        grid-template-columns: minmax(250px, 1fr) 2fr; /* Umożliwia dynamiczną szerokość lewej kolumny (min 250px, maks 1fr) */
-    }
-}
-
-/* Ustawienie elementów w siatce */
 .recipe-main-info {
-    grid-column: 1 / 2; /* Zawsze w pierwszej kolumnie */
-    display: flex; /* Aby obrazek i detale układały się pionowo */
+    grid-column: 1 / 2;
+    display: flex;
     flex-direction: column;
     align-items: center; /* Wyśrodkowanie w pionie dla mobile */
-    margin-bottom: 0; /* Usunięcie marginesu, bo gap w gridzie */
-}
-
-@media (min-width: 768px) {
-    .recipe-main-info {
-        align-items: flex-start; /* Dopasowanie do lewej na desktop */
-    }
 }
 
 .recipe-ingredients {
     grid-column: 1 / -1; /* Domyślnie na całą szerokość na mobilnych */
-    margin-bottom: 0; /* Usunięcie marginesu, bo gap w gridzie */
 }
-
-@media (min-width: 768px) {
-    .recipe-ingredients {
-        grid-column: 2 / 3; /* W drugiej kolumnie na tabletach/desktopach */
-    }
-}
-
 
 .recipe-preparation,
 .recipe-additional-content {
-    grid-column: 1 / -1; /* Zawsze na całą szerokość (rozciąga się na wszystkie kolumny) */
-    margin-top: 2rem; /* Dodaj odstęp od sekcji powyżej */
+    grid-column: 1 / -1;
+    margin-top: 2rem;
 }
 
 .recipe-main-image {
-    max-width: 100%; /* Upewnij się, że obrazek dostosowuje się do szerokości rodzica */
-    width: 100%;     /* Obrazek ma zajmować całą szerokość rodzica (czyli recipe-main-info) */
+    max-width: 100%;
+    width: 100%;
     height: auto;
     border-radius: 8px;
     margin-bottom: 1.5rem;
-    aspect-ratio: 4 / 3; /* Zachowaj proporcje na stronie */
+    aspect-ratio: 4 / 3;
     object-fit: cover;
 }
 
 .recipe-details {
-    width: 100%; /* Upewnij się, że detale zajmują pełną szerokość swojego rodzica (recipe-main-info) */
+    width: 100%;
     padding: 1rem;
     background-color: #F1EBE3;
     border-radius: 8px;
     border: 1px solid #BDB7AF;
-    margin-top: 0; /* Usunięcie marginesu, bo obrazek ma swój */
+    margin-top: 0;
 }
 
 .recipe-details p {
@@ -394,21 +415,17 @@ a:hover {
     font-family: 'Source Sans 3', sans-serif;
     color: #2E2E2E;
 }
+
 .recipe-details strong {
     color: #A9643E;
 }
 
-.recipe-ingredients,
-.recipe-preparation {
-    padding: 0; /* Usuń padding, jeśli jest niepotrzebny */
-}
-
-/* Strona pojedynczej notatki */
+/* --- Strona pojedynczej notatki --- */
 .note-single {
     max-width: 800px;
     margin: 2rem auto;
     padding: 1.5rem;
-    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
+    background-color: #F1EBE3;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
@@ -419,14 +436,13 @@ a:hover {
 }
 
 .note-title {
-    font-weight: 700; /* Bold dla tytułu notatki */
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
 }
 
 .note-date {
     font-family: 'Source Sans 3', sans-serif;
-    color: #2E2E2E; /* Kolor tekstu głównego */
+    color: #2E2E2E;
     font-size: 0.9rem;
     margin-bottom: 1.5rem;
 }
@@ -442,15 +458,14 @@ a:hover {
 }
 
 .note-content h2, .note-content h3, .note-content h4 {
-    font-weight: 700; /* Bold dla nagłówków w notatce */
-    color: #A9643E; /* Kolor akcentu */
+    color: #A9643E;
     margin-top: 1.5rem;
     margin-bottom: 0.8rem;
 }
 
 .note-content p {
     margin-bottom: 1rem;
-    color: #2E2E2E; /* Kolor tekstu głównego */
+    color: #2E2E2E;
 }
 
 .note-content ul, .note-content ol {
@@ -459,11 +474,11 @@ a:hover {
 }
 
 .note-content blockquote {
-    border-left: 4px solid #A9643E; /* Kolor akcentu */
+    border-left: 4px solid #A9643E;
     padding-left: 1rem;
     margin: 1.5rem 0;
     font-style: italic;
-    color: #2E2E2E; /* Kolor tekstu głównego */
+    color: #2E2E2E;
 }
 
 .back-to-categories-link,
@@ -472,93 +487,119 @@ a:hover {
     margin-top: 2rem;
     font-family: 'Source Sans 3', sans-serif;
     font-size: 0.9rem;
-    color: #A9643E; /* Kolor akcentu */
+    color: #A9643E;
 }
 
-/* --- 5. Media Queries (Responsywność) --- */
-
-/* Mobilne i małe tablety */
-@media (max-width: 767px) {
-    .site-title {
-        font-size: 2.5rem; /* Mniejszy rozmiar na małych ekranach */
-    }
-    .site-subtitle {
-        font-size: 1.1rem; /* Mniejszy podtytuł */
-    }
-    .content {
-        padding: 1rem; /* Mniejszy padding na mobilnych */
-    }
-    /* Wszystkie siatki będą miały 1 kolumnę na bardzo małych ekranach domyślnie, dzięki auto-fit */
-    .featured-recipes-grid,
-    .latest-recipes-grid,
-    .recipes-grid,
-    .categories-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Na małych ekranach mogą być 2 kolumny, jeśli ekran jest wystarczająco szeroki */
-        gap: 1.5rem; /* Mniejsze odstępy na mobilnych */
-    }
-
-    h2 { /* Zmniejszono nazwy sekcji na mobilnych */
-        font-size: 2rem;
-    }
+/* --- Strona 404 --- */
+.error-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 30px auto;
+    width: 400px;
 }
+
+/* ==========================================================================
+   5. Media Queries (Responsywność)
+   ========================================================================== */
+
+/* Mobilne i małe tablety (domyślne style, min-width zaczyna modyfikować) */
 
 /* Tablet (breakpoint: >= 768px) */
 @media (min-width: 768px) {
-    .site-title {
-        font-size: 3.5rem; /* Zmniejszono tytuł na tablecie */
-    }
-    .site-subtitle {
-        font-size: 1.5rem;
-    }
-    .content {
-        padding: 2rem;
-    }
-    .featured-recipes-grid,
-    .latest-recipes-grid,
-    .recipes-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 kolumny na tabletach */
-    }
-    .categories-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 kolumny na tabletach */
-    }
-    .recipe-single {
-        padding: 2rem;
-    }
-    .note-single {
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2rem; }
+
+    .site-title { font-size: 3.5rem; }
+    .site-subtitle { font-size: 1.5rem; }
+
+    .content, .main-content {
         padding: 2rem;
     }
 
-    h2 { /* Zmniejszono nazwy sekcji na tablecie */
-        font-size: 2rem;
+    .recipes-grid,
+    .featured-recipes-grid,
+    .latest-recipes-grid,
+    .categories-grid,
+    .notes-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 kolumny na tabletach */
+        gap: 2rem;
+    }
+
+    /* Układ dla pojedynczego przepisu */
+    .recipe-content-wrapper {
+        grid-template-columns: minmax(250px, 1fr) 2fr;
+    }
+    .recipe-main-info {
+        align-items: flex-start; /* Dopasowanie do lewej na desktop */
+    }
+    .recipe-ingredients {
+        grid-column: 2 / 3;
+    }
+
+    .recipe-single,
+    .note-single {
+        padding: 2rem;
     }
 }
 
 /* Desktop (breakpoint: >= 1024px) */
 @media (min-width: 1024px) {
-    .site-title {
-        font-size: 4rem;
-    }
-    .site-subtitle {
-        font-size: 1.7rem;
-    }
-    .content {
+    h1 { font-size: 4rem; }
+    h2 { font-size: 2.2rem; }
+
+    .site-title { font-size: 4rem; }
+    .site-subtitle { font-size: 1.7rem; }
+
+    .content, .main-content {
         padding: 3rem;
     }
+
+    .recipes-grid,
     .featured-recipes-grid,
     .latest-recipes-grid,
-    .recipes-grid {
-        grid-template-columns: repeat(4, 1fr); /* 4 kolumny na desktopie */
-    }
     .categories-grid {
         grid-template-columns: repeat(4, 1fr); /* 4 kolumny na desktopie */
     }
-
-    h2 { /* Zmniejszono nazwy sekcji na desktopie */
-        font-size: 2.2rem;
+    .notes-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 kolumny na desktopie, jeśli chcesz szersze notatki */
     }
 }
 
-/* --- Dodatkowe style dla drukowania (Print Styles) --- */
+/* Mobilne, mniejsze fonty */
+@media (max-width: 767px) {
+    h1 { font-size: 2.8rem; } /* Dostosowanie do mobilnych */
+    h2 { font-size: 2.2rem; } /* Dostosowanie do mobilnych */
+    h3 { font-size: 1.8rem; } /* Dostosowanie do mobilnych */
+    h4 { font-size: 1.5rem; } /* Dostosowanie do mobilnych */
+
+    .site-title { font-size: 2.5rem; }
+    .site-subtitle { font-size: 1.1rem; }
+    .site-description-short { font-size: 1.1rem; } /* Drobna korekta na mobilnych */
+
+    .content, .main-content {
+        padding: 1rem;
+    }
+
+    .recipes-grid,
+    .featured-recipes-grid,
+    .latest-recipes-grid,
+    .categories-grid,
+    .notes-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Pozostawiamy auto-fit, ale z mniejszym min-width */
+        gap: 1.5rem;
+    }
+
+    /* Dopasowanie szerokości obrazka 404 na mobilnych */
+    .error-image {
+        width: 80%;
+    }
+}
+
+
+/* ==========================================================================
+   6. Dodatkowe style dla drukowania (Print Styles)
+   ========================================================================== */
 @media print {
     body {
         font-family: 'Source Sans 3', sans-serif;
@@ -576,15 +617,17 @@ a:hover {
     /* Ukryj elementy, które nie powinny być drukowane */
     .site-header,
     .site-footer,
+    .hero-section, /* Dodano hero-section */
     .featured-recipes-section,
     .latest-recipes-section,
     .categories-section,
     .notes-section,
+    .about-me-section, /* Dodano about-me-section */
     .print-button,
     .back-to-categories-link,
     .back-to-home-notes-link,
-    .error-404-page,
-    .recipe-main-image { /* === KLUCZOWA ZMIANA: UKRYJ ZDJĘCIE GŁÓWNE PRZEPISU === */
+    .error-404-page, /* Upewnij się, że ten selektor istnieje, jeśli masz klasę dla całego ciała 404 */
+    .recipe-main-image {
         display: none !important;
     }
 
@@ -616,50 +659,44 @@ a:hover {
         font-style: normal;
     }
 
-    .recipe-date {
+    .recipe-date { /* Zakładam, że masz klasę .recipe-date w HTML dla daty przepisu */
         font-size: 0.8rem;
         color: #666;
         margin-bottom: 0.3rem;
     }
 
-    /* === KLUCZOWE ZMIANY DLA UKŁADU KOLUMN NA WYDRUKU === */
+    /* Układ kolumn na wydruku (linia po linii) */
     .recipe-content-wrapper {
-        display: block; /* Zmień układ na blokowy */
-        width: 100%;    /* Upewnij się, że zajmuje całą dostępną szerokość */
+        display: block;
+        width: 100%;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
 
-    /* Zapewnij, że wszystkie sekcje wewnątrz rozciągają się na pełną szerokość */
-    .recipe-main-info, /* === WAŻNE: recipe-main-info będzie puste po ukryciu zdjęcia, ale nadal musimy je odpowiednio układać === */
+    .recipe-main-info,
     .recipe-ingredients,
     .recipe-preparation,
     .recipe-additional-content {
-        display: block;   /* Upewnij się, że są blokami */
-        width: 100% !important; /* Wymuś pełną szerokość, nadpisując ewentualne inne style */
-        float: none !important; /* Usuń ewentualne floaty, które tworzą kolumny */
-        clear: both !important; /* Wyczyść floaty, by elementy nie "opływały" */
-        margin-left: 0 !important; /* Usuń marginesy, jeśli były używane do układu */
-        margin-right: 0 !important;
-        padding: 0; /* Usuń padding, który może wpływać na szerokość */
+        display: block;
+        width: 100% !important;
+        float: none !important;
+        clear: both !important;
+        margin: 1.5rem 0 0 0 !important; /* Ujednolicone marginesy */
+        padding: 0;
         box-sizing: border-box;
-        page-break-inside: avoid; /* Unikaj łamania tych sekcji w środku, jeśli to możliwe */
-        margin-top: 1.5rem; /* Odstęp między sekcjami */
+        page-break-inside: avoid;
     }
 
-    /* Odstęp dla pierwszej sekcji po nagłówku */
     .recipe-content-wrapper > *:first-child {
-        margin-top: 0; /* Pierwsza sekcja nie potrzebuje górnego marginesu, jeśli header jest oddzielony */
+        margin-top: 0 !important; /* Pierwsza sekcja po headerze bez górnego marginesu */
     }
-
-    /* Usunięto style dla .recipe-main-image na wydruku, bo jest ukrywane */
 
     .recipe-details {
         border: none;
         background-color: #fff;
         padding: 0;
-        margin-top: 1rem; /* Odstęp między detalami a poprzednią sekcją */
+        margin-top: 1rem;
     }
 
     .recipe-details p {
@@ -674,7 +711,7 @@ a:hover {
 
     .recipe-ingredients h2,
     .recipe-preparation h2,
-    .recipe-additional-content h2 { /* Upewnij się, że ten selektor obejmuje wszystkie H2 w sekcjach */
+    .recipe-additional-content h2 {
         font-size: 1.5rem;
         color: #000;
         margin-bottom: 0.8rem;
@@ -684,7 +721,7 @@ a:hover {
     .recipe-preparation ol,
     .recipe-additional-content p,
     .recipe-additional-content ul,
-    .recipe-additional-content ol { /* Stylizuj treść w additional-content również */
+    .recipe-additional-content ol {
         margin-left: 0;
         list-style-position: outside;
         padding-left: 1.5rem;
@@ -694,7 +731,6 @@ a:hover {
         color: #000;
     }
 
-    /* Styl dla znaczników listy */
     .recipe-ingredients ul li::marker,
     .recipe-preparation ol li::marker,
     .recipe-additional-content ul li::marker,
@@ -702,26 +738,8 @@ a:hover {
         color: #A9643E; /* Kolor akcentu dla numeracji/punktów */
     }
 
-    /* Zapewnij, że linki są widoczne, ale bez podkreślenia */
     a {
         text-decoration: none;
         color: #000 !important;
-    }
-}
-
-/* --- Style dla strony 404 --- */
-
-.error-image {
-    max-width: 100%; /* Obrazek nigdy nie będzie szerszy niż element nadrzędny */
-    height: auto;    /* Zachowuje proporcje obrazka */
-    display: block;  /* Usuwa dodatkowe spacje pod obrazkiem */
-    margin: 30px auto; /* Wyśrodkowuje obrazek i dodaje odstęp pionowy */
-    width: 400px;    /* Maksymalna szerokość obrazka, np. 400px */
-}
-
-/* Opcjonalnie: Ustawienia dla mniejszych ekranów, jeśli 400px jest za duże */
-@media (max-width: 600px) {
-    .error-image {
-        width: 80%; /* Na małych ekranach obrazek będzie miał 80% szerokości */
     }
 }
