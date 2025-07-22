@@ -5,9 +5,10 @@ permalink: /category/:category/
 
 <div class="content">
     <header class="page-header">
-        {% assign category_name = page.category | replace: '-', ' ' | capitalize %}
-        <h1>Kategoria: {{ category_name }}</h1>
-        <p class="page-description">Wszystkie przepisy w kategorii {{ category_name }}.</p>
+        {% assign category_name_raw = page.category %}
+        {% assign category_name_formatted = category_name_raw | replace: '-', ' ' | replace: '_', ' ' | capitalize %}
+        <h1>Kategoria: {{ category_name_formatted }}</h1>
+        <p class="page-description">Wszystkie przepisy w kategorii {{ category_name_formatted }}.</p>
     </header>
 
     <section class="recipes-grid-section">
@@ -26,4 +27,5 @@ permalink: /category/:category/
             {% endif %}
         </div>
     </section>
+    <p class="back-to-categories-link"><a href="{{ '/categories/' | relative_url }}">Wróć do wszystkich kategorii</a></p>
 </div>
