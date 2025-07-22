@@ -1,7 +1,7 @@
 /*
  * style.css
  * Globalne style dla kuchnia.senator.lu
- * Kolorystyka: naturalna, spokojna, elegancka
+ * Kolorystyka: naturalna, spokojna, elegancka (nowa paleta)
  * Typografia: czytelna, z charakterem
  * Siatka: oparta na 12 kolumnach, responsywna
  */
@@ -20,9 +20,9 @@ html {
 }
 
 body {
-    font-family: 'Source Sans 3', sans-serif; /* Tekst główny - zmieniono na Source Sans 3 */
-    color: #3B3B3B; /* Grafit - tekst główny */
-    background-color: #FAF9F6; /* Jasny krem - tło strony */
+    font-family: 'Source Sans 3', sans-serif; /* Tekst główny */
+    color: #2E2E2E; /* Kolor tekstu głównego */
+    background-color: #FAF5EF; /* Tło główne */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -30,9 +30,9 @@ body {
 /* --- 1. Typografia --- */
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif; /* Nagłówki - zmieniono na Playfair Display */
+    font-family: 'Playfair Display', serif; /* Nagłówki */
     font-weight: 700; /* Domyślna waga dla nagłówków */
-    color: #6B8E23; /* Oliwkowa - nagłówki sekcji, nazwy kategorii */
+    color: #A9643E; /* Kolor akcentu - dla nagłówków */
     margin-bottom: 0.8em;
     line-height: 1.2;
 }
@@ -45,48 +45,48 @@ h4 { font-size: 1.5rem; }
 /* Styl dla listy składników i przygotowania */
 .recipe-ingredients ul,
 .recipe-preparation ol {
-    font-family: 'Source Sans 3', sans-serif; /* Zmieniono na Source Sans 3 (działa jako monospace) */
+    font-family: 'Source Sans 3', sans-serif; /* Działa jako monospace */
     font-size: 0.95rem;
     line-height: 1.8;
-    color: #3B3B3B; /* Grafit */
+    color: #2E2E2E; /* Kolor tekstu głównego */
     margin-left: 1.5rem;
-    list-style-position: inside; /* Numery/kropki wewnątrz kontenera */
+    list-style-position: inside;
 }
 
-.recipe-ingredients ul li::marker { color: #4A7C59; } /* Akcent główny */
-.recipe-preparation ol li::marker { color: #4A7C59; } /* Akcent główny */
+.recipe-ingredients ul li::marker { color: #A9643E; } /* Kolor akcentu */
+.recipe-preparation ol li::marker { color: #A9643E; } /* Kolor akcentu */
 
 
 a {
-    color: #4A7C59; /* Zieleń liściasta - dla linków */
+    color: #A9643E; /* Kolor akcentu - dla linków */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #A3B18A; /* Jasna zieleń - akcent pomocniczy */
+    color: #BDB7AF; /* Kolor dla elementów drugorzędnych - dla hover linków */
 }
 
 /* --- 2. Kolorystyka i podstawowe elementy --- */
 
 .site-header {
-    background-color: #FAF9F6; /* Jasny krem */
+    background-color: #FAF5EF; /* Tło główne */
     padding: 2rem 0;
     text-align: center;
 }
 
 .site-title {
-    font-family: 'Playfair Display', serif; /* Zmieniono na Playfair Display */
+    font-family: 'Playfair Display', serif; /* Tytuł strony */
     font-weight: 700; /* Bold */
-    color: #6B8E23; /* Oliwkowa */
+    color: #A9643E; /* Kolor akcentu */
     font-size: 3.5rem; /* Większy rozmiar dla głównego tytułu */
     margin-bottom: 0.5rem;
 }
 
 .site-subtitle {
-    font-family: 'Playfair Display', serif; /* Zmieniono na Playfair Display */
+    font-family: 'Playfair Display', serif; /* Podtytuł strony */
     font-weight: 400; /* Regular */
-    color: #3B3B3B; /* Grafit */
+    color: #2E2E2E; /* Kolor tekstu głównego */
     font-size: 1.3rem;
     font-style: italic;
     margin-bottom: 1.5rem;
@@ -95,9 +95,9 @@ a:hover {
 .site-description-short {
     max-width: 700px;
     margin: 0 auto 2rem auto;
-    color: #3B3B3B; /* Grafit */
+    color: #2E2E2E; /* Kolor tekstu głównego */
     font-size: 1rem;
-    font-family: 'Source Sans 3', sans-serif; /* Zmieniono na Source Sans 3 */
+    font-family: 'Source Sans 3', sans-serif;
 }
 
 .site-description-short p {
@@ -105,21 +105,21 @@ a:hover {
 }
 
 .site-footer {
-    background-color: #FAF9F6; /* Jasny krem */
-    color: #3B3B3B; /* Grafit */
+    background-color: #FAF5EF; /* Tło główne */
+    color: #2E2E2E; /* Kolor tekstu głównego */
     text-align: center;
     padding: 2rem 0;
-    border-top: 1px solid #D8E2DC; /* Jasny beż - obramowanie */
+    border-top: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
     margin-top: 3rem;
 }
 
 .print-button {
-    background-color: #A3B18A; /* Jasna zieleń - akcent pomocniczy */
-    color: #FAF9F6; /* Jasny krem */
+    background-color: #A9643E; /* Kolor akcentu */
+    color: #FAF5EF; /* Kontrastowy do akcentu (tło główne) */
     border: none;
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
-    font-family: 'Source Sans 3', sans-serif; /* Zmieniono na Source Sans 3 */
+    font-family: 'Source Sans 3', sans-serif;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
@@ -127,7 +127,7 @@ a:hover {
 }
 
 .print-button:hover {
-    background-color: #4A7C59; /* Zieleń liściasta - akcent główny */
+    background-color: #2E2E2E; /* Ciemniejszy dla hover (tekst główny) */
 }
 
 /* --- 3. Układ siatki i responsywność (minimalistyczna siatka 12 kolumn) --- */
@@ -171,13 +171,13 @@ a:hover {
 
 /* Karty przepisów (na stronie głównej i kategoriach) */
 .recipe-card {
-    background-color: #FAF9F6; /* Jasny krem */
-    border: 1px solid #D8E2DC; /* Jasny beż */
+    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
+    border: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
     border-radius: 8px;
-    overflow: hidden; /* Upewnij się, że obraz jest przycięty wewnątrz */
+    overflow: hidden;
     text-align: center;
     padding-bottom: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Delikatny cień */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease;
 }
 
@@ -187,11 +187,9 @@ a:hover {
 
 .recipe-card-image-container {
     width: 100%;
-    /* Używamy padding-bottom, aby utrzymać proporcje kwadratu */
-    /* 1:1 ratio - 100% wysokości / 100% szerokości = 1 */
     padding-bottom: 100%; /* Tworzy kwadratowy kontener na obraz */
     position: relative;
-    overflow: hidden; /* Ważne dla object-fit */
+    overflow: hidden;
     margin-bottom: 1rem;
 }
 
@@ -201,17 +199,17 @@ a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* KLUCZOWE: dopasowuje obraz do kontenera, przycinając go */
-    object-position: center center; /* Wyśrodkowuje kadrowanie */
+    object-fit: cover;
+    object-position: center center;
     display: block;
 }
 
 .recipe-card-title {
-    font-family: 'Playfair Display', serif; /* Zmieniono na Playfair Display */
-    font-weight: 700; /* Bold */
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
-    color: #6B8E23; /* Oliwkowa */
+    color: #A9643E; /* Kolor akcentu */
 }
 
 .recipe-card-link {
@@ -220,35 +218,41 @@ a:hover {
     color: inherit;
 }
 .recipe-card-link:hover .recipe-card-title {
-    color: #4A7C59; /* Akcent główny */
+    color: #2E2E2E; /* Kolor tekstu głównego (ciemniejszy dla hover) */
 }
 
 
 /* Kafelki kategorii (bez zdjęć) */
 .category-card {
-    background-color: #D8E2DC; /* Jasny beż */
+    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
     padding: 1.5rem;
     border-radius: 8px;
     text-align: center;
     transition: background-color 0.3s ease;
+    border: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
 }
 
 .category-card:hover {
-    background-color: #A3B18A; /* Jasna zieleń */
+    background-color: #A9643E; /* Kolor akcentu */
 }
 
 .category-card-title {
-    font-family: 'Playfair Display', serif; /* Zmieniono na Playfair Display */
-    font-weight: 700; /* Bold */
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
     font-size: 1.6rem;
-    color: #6B8E23; /* Oliwkowa */
+    color: #A9643E; /* Kolor akcentu */
     margin: 0;
+    transition: color 0.3s ease;
 }
+.category-card:hover .category-card-title {
+    color: #FAF5EF; /* Tło główne (kontrastowy na hover) */
+}
+
 
 /* Sekcja Notatki z kuchni na stronie głównej */
 .notes-section .note-entry {
-    background-color: #FAF9F6;
-    border: 1px solid #D8E2DC;
+    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
+    border: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
     border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -256,16 +260,16 @@ a:hover {
 }
 
 .notes-section .note-entry h3 {
-    font-family: 'Playfair Display', serif; /* Zmieniono na Playfair Display */
-    font-weight: 700; /* Bold */
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
     font-size: 1.6rem;
-    color: #6B8E23;
+    color: #A9643E; /* Kolor akcentu */
     margin-bottom: 0.5rem;
 }
 
 .notes-section .note-entry p {
     font-size: 1rem;
-    color: #3B3B3B;
+    color: #2E2E2E; /* Kolor tekstu głównego */
     margin-bottom: 0.8rem;
 }
 
@@ -274,7 +278,7 @@ a:hover {
     max-width: 900px;
     margin: 2rem auto;
     padding: 1.5rem;
-    background-color: #FAF9F6;
+    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
@@ -285,18 +289,18 @@ a:hover {
 }
 
 .recipe-title {
-    font-family: 'Playfair Display', serif; /* Zmieniono na Playfair Display */
-    font-weight: 700; /* Bold */
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
     font-size: 3rem;
     margin-bottom: 1rem;
 }
 
 .recipe-description {
-    font-family: 'Playfair Display', serif; /* Zmieniono na Playfair Display */
-    font-weight: 400; /* Regular */
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
     font-size: 1.2rem;
     font-style: italic;
-    color: #555;
+    color: #2E2E2E; /* Kolor tekstu głównego */
     margin-bottom: 2rem;
 }
 
@@ -331,25 +335,25 @@ a:hover {
     border-radius: 8px;
     margin-bottom: 1.5rem;
     /* Proporcje 4:3 w CSS dla obrazów przepisów */
-    /* Upewnij się, że obraz jest ładowany w tych proporcjach */
     aspect-ratio: 4 / 3;
-    object-fit: cover; /* W razie potrzeby przytnie, aby wypełnić proporcje */
+    object-fit: cover;
 }
 
 .recipe-details {
     width: 100%;
     padding: 1rem;
-    background-color: #FAF9F6;
+    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
     border-radius: 8px;
-    border: 1px solid #D8E2DC;
+    border: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
 }
 
 .recipe-details p {
     margin-bottom: 0.5rem;
-    font-family: 'Source Sans 3', sans-serif; /* Zmieniono na Source Sans 3 */
+    font-family: 'Source Sans 3', sans-serif;
+    color: #2E2E2E; /* Kolor tekstu głównego */
 }
 .recipe-details strong {
-    color: #6B8E23; /* Oliwkowa */
+    color: #A9643E; /* Kolor akcentu */
 }
 
 .recipe-ingredients,
@@ -362,7 +366,7 @@ a:hover {
     max-width: 800px;
     margin: 2rem auto;
     padding: 1.5rem;
-    background-color: #FAF9F6;
+    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
@@ -373,15 +377,15 @@ a:hover {
 }
 
 .note-title {
-    font-family: 'Playfair Display', serif; /* Zmieniono na Playfair Display */
-    font-weight: 700; /* Bold */
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
 }
 
 .note-date {
-    font-family: 'Source Sans 3', sans-serif; /* Zmieniono na Source Sans 3 */
-    color: #555;
+    font-family: 'Source Sans 3', sans-serif;
+    color: #2E2E2E; /* Kolor tekstu głównego */
     font-size: 0.9rem;
     margin-bottom: 1.5rem;
 }
@@ -390,22 +394,23 @@ a:hover {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 1.5rem auto; /* Wyśrodkowanie zdjęć w notatkach */
+    margin: 1.5rem auto;
     border-radius: 8px;
-    aspect-ratio: 4 / 3; /* Obrazy w notatkach też 4:3 */
-    object-fit: cover; /* W razie potrzeby przytnij */
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
 }
 
 .note-content h2, .note-content h3, .note-content h4 {
-    font-family: 'Playfair Display', serif; /* Zmieniono na Playfair Display */
-    font-weight: 700; /* Bold */
-    color: #6B8E23; /* Oliwkowa */
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #A9643E; /* Kolor akcentu */
     margin-top: 1.5rem;
     margin-bottom: 0.8rem;
 }
 
 .note-content p {
     margin-bottom: 1rem;
+    color: #2E2E2E; /* Kolor tekstu głównego */
 }
 
 .note-content ul, .note-content ol {
@@ -414,20 +419,20 @@ a:hover {
 }
 
 .note-content blockquote {
-    border-left: 4px solid #A3B18A; /* Jasna zieleń */
+    border-left: 4px solid #A9643E; /* Kolor akcentu */
     padding-left: 1rem;
     margin: 1.5rem 0;
     font-style: italic;
-    color: #555;
+    color: #2E2E2E; /* Kolor tekstu głównego */
 }
 
 .back-to-categories-link,
 .back-to-home-notes-link {
     display: inline-block;
     margin-top: 2rem;
-    font-family: 'Source Sans 3', sans-serif; /* Zmieniono na Source Sans 3 */
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.9rem;
-    color: #4A7C59; /* Zieleń liściasta */
+    color: #A9643E; /* Kolor akcentu */
 }
 
 /* --- 5. Media Queries (Responsywność) --- */
@@ -475,4 +480,38 @@ a:hover {
     .categories-grid {
         grid-template-columns: repeat(3, 1fr); /* 3x3 na desktopie, jeśli chcesz sztywno */
     }
+}
+
+/* --- Strona błędu 404 --- */
+.error-404-page {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    max-width: 700px;
+    margin: 2rem auto;
+    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.error-title {
+    color: #A9643E; /* Kolor akcentu - dla tytułu błędu */
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.error-message,
+.error-suggestion {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #2E2E2E; /* Kolor tekstu głównego */
+}
+
+.error-image {
+    max-width: 100%;
+    width: 400px;
+    height: auto;
+    display: block;
+    margin: 2rem auto 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
