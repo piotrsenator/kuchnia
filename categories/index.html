@@ -25,17 +25,38 @@ permalink: /category/:category/
     <section class="recipes-grid-section">
         <h2 class="section-title">Przepisy</h2>
         <div class="recipes-grid">
-            {# Filtrujemy przepisy z kolekcji 'recipes' na podstawie kategorii #}
-            {# Sprawdzamy, czy 'item.category' jest równe slugowi LUB czy 'item.categories' (jeśli istnieje) zawiera slug #}
-            {% assign filtered_recipes = site.recipes | where_exp:"item", "item.category == category_slug or (item.categories and item.categories contains category_slug)" %}
+            {% comment %} 
+            Ręczne filtrowanie przepisów ze względu na problemy z Liquid 'where_exp' na GitHub Pages.
+            Iterujemy po wszystkich przepisach i sprawdzamy ich kategorię/kategorie.
+            {% endcomment %}
+            {% assign recipes_found_in_category = false %}
             
-            {% if filtered_recipes.size > 0 %}
-                {% for recipe in filtered_recipes %}
+            {% for recipe in site.recipes %}
+                {% assign is_in_category = false %}
+                
+                {# Sprawdź, czy pole 'category' przepisu pasuje do aktualnego sluga #}
+                {% if recipe.category == category_slug %}
+                    {% assign is_in_category = true %}
+                {% endif %}
+                
+                {# Sprawdź, czy tablica 'categories' przepisu (jeśli istnieje) zawiera aktualny slug #}
+                {% if recipe.categories %}
+                    {% if recipe.categories contains category_slug %}
+                        {% assign is_in_category = true %}
+                    {% endif %}
+                {% endif %}
+
+                {# Jeśli przepis należy do tej kategorii, wyświetl go #}
+                {% if is_in_category %}
                     {% include recipe_card.html recipe=recipe %}
-                {% endfor %}
-            {% else %}
+                    {% assign recipes_found_in_category = true %}
+                {% endif %}
+            {% endfor %}
+            
+            {# Jeśli po pętli nie znaleziono żadnych przepisów, wyświetl komunikat #}
+            {% unless recipes_found_in_category %}
                 <p>Brak przepisów w tej kategorii.</p>
-            {% endif %}
+            {% endunless %}
         </div>
     </section>
     
