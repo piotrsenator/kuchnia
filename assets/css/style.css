@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6,
 .recipe-title,
 .recipe-description,
 .note-title,
-.site-description-short {
+.site-description-short { /* Dodano wszystkie elementy, które mają używać Playfair Display */
     font-family: 'Playfair Display', serif; /* Nagłówki i tytuły */
 }
 
@@ -64,7 +64,7 @@ h4 { font-size: 1.5rem; }
     list-style-position: inside;
 }
 
-.recipe-ingredients ul li::marker { color: #A9643E; } /* Kolor akcentu */
+.recipe-ingredients ul li::marker,
 .recipe-preparation ol li::marker { color: #A9643E; } /* Kolor akcentu */
 
 
@@ -323,61 +323,57 @@ a:hover {
     margin-bottom: 2rem;
 }
 
+/* === KLUCZOWA ZMIANA DLA UKŁADU PRZEPISU NA STRONIE === */
 .recipe-content-wrapper {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: 1fr; /* Domyślnie jedna kolumna dla mobile */
+    display: block; /* Ustawia układ blokowy, aby elementy układały się jeden pod drugim */
+    width: 100%;    /* Zapewnia, że kontener zajmuje całą dostępną szerokość */
+    gap: 2rem; /* Ten gap nie będzie miał już znaczenia dla display: block, ale zostawiamy na wszelki wypadek */
 }
 
-@media (min-width: 768px) { /* Tablet i desktop */
-    .recipe-content-wrapper {
-        grid-template-columns: 1fr 2fr; /* Obraz po lewej, tekst po prawej na desktop */
-    }
+/* Zapewnij, że wszystkie sekcje wewnątrz rozciągają się na pełną szerokość i mają odstępy */
+.recipe-main-info,
+.recipe-ingredients,
+.recipe-preparation,
+.recipe-additional-content {
+    width: 100%; /* Upewnij się, że zajmują pełną szerokość swojego rodzica */
+    margin-bottom: 2rem; /* Dodaj odstęp między sekcjami */
 }
 
-.recipe-main-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Wyśrodkowanie w pionie dla mobile */
-}
-
-@media (min-width: 768px) {
-    .recipe-main-info {
-        align-items: flex-start; /* Dopasowanie do lewej na desktop */
-    }
+/* Usuń dolny margines z ostatniej sekcji, aby uniknąć nadmiernej przestrzeni na końcu */
+.recipe-content-wrapper > *:last-child {
+    margin-bottom: 0;
 }
 
 .recipe-main-image {
-    width: 100%;
-    max-width: 400px; /* Ogranicz szerokość obrazu dla spójności */
+    max-width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 8px; /* Zachowaj zaokrąglenia na stronie */
     margin-bottom: 1.5rem;
-    /* Proporcje 4:3 w CSS dla obrazów przepisów */
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 3; /* Zachowaj proporcje na stronie */
     object-fit: cover;
 }
 
 .recipe-details {
-    width: 100%;
+    width: 100%; /* Upewnij się, że detale zajmują pełną szerokość */
     padding: 1rem;
-    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
+    background-color: #F1EBE3;
     border-radius: 8px;
-    border: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
+    border: 1px solid #BDB7AF;
+    margin-top: 0; /* Usuń górny margines, jeśli jest niepotrzebny */
 }
 
 .recipe-details p {
     margin-bottom: 0.5rem;
     font-family: 'Source Sans 3', sans-serif;
-    color: #2E2E2E; /* Kolor tekstu głównego */
+    color: #2E2E2E;
 }
 .recipe-details strong {
-    color: #A9643E; /* Kolor akcentu */
+    color: #A9643E;
 }
 
 .recipe-ingredients,
 .recipe-preparation {
-    padding: 1.5rem 0;
+    padding: 0; /* Usuń padding, jeśli jest niepotrzebny */
 }
 
 /* Strona pojedynczej notatki */
@@ -513,7 +509,7 @@ a:hover {
 /* Desktop (breakpoint: >= 1024px) */
 @media (min-width: 1024px) {
     .site-title {
-        font-size: 4rem; /* Zmniejszono główny tytuł */
+        font-size: 4rem;
     }
     .site-subtitle {
         font-size: 1.7rem;
@@ -535,60 +531,25 @@ a:hover {
     }
 }
 
-/* --- Strona błędu 404 --- */
-.error-404-page {
-    text-align: center;
-    padding: 3rem 1.5rem;
-    max-width: 700px;
-    margin: 2rem auto;
-    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.error-title {
-    color: #A9643E; /* Kolor akcentu - dla tytułu błędu */
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.error-message,
-.error-suggestion {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    color: #2E2E2E; /* Kolor tekstu głównego */
-}
-
-.error-image {
-    max-width: 100%;
-    width: 400px;
-    height: auto;
-    display: block;
-    margin: 2rem auto 0 auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
 /* --- Dodatkowe style dla drukowania (Print Styles) --- */
 @media print {
     body {
-        font-family: 'Source Sans 3', sans-serif; /* Preferowana czcionka do druku */
-        color: #000; /* Czarny tekst na wydruku */
-        background-color: #fff; /* Białe tło */
+        font-family: 'Source Sans 3', sans-serif;
+        color: #000;
+        background-color: #fff;
         margin: 0;
         padding: 0;
     }
 
-    /* Ustawienie orientacji strony na pionową */
     @page {
-        size: A4 portrait; /* Standardowy format A4, orientacja pionowa */
-        margin: 1.5cm; /* Marginesy na wydruku */
+        size: A4 portrait;
+        margin: 1.5cm;
     }
 
     /* Ukryj elementy, które nie powinny być drukowane */
     .site-header,
     .site-footer,
-    .featured-recipes-section, /* Ukryj sekcje strony głównej */
+    .featured-recipes-section,
     .latest-recipes-section,
     .categories-section,
     .notes-section,
@@ -601,30 +562,30 @@ a:hover {
 
     /* Pokaż tylko zawartość przepisu */
     .recipe-single {
-        max-width: 100%; /* Rozszerz na całą dostępną szerokość strony */
-        margin: 0; /* Usuń marginesy, aby zmaksymalizować przestrzeń */
-        padding: 0; /* Usuń padding, bo @page już ustawiło marginesy */
-        box-shadow: none; /* Usuń cienie */
-        background-color: #fff; /* Białe tło dla czytelności */
-        border: none; /* Usuń ramki */
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        background-color: #fff;
+        border: none;
     }
 
     .recipe-header {
-        text-align: left; /* Tytuł na wydruku raczej po lewej */
+        text-align: left;
         margin-bottom: 1rem;
     }
 
     .recipe-title {
-        font-size: 2.2rem; /* Dopasuj rozmiar tytułu do druku */
-        color: #000; /* Czarny kolor tytułu */
+        font-size: 2.2rem;
+        color: #000;
         margin-bottom: 0.5rem;
     }
 
     .recipe-description {
-        font-size: 1rem; /* Dopasuj rozmiar opisu */
-        color: #333; /* Ciemnoszary dla opisu */
+        font-size: 1rem;
+        color: #333;
         margin-bottom: 1rem;
-        font-style: normal; /* Usuń kursywę jeśli nie jest pożądana na wydruku */
+        font-style: normal;
     }
 
     .recipe-date {
@@ -633,77 +594,96 @@ a:hover {
         margin-bottom: 0.3rem;
     }
 
+    /* === KLUCZOWE ZMIANY DLA UKŁADU KOLUMN NA WYDRUKU === */
     .recipe-content-wrapper {
-        display: block; /* Zmień układ na blokowy, aby sekcje były jedna pod drugą */
-        gap: 0; /* Usuń odstępy między kolumnami */
+        display: block; /* Zmień układ na blokowy */
+        width: 100%;    /* Upewnij się, że zajmuje całą dostępną szerokość */
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
-    .recipe-main-info {
-        display: block; /* Zmień układ na blokowy */
-        margin-bottom: 1.5rem; /* Odstęp pod sekcją głównych informacji */
-        border: none;
-        padding: 0;
-        box-shadow: none;
+    /* Zapewnij, że wszystkie sekcje wewnątrz rozciągają się na pełną szerokość */
+    .recipe-main-info,
+    .recipe-ingredients,
+    .recipe-preparation,
+    .recipe-additional-content { /* Dodaj to, jeśli masz taką sekcję */
+        display: block;   /* Upewnij się, że są blokami */
+        width: 100% !important; /* Wymuś pełną szerokość, nadpisując ewentualne inne style */
+        float: none !important; /* Usuń ewentualne floaty, które tworzą kolumny */
+        clear: both !important; /* Wyczyść floaty, by elementy nie "opływały" */
+        margin-left: 0 !important; /* Usuń marginesy, jeśli były używane do układu */
+        margin-right: 0 !important;
+        padding: 0; /* Usuń padding, który może wpływać na szerokość */
+        box-sizing: border-box;
+        page-break-inside: avoid; /* Unikaj łamania tych sekcji w środku, jeśli to możliwe */
+        margin-top: 1.5rem; /* Odstęp między sekcjami */
+    }
+
+    /* Odstęp dla pierwszej sekcji po nagłówku */
+    .recipe-content-wrapper > *:first-child {
+        margin-top: 0; /* Pierwsza sekcja nie potrzebuje górnego marginesu, jeśli header jest oddzielony */
     }
 
     .recipe-main-image {
-        max-width: 100%; /* Obrazek na całą szerokość wydruku */
+        max-width: 100%;
         height: auto;
-        border-radius: 0; /* Usuń zaokrąglenia */
+        border-radius: 0;
         margin-bottom: 1rem;
-        aspect-ratio: auto; /* Pozwól na naturalne proporcje na wydruku */
-        object-fit: contain; /* Upewnij się, że cały obraz jest widoczny */
+        aspect-ratio: auto;
+        object-fit: contain;
     }
 
     .recipe-details {
-        border: none; /* Usuń ramki */
-        background-color: #fff; /* Białe tło */
+        border: none;
+        background-color: #fff;
         padding: 0;
-        margin-top: 1rem;
+        margin-top: 1rem; /* Odstęp między obrazkiem a detalami */
     }
 
     .recipe-details p {
-        font-size: 0.9rem; /* Mniejszy font dla detali */
+        font-size: 0.9rem;
         margin-bottom: 0.3rem;
         color: #000;
     }
 
     .recipe-details strong {
-        color: #000; /* Czarny kolor dla pogrubionego tekstu */
-    }
-
-    .recipe-ingredients,
-    .recipe-preparation {
-        page-break-inside: avoid; /* Unikaj łamania tych sekcji w środku, jeśli to możliwe */
-        margin-top: 2rem; /* Większy odstęp między sekcjami */
-        padding: 0;
+        color: #000;
     }
 
     .recipe-ingredients h2,
-    .recipe-preparation h2 {
+    .recipe-preparation h2,
+    .recipe-additional-content h2 { /* Upewnij się, że ten selektor obejmuje wszystkie H2 w sekcjach */
         font-size: 1.5rem;
         color: #000;
         margin-bottom: 0.8rem;
     }
 
     .recipe-ingredients ul,
-    .recipe-preparation ol {
-        margin-left: 0; /* Usuń wcięcie, listy zaczną się od lewej */
-        list-style-position: outside; /* Numery/kropki na zewnątrz listy */
-        padding-left: 1.5rem; /* Dodaj padding, żeby numeracja była widoczna */
-    }
-
-    .recipe-ingredients ul li,
-    .recipe-preparation ol li {
+    .recipe-preparation ol,
+    .recipe-additional-content p,
+    .recipe-additional-content ul,
+    .recipe-additional-content ol { /* Stylizuj treść w additional-content również */
+        margin-left: 0;
+        list-style-position: outside;
+        padding-left: 1.5rem;
         font-size: 1rem;
         line-height: 1.4;
         margin-bottom: 0.3rem;
         color: #000;
     }
 
+    /* Styl dla znaczników listy */
+    .recipe-ingredients ul li::marker,
+    .recipe-preparation ol li::marker,
+    .recipe-additional-content ul li::marker,
+    .recipe-additional-content ol li::marker {
+        color: #A9643E; /* Kolor akcentu dla numeracji/punktów */
+    }
+
     /* Zapewnij, że linki są widoczne, ale bez podkreślenia */
     a {
         text-decoration: none;
-        color: #000 !important; /* Wymuś czarny kolor */
+        color: #000 !important;
     }
 }
