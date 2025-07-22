@@ -1,6 +1,6 @@
 ---
 layout: note
-title: Moc ziół: dlaczego warto mieć ogródek na parapecie
+title: Moc ziół,czyli dlaczego warto mieć ogródek na parapecie
 date: 2025-08-15
 ---
 
