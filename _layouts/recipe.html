@@ -9,7 +9,7 @@ layout: default
             <p class="recipe-description">{{ page.description }}</p>
         {% endif %}
 
-        {# Opcjonalne wyświetlanie daty publikacji/modyfikacji #}
+        {% comment %} Opcjonalne wyświetlanie daty publikacji/modyfikacji {% endcomment %}
         {% if page.date %}
             <p class="recipe-date">Opublikowano: <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time></p>
         {% endif %}
@@ -19,7 +19,7 @@ layout: default
     </header>
 
     <div class="recipe-content-wrapper">
-        <aside class="recipe-main-info"> {# Zmieniono z div na aside dla lepszej semantyki #}
+        <aside class="recipe-main-info"> {% comment %} Zmieniono z div na aside dla lepszej semantyki {% endcomment %}
             {% comment %}
             Logika wyświetlania obrazka:
             Preferuje page.image_main.
