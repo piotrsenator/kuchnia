@@ -1,8 +1,22 @@
 <header class="site-header">
-    <div class="hero-section">
-        <h1 class="site-title">{{ site.title }}</h1> 
-        <p class="site-subtitle">{{ site.description }}</p>
-        </div>
+    <div class="site-branding">
+        <a href="{{ '/' | relative_url }}" class="site-title-link">
+            <h1 class="site-title">{{ site.title }}</h1>
+        </a>
+        <p class="site-subtitle">{{ site.subtitle }}</p>
+    </div>
     <nav class="site-nav">
-        </nav>
+        <ul>
+            <li><a href="{{ '/' | relative_url }}">Strona główna</a></li>
+            <li><a href="{{ '/#notatki-z-kuchni' | relative_url }}">Notatki z kuchni</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Kategorie</a>
+                <div class="dropdown-content">
+                    {% for category in site.data.categories %}
+                        <a href="{{ '/categories/' | relative_url }}{{ category.slug }}.html">{{ category.name }}</a>
+                    {% endfor %}
+                </div>
+            </li>
+        </ul>
+    </nav>
 </header>
