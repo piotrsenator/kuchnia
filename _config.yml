@@ -1,10 +1,49 @@
-title: Kuchnia Senatora
-url: "https://kuchnia.senator.lu"
-baseurl: ""
+# _config.yml
+
+# Globalne ustawienia strony
+title: Fanaberie kulinarne Piotra Senatora
+description: Domowe przepisy, sezonowe smaki i niekoniecznie rozsądne pomysły.
+url: "https://kuchnia.senator.lu" # Twoja domena niestandardowa
+baseurl: "" # Pozostaw puste, ponieważ strona jest na domenie niestandardowej w głównym katalogu
+
+# Ustawienia Jekylla
 markdown: kramdown
-theme: minima
-permalink: /:categories/:title/
+highlighter: rouge
+permalink: pretty # Czyste linki URL (np. /przepisy/nazwa-przepisu/)
+
+# Kolekcje (niestandardowe typy treści)
 collections:
   recipes:
-    output: true
-    permalink: /recipes/:name/
+    output: true # Generuj osobne strony dla przepisów
+    permalink: /przepisy/:name/ # Struktura URL dla przepisów (np. /przepisy/jajecznica-z-boczkiem/)
+  notes:
+    output: true # Generuj osobne strony dla notatek
+    permalink: /notatki/:name/ # Struktura URL dla notatek (np. /notatki/wiosna-2025/)
+
+# Domyślne ustawienia dla kolekcji i stron
+defaults:
+  - scope:
+      path: "" # Cały projekt
+    values:
+      layout: "default" # Domyślny layout dla wszystkich stron, jeśli nie określono inaczej
+  - scope:
+      path: ""
+      type: "recipes" # Dla wszystkich plików w kolekcji recipes (_recipes/)
+    values:
+      layout: "recipe" # Użyj layoutu recipe.html
+      image_main: "/images/general/placeholder-recipe.jpg" # Domyślny placeholder dla zdjęć przepisów
+  - scope:
+      path: ""
+      type: "notes" # Dla wszystkich plików w kolekcji notes (_notes/)
+    values:
+      layout: "note" # Użyj layoutu note.html
+      image_main: "/images/general/placeholder-recipe.jpg" # Domyślny placeholder dla zdjęć notatek
+
+# Wykluczenia (pliki/foldery, które Jekyll ma ignorować)
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - LICENSE.md
