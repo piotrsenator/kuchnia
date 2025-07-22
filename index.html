@@ -33,17 +33,16 @@ title: Strona Główna
 
     </section>
 
-    <section class="categories-section" id="kategorie">
-        <h2>Kategorie</h2>
-        <div class="categories-grid">
-            {% for category in site.data.categories %}
-                <a href="{{ '/categories/' | relative_url }}{{ category.slug }}.html" class="category-card">
-                    <h3 class="category-card-title">{{ category.name }}</h3>
-                </a>
-            {% endfor %}
-        </div>
-
-    </section>
+<section class="categories-section" id="kategorie">
+    <h2>Kategorie</h2>
+    <div class="categories-grid">
+        {% for category in site.data.categories %}
+            <a href="{{ '/category/' | append: category.slug | append: '/' | relative_url }}" class="category-card">
+                <h3 class="category-card-title">{{ category.name }}</h3>
+            </a>
+        {% endfor %}
+    </div>
+</section>
 
     <section class="notes-section" id="notatki-z-kuchni">
         <h2>Notatki z Kuchni</h2>
