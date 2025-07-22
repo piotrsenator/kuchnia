@@ -6,6 +6,34 @@
  * Siatka: oparta na 12 kolumnach, responsywna
  */
 
+/* --- Importowanie fontów lokalnych (jeśli masz pliki .woff2 w assets/fonts/) --- */
+/* Upewnij się, że masz te pliki w assets/fonts/ */
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/assets/fonts/playfair-display-v39-latin-regular.woff2') format('woff2');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+    font-display: swap; /* Poprawia ładowanie fontu */
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/assets/fonts/playfair-display-v39-latin-700.woff2') format('woff2');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans 3';
+    src: url('/assets/fonts/source-sans-3-v18-latin-regular.woff2') format('woff2');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+    font-display: swap;
+}
+/* Jeśli masz inne wagi Source Sans 3 (np. 600 dla nagłówków h2/h3), musisz je też zaimportować */
+
+
 /* --- 0. Podstawowe resetowanie i ogólne style --- */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -19,24 +47,51 @@ html {
     scroll-behavior: smooth;
 }
 
+/* --- Nowa paleta kolorów jako zmienne CSS --- */
+:root {
+    --primary-background-color: #FAF9F6; /* Jasny krem - tło strony */
+    --text-color: #2C2C2C; /* Ciemna szarość dla tekstu (zbliżone do czarnego) */
+    --heading-color: #2C2C2C; /* Ciemna szarość dla nagłówków (taka sama jak text-color na wzorcu) */
+    --link-color: #4A7C59; /* Zieleń liściasta - dla linków */
+    --link-hover-color: #A3B18A; /* Jasna zieleń - akcent pomocniczy dla linków */
+    --border-color: #D8E2DC; /* Jasny beż - obramowanie / subtelne linie */
+    --button-bg-color: #A3B18A; /* Jasna zieleń - tło przycisku */
+    --button-text-color: #FAF9F6; /* Jasny krem - tekst na przycisku */
+    --button-hover-bg-color: #4A7C59; /* Zieleń liściasta - hover przycisku */
+    --marker-color: #4A7C59; /* Akcent główny dla markerów list */
+    --quote-border-color: #A3B18A; /* Jasna zieleń - border dla cytatów */
+    /* Zmieniono: usunięto oliwkową (#6B8E23) dla nagłówków, by były czarne jak na wzorcu,
+       chyba że chcesz, aby ten oliwkowy kolor był gdzieś indziej */
+}
+
+
 body {
-    font-family: 'Source Sans Pro', sans-serif; /* Tekst główny */
-    color: #3B3B3B; /* Grafit - tekst główny */
-    background-color: #FAF9F6; /* Jasny krem - tło strony */
+    font-family: 'Source Sans 3', sans-serif; /* Zmieniono na Source Sans 3 */
+    color: var(--text-color); /* Użycie zmiennej */
+    background-color: var(--primary-background-color); /* Użycie zmiennej */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- 1. Typografia (Fonty są zdefiniowane w _layouts/default.html) --- */
+/* --- 1. Typografia --- */
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Spectral SC', serif; /* Nagłówki */
-    color: #6B8E23; /* Oliwkowa - nagłówki sekcji, nazwy kategorii */
+    font-family: 'Source Sans 3', sans-serif; /* Zmieniono na Source Sans 3 */
+    color: var(--heading-color); /* Użycie zmiennej */
     margin-bottom: 0.8em;
     line-height: 1.2;
 }
 
-h1 { font-size: 2.8rem; }
+/* Specjalny styl dla głównego tytułu strony - zgodnie z obrazkiem wzorcowym */
+.site-title {
+    font-family: 'Playfair Display', serif; /* Zmieniono na Playfair Display */
+    font-weight: 700; /* Bold dla głównego tytułu */
+    font-size: 3.5rem; /* Zachowano duży rozmiar */
+    color: var(--heading-color); /* Użycie zmiennej */
+    margin-bottom: 0.5rem;
+}
+
+h1 { font-size: 2.8rem; } /* Pamiętaj, że .site-title to specyficzny h1, a ten h1 dotyczy innych h1 na podstronach */
 h2 { font-size: 2.2rem; }
 h3 { font-size: 1.8rem; }
 h4 { font-size: 1.5rem; }
@@ -44,385 +99,52 @@ h4 { font-size: 1.5rem; }
 /* Styl dla listy składników i przygotowania */
 .recipe-ingredients ul,
 .recipe-preparation ol {
-    font-family: 'IBM Plex Mono', monospace; /* Monospace - dla przejrzystości list i kroków */
+    font-family: 'Source Sans 3', sans-serif; /* Zmieniono na Source Sans 3 */
     font-size: 0.95rem;
     line-height: 1.8;
-    color: #3B3B3B; /* Grafit */
+    color: var(--text-color); /* Użycie zmiennej */
     margin-left: 1.5rem;
-    list-style-position: inside; /* Numery/kropki wewnątrz kontenera */
+    list-style-position: inside;
 }
 
-.recipe-ingredients ul li::marker { color: #4A7C59; } /* Akcent główny */
-.recipe-preparation ol li::marker { color: #4A7C59; } /* Akcent główny */
+.recipe-ingredients ul li::marker { color: var(--marker-color); }
+.recipe-preparation ol li::marker { color: var(--marker-color); }
 
 
 a {
-    color: #4A7C59; /* Zieleń liściasta - dla linków */
+    color: var(--link-color); /* Użycie zmiennej */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #A3B18A; /* Jasna zieleń - akcent pomocniczy */
+    color: var(--link-hover-color); /* Użycie zmiennej */
 }
 
 /* --- 2. Kolorystyka i podstawowe elementy --- */
 
 .site-header {
-    background-color: #FAF9F6; /* Jasny krem */
+    background-color: var(--primary-background-color); /* Użycie zmiennej */
     padding: 2rem 0;
     text-align: center;
 }
 
-.site-title {
-    color: #6B8E23; /* Oliwkowa */
-    font-size: 3.5rem; /* Większy rozmiar dla głównego tytułu */
-    margin-bottom: 0.5rem;
-}
+/* .site-title - styl został przeniesiony do sekcji Typografia dla lepszej organizacji */
 
-.site-subtitle {
-    color: #3B3B3B; /* Grafit */
-    font-size: 1.3rem;
-    font-style: italic;
-    margin-bottom: 1.5rem;
+.site-subtitle { /* To prawdopodobnie będzie Twój nowy "Gotowanie domowe. Prosto i z pomysłem." */
+    font-family: 'Playfair Display', serif; /* Użycie Playfair Display */
+    font-weight: 400; /* Regularna waga */
+    color: var(--heading-color); /* Użycie zmiennej */
+    font-size: 2.5rem; /* Dostosuj rozmiar, aby pasował do wzorca */
+    font-style: normal; /* Usuń italic, jeśli chcesz jak na wzorcu */
+    margin-bottom: 1.5rem; /* Zapewnij odstęp */
+    line-height: 1.2; /* Lepsza interlinia dla nagłówka */
 }
 
 .site-description-short {
     max-width: 700px;
     margin: 0 auto 2rem auto;
-    color: #3B3B3B; /* Grafit */
+    color: var(--text-color); /* Użycie zmiennej */
     font-size: 1rem;
+    font-family: 'Source Sans 3', sans-serif; /* Zapewnij, że to ten font */
 }
-
-.site-description-short p {
-    margin-bottom: 0.5em;
-}
-
-.site-footer {
-    background-color: #FAF9F6; /* Jasny krem */
-    color: #3B3B3B; /* Grafit */
-    text-align: center;
-    padding: 2rem 0;
-    border-top: 1px solid #D8E2DC; /* Jasny beż - obramowanie */
-    margin-top: 3rem;
-}
-
-.print-button {
-    background-color: #A3B18A; /* Jasna zieleń - akcent pomocniczy */
-    color: #FAF9F6; /* Jasny krem */
-    border: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    font-family: 'Source Sans Pro', sans-serif;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-    margin-top: 1.5rem;
-}
-
-.print-button:hover {
-    background-color: #4A7C59; /* Zieleń liściasta - akcent główny */
-}
-
-/* --- 3. Układ siatki i responsywność (minimalistyczna siatka 12 kolumn) --- */
-
-.content {
-    max-width: 1200px; /* Maksymalna szerokość strony */
-    margin: 0 auto;
-    padding: 1.5rem;
-}
-
-.grid-container {
-    display: grid;
-    gap: 2rem; /* Odstęp między elementami siatki */
-    padding: 1rem 0;
-}
-
-/* Siatka dla sekcji wybranych/najnowszych przepisów (3 kolumny desktop) */
-.featured-recipes-grid,
-.latest-recipes-grid,
-.recipes-grid { /* Używamy tej samej klasy dla wszystkich siatek przepisów */
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsywna siatka min 280px */
-}
-
-/* Siatka dla kategorii (3x3 desktop) */
-.categories-grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Przynajmniej 3 kolumny */
-}
-/* Aby wymusić 3x3 na dużych ekranach, możesz użyć media query */
-@media (min-width: 1024px) {
-    .categories-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-
-/* --- 4. Style dla poszczególnych sekcji / komponentów --- */
-
-/* Karty przepisów (na stronie głównej i kategoriach) */
-.recipe-card {
-    background-color: #FAF9F6; /* Jasny krem */
-    border: 1px solid #D8E2DC; /* Jasny beż */
-    border-radius: 8px;
-    overflow: hidden; /* Upewnij się, że obraz jest przycięty wewnątrz */
-    text-align: center;
-    padding-bottom: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Delikatny cień */
-    transition: transform 0.2s ease;
-}
-
-.recipe-card:hover {
-    transform: translateY(-5px);
-}
-
-.recipe-card-image-container {
-    width: 100%;
-    /* Używamy padding-bottom, aby utrzymać proporcje kwadratu */
-    /* 1:1 ratio - 100% wysokości / 100% szerokości = 1 */
-    padding-bottom: 100%; /* Tworzy kwadratowy kontener na obraz */
-    position: relative;
-    overflow: hidden; /* Ważne dla object-fit */
-    margin-bottom: 1rem;
-}
-
-.recipe-card-image-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* KLUCZOWE: dopasowuje obraz do kontenera, przycinając go */
-    object-position: center center; /* Wyśrodkowuje kadrowanie */
-    display: block;
-}
-
-.recipe-card-title {
-    font-family: 'Spectral SC', serif;
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    color: #6B8E23; /* Oliwkowa */
-}
-
-.recipe-card-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-}
-.recipe-card-link:hover .recipe-card-title {
-    color: #4A7C59; /* Akcent główny */
-}
-
-
-/* Kafelki kategorii (bez zdjęć) */
-.category-card {
-    background-color: #D8E2DC; /* Jasny beż */
-    padding: 1.5rem;
-    border-radius: 8px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-}
-
-.category-card:hover {
-    background-color: #A3B18A; /* Jasna zieleń */
-}
-
-.category-card-title {
-    font-family: 'Spectral SC', serif;
-    font-size: 1.6rem;
-    color: #6B8E23; /* Oliwkowa */
-    margin: 0;
-}
-
-/* Sekcja Notatki z kuchni na stronie głównej */
-.notes-section .note-entry {
-    background-color: #FAF9F6;
-    border: 1px solid #D8E2DC;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
-}
-
-.notes-section .note-entry h3 {
-    font-family: 'Spectral SC', serif;
-    font-size: 1.6rem;
-    color: #6B8E23;
-    margin-bottom: 0.5rem;
-}
-
-.notes-section .note-entry p {
-    font-size: 1rem;
-    color: #3B3B3B;
-    margin-bottom: 0.8rem;
-}
-
-/* Strona pojedynczego przepisu */
-.recipe-single {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: #FAF9F6;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.recipe-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.recipe-title {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.recipe-description {
-    font-size: 1.2rem;
-    font-style: italic;
-    color: #555;
-    margin-bottom: 2rem;
-}
-
-.recipe-content-wrapper {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: 1fr; /* Domyślnie jedna kolumna dla mobile */
-}
-
-@media (min-width: 768px) { /* Tablet i desktop */
-    .recipe-content-wrapper {
-        grid-template-columns: 1fr 2fr; /* Obraz po lewej, tekst po prawej na desktop */
-    }
-}
-
-.recipe-main-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Wyśrodkowanie w pionie dla mobile */
-}
-
-@media (min-width: 768px) {
-    .recipe-main-info {
-        align-items: flex-start; /* Dopasowanie do lewej na desktop */
-    }
-}
-
-.recipe-main-image {
-    width: 100%;
-    max-width: 400px; /* Ogranicz szerokość obrazu dla spójności */
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    /* Proporcje 4:3 w CSS dla obrazów przepisów */
-    /* Upewnij się, że obraz jest ładowany w tych proporcjach */
-    aspect-ratio: 4 / 3;
-    object-fit: cover; /* W razie potrzeby przytnie, aby wypełnić proporcje */
-}
-
-.recipe-details {
-    width: 100%;
-    padding: 1rem;
-    background-color: #FAF9F6;
-    border-radius: 8px;
-    border: 1px solid #D8E2DC;
-}
-
-.recipe-details p {
-    margin-bottom: 0.5rem;
-    font-family: 'IBM Plex Mono', monospace; /* Monospace dla detali */
-}
-.recipe-details strong {
-    color: #6B8E23; /* Oliwkowa */
-}
-
-.recipe-ingredients,
-.recipe-preparation {
-    padding: 1.5rem 0;
-}
-
-/* Strona pojedynczej notatki */
-.note-single {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: #FAF9F6;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.note-header {
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.note-title {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.note-date {
-    font-family: 'IBM Plex Mono', monospace;
-    color: #555;
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-}
-
-.note-content img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 1.5rem auto; /* Wyśrodkowanie zdjęć w notatkach */
-    border-radius: 8px;
-    aspect-ratio: 4 / 3; /* Obrazy w notatkach też 4:3 */
-    object-fit: cover; /* W razie potrzeby przytnij */
-}
-
-.note-content h2, .note-content h3, .note-content h4 {
-    color: #6B8E23; /* Oliwkowa */
-    margin-top: 1.5rem;
-    margin-bottom: 0.8rem;
-}
-
-.note-content p {
-    margin-bottom: 1rem;
-}
-
-.note-content ul, .note-content ol {
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.note-content blockquote {
-    border-left: 4px solid #A3B18A; /* Jasna zieleń */
-    padding-left: 1rem;
-    margin: 1.5rem 0;
-    font-style: italic;
-    color: #555;
-}
-
-.back-to-categories-link,
-.back-to-home-notes-link {
-    display: inline-block;
-    margin-top: 2rem;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.9rem;
-    color: #4A7C59; /* Zieleń liściasta */
-}
-
-/* --- 5. Media Queries (Responsywność) --- */
-
-/* Tablet (breakpoint: >= 768px) */
-@media (min-width: 768px) {
-    .site-title {
-        font-size: 4rem;
-    }
-    .site-subtitle {
-        font-size: 1.5rem;
-    }
-    .content {
-        padding: 2rem;
-    }
