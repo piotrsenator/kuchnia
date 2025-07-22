@@ -1,0 +1,37 @@
+# _data/categories.yml
+
+- slug: sniadania
+  name: Śniadania
+  description: Coś na dobry początek: pieczywo, jajka, owsianki i inne poranne fanaberie.
+
+- slug: zupy
+  name: Zupy
+  description: Ciepłe, parujące, czasem lekkie, czasem konkretne. Zawsze dobre na rozgrzewkę.
+
+- slug: salatki
+  name: Sałatki
+  description: Zielenina, chrupkość i odrobina dressingu. Na lekko, na szybko albo do wszystkiego.
+
+- slug: przekaski
+  name: Przekąski
+  description: Na stół, na spacer, do dzielenia. Małe rzeczy, które sprawiają dużo radości.
+
+- slug: dania-glowne-miesne
+  name: Dania główne mięsne
+  description: Mięso w różnych wcieleniach — klasyki, sezonowe sztuki i leniwe obiady.
+
+- slug: ryby-i-owoce-morza
+  name: Ryby i owoce morza
+  description: Trochę morza w środku lądu. Prosto, pachnąco, bez zbędnych ceregieli.
+
+- slug: dania-wegetarianskie
+  name: Dania wegetariańskie
+  description: Bez mięsa, ale z pomysłem. Sezonowe, warzywne i czasem zupełnie zielone.
+
+- slug: desery
+  name: Desery
+  description: Ciasta, kremy, coś kruchego i coś lejącego. Słodki finał albo środek dnia.
+
+- slug: przetwory
+  name: Przetwory
+  description: Coś do słoika. Na zimę, na potem, na nagły powrót lata w środku stycznia.
