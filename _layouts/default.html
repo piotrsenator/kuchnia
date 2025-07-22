@@ -6,36 +6,60 @@
     <title>{{ page.title | default: site.title }} - {{ site.title }}</title>
     <meta name="description" content="{{ page.description | default: site.description }}">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    
     <style>
+        /* Spectral SC */
         @font-face {
             font-family: 'Spectral SC';
-            src: url('{{ "/assets/fonts/SpectralSC-Bold.woff2" | relative_url }}') format('woff2');
-            font-weight: 700;
+            src: url('{{ "/assets/fonts/spectral-sc-v14-latin-700.woff2" | relative_url }}') format('woff2');
+            font-weight: 700; /* Bold */
             font-style: normal;
         }
+
+        /* Source Sans 3 */
         @font-face {
-            font-family: 'Source Sans Pro';
-            src: url('{{ "/assets/fonts/SourceSansPro-Regular.woff2" | relative_url }}') format('woff2');
-            font-weight: 400;
+            font-family: 'Source Sans 3';
+            src: url('{{ "/assets/fonts/source-sans-3-v18-latin-regular.woff2" | relative_url }}') format('woff2');
+            font-weight: 400; /* Regular */
             font-style: normal;
         }
+
+        /* IBM Plex Mono */
         @font-face {
             font-family: 'IBM Plex Mono';
-            src: url('{{ "/assets/fonts/IBMPlexMono-Regular.woff2" | relative_url }}') format('woff2');
-            font-weight: 400;
+            src: url('{{ "/assets/fonts/ibm-plex-mono-v19-latin-regular.woff2" | relative_url }}') format('woff2');
+            font-weight: 400; /* Regular */
             font-style: normal;
+        }
+
+        /* Użycie fontów w CSS */
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Spectral SC', serif;
+        }
+
+        .recipe-ingredients ul,
+        .recipe-preparation ol,
+        .recipe-details p,
+        .note-date,
+        .back-to-categories-link,
+        .back-to-home-notes-link {
+            font-family: 'IBM Plex Mono', monospace;
         }
     </style>
 </head>
 <body>
 
-    {% include header.html %} {# Tu będzie wstawiony nagłówek strony #}
+    {% include header.html %}
 
     <main class="content">
-        {{ content }} {# Tu Jekyll wstawi treść danej strony/postu #}
+        {{ content }}
     </main>
 
-    {% include footer.html %} {# Tu będzie wstawiona stopka strony #}
+    {% include footer.html %}
 
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 
