@@ -16,8 +16,8 @@ permalink: /category/:category/
         <div class="recipes-grid">
             {% comment %} Filtruj przepisy tylko dla tej kategorii {% endcomment %}
             {% assign current_category_slug = page.category %}
-            {% assign filtered_recipes = site.posts | where_exp:"item", "item.categories contains current_category_slug or item.category contains current_category_slug" %}
-
+            {% assign filtered_recipes = site.posts | where_exp:"item", "item.categories and item.categories contains current_category_slug or item.category == current_category_slug" %}
+            
             {% if filtered_recipes.size > 0 %}
                 {% for recipe in filtered_recipes %}
                     {% include recipe_card.html recipe=recipe %}
