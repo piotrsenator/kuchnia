@@ -491,11 +491,33 @@ a:hover {
 }
 
 /* --- Strona 404 --- */
+/* --- Strona 404 --- */
+.error-404-page body { /* Klasa na body, jeśli 404.html ma taką klasę w tagu body */
+    display: flex;
+    justify-content: center; /* Wyśrodkowuje zawartość w poziomie */
+    align-items: center;     /* Wyśrodkowuje zawartość w pionie */
+    min-height: 100vh;       /* Upewnia się, że body zajmuje całą wysokość widocznego obszaru */
+    text-align: center;      /* Wyśrodkowuje tekst wewnątrz kontenera */
+    flex-direction: column;  /* Ustawia elementy w kolumnie, żeby układały się jeden pod drugim */
+}
+
+/* Jeśli strona 404 nie ma klasy na body, a tylko kontener, użyj tego: */
+.error-404-container {
+    display: flex;
+    flex-direction: column; /* Ułożenie elementów jeden pod drugim */
+    justify-content: center; /* Wyśrodkowanie w pionie */
+    align-items: center;     /* Wyśrodkowanie w poziomie */
+    text-align: center;      /* Wyśrodkowanie tekstu wewnątrz */
+    min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px)); /* Dostosuj wysokość do widocznego obszaru */
+    /* Zamiast calc, możesz też ustawić na sztywno, np. min-height: 70vh; jeśli to bardziej pasuje */
+}
+
+/* Możesz też usunąć 'margin: 30px auto;' z .error-image, jeśli flexbox zajmie się centrowaniem */
 .error-image {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 30px auto;
+    /* margin: 30px auto;  <-- MOŻESZ TO USUNĄĆ LUB ZOSTAWIC, ZALEZY OD EFEKTU */
     width: 400px;
 }
 
