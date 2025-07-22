@@ -708,3 +708,20 @@ a:hover {
         color: #000 !important;
     }
 }
+
+/* --- Style dla strony 404 --- */
+
+.error-image {
+    max-width: 100%; /* Obrazek nigdy nie będzie szerszy niż element nadrzędny */
+    height: auto;    /* Zachowuje proporcje obrazka */
+    display: block;  /* Usuwa dodatkowe spacje pod obrazkiem */
+    margin: 30px auto; /* Wyśrodkowuje obrazek i dodaje odstęp pionowy */
+    width: 400px;    /* Maksymalna szerokość obrazka, np. 400px */
+}
+
+/* Opcjonalnie: Ustawienia dla mniejszych ekranów, jeśli 400px jest za duże */
+@media (max-width: 600px) {
+    .error-image {
+        width: 80%; /* Na małych ekranach obrazek będzie miał 80% szerokości */
+    }
+}
