@@ -6,7 +6,8 @@ image_main: /images/recipes/jajecznica-z-boczkiem-main.jpg
 featured: true
 category: Śniadania
 time: 15
-servings: 2
+portions: 2
+difficulty: "łatwy" 
 date: 2024-07-15 10:00:00 +0200 # Data publikacji (wymagany format)
 last_modified_at: 2024-07-22 15:30:00 +0200 # Opcjonalna data ostatniej modyfikacji
 ingredients:
