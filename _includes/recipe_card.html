@@ -1,0 +1,14 @@
+{% comment %}
+   Ten include przyjmuje zmienną 'recipe', która jest obiektem przepisu z kolekcji site.recipes.
+   Używa jej do wyświetlenia danych przepisu w formie karty.
+{% endcomment %}
+
+<div class="recipe-card">
+    <a href="{{ recipe.url | relative_url }}" class="recipe-card-link">
+        <div class="recipe-card-image-container">
+            {% assign image_src = recipe.image_main | default: '/images/general/placeholder-recipe.jpg' %}
+            <img src="{{ image_src | relative_url }}" alt="{{ recipe.title | escape }}">
+        </div>
+        <h3 class="recipe-card-title">{{ recipe.title }}</h3>
+    </a>
+</div>
