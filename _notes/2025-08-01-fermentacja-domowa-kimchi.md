@@ -2,7 +2,7 @@
 layout: note
 title: O tym, że znowu rabarbar, czyli słodka obsesja
 date: 2025-06-05
-image_main: "/images/notes/o-tym-ze-znow-rabarbar-main.jpg"
+
 ---
 
 Mój ogródek (o ile można tak nazwać parę skrzynek na balkonie) pęka w szwach od rabarbaru. Po raz kolejny dopadła mnie wiosenna gorączka "co zrobić z tymi wszystkimi łodygami?". Przyznaję bez bicia – to obsesja.
