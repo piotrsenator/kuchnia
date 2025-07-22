@@ -51,24 +51,23 @@ html {
 :root {
     --primary-background-color: #FAF9F6; /* Jasny krem - tło strony */
     --text-color: #2C2C2C; /* Ciemna szarość dla tekstu (zbliżone do czarnego) */
-    --heading-color: #2C2C2C; /* Ciemna szarość dla nagłówków (taka sama jak text-color na wzorcu) */
-    --link-color: #4A7C59; /* Zieleń liściasta - dla linków */
-    --link-hover-color: #A3B18A; /* Jasna zieleń - akcent pomocniczy dla linków */
-    --border-color: #D8E2DC; /* Jasny beż - obramowanie / subtelne linie */
-    --button-bg-color: #A3B18A; /* Jasna zieleń - tło przycisku */
-    --button-text-color: #FAF9F6; /* Jasny krem - tekst na przycisku */
-    --button-hover-bg-color: #4A7C59; /* Zieleń liściasta - hover przycisku */
-    --marker-color: #4A7C59; /* Akcent główny dla markerów list */
-    --quote-border-color: #A3B18A; /* Jasna zieleń - border dla cytatów */
-    /* Zmieniono: usunięto oliwkową (#6B8E23) dla nagłówków, by były czarne jak na wzorcu,
-       chyba że chcesz, aby ten oliwkowy kolor był gdzieś indziej */
+    --heading-color: #2C2C2C; /* Ciemna szarość dla nagłówków */
+    --link-color: #2C2C2C; /* Kolor linków (jak tekst, dla minimalistycznego wyglądu) */
+    --link-hover-color: #555555; /* Nieco jaśniejsza szarość dla hover linków */
+    --border-color: #E0E0E0; /* Subtelna szarość dla ramek/linii (jak na wzorcu) */
+    --button-bg-color: transparent; /* Przezroczyste tło dla przycisków kategorii */
+    --button-border-color: #C0C0C0; /* Nieco ciemniejsza szarość dla ramki przycisku kategorii */
+    --button-text-color: #2C2C2C; /* Ciemny tekst na przycisku kategorii */
+    --button-hover-bg-color: #E0E0E0; /* Subtelne tło na hover dla przycisku kategorii */
+    --marker-color: #2C2C2C; /* Kolor dla markerów list (jak tekst) */
+    --quote-border-color: #C0C0C0; /* Border dla cytatów */
 }
 
 
 body {
-    font-family: 'Source Sans 3', sans-serif; /* Zmieniono na Source Sans 3 */
-    color: var(--text-color); /* Użycie zmiennej */
-    background-color: var(--primary-background-color); /* Użycie zmiennej */
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text-color);
+    background-color: var(--primary-background-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -76,33 +75,61 @@ body {
 /* --- 1. Typografia --- */
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Source Sans 3', sans-serif; /* Zmieniono na Source Sans 3 */
-    color: var(--heading-color); /* Użycie zmiennej */
+    font-family: 'Source Sans 3', sans-serif; /* Domyślnie Source Sans 3 dla większości nagłówków */
+    color: var(--heading-color);
     margin-bottom: 0.8em;
     line-height: 1.2;
+    text-transform: none; /* Upewniamy się, że nie ma kapitalików */
 }
 
-/* Specjalny styl dla głównego tytułu strony - zgodnie z obrazkiem wzorcowym */
+/* Główne nagłówki i tytuły z Playfair Display */
+.site-title,
+.recipe-title,
+.note-title,
+.recipe-card-title,
+.category-card-title,
+.notes-section .note-entry h3 {
+    font-family: 'Playfair Display', serif; /* Playfair Display dla tych elementów */
+    font-weight: 700; /* Bold dla tytułów, jeśli chcesz, jak na wzorcu głównego */
+    color: var(--heading-color);
+    text-transform: none; /* Upewniamy się, że nie ma kapitalików */
+}
+
+/* Główny tytuł strony */
 .site-title {
-    font-family: 'Playfair Display', serif; /* Zmieniono na Playfair Display */
-    font-weight: 700; /* Bold dla głównego tytułu */
     font-size: 3.5rem; /* Zachowano duży rozmiar */
-    color: var(--heading-color); /* Użycie zmiennej */
     margin-bottom: 0.5rem;
+    line-height: 1.1;
+    text-align: right; /* Tytuł do prawej */
 }
 
+/* Podtytuł strony, który na wzorcu jest właściwie częścią nagłówka */
+.site-subtitle { /* To będzie "Gotowanie domowe. Prosto i z pomysłem." */
+    font-family: 'Playfair Display', serif;
+    font-weight: 400; /* Regularna waga */
+    color: var(--heading-color);
+    font-size: 2.5rem; /* Dostosuj rozmiar, aby pasował do wzorca */
+    font-style: normal;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-align: right; /* Podtytuł do prawej */
+}
+
+
+/* Pozostałe nagłówki */
 h1 { font-size: 2.8rem; } /* Pamiętaj, że .site-title to specyficzny h1, a ten h1 dotyczy innych h1 na podstronach */
 h2 { font-size: 2.2rem; }
 h3 { font-size: 1.8rem; }
 h4 { font-size: 1.5rem; }
 
+
 /* Styl dla listy składników i przygotowania */
 .recipe-ingredients ul,
 .recipe-preparation ol {
-    font-family: 'Source Sans 3', sans-serif; /* Zmieniono na Source Sans 3 */
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.95rem;
     line-height: 1.8;
-    color: var(--text-color); /* Użycie zmiennej */
+    color: var(--text-color);
     margin-left: 1.5rem;
     list-style-position: inside;
 }
@@ -112,39 +139,390 @@ h4 { font-size: 1.5rem; }
 
 
 a {
-    color: var(--link-color); /* Użycie zmiennej */
+    color: var(--link-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--link-hover-color); /* Użycie zmiennej */
+    color: var(--link-hover-color);
 }
 
 /* --- 2. Kolorystyka i podstawowe elementy --- */
 
 .site-header {
-    background-color: var(--primary-background-color); /* Użycie zmiennej */
+    background-color: var(--primary-background-color);
     padding: 2rem 0;
+    /* text-align: center; usunięto, bo tytuł ma być do prawej */
+}
+
+/* Usunięto .site-description-short - ten blok nie pasuje do nowego designu nagłówka */
+/* Jeśli tekst opisu "Gotuję dla bliskich..." ma być w headere, musi być w _includes/header.html jako akapit */
+
+
+.site-footer {
+    background-color: var(--primary-background-color);
+    color: var(--text-color);
     text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 3rem;
 }
 
-/* .site-title - styl został przeniesiony do sekcji Typografia dla lepszej organizacji */
-
-.site-subtitle { /* To prawdopodobnie będzie Twój nowy "Gotowanie domowe. Prosto i z pomysłem." */
-    font-family: 'Playfair Display', serif; /* Użycie Playfair Display */
-    font-weight: 400; /* Regularna waga */
-    color: var(--heading-color); /* Użycie zmiennej */
-    font-size: 2.5rem; /* Dostosuj rozmiar, aby pasował do wzorca */
-    font-style: normal; /* Usuń italic, jeśli chcesz jak na wzorcu */
-    margin-bottom: 1.5rem; /* Zapewnij odstęp */
-    line-height: 1.2; /* Lepsza interlinia dla nagłówka */
-}
-
-.site-description-short {
-    max-width: 700px;
-    margin: 0 auto 2rem auto;
-    color: var(--text-color); /* Użycie zmiennej */
+.print-button {
+    background-color: var(--button-bg-color); /* Zmieniono na przezroczyste tło */
+    color: var(--button-text-color);
+    border: 1px solid var(--button-border-color); /* Dodano ramkę */
+    padding: 0.8rem 1.5rem;
     font-size: 1rem;
-    font-family: 'Source Sans 3', sans-serif; /* Zapewnij, że to ten font */
+    font-family: 'Source Sans 3', sans-serif;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin-top: 1.5rem;
+}
+
+.print-button:hover {
+    background-color: var(--button-hover-bg-color); /* Zmieniono na jaśniejszą szarość */
+    border-color: var(--button-hover-bg-color); /* Ramka zmienia kolor na hover */
+}
+
+/* --- 3. Układ siatki i responsywność (minimalistyczna siatka 12 kolumn) --- */
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.grid-container {
+    display: grid;
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+/* Siatka dla sekcji wybranych/najnowszych przepisów (3 kolumny desktop) */
+.featured-recipes-grid,
+.latest-recipes-grid,
+.recipes-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsywna siatka min 280px */
+}
+
+/* Siatka dla kategorii (3x3 desktop) - dopasowane do wyglądu przycisków prostokątnych */
+.categories-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Mniejsze min-width dla przycisków */
+}
+@media (min-width: 768px) { /* Tablet i desktop */
+    .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Przynajmniej 3-4 kolumny na desktop */
+    }
+}
+@media (min-width: 1024px) {
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr); /* Wymuszenie 3 kolumn na dużych ekranach */
+    }
+}
+
+
+/* --- 4. Style dla poszczególnych sekcji / komponentów --- */
+
+/* Karty przepisów (na stronie głównej i kategoriach) - BEZ RAMEK, KWADRATOWE OBRAZKI */
+.recipe-card {
+    background-color: var(--primary-background-color); /* Użycie zmiennej */
+    border: none; /* Usunięcie ramki */
+    border-radius: 0; /* Usunięcie zaokrągleń */
+    overflow: hidden;
+    text-align: left; /* Tekst pod zdjęciem do lewej, jak na wzorcu */
+    padding-bottom: 0; /* Brak paddingu na dole, bo tekst jest pod obrazkiem */
+    box-shadow: none; /* Usunięcie cienia */
+    transition: transform 0.2s ease;
+}
+
+.recipe-card:hover {
+    transform: none; /* Brak transformacji na hover, aby było jak na wzorcu */
+}
+
+.recipe-card-image-container {
+    width: 100%;
+    padding-bottom: 100%; /* Tworzy kwadratowy kontener na obraz */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0.5rem; /* Mniejszy odstęp pod zdjęciem */
+}
+
+.recipe-card-image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* KLUCZOWE: dopasowuje obraz do kontenera, przycinając go */
+    object-position: center center;
+    display: block;
+}
+
+.recipe-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; /* Rozmiar tytułu przepisu */
+    margin-bottom: 0.2em; /* Mniejszy odstęp */
+    color: var(--heading-color);
+    text-transform: none; /* Brak kapitalików */
+}
+
+.recipe-card .recipe-subtitle { /* Dodaj tę klasę do Liquid, jeśli masz podtytuły pod tytułem */
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.recipe-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit; /* Dziedziczy kolor tekstu */
+}
+.recipe-card-link:hover .recipe-card-title {
+    color: var(--link-hover-color);
+}
+.recipe-card-link:hover .recipe-subtitle {
+    color: var(--link-hover-color);
+}
+
+
+/* Kafelki kategorii (prostokątne przyciski w ramkach) */
+.category-card {
+    background-color: var(--button-bg-color); /* Przezroczyste tło */
+    border: 1px solid var(--button-border-color); /* Ramka jaśniejsza od tekstu */
+    border-radius: 4px; /* Subtelne zaokrąglenie */
+    padding: 1rem 1.5rem; /* Większy padding, aby były prostokątne */
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    height: auto; /* Zapewnij, że wysokość jest elastyczna */
+    display: flex; /* Flexbox do centrowania tekstu */
+    align-items: center;
+    justify-content: center;
+}
+
+.category-card:hover {
+    background-color: var(--button-hover-bg-color); /* Subtelne tło na hover */
+    border-color: var(--button-hover-bg-color); /* Ramka zmienia kolor na hover */
+}
+
+.category-card-title {
+    font-family: 'Source Sans 3', sans-serif; /* Zmieniono na Source Sans 3, jak na wzorcu */
+    font-weight: 400; /* Regular */
+    font-size: 1rem; /* Mniejszy rozmiar fontu, jak na wzorcu */
+    color: var(--button-text-color); /* Ciemny kolor tekstu */
+    margin: 0;
+    text-transform: none; /* Brak kapitalików */
+}
+
+
+/* Sekcja Notatki z kuchni na stronie głównej - bez ramek, jak na wzorcu */
+.notes-section .note-entry {
+    background-color: transparent; /* Przezroczyste tło */
+    border: none; /* Brak ramki */
+    border-radius: 0; /* Brak zaokrągleń */
+    padding: 0; /* Usuń padding, aby była tylko treść */
+    margin-bottom: 1.5rem;
+    box-shadow: none; /* Brak cienia */
+}
+
+.notes-section .note-entry h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+    text-transform: none; /* Brak kapitalików */
+}
+
+.notes-section .note-entry p {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 0.8rem;
+}
+
+/* Strona pojedynczego przepisu */
+.recipe-single {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: var(--primary-background-color);
+    border-radius: 8px; /* Możesz zostawić zaokrąglenie tutaj */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* I cień */
+}
+
+.recipe-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.recipe-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--heading-color);
+    text-transform: none; /* Brak kapitalików */
+}
+
+.recipe-description {
+    font-size: 1.2rem;
+    font-style: normal; /* Usunięto italic dla spójności ze wzorcem */
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    font-family: 'Source Sans 3', sans-serif;
+}
+
+.recipe-content-wrapper {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .recipe-content-wrapper {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+.recipe-main-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .recipe-main-info {
+        align-items: flex-start;
+    }
+}
+
+.recipe-main-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px; /* Możesz zostawić zaokrąglenie */
+    margin-bottom: 1.5rem;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.recipe-details {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-background-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.recipe-details p {
+    margin-bottom: 0.5rem;
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text-color);
+}
+.recipe-details strong {
+    color: var(--text-color); /* Zmieniono, aby pasowało do ogólnego tekstu */
+}
+
+.recipe-ingredients,
+.recipe-preparation {
+    padding: 1.5rem 0;
+}
+
+/* Strona pojedynczej notatki */
+.note-single {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: var(--primary-background-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.note-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.note-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--heading-color);
+    text-transform: none; /* Brak kapitalików */
+}
+
+.note-date {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.note-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.note-content h2, .note-content h3, .note-content h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--heading-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    text-transform: none; /* Brak kapitalików */
+}
+
+.note-content p {
+    margin-bottom: 1rem;
+    font-family: 'Source Sans 3', sans-serif;
+}
+
+.note-content ul, .note-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Source Sans 3', sans-serif;
+}
+
+.note-content blockquote {
+    border-left: 4px solid var(--quote-border-color); /* Użycie zmiennej */
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--text-color);
+    font-family: 'Source Sans 3', sans-serif;
+}
+
+.back-to-categories-link,
+.back-to-home-notes-link {
+    display: inline-block;
+    margin-top: 2rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.9rem;
+    color: var(--link-color);
+}
+
+/* --- 5. Media Queries (Responsywność) --- */
+
+/* Tablet (breakpoint: >= 768px) */
+@media (min-width: 768px) {
+    .site-title {
+        font-size: 4rem;
+    }
+    .site-subtitle {
+        font-size: 1.5rem;
+    }
+    .content {
+        padding: 2rem;
+    }
 }
