@@ -35,6 +35,39 @@
    0. Podstawowe resetowanie i ogólne style
    ========================================================================== */
 
+/* Definicja zmiennych CSS (Custom Properties) */
+:root {
+    /* Kolory */
+    --color-primary: #A9643E; /* Kolor akcentu (dla nagłówków, linków, głównych przycisków) */
+    --color-secondary: #BDB7AF; /* Kolor dla elementów drugorzędnych (np. obramowania, subtelne tła) */
+    --color-text-dark: #2E2E2E; /* Kolor ciemnego tekstu (główny tekst, nagłówki na jasnym tle) */
+    --color-background-light: #FAF5EF; /* Kolor jasnego tła (główne tło strony) */
+    --color-background-accent: #F1EBE3; /* Kolor tła dla wyróżnionych elementów (np. karty, panele) */
+    --color-white: #FFFFFF; /* Biały */
+
+    /* Fonty */
+    --font-family-primary: 'Source Sans 3', sans-serif; /* Font dla tekstu głównego */
+    --font-family-secondary: 'Playfair Display', serif; /* Font dla nagłówków i tytułów */
+
+    /* Odstępy (Spacing - używane dla konsekwentnych paddingów/marginesów) */
+    --spacing-xs: 0.5rem;   /* ~8px */
+    --spacing-sm: 1rem;     /* ~16px */
+    --spacing-md: 1.5rem;   /* ~24px */
+    --spacing-lg: 2rem;     /* ~32px */
+    --spacing-xl: 3rem;     /* ~48px */
+    --spacing-xxl: 4rem;    /* ~64px */
+
+    /* Cienie */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    /* Zaokrąglenia */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+}
+
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -48,9 +81,9 @@ html {
 }
 
 body {
-    font-family: 'Source Sans 3', sans-serif; /* Tekst główny */
-    color: #2E2E2E; /* Kolor tekstu głównego */
-    background-color: #FAF5EF; /* Tło główne */
+    font-family: var(--font-family-primary); /* Użycie zmiennej */
+    color: var(--color-text-dark); /* Użycie zmiennej */
+    background-color: var(--color-background-light); /* Użycie zmiennej */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -68,9 +101,9 @@ h1, h2, h3, h4, h5, h6,
 .recipe-description,
 .note-title,
 .site-description-short {
-    font-family: 'Playfair Display', serif; /* Nagłówki i tytuły */
-    font-weight: 400; /* Domyślna waga dla nagłówków */
-    color: #A9643E; /* Kolor akcentu - dla nagłówków */
+    font-family: var(--font-family-secondary); /* Użycie zmiennej */
+    font-weight: 700; /* Domyślna waga dla nagłówków */
+    color: var(--color-primary); /* Użycie zmiennej */
     line-height: 1.2;
     margin-bottom: 0.8em;
 }
@@ -83,28 +116,28 @@ h4 { font-size: 1.5rem; }
 /* Styl dla list w przepisach */
 .recipe-ingredients ul,
 .recipe-preparation ol {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: var(--font-family-primary); /* Użycie zmiennej */
     font-size: 0.95rem;
     line-height: 1.8;
-    color: #2E2E2E; /* Kolor tekstu głównego */
-    margin-left: 1.5rem;
+    color: var(--color-text-dark); /* Użycie zmiennej */
+    margin-left: var(--spacing-md); /* Użycie zmiennej */
     list-style-position: inside;
 }
 
 .recipe-ingredients ul li::marker,
 .recipe-preparation ol li::marker {
-    color: #A9643E; /* Kolor akcentu */
+    color: var(--color-primary); /* Użycie zmiennej */
 }
 
 /* Ogólne style dla linków */
 a {
-    color: #A9643E; /* Kolor akcentu - dla linków */
+    color: var(--color-primary); /* Użycie zmiennej */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #BDB7AF; /* Kolor dla elementów drugorzędnych - dla hover linków */
+    color: var(--color-secondary); /* Użycie zmiennej */
 }
 
 /* ==========================================================================
@@ -112,99 +145,99 @@ a:hover {
    ========================================================================== */
 
 .site-header {
-    background-color: #FAF5EF; /* Tło główne */
-    padding: 2rem 0;
+    background-color: var(--color-background-light); /* Użycie zmiennej */
+    padding: var(--spacing-lg) 0; /* Użycie zmiennej */
     text-align: center;
 }
 
 .site-title {
     font-size: 3rem; /* Zmniejszono główny tytuł */
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
 }
 
 .site-subtitle {
     font-weight: 400; /* Regular dla podtytułu strony */
-    color: #2E2E2E; /* Kolor tekstu głównego */
+    color: var(--color-text-dark); /* Użycie zmiennej */
     font-size: 1.3rem;
     font-style: italic;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--spacing-md); /* Użycie zmiennej */
 }
 
 .site-description-short {
     max-width: 700px;
-    margin: 0 auto 2rem auto;
-    color: #2E2E2E; /* Kolor tekstu głównego */
+    margin: 0 auto var(--spacing-lg) auto; /* Użycie zmiennej */
+    color: var(--color-text-dark); /* Użycie zmiennej */
     font-size: 1.2rem;
 }
 
 .site-description-short p {
-    margin-bottom: 0.5em; /* Odstęp między akapitami w opisie */
+    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
 }
 
 .site-footer {
-    background-color: #FAF5EF; /* Tło główne */
-    color: #2E2E2E; /* Kolor tekstu głównego */
+    background-color: var(--color-background-light); /* Użycie zmiennej */
+    color: var(--color-text-dark); /* Użycie zmiennej */
     text-align: center;
-    padding: 2rem 0;
-    border-top: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
-    margin-top: 3rem;
+    padding: var(--spacing-lg) 0; /* Użycie zmiennej */
+    border-top: 1px solid var(--color-secondary); /* Użycie zmiennej */
+    margin-top: var(--spacing-xl); /* Użycie zmiennej */
 }
 
 /* Style dla przycisków */
 .button {
     display: inline-block;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    font-family: 'Source Sans 3', sans-serif;
+    padding: 0.8rem var(--spacing-md); /* Użycie zmiennej */
+    font-size: var(--spacing-sm); /* Użycie zmiennej */
+    font-family: var(--font-family-primary); /* Użycie zmiennej */
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: var(--border-radius-sm); /* Użycie zmiennej */
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    text-align: center; /* Aby tekst był wyśrodkowany, jeśli przycisk jest szerszy */
+    text-align: center;
 }
 
 .button-container {
     text-align: center;
-    margin-top: 2rem; /* Odstęp nad przyciskiem, jeśli jest w osobnym kontenerze */
+    margin-top: var(--spacing-lg); /* Użycie zmiennej */
 }
 
 .button.primary-button {
-    background-color: #A9643E; /* Kolor akcentu */
-    color: #FAF5EF; /* Kontrastowy do akcentu */
+    background-color: var(--color-primary); /* Użycie zmiennej */
+    color: var(--color-background-light); /* Użycie zmiennej */
     border: none;
 }
 
 .button.primary-button:hover {
-    background-color: #2E2E2E; /* Ciemniejszy dla hover */
-    color: #FAF5EF;
+    background-color: var(--color-text-dark); /* Użycie zmiennej */
+    color: var(--color-background-light); /* Użycie zmiennej */
 }
 
 .button.secondary-button {
     background-color: transparent;
-    color: #A9643E; /* Kolor akcentu */
-    border: 1px solid #A9643E;
+    color: var(--color-primary); /* Użycie zmiennej */
+    border: 1px solid var(--color-primary); /* Użycie zmiennej */
 }
 
 .button.secondary-button:hover {
-    background-color: #A9643E; /* Kolor akcentu */
-    color: #FAF5EF;
+    background-color: var(--color-primary); /* Użycie zmiennej */
+    color: var(--color-background-light); /* Użycie zmiennej */
 }
 
 /* Specyficzny styl dla przycisku drukowania */
 .print-button {
-    background-color: #A9643E; /* Kolor akcentu */
-    color: #FAF5EF; /* Kontrastowy do akcentu */
+    background-color: var(--color-primary); /* Użycie zmiennej */
+    color: var(--color-background-light); /* Użycie zmiennej */
     border: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    font-family: 'Source Sans 3', sans-serif;
+    padding: 0.8rem var(--spacing-md); /* Użycie zmiennej */
+    font-size: var(--spacing-sm); /* Użycie zmiennej */
+    font-family: var(--font-family-primary); /* Użycie zmiennej */
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: var(--border-radius-sm); /* Użycie zmiennej */
     transition: background-color 0.3s ease;
-    margin-top: 1.5rem; /* Zostawione, jeśli ma mieć specyficzny margines */
+    margin-top: var(--spacing-md); /* Użycie zmiennej */
 }
 
 .print-button:hover {
-    background-color: #2E2E2E; /* Ciemniejszy dla hover */
+    background-color: var(--color-text-dark); /* Użycie zmiennej */
 }
 
 /* ==========================================================================
@@ -214,14 +247,14 @@ a:hover {
 .content {
     max-width: 1200px; /* Maksymalna szerokość strony */
     margin: 0 auto;
-    padding: 1.5rem;
+    padding: var(--spacing-md); /* Użycie zmiennej */
 }
 
 /* Główny kontener strony głównej */
 .main-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem; /* Padding tylko po bokach, sekcje kontrolują pionowe odstępy */
+    padding: 0 var(--spacing-md); /* Użycie zmiennej */
 }
 
 /* Odstępy między głównymi sekcjami strony */
@@ -231,8 +264,8 @@ a:hover {
 .categories-section,
 .notes-section,
 .about-me-section { /* Dodano również about-me-section, jeśli zostanie włączona */
-    margin-top: 4rem;
-    margin-bottom: 2rem;
+    margin-top: var(--spacing-xxl); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-lg); /* Użycie zmiennej */
 }
 
 /* Pierwsza sekcja na stronie głównej nie potrzebuje górnego marginesu */
@@ -247,19 +280,19 @@ a:hover {
 .latest-recipes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
+    gap: var(--spacing-lg); /* Użycie zmiennej */
 }
 
 .categories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 2rem;
+    gap: var(--spacing-lg); /* Użycie zmiennej */
 }
 
 .notes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Notatki mogą być trochę szersze */
-    gap: 2rem;
+    gap: var(--spacing-lg); /* Użycie zmiennej */
 }
 
 /* ==========================================================================
@@ -268,13 +301,13 @@ a:hover {
 
 /* --- Karty przepisów (na stronie głównej i kategoriach) --- */
 .recipe-card {
-    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
-    border: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
-    border-radius: 8px;
+    background-color: var(--color-background-accent); /* Użycie zmiennej */
+    border: 1px solid var(--color-secondary); /* Użycie zmiennej */
+    border-radius: var(--border-radius-md); /* Użycie zmiennej */
     overflow: hidden;
     text-align: center;
     padding-bottom: 0.8rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-md); /* Użycie zmiennej */
     transition: transform 0.2s ease;
 }
 
@@ -288,7 +321,7 @@ a:hover {
 }
 
 .recipe-card-link:hover .recipe-card-title {
-    color: #2E2E2E; /* Ciemniejszy dla hover */
+    color: var(--color-text-dark); /* Użycie zmiennej */
 }
 
 .recipe-card-image-container {
@@ -296,7 +329,7 @@ a:hover {
     padding-bottom: 100%; /* Tworzy kwadratowy kontener na obraz */
     position: relative;
     overflow: hidden;
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
 }
 
 .recipe-card-image-container img {
@@ -312,15 +345,15 @@ a:hover {
 
 .recipe-card-title {
     font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
 }
 
 /* --- Kafelki kategorii (bez zdjęć) --- */
 .category-card {
-    background-color: #F1EBE3; /* Kolor tła dla elementów wyróżnionych */
-    border: 1px solid #BDB7AF; /* Kolor dla elementów drugorzędnych */
-    border-radius: 8px;
-    padding: 1.2rem;
+    background-color: var(--color-background-accent); /* Użycie zmiennej */
+    border: 1px solid var(--color-secondary); /* Użycie zmiennej */
+    border-radius: var(--border-radius-md); /* Użycie zmiennej */
+    padding: var(--spacing-md); /* Użycie zmiennej */
     text-align: center;
     transition: background-color 0.3s ease;
     min-height: 120px;
@@ -331,7 +364,7 @@ a:hover {
 }
 
 .category-card:hover {
-    background-color: #A9643E; /* Kolor akcentu */
+    background-color: var(--color-primary); /* Użycie zmiennej */
 }
 
 .category-card-title {
@@ -341,61 +374,61 @@ a:hover {
 }
 
 .category-card:hover .category-card-title {
-    color: #FAF5EF; /* Kontrastowy na hover */
+    color: var(--color-background-light); /* Użycie zmiennej */
 }
 
 /* --- Sekcja Notatek z kuchni na stronie głównej --- */
 .notes-section .note-entry {
-    background-color: #F1EBE3;
-    border: 1px solid #BDB7AF;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 0; /* Usunięty margines, bo siatka nim zarządza */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    background-color: var(--color-background-accent); /* Użycie zmiennej */
+    border: 1px solid var(--color-secondary); /* Użycie zmiennej */
+    border-radius: var(--border-radius-md); /* Użycie zmiennej */
+    padding: var(--spacing-md); /* Użycie zmiennej */
+    margin-bottom: 0;
+    box-shadow: var(--shadow-sm); /* Użycie zmiennej */
 }
 
 .notes-section .note-entry h3 {
     font-size: 1.6rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
 }
 
 .notes-section .note-entry p {
-    font-size: 1rem;
-    color: #2E2E2E;
+    font-size: var(--spacing-sm); /* Użycie zmiennej */
+    color: var(--color-text-dark); /* Użycie zmiennej */
     margin-bottom: 0.8rem;
 }
 
 /* --- Strona pojedynczego przepisu --- */
 .recipe-single {
     max-width: 900px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: #F1EBE3;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin: var(--spacing-lg) auto; /* Użycie zmiennej */
+    padding: var(--spacing-md); /* Użycie zmiennej */
+    background-color: var(--color-background-accent); /* Użycie zmiennej */
+    border-radius: var(--border-radius-md); /* Użycie zmiennej */
+    box-shadow: var(--shadow-lg); /* Użycie zmiennej */
 }
 
 .recipe-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing-lg); /* Użycie zmiennej */
 }
 
 .recipe-title {
     font-size: 3rem;
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
 }
 
 .recipe-description {
     font-weight: 400;
     font-size: 1.2rem;
     font-style: italic;
-    color: #2E2E2E;
-    margin-bottom: 2rem;
+    color: var(--color-text-dark); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-lg); /* Użycie zmiennej */
 }
 
 .recipe-content-wrapper {
     display: grid;
-    gap: 2rem;
+    gap: var(--spacing-lg); /* Użycie zmiennej */
     grid-template-columns: 1fr; /* Domyślnie jedna kolumna na mobilnych */
 }
 
@@ -413,135 +446,131 @@ a:hover {
 .recipe-preparation,
 .recipe-additional-content {
     grid-column: 1 / -1;
-    margin-top: 2rem;
+    margin-top: var(--spacing-lg); /* Użycie zmiennej */
 }
 
 .recipe-main-image {
     max-width: 100%;
     width: 100%;
     height: auto;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
+    border-radius: var(--border-radius-md); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-md); /* Użycie zmiennej */
     aspect-ratio: 4 / 3;
     object-fit: cover;
 }
 
 .recipe-details {
     width: 100%;
-    padding: 1rem;
-    background-color: #F1EBE3;
-    border-radius: 8px;
-    border: 1px solid #BDB7AF;
+    padding: var(--spacing-sm); /* Użycie zmiennej */
+    background-color: var(--color-background-accent); /* Użycie zmiennej */
+    border-radius: var(--border-radius-md); /* Użycie zmiennej */
+    border: 1px solid var(--color-secondary); /* Użycie zmiennej */
     margin-top: 0;
 }
 
 .recipe-details p {
-    margin-bottom: 0.5rem;
-    font-family: 'Source Sans 3', sans-serif;
-    color: #2E2E2E;
+    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
+    font-family: var(--font-family-primary); /* Użycie zmiennej */
+    color: var(--color-text-dark); /* Użycie zmiennej */
 }
 
 .recipe-details strong {
-    color: #A9643E;
+    color: var(--color-primary); /* Użycie zmiennej */
 }
 
 /* --- Strona pojedynczej notatki --- */
 .note-single {
     max-width: 800px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: #F1EBE3;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin: var(--spacing-lg) auto; /* Użycie zmiennej */
+    padding: var(--spacing-md); /* Użycie zmiennej */
+    background-color: var(--color-background-accent); /* Użycie zmiennej */
+    border-radius: var(--border-radius-md); /* Użycie zmiennej */
+    box-shadow: var(--shadow-lg); /* Użycie zmiennej */
 }
 
 .note-header {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--spacing-md); /* Użycie zmiennej */
 }
 
 .note-title {
     font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
 }
 
 .note-date {
-    font-family: 'Source Sans 3', sans-serif;
-    color: #2E2E2E;
+    font-family: var(--font-family-primary); /* Użycie zmiennej */
+    color: var(--color-text-dark); /* Użycie zmiennej */
     font-size: 0.9rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--spacing-md); /* Użycie zmiennej */
 }
 
 .note-content img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 1.5rem auto;
-    border-radius: 8px;
+    margin: var(--spacing-md) auto; /* Użycie zmiennej */
+    border-radius: var(--border-radius-md); /* Użycie zmiennej */
     aspect-ratio: 4 / 3;
     object-fit: cover;
 }
 
 .note-content h2, .note-content h3, .note-content h4 {
-    color: #A9643E;
-    margin-top: 1.5rem;
+    color: var(--color-primary); /* Użycie zmiennej */
+    margin-top: var(--spacing-md); /* Użycie zmiennej */
     margin-bottom: 0.8rem;
 }
 
 .note-content p {
-    margin-bottom: 1rem;
-    color: #2E2E2E;
+    margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
+    color: var(--color-text-dark); /* Użycie zmiennej */
 }
 
 .note-content ul, .note-content ol {
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
+    margin-left: var(--spacing-md); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
 }
 
 .note-content blockquote {
-    border-left: 4px solid #A9643E;
-    padding-left: 1rem;
-    margin: 1.5rem 0;
+    border-left: 4px solid var(--color-primary); /* Użycie zmiennej */
+    padding-left: var(--spacing-sm); /* Użycie zmiennej */
+    margin: var(--spacing-md) 0; /* Użycie zmiennej */
     font-style: italic;
-    color: #2E2E2E;
+    color: var(--color-text-dark); /* Użycie zmiennej */
 }
 
 .back-to-categories-link,
 .back-to-home-notes-link {
     display: inline-block;
-    margin-top: 2rem;
-    font-family: 'Source Sans 3', sans-serif;
+    margin-top: var(--spacing-lg); /* Użycie zmiennej */
+    font-family: var(--font-family-primary); /* Użycie zmiennej */
     font-size: 0.9rem;
-    color: #A9643E;
+    color: var(--color-primary); /* Użycie zmiennej */
 }
 
 /* --- Strona 404 --- */
-.error-404-page body { /* Klasa na body, jeśli 404.html ma taką klasę w tagu body */
+.error-404-page body {
     display: flex;
-    justify-content: center; /* Wyśrodkowuje zawartość w poziomie */
-    align-items: center;    /* Wyśrodkowuje zawartość w pionie */
-    min-height: 100vh;      /* Upewnia się, że body zajmuje całą wysokość widocznego obszaru */
-    text-align: center;     /* Wyśrodkowuje tekst wewnątrz kontenera */
-    flex-direction: column; /* Ustawia elementy w kolumnie, żeby układały się jeden pod drugim */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    flex-direction: column;
 }
 
-/* Jeśli strona 404 nie ma klasy na body, a tylko kontener, użyj tego: */
 .error-404-container {
     display: flex;
-    flex-direction: column; /* Ułożenie elementów jeden pod drugim */
-    justify-content: center; /* Wyśrodkowanie w pionie */
-    align-items: center;    /* Wyśrodkowanie w poziomie */
-    text-align: center;     /* Wyśrodkowanie tekstu wewnątrz */
-    min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px)); /* Dostosuj wysokość do widocznego obszaru */
-    /* Zamiast calc, możesz też ustawić na sztywno, np. min-height: 70vh; jeśli to bardziej pasuje */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px));
 }
 
-/* Możesz też usunąć 'margin: 30px auto;' z .error-image, jeśli flexbox zajmie się centrowaniem */
 .error-image {
     max-width: 100%;
     height: auto;
     display: block;
-    /* margin: 30px auto;  <-- MOŻESZ TO USUNĄĆ LUB ZOSTAWIC, ZALEZY OD EFEKTU */
     width: 400px;
 }
 
@@ -560,7 +589,7 @@ a:hover {
     .site-subtitle { font-size: 1.5rem; }
 
     .content, .main-content {
-        padding: 2rem;
+        padding: var(--spacing-lg); /* Użycie zmiennej */
     }
 
     .recipes-grid,
@@ -569,7 +598,7 @@ a:hover {
     .categories-grid,
     .notes-grid {
         grid-template-columns: repeat(3, 1fr); /* 3 kolumny na tabletach */
-        gap: 2rem;
+        gap: var(--spacing-lg); /* Użycie zmiennej */
     }
 
     /* Układ dla pojedynczego przepisu */
@@ -585,7 +614,7 @@ a:hover {
 
     .recipe-single,
     .note-single {
-        padding: 2rem;
+        padding: var(--spacing-lg); /* Użycie zmiennej */
     }
 }
 
@@ -598,7 +627,7 @@ a:hover {
     .site-subtitle { font-size: 1.7rem; }
 
     .content, .main-content {
-        padding: 3rem;
+        padding: var(--spacing-xl); /* Użycie zmiennej */
     }
 
     .recipes-grid,
@@ -614,17 +643,17 @@ a:hover {
 
 /* Mobilne, mniejsze fonty */
 @media (max-width: 767px) {
-    h1 { font-size: 2.8rem; } /* Dostosowanie do mobilnych */
-    h2 { font-size: 2.2rem; } /* Dostosowanie do mobilnych */
-    h3 { font-size: 1.8rem; } /* Dostosowanie do mobilnych */
-    h4 { font-size: 1.5rem; } /* Dostosowanie do mobilnych */
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2.2rem; }
+    h3 { font-size: 1.8rem; }
+    h4 { font-size: 1.5rem; }
 
     .site-title { font-size: 2.5rem; }
     .site-subtitle { font-size: 1.1rem; }
-    .site-description-short { font-size: 1.1rem; } /* Drobna korekta na mobilnych */
+    .site-description-short { font-size: 1.1rem; }
 
     .content, .main-content {
-        padding: 1rem;
+        padding: var(--spacing-sm); /* Użycie zmiennej */
     }
 
     .recipes-grid,
@@ -632,11 +661,10 @@ a:hover {
     .latest-recipes-grid,
     .categories-grid,
     .notes-grid {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Pozostawiamy auto-fit, ale z mniejszym min-width */
-        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: var(--spacing-md); /* Użycie zmiennej */
     }
 
-    /* Dopasowanie szerokości obrazka 404 na mobilnych */
     .error-image {
         width: 80%;
     }
@@ -648,31 +676,31 @@ a:hover {
    ========================================================================== */
 @media print {
     body {
-        font-family: 'Source Sans 3', sans-serif;
+        font-family: var(--font-family-primary); /* Użycie zmiennej */
         color: #000;
-        background-color: #fff;
+        background-color: var(--color-white); /* Użycie zmiennej */
         margin: 0;
         padding: 0;
     }
 
     @page {
         size: A4 portrait;
-        margin: 1.5cm;
+        margin: var(--spacing-md); /* Użycie zmiennej */
     }
 
     /* Ukryj elementy, które nie powinny być drukowane */
     .site-header,
     .site-footer,
-    .hero-section, /* Dodano hero-section */
+    .hero-section,
     .featured-recipes-section,
     .latest-recipes-section,
     .categories-section,
     .notes-section,
-    .about-me-section, /* Dodano about-me-section */
+    .about-me-section,
     .print-button,
     .back-to-categories-link,
     .back-to-home-notes-link,
-    .error-404-page, /* Upewnij się, że ten selektor istnieje, jeśli masz klasę dla całego ciała 404 */
+    .error-404-page,
     .recipe-main-image {
         display: none !important;
     }
@@ -683,29 +711,29 @@ a:hover {
         margin: 0;
         padding: 0;
         box-shadow: none;
-        background-color: #fff;
+        background-color: var(--color-white); /* Użycie zmiennej */
         border: none;
     }
 
     .recipe-header {
         text-align: left;
-        margin-bottom: 1rem;
+        margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
     }
 
     .recipe-title {
         font-size: 2.2rem;
         color: #000;
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
     }
 
     .recipe-description {
-        font-size: 1rem;
+        font-size: var(--spacing-sm); /* Użycie zmiennej */
         color: #333;
-        margin-bottom: 1rem;
+        margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
         font-style: normal;
     }
 
-    .recipe-date { /* Zakładam, że masz klasę .recipe-date w HTML dla daty przepisu */
+    .recipe-date {
         font-size: 0.8rem;
         color: #666;
         margin-bottom: 0.3rem;
@@ -728,21 +756,21 @@ a:hover {
         width: 100% !important;
         float: none !important;
         clear: both !important;
-        margin: 1.5rem 0 0 0 !important; /* Ujednolicone marginesy */
+        margin: var(--spacing-md) 0 0 0 !important; /* Użycie zmiennej */
         padding: 0;
         box-sizing: border-box;
         page-break-inside: avoid;
     }
 
     .recipe-content-wrapper > *:first-child {
-        margin-top: 0 !important; /* Pierwsza sekcja po headerze bez górnego marginesu */
+        margin-top: 0 !important;
     }
 
     .recipe-details {
         border: none;
-        background-color: #fff;
+        background-color: var(--color-white); /* Użycie zmiennej */
         padding: 0;
-        margin-top: 1rem;
+        margin-top: var(--spacing-sm); /* Użycie zmiennej */
     }
 
     .recipe-details p {
@@ -770,8 +798,8 @@ a:hover {
     .recipe-additional-content ol {
         margin-left: 0;
         list-style-position: outside;
-        padding-left: 1.5rem;
-        font-size: 1rem;
+        padding-left: var(--spacing-md); /* Użycie zmiennej */
+        font-size: var(--spacing-sm); /* Użycie zmiennej */
         line-height: 1.4;
         margin-bottom: 0.3rem;
         color: #000;
@@ -781,7 +809,7 @@ a:hover {
     .recipe-preparation ol li::marker,
     .recipe-additional-content ul li::marker,
     .recipe-additional-content ol li::marker {
-        color: #A9643E; /* Kolor akcentu dla numeracji/punktów */
+        color: var(--color-primary); /* Użycie zmiennej */
     }
 
     a {
