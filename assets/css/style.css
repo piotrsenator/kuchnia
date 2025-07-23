@@ -619,51 +619,39 @@ a:hover {
 }
 
 /* --- Strona 404 --- */
-.error-404-page body {
-    /* Ustawienia, aby kontener 404 był wyśrodkowany pionowo */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-    flex-direction: column;
-    background-color: var(--color-background-light); /* Domyślne tło */
-}
-
+/* Kontener 404 powinien być opakowany w <div class="error-404-container">...</div> */
 .error-404-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px));
-    /* Style dla kontenera 404 - podobne do recipe-single */
+    /* Style dla kontenera 404 - IDENCZNE JAK DLA RECIPE-SINGLE */
     max-width: 900px; /* Taka sama maksymalna szerokość jak przepis */
     margin: var(--spacing-lg) auto; /* Centrowanie i marginesy jak przepis */
     padding: var(--spacing-md); /* Padding jak przepis */
     background-color: var(--color-background-accent); /* Tło jak przepis */
     border-radius: var(--border-radius-md); /* Zaokrąglenie jak przepis */
     box-shadow: var(--shadow-lg); /* Cień jak przepis */
+    text-align: center; /* Wyśrodkowanie tekstu i obrazów w kontenerze */
+}
+
+/* Dostosuj styl nagłówka i paragrafów wewnątrz kontenera 404 */
+.error-404-container .error-title { /* Użyj error-title, jeśli taka klasa jest w HTML */
+    font-size: 3rem; /* Dostosowanie rozmiaru nagłówka dla 404 */
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    text-transform: none; /* Upewniamy się, że nie ma kapitalików */
+}
+
+.error-404-container .error-message,
+.error-404-container .error-suggestion {
+    font-size: 1.2rem;
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-md);
 }
 
 .error-image {
     max-width: 100%;
     height: auto;
-    display: block;
-    width: 400px;
-    margin: var(--spacing-md) auto; /* Dodano margines dla lepszego odstępu */
-}
-
-.error-404-container h1 {
-    font-size: 3rem; /* Dostosowanie rozmiaru nagłówka dla 404 */
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-sm);
-}
-
-.error-404-container p {
-    font-size: 1.2rem;
-    color: var(--color-text-dark);
-    margin-bottom: var(--spacing-md);
+    display: block; /* Upewnia się, że obraz jest elementem blokowym dla margin:auto */
+    width: 400px; /* Zapewnia stałą szerokość obrazu na większych ekranach */
+    margin: var(--spacing-md) auto; /* Dodano margines dla lepszego odstępu i wyśrodkowanie */
 }
 
 /* ==========================================================================
