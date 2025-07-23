@@ -12,9 +12,9 @@ permalink: /notes/
 
     <section class="notes-list-section">
         {% if site.notes.size > 0 %}
-            <ul class="notes-list-single-column"> {# ZMIANA: Zmieniono klasę na notes-list-single-column i przywrócono ul #}
+            <div class="notes-grid"> {# ZMIANA: Zachowujemy notes-grid #}
                 {% for note in site.notes reversed %} {# reversed zapewnia sortowanie od najnowszej #}
-                    <li class="note-item-single-column"> {# ZMIANA: Zmieniono klasę na note-item-single-column i przywrócono li #}
+                    <div class="note-card"> {# ZMIANA: Zachowujemy note-card #}
                         <h3 class="note-title"><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
                         <p class="note-meta">
                             <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%d.%m.%Y" }}</time>
@@ -32,9 +32,9 @@ permalink: /notes/
                         <div class="note-read-more-container">
                             <a href="{{ note.url | relative_url }}" class="read-more-link button secondary-button">Czytaj więcej &raquo;</a>
                         </div>
-                    </li>
+                    </div>
                 {% endfor %}
-            </ul>
+            </div>
         {% else %}
             <p>Brak notatek do wyświetlenia.</p>
         {% endif %}
