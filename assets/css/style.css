@@ -418,8 +418,8 @@ a:hover {
     min-height: auto; /* Usunięto sztywną minimalną wysokość */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* ZMIANA: Wyśrodkowanie zawartości w pionie */
+    align-items: center; /* ZMIANA: Wyśrodkowanie zawartości w poziomie */
 }
 
 .category-card:hover {
@@ -428,7 +428,7 @@ a:hover {
 
 .category-card-title {
     font-size: 1.4rem;
-    margin: 0;
+    margin: 0; /* Upewnij się, że nie ma dodatkowych marginesów, które by to psuły */
     transition: color 0.3s ease;
     text-transform: none; /* Anulujemy kapitaliki */
     /* Dodatkowe reguły dla dwóch linii, jeśli tytuły kategorii mogą być długie */
@@ -438,6 +438,7 @@ a:hover {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     white-space: normal;
+    text-align: center; /* Dodatkowo upewniamy się, że tekst w tytule jest wyśrodkowany */
 }
 
 .category-card:hover .category-card-title {
