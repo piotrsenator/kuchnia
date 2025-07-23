@@ -631,9 +631,9 @@ a:hover {
     text-align: center; /* Wyśrodkowanie tekstu i obrazów w kontenerze */
     display: flex; /* Użyj flexbox, aby wyśrodkować zawartość wertykalnie */
     flex-direction: column;
-    justify-content: center; /* Wyśrodkowanie w pionie */
+    justify-content: flex-start; /* ZMIANA TUTAJ: Wyrównanie do góry kontenera */
     align-items: center; /* Wyśrodkowanie w poziomie (dla elementów flex) */
-    min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px)); /* Upewnij się, że kontener jest wystarczająco wysoki, aby go wyśrodkować */
+    min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px)); /* Upewnij się, że kontener jest wystarczająco wysoki */
 }
 
 /* Dostosuj styl nagłówka i paragrafów wewnątrz kontenera 404 */
@@ -659,24 +659,6 @@ a:hover {
     width: 400px; /* Zapewnia stałą szerokość obrazu na większych ekranach */
     margin: var(--spacing-md) auto; /* Dodano margines dla lepszego odstępu i wyśrodkowanie */
 }
-
-/* Upewnij się, że nie ma żadnych innych stylów, które mogłyby kolidować z wyśrodkowaniem.
-   Jeśli masz jakieś globalne style dla 'html, body' lub `.error-404-page body`,
-   które ustawiają flexbox lub sztywne wysokości, upewnij się, że zostały usunięte
-   lub nadpisane TYLKO dla strony 404, jeśli jest to konieczne.
-*/
-/* Możesz dodać te style do body na stronie 404.html, aby strona była pełnej wysokości i flexbox */
-/* W pliku 404.html (lub layoucie dla 404) */
-/*
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-.site-header { flex-shrink: 0; }
-.error-404-container { flex-grow: 1; display: flex; align-items: center; justify-content: center; }
-.site-footer { flex-shrink: 0; }
-*/
 /* ==========================================================================
    5. Media Queries (Responsywność)
    ========================================================================== */
