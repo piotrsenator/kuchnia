@@ -11,7 +11,7 @@
 @font-face {
     font-family: 'Source Sans 3';
     src: url('../fonts/source-sans-3-v18-latin_latin-ext-regular.woff2') format('woff2');
-    font-weight: 400; /* Regular */
+    font-weight: 400; /* Regularna waga - wymagana dla wczytania fontu */
     font-style: normal;
 }
 
@@ -19,7 +19,7 @@
 @font-face {
     font-family: 'Playfair Display';
     src: url('../fonts/playfair-display-v39-latin_latin-ext-regular.woff2') format('woff2');
-    font-weight: 400; /* Regular */
+    font-weight: 400; /* Regularna waga - wymagana dla wczytania fontu */
     font-style: normal;
 }
 
@@ -27,7 +27,7 @@
 @font-face {
     font-family: 'Playfair Display';
     src: url('../fonts/playfair-display-v39-latin_latin-ext-700.woff2') format('woff2');
-    font-weight: 700; /* Bold */
+    font-weight: 700; /* Pogrubiona waga - wymagana dla wczytania fontu */
     font-style: normal;
 }
 
@@ -67,7 +67,6 @@
     --border-radius-md: 8px;
 }
 
-
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -81,9 +80,9 @@ html {
 }
 
 body {
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
-    color: var(--color-text-dark); /* Użycie zmiennej */
-    background-color: var(--color-background-light); /* Użycie zmiennej */
+    font-family: var(--font-family-primary);
+    color: var(--color-text-dark);
+    background-color: var(--color-background-light);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -92,23 +91,74 @@ body {
    1. Typografia i linki
    ========================================================================== */
 
-h1, h2, h3, h4, h5, h6,
-.site-title,
-.site-subtitle,
+h1 {
+    font-family: var(--font-family-secondary);
+    font-weight: 700; /* Pozostawiamy, aby zachować pogrubienie h1 */
+    color: var(--color-primary);
+    line-height: 1.2;
+    margin-bottom: 0.8em;
+    font-size: 2.8rem; /* Domyślny rozmiar dla h1 */
+}
+
+h2, h3, h4, h5, h6,
 .recipe-card-title,
 .category-card-title,
 .recipe-title,
-.recipe-description,
-.note-title,
-.site-description-short {
-    font-family: var(--font-family-secondary); /* Użycie zmiennej */
-    font-weight: 700; /* Domyślna waga dla nagłówków */
-    color: var(--color-primary); /* Użycie zmiennej */
+.note-title {
+    font-family: var(--font-family-secondary);
+    font-weight: 700; /* Pozostawiamy, aby zachować pogrubienie dla nagłówków */
+    color: var(--color-primary);
     line-height: 1.2;
     margin-bottom: 0.8em;
+    text-transform: uppercase; /* Wszystkie nagłówki poza h1 - kapitaliki */
 }
 
-h1 { font-size: 2.8rem; }
+/* Wyłączamy text-transform dla konkretnych klas, które nie są nagłówkami, a są stylizowane jak Playfair Display */
+.site-title,
+.site-subtitle,
+.site-description-short {
+    font-family: var(--font-family-secondary);
+    color: var(--color-primary);
+    line-height: 1.2;
+    margin-bottom: 0.8em; /* Przywrócone dla ogólnej spójności, konkretne marginesy w site-header poniżej */
+    text-transform: none; /* Wyłącz text-transform dla tych elementów */
+}
+
+/* Specyficzne stylowanie dla site-title, site-subtitle, site-description-short */
+.site-title {
+    font-weight: 700;
+    font-size: 3rem; /* Zmniejszono główny tytuł */
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-primary); /* Upewniamy się, że kolor jest zgodny z paletą */
+}
+
+.site-subtitle {
+    font-weight: 400; /* Standardowa waga, nie pogrubiona */
+    color: var(--color-text-dark);
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-sm); /* Zmniejszone z md (1.5rem) do sm (1rem) */
+    text-transform: none; /* Upewnienie się, że nie ma kapitalików */
+}
+
+.site-description-short {
+    max-width: 700px;
+    margin: 0 auto var(--spacing-sm) auto; /* Zmniejszone z lg (2rem) do sm (1rem) */
+    color: var(--color-text-dark);
+    font-size: 1.2rem;
+    text-transform: none; /* Upewnienie się, że nie ma kapitalików */
+}
+.site-description-short p {
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Usunięcie italic */
+.recipe-description {
+    font-weight: 400; /* Standardowa waga, nie pogrubiona */
+    font-size: 1.2rem;
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-lg);
+}
+
 h2 { font-size: 2.2rem; }
 h3 { font-size: 1.8rem; }
 h4 { font-size: 1.5rem; }
@@ -116,28 +166,28 @@ h4 { font-size: 1.5rem; }
 /* Styl dla list w przepisach */
 .recipe-ingredients ul,
 .recipe-preparation ol {
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
+    font-family: var(--font-family-primary);
     font-size: 0.95rem;
     line-height: 1.8;
-    color: var(--color-text-dark); /* Użycie zmiennej */
-    margin-left: var(--spacing-md); /* Użycie zmiennej */
+    color: var(--color-text-dark);
+    margin-left: var(--spacing-md);
     list-style-position: inside;
 }
 
 .recipe-ingredients ul li::marker,
 .recipe-preparation ol li::marker {
-    color: var(--color-primary); /* Użycie zmiennej */
+    color: var(--color-primary);
 }
 
 /* Ogólne style dla linków */
 a {
-    color: var(--color-primary); /* Użycie zmiennej */
+    color: var(--color-primary);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--color-secondary); /* Użycie zmiennej */
+    color: var(--color-secondary);
 }
 
 /* ==========================================================================
@@ -145,99 +195,77 @@ a:hover {
    ========================================================================== */
 
 .site-header {
-    background-color: var(--color-background-light); /* Użycie zmiennej */
-    padding: var(--spacing-lg) 0; /* Użycie zmiennej */
+    background-color: var(--color-background-light);
+    padding: var(--spacing-sm) 0 var(--spacing-sm); /* Zmniejszony padding: 1rem góra/dół */
     text-align: center;
-}
-
-.site-title {
-    font-size: 3rem; /* Zmniejszono główny tytuł */
-    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
-}
-
-.site-subtitle {
-    font-weight: 400; /* Regular dla podtytułu strony */
-    color: var(--color-text-dark); /* Użycie zmiennej */
-    font-size: 1.3rem;
-    font-style: italic;
-    margin-bottom: var(--spacing-md); /* Użycie zmiennej */
-}
-
-.site-description-short {
-    max-width: 700px;
-    margin: 0 auto var(--spacing-lg) auto; /* Użycie zmiennej */
-    color: var(--color-text-dark); /* Użycie zmiennej */
-    font-size: 1.2rem;
-}
-
-.site-description-short p {
-    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
 }
 
 .site-footer {
-    background-color: var(--color-background-light); /* Użycie zmiennej */
-    color: var(--color-text-dark); /* Użycie zmiennej */
+    background-color: var(--color-background-light);
+    color: var(--color-text-dark);
     text-align: center;
-    padding: var(--spacing-lg) 0; /* Użycie zmiennej */
-    border-top: 1px solid var(--color-secondary); /* Użycie zmiennej */
-    margin-top: var(--spacing-xl); /* Użycie zmiennej */
+    padding: var(--spacing-lg) 0;
+    border-top: 1px solid var(--color-secondary);
+    margin-top: var(--spacing-xl);
 }
 
 /* Style dla przycisków */
 .button {
     display: inline-block;
-    padding: 0.8rem var(--spacing-md); /* Użycie zmiennej */
-    font-size: var(--spacing-sm); /* Użycie zmiennej */
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
+    padding: 0.8rem var(--spacing-md);
+    font-size: var(--spacing-sm);
+    font-family: var(--font-family-primary);
     cursor: pointer;
-    border-radius: var(--border-radius-sm); /* Użycie zmiennej */
+    border-radius: var(--border-radius-sm);
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     text-align: center;
+    font-weight: 400; /* Standardowa waga */
 }
 
 .button-container {
     text-align: center;
-    margin-top: var(--spacing-lg); /* Użycie zmiennej */
+    margin-top: var(--spacing-lg);
 }
 
 .button.primary-button {
-    background-color: var(--color-primary); /* Użycie zmiennej */
-    color: var(--color-background-light); /* Użycie zmiennej */
+    background-color: var(--color-primary);
+    color: var(--color-background-light);
     border: none;
 }
 
 .button.primary-button:hover {
-    background-color: var(--color-text-dark); /* Użycie zmiennej */
-    color: var(--color-background-light); /* Użycie zmiennej */
+    background-color: var(--color-text-dark);
+    color: var(--color-background-light);
 }
 
 .button.secondary-button {
     background-color: transparent;
-    color: var(--color-primary); /* Użycie zmiennej */
-    border: 1px solid var(--color-primary); /* Użycie zmiennej */
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
 }
 
 .button.secondary-button:hover {
-    background-color: var(--color-primary); /* Użycie zmiennej */
-    color: var(--color-background-light); /* Użycie zmiennej */
+    background-color: var(--color-primary);
+    color: var(--color-background-light);
 }
 
 /* Specyficzny styl dla przycisku drukowania */
 .print-button {
-    background-color: var(--color-primary); /* Użycie zmiennej */
-    color: var(--color-background-light); /* Użycie zmiennej */
+    background-color: var(--color-primary);
+    color: var(--color-background-light);
     border: none;
-    padding: 0.8rem var(--spacing-md); /* Użycie zmiennej */
-    font-size: var(--spacing-sm); /* Użycie zmiennej */
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
+    padding: 0.8rem var(--spacing-md);
+    font-size: var(--spacing-sm);
+    font-family: var(--font-family-primary);
     cursor: pointer;
-    border-radius: var(--border-radius-sm); /* Użycie zmiennej */
+    border-radius: var(--border-radius-sm);
     transition: background-color 0.3s ease;
-    margin-top: var(--spacing-md); /* Użycie zmiennej */
+    margin-top: var(--spacing-md);
+    font-weight: 400; /* Standardowa waga */
 }
 
 .print-button:hover {
-    background-color: var(--color-text-dark); /* Użycie zmiennej */
+    background-color: var(--color-text-dark);
 }
 
 /* ==========================================================================
@@ -245,54 +273,51 @@ a:hover {
    ========================================================================== */
 
 .content {
-    max-width: 1200px; /* Maksymalna szerokość strony */
+    max-width: 1200px;
     margin: 0 auto;
-    padding: var(--spacing-md); /* Użycie zmiennej */
+    padding: var(--spacing-md);
 }
 
 /* Główny kontener strony głównej */
 .main-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md); /* Użycie zmiennej */
+    padding: 0 var(--spacing-md);
 }
 
 /* Odstępy między głównymi sekcjami strony */
-.hero-section,
-.featured-recipes-section,
+.hero-section, /* Chociaż usunęliśmy hero-section z index, możemy ją tu zostawić na wypadek użycia gdzie indziej */
 .latest-recipes-section,
 .categories-section,
 .notes-section,
-.about-me-section { /* Dodano również about-me-section, jeśli zostanie włączona */
-    margin-top: var(--spacing-xxl); /* Użycie zmiennej */
-    margin-bottom: var(--spacing-lg); /* Użycie zmiennej */
+.about-me-section {
+    margin-top: var(--spacing-xxl);
+    margin-bottom: var(--spacing-lg);
 }
 
 /* Pierwsza sekcja na stronie głównej nie potrzebuje górnego marginesu */
-.main-content .hero-section:first-child,
-.main-content .featured-recipes-section:first-child {
+.main-content .latest-recipes-section:first-child { /* Zaktualizowano na latest-recipes-section */
     margin-top: 0;
 }
 
 /* Siatki dla sekcji (przepisy, kategorie, notatki) */
 .recipes-grid, /* Ogólna klasa dla siatek przepisów */
-.featured-recipes-grid,
-.latest-recipes-grid {
+.latest-recipes-grid { /* Usunięto featured-recipes-grid */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: var(--spacing-lg); /* Użycie zmiennej */
+    gap: var(--spacing-lg);
 }
 
 .categories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: var(--spacing-lg); /* Użycie zmiennej */
+    gap: var(--spacing-lg);
 }
 
 .notes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Notatki mogą być trochę szersze */
-    gap: var(--spacing-lg); /* Użycie zmiennej */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
 }
 
 /* ==========================================================================
@@ -301,13 +326,13 @@ a:hover {
 
 /* --- Karty przepisów (na stronie głównej i kategoriach) --- */
 .recipe-card {
-    background-color: var(--color-background-accent); /* Użycie zmiennej */
-    border: 1px solid var(--color-secondary); /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
+    background-color: var(--color-background-accent);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius-md);
     overflow: hidden;
     text-align: center;
     padding-bottom: 0.8rem;
-    box-shadow: var(--shadow-md); /* Użycie zmiennej */
+    box-shadow: var(--shadow-md);
     transition: transform 0.2s ease;
 }
 
@@ -321,7 +346,7 @@ a:hover {
 }
 
 .recipe-card-link:hover .recipe-card-title {
-    color: var(--color-text-dark); /* Użycie zmiennej */
+    color: var(--color-text-dark);
 }
 
 .recipe-card-image-container {
@@ -329,7 +354,7 @@ a:hover {
     padding-bottom: 100%; /* Tworzy kwadratowy kontener na obraz */
     position: relative;
     overflow: hidden;
-    margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-sm);
 }
 
 .recipe-card-image-container img {
@@ -346,21 +371,21 @@ a:hover {
 .recipe-card-title {
     font-size: 1.2rem;
     margin-bottom: var(--spacing-xs);
-    min-height: calc(2 * 1.2rem * 1.2); /* Zakładając font-size 1.2rem i line-height około 1.2 */
-    /* Możesz dostosować 1.2rem i 1.2 do rzeczywistych wartości lub po prostu ustawić sztywną wartość px/rem, np. min-height: 2.8em; */
-    overflow: hidden; /* Ukrywa tekst, który przekracza 2 linie, jeśli tytuł jest bardzo długi */
-    display: -webkit-box; /* Dla wieloliniowego skracania, jeśli to konieczne */
-    -webkit-line-clamp: 2; /* Ograniczenie do 2 linii */
+    min-height: calc(2 * 1.2rem * 1.2); /* Wymuszenie 2 linii dla tytułu */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    white-space: normal; /* Upewnia się, że tekst się łamie */
+    white-space: normal;
+    text-transform: uppercase; /* Zastosowanie kapitalików */
 }
 
 /* --- Kafelki kategorii (bez zdjęć) --- */
 .category-card {
-    background-color: var(--color-background-accent); /* Użycie zmiennej */
-    border: 1px solid var(--color-secondary); /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
-    padding: var(--spacing-md); /* Użycie zmiennej */
+    background-color: var(--color-background-accent);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
     text-align: center;
     transition: background-color 0.3s ease;
     min-height: 120px;
@@ -371,188 +396,185 @@ a:hover {
 }
 
 .category-card:hover {
-    background-color: var(--color-primary); /* Użycie zmiennej */
+    background-color: var(--color-primary);
 }
 
 .category-card-title {
     font-size: 1.4rem;
     margin: 0;
     transition: color 0.3s ease;
+    text-transform: uppercase; /* Zastosowanie kapitalików */
 }
 
 .category-card:hover .category-card-title {
-    color: var(--color-background-light); /* Użycie zmiennej */
+    color: var(--color-background-light);
 }
 
 /* --- Sekcja Notatek z kuchni na stronie głównej --- */
 .notes-section .note-entry {
-    background-color: var(--color-background-accent); /* Użycie zmiennej */
-    border: 1px solid var(--color-secondary); /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
-    padding: var(--spacing-md); /* Użycie zmiennej */
+    background-color: var(--color-background-accent);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
     margin-bottom: 0;
-    box-shadow: var(--shadow-sm); /* Użycie zmiennej */
+    box-shadow: var(--shadow-sm);
 }
 
 .notes-section .note-entry h3 {
     font-size: 1.6rem;
-    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-xs);
+    text-transform: uppercase; /* Zastosowanie kapitalików */
 }
 
 .notes-section .note-entry p {
-    font-size: var(--spacing-sm); /* Użycie zmiennej */
-    color: var(--color-text-dark); /* Użycie zmiennej */
+    font-size: var(--spacing-sm);
+    color: var(--color-text-dark);
     margin-bottom: 0.8rem;
 }
 
 /* --- Strona pojedynczego przepisu --- */
 .recipe-single {
     max-width: 900px;
-    margin: var(--spacing-lg) auto; /* Użycie zmiennej */
-    padding: var(--spacing-md); /* Użycie zmiennej */
-    background-color: var(--color-background-accent); /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
-    box-shadow: var(--shadow-lg); /* Użycie zmiennej */
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-md);
+    background-color: var(--color-background-accent);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
 }
 
 .recipe-header {
     text-align: center;
-    margin-bottom: var(--spacing-lg); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-lg);
 }
 
 .recipe-title {
     font-size: 3rem;
-    margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
-}
-
-.recipe-description {
-    font-weight: 400;
-    font-size: 1.2rem;
-    font-style: italic;
-    color: var(--color-text-dark); /* Użycie zmiennej */
-    margin-bottom: var(--spacing-lg); /* Użycie zmiennej */
-}
-
-.recipe-content-wrapper {
-    display: grid;
-    gap: var(--spacing-lg); /* Użycie zmiennej */
-    grid-template-columns: 1fr; /* Domyślnie jedna kolumna na mobilnych */
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase; /* Zastosowanie kapitalików */
 }
 
 .recipe-main-info {
+    font-weight: 400; /* Standardowa waga, nie pogrubiona */
     grid-column: 1 / 2;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Wyśrodkowanie w pionie dla mobile */
+    align-items: center;
 }
 
 .recipe-ingredients {
-    grid-column: 1 / -1; /* Domyślnie na całą szerokość na mobilnych */
+    grid-column: 1 / -1;
 }
 
 .recipe-preparation,
 .recipe-additional-content {
     grid-column: 1 / -1;
-    margin-top: var(--spacing-lg); /* Użycie zmiennej */
+    margin-top: var(--spacing-lg);
 }
 
 .recipe-main-image {
     max-width: 100%;
     width: 100%;
     height: auto;
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
-    margin-bottom: var(--spacing-md); /* Użycie zmiennej */
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-md);
     aspect-ratio: 4 / 3;
     object-fit: cover;
 }
 
 .recipe-details {
     width: 100%;
-    padding: var(--spacing-sm); /* Użycie zmiennej */
-    background-color: var(--color-background-accent); /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
-    border: 1px solid var(--color-secondary); /* Użycie zmiennej */
+    padding: var(--spacing-sm);
+    background-color: var(--color-background-accent);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-secondary);
     margin-top: 0;
 }
 
 .recipe-details p {
-    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
-    color: var(--color-text-dark); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-xs);
+    font-family: var(--font-family-primary);
+    color: var(--color-text-dark);
+    font-weight: 400; /* Standardowa waga, nie pogrubiona */
 }
 
 .recipe-details strong {
-    color: var(--color-primary); /* Użycie zmiennej */
+    color: var(--color-primary);
+    font-weight: 400; /* Standardowa waga, nie pogrubiona */
 }
 
 /* --- Strona pojedynczej notatki --- */
 .note-single {
     max-width: 800px;
-    margin: var(--spacing-lg) auto; /* Użycie zmiennej */
-    padding: var(--spacing-md); /* Użycie zmiennej */
-    background-color: var(--color-background-accent); /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
-    box-shadow: var(--shadow-lg); /* Użycie zmiennej */
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-md);
+    background-color: var(--color-background-accent);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
 }
 
 .note-header {
     text-align: center;
-    margin-bottom: var(--spacing-md); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-md);
 }
 
 .note-title {
     font-size: 2.5rem;
-    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-xs);
+    text-transform: uppercase; /* Zastosowanie kapitalików */
 }
 
 .note-date {
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
-    color: var(--color-text-dark); /* Użycie zmiennej */
+    font-family: var(--font-family-primary);
+    color: var(--color-text-dark);
     font-size: 0.9rem;
-    margin-bottom: var(--spacing-md); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-md);
+    font-weight: 400; /* Standardowa waga, nie pogrubiona */
 }
 
 .note-content img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: var(--spacing-md) auto; /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
+    margin: var(--spacing-md) auto;
+    border-radius: var(--border-radius-md);
     aspect-ratio: 4 / 3;
     object-fit: cover;
 }
 
 .note-content h2, .note-content h3, .note-content h4 {
-    color: var(--color-primary); /* Użycie zmiennej */
-    margin-top: var(--spacing-md); /* Użycie zmiennej */
+    color: var(--color-primary);
+    margin-top: var(--spacing-md);
     margin-bottom: 0.8rem;
+    text-transform: uppercase; /* Zastosowanie kapitalików */
 }
 
 .note-content p {
-    margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
-    color: var(--color-text-dark); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-dark);
+    font-weight: 400; /* Standardowa waga, nie pogrubiona */
 }
 
 .note-content ul, .note-content ol {
-    margin-left: var(--spacing-md); /* Użycie zmiennej */
-    margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
+    margin-left: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .note-content blockquote {
-    border-left: 4px solid var(--color-primary); /* Użycie zmiennej */
-    padding-left: var(--spacing-sm); /* Użycie zmiennej */
-    margin: var(--spacing-md) 0; /* Użycie zmiennej */
-    font-style: italic;
-    color: var(--color-text-dark); /* Użycie zmiennej */
+    border-left: 4px solid var(--color-primary);
+    padding-left: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
+    color: var(--color-text-dark);
+    font-weight: 400; /* Standardowa waga, nie pogrubiona */
 }
 
 .back-to-categories-link,
 .back-to-home-notes-link {
     display: inline-block;
-    margin-top: var(--spacing-lg); /* Użycie zmiennej */
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
+    margin-top: var(--spacing-lg);
+    font-family: var(--font-family-primary);
     font-size: 0.9rem;
-    color: var(--color-primary); /* Użycie zmiennej */
+    color: var(--color-primary);
+    font-weight: 400; /* Standardowa waga, nie pogrubiona */
 }
 
 /* --- Strona 404 --- */
@@ -596,16 +618,15 @@ a:hover {
     .site-subtitle { font-size: 1.5rem; }
 
     .content, .main-content {
-        padding: var(--spacing-lg); /* Użycie zmiennej */
+        padding: var(--spacing-lg);
     }
 
     .recipes-grid,
-    .featured-recipes-grid,
-    .latest-recipes-grid,
+    .latest-recipes-grid, /* Usunięto featured-recipes-grid */
     .categories-grid,
     .notes-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 kolumny na tabletach */
-        gap: var(--spacing-lg); /* Użycie zmiennej */
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-lg);
     }
 
     /* Układ dla pojedynczego przepisu */
@@ -613,7 +634,7 @@ a:hover {
         grid-template-columns: minmax(250px, 1fr) 2fr;
     }
     .recipe-main-info {
-        align-items: flex-start; /* Dopasowanie do lewej na desktop */
+        align-items: flex-start;
     }
     .recipe-ingredients {
         grid-column: 2 / 3;
@@ -621,7 +642,7 @@ a:hover {
 
     .recipe-single,
     .note-single {
-        padding: var(--spacing-lg); /* Użycie zmiennej */
+        padding: var(--spacing-lg);
     }
 }
 
@@ -634,17 +655,16 @@ a:hover {
     .site-subtitle { font-size: 1.7rem; }
 
     .content, .main-content {
-        padding: var(--spacing-xl); /* Użycie zmiennej */
+        padding: var(--spacing-xl);
     }
 
     .recipes-grid,
-    .featured-recipes-grid,
-    .latest-recipes-grid,
+    .latest-recipes-grid, /* Usunięto featured-recipes-grid */
     .categories-grid {
-        grid-template-columns: repeat(4, 1fr); /* 4 kolumny na desktopie */
+        grid-template-columns: repeat(4, 1fr);
     }
     .notes-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 kolumny na desktopie, jeśli chcesz szersze notatki */
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -660,16 +680,15 @@ a:hover {
     .site-description-short { font-size: 1.1rem; }
 
     .content, .main-content {
-        padding: var(--spacing-sm); /* Użycie zmiennej */
+        padding: var(--spacing-sm);
     }
 
     .recipes-grid,
-    .featured-recipes-grid,
-    .latest-recipes-grid,
+    .latest-recipes-grid, /* Usunięto featured-recipes-grid */
     .categories-grid,
     .notes-grid {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: var(--spacing-md); /* Użycie zmiennej */
+        gap: var(--spacing-md);
     }
 
     .error-image {
@@ -677,29 +696,28 @@ a:hover {
     }
 }
 
-
 /* ==========================================================================
    6. Dodatkowe style dla drukowania (Print Styles)
    ========================================================================== */
 @media print {
     body {
-        font-family: var(--font-family-primary); /* Użycie zmiennej */
+        font-family: var(--font-family-primary);
         color: #000;
-        background-color: var(--color-white); /* Użycie zmiennej */
+        background-color: var(--color-white);
         margin: 0;
         padding: 0;
     }
 
     @page {
         size: A4 portrait;
-        margin: var(--spacing-md); /* Użycie zmiennej */
+        margin: var(--spacing-md);
     }
 
     /* Ukryj elementy, które nie powinny być drukowane */
     .site-header,
     .site-footer,
     .hero-section,
-    .featured-recipes-section,
+    /* .featured-recipes-section, - usunięto */
     .latest-recipes-section,
     .categories-section,
     .notes-section,
@@ -718,32 +736,35 @@ a:hover {
         margin: 0;
         padding: 0;
         box-shadow: none;
-        background-color: var(--color-white); /* Użycie zmiennej */
+        background-color: var(--color-white);
         border: none;
     }
 
     .recipe-header {
         text-align: left;
-        margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
+        margin-bottom: var(--spacing-sm);
     }
 
     .recipe-title {
         font-size: 2.2rem;
         color: #000;
-        margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
+        margin-bottom: 0.5rem;
+        text-transform: uppercase; /* Zastosowanie kapitalików */
     }
 
     .recipe-description {
-        font-size: var(--spacing-sm); /* Użycie zmiennej */
+        font-size: var(--spacing-sm);
         color: #333;
-        margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
-        font-style: normal;
+        margin-bottom: var(--spacing-sm);
+        font-style: normal; /* Przywrócono, aby upewnić się, że nie ma italic, jeśli zostało ustawione gdzieś indziej */
+        font-weight: 400; /* Standardowa waga, nie pogrubiona */
     }
 
     .recipe-date {
         font-size: 0.8rem;
         color: #666;
         margin-bottom: 0.3rem;
+        font-weight: 400; /* Standardowa waga, nie pogrubiona */
     }
 
     /* Układ kolumn na wydruku (linia po linii) */
@@ -763,7 +784,7 @@ a:hover {
         width: 100% !important;
         float: none !important;
         clear: both !important;
-        margin: var(--spacing-md) 0 0 0 !important; /* Użycie zmiennej */
+        margin: var(--spacing-md) 0 0 0 !important;
         padding: 0;
         box-sizing: border-box;
         page-break-inside: avoid;
@@ -775,19 +796,21 @@ a:hover {
 
     .recipe-details {
         border: none;
-        background-color: var(--color-white); /* Użycie zmiennej */
+        background-color: var(--color-white);
         padding: 0;
-        margin-top: var(--spacing-sm); /* Użycie zmiennej */
+        margin-top: var(--spacing-sm);
     }
 
     .recipe-details p {
         font-size: 0.9rem;
         margin-bottom: 0.3rem;
         color: #000;
+        font-weight: 400; /* Standardowa waga, nie pogrubiona */
     }
 
     .recipe-details strong {
         color: #000;
+        font-weight: 400; /* Standardowa waga, nie pogrubiona */
     }
 
     .recipe-ingredients h2,
@@ -796,6 +819,7 @@ a:hover {
         font-size: 1.5rem;
         color: #000;
         margin-bottom: 0.8rem;
+        text-transform: uppercase; /* Zastosowanie kapitalików */
     }
 
     .recipe-ingredients ul,
@@ -805,22 +829,24 @@ a:hover {
     .recipe-additional-content ol {
         margin-left: 0;
         list-style-position: outside;
-        padding-left: var(--spacing-md); /* Użycie zmiennej */
-        font-size: var(--spacing-sm); /* Użycie zmiennej */
+        padding-left: var(--spacing-md);
+        font-size: var(--spacing-sm);
         line-height: 1.4;
         margin-bottom: 0.3rem;
         color: #000;
+        font-weight: 400; /* Standardowa waga, nie pogrubiona */
     }
 
     .recipe-ingredients ul li::marker,
     .recipe-preparation ol li::marker,
     .recipe-additional-content ul li::marker,
     .recipe-additional-content ol li::marker {
-        color: var(--color-primary); /* Użycie zmiennej */
+        color: var(--color-primary);
     }
 
     a {
         text-decoration: none;
         color: #000 !important;
+        font-weight: 400; /* Standardowa waga, nie pogrubiona */
     }
 }
