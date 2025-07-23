@@ -69,7 +69,7 @@ h1, h2, h3, h4, h5, h6,
 .note-title,
 .site-description-short {
     font-family: 'Playfair Display', serif; /* Nagłówki i tytuły */
-    font-weight: 700; /* Domyślna waga dla nagłówków */
+    font-weight: 400; /* Domyślna waga dla nagłówków */
     color: #A9643E; /* Kolor akcentu - dla nagłówków */
     line-height: 1.2;
     margin-bottom: 0.8em;
