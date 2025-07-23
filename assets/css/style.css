@@ -55,10 +55,10 @@
     --color-white: #FFFFFF; /* Biały */
 
     /* Fonty */
-    --font-family-primary: 'Source Sans 3', sans-serif; /* ZMIANA: Font dla tekstu głównego (Source Sans 3 Regular) */
-    --font-family-headings: 'Spectral SC', serif; /* ZMIANA: Font dla wszystkich nagłówków h1-h6 (Spectral SC Regular) */
-    --font-family-site-title: 'Fraunces', serif; /* ZMIANA: Font dla site-title (Fraunces SemiBold Italic) */
-    --font-weight-light: 300; /* ZMIANA: Nowa zmienna dla wagi 300 (dla Source Sans 3 Light) */
+    --font-family-primary: 'Source Sans 3', sans-serif; /* Font dla tekstu głównego (Source Sans 3 Regular) */
+    --font-family-headings: 'Spectral SC', serif; /* Font dla wszystkich nagłówków h1-h6 (Spectral SC Regular) */
+    --font-family-site-title: 'Fraunces', serif; /* Font dla site-title (Fraunces SemiBold Italic) */
+    --font-weight-light: 300; /* Nowa zmienna dla wagi 300 (dla Source Sans 3 Light) */
 
 
     /* Odstępy (Spacing - używane dla konsekwentnych paddingów/marginesów) */
@@ -94,7 +94,7 @@ html {
 }
 
 body {
-    font-family: var(--font-family-primary); /* ZMIANA: Główny tekst - Source Sans 3 Regular */
+    font-family: var(--font-family-primary); /* Główny tekst - Source Sans 3 Regular */
     color: var(--color-text-dark); /* Użycie zmiennej */
     background-color: var(--color-background-light); /* Użycie zmiennej */
     -webkit-font-smoothing: antialiased;
@@ -107,7 +107,7 @@ body {
 
 /* Specyficzne stylowanie dla site-title (Fraunces SemiBold Italic) */
 .site-title {
-    font-family: var(--font-family-site-title); /* ZMIANA: Fraunces */
+    font-family: var(--font-family-site-title); /* Fraunces */
     font-weight: 600;
     font-style: italic;
     font-size: 3rem; /* Zmniejszono główny tytuł */
@@ -119,8 +119,8 @@ body {
 
 /* site-subtitle i site-description-short używają Source Sans 3 Light */
 .site-subtitle {
-    font-family: var(--font-family-primary); /* ZMIANA: Source Sans 3 */
-    font-weight: var(--font-weight-light); /* ZMIANA: Waga 300 (Light) */
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-light); /* Waga 300 (Light) */
     color: var(--color-text-dark);
     font-size: 1.3rem;
     margin-top: var(--spacing-xxs);
@@ -130,9 +130,9 @@ body {
 }
 
 .site-description-short {
-    font-family: var(--font-family-primary); /* ZMIANA: Source Sans 3 */
+    font-family: var(--font-family-primary); /* Source Sans 3 */
     max-width: 700px;
-    font-weight: var(--font-weight-light); /* ZMIANA: Waga 300 (Light) */
+    font-weight: var(--font-weight-light); /* Waga 300 (Light) */
     margin: var(--spacing-xxs) auto var(--spacing-sm) auto;
     color: var(--color-text-dark);
     font-size: 1.2rem;
@@ -144,8 +144,8 @@ body {
 
 /* Opis przepisu - używa Source Sans 3 Regular (domyślny dla body) */
 .recipe-description {
-    font-weight: 400; /* Standardowa waga */
-    font-style: normal; /* Usunięto italic */
+    font-weight: 400; /* ZMIANA: Usunięto italic, ustawiono wagę 400 */
+    font-style: normal; /* ZMIANA: Upewnienie się, że jest normal */
     font-size: 1.2rem;
     color: var(--color-text-dark);
     margin-bottom: var(--spacing-lg);
@@ -153,14 +153,17 @@ body {
 
 /* Cytaty - używają Source Sans 3 Regular (domyślny dla body) */
 .note-content blockquote {
-    font-style: normal; /* Usunięto italic */
-    font-weight: 400; /* Standardowa waga */
+    font-style: normal; /* ZMIANA: Usunięto italic */
+    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
 }
 
-/* Nagłówki używają Spectral SC Regular */
+/* Nagłówki używają Spectral SC Regular i koloru primary */
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-family-headings); /* ZMIANA: Spectral SC */
+    font-family: var(--font-family-headings); /* Spectral SC */
+    color: var(--color-primary); /* ZMIANA: Kolor nagłówków zgodny z kolorem tytułu */
     text-transform: none; /* Upewniamy się, że nie ma kapitalików */
+    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 (regular) */
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 h1 { font-size: 2.8rem; }
@@ -180,6 +183,8 @@ h6 { font-size: 1.1rem; }
     color: var(--color-text-dark); /* Użycie zmiennej */
     margin-left: var(--spacing-md); /* Użycie zmiennej */
     list-style-position: inside;
+    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 .recipe-ingredients ul li::marker,
@@ -192,6 +197,8 @@ a {
     color: var(--color-primary); /* Użycie zmiennej */
     text-decoration: none;
     transition: color 0.3s ease;
+    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 a:hover {
@@ -222,12 +229,13 @@ a:hover {
     display: inline-block;
     padding: 0.8rem var(--spacing-md);
     font-size: var(--spacing-sm);
-    font-family: var(--font-family-primary); /* ZMIANA: Source Sans 3 */
+    font-family: var(--font-family-primary); /* Source Sans 3 */
     cursor: pointer;
     border-radius: var(--border-radius-sm);
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     text-align: center;
     font-weight: 400;
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 .button-container {
@@ -264,12 +272,13 @@ a:hover {
     border: none;
     padding: 0.8rem var(--spacing-md);
     font-size: var(--spacing-sm);
-    font-family: var(--font-family-primary); /* ZMIANA: Source Sans 3 */
+    font-family: var(--font-family-primary); /* Source Sans 3 */
     cursor: pointer;
     border-radius: var(--border-radius-sm);
     transition: background-color 0.3s ease;
     margin-top: var(--spacing-md);
     font-weight: 400;
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 .print-button:hover {
@@ -389,6 +398,8 @@ a:hover {
     -webkit-box-orient: vertical;
     white-space: normal;
     text-transform: none;
+    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 /* --- Kafelki kategorii (bez zdjęć) --- */
@@ -422,6 +433,8 @@ a:hover {
     -webkit-box-orient: vertical;
     white-space: normal;
     text-align: center;
+    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 .category-card:hover .category-card-title {
@@ -442,6 +455,8 @@ a:hover {
     font-size: 1.6rem;
     margin-bottom: var(--spacing-xs);
     text-transform: none;
+    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 .notes-section .note-entry p {
@@ -470,6 +485,8 @@ a:hover {
     font-size: 3rem;
     margin-bottom: var(--spacing-sm);
     text-transform: none;
+    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 .recipe-content-wrapper {
@@ -519,11 +536,13 @@ a:hover {
     font-family: var(--font-family-primary); /* Użycie zmiennej */
     color: var(--color-text-dark);
     font-weight: 400;
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 .recipe-details strong {
     color: var(--color-primary);
     font-weight: 400;
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 /* --- Strona pojedynczej notatki --- */
@@ -545,6 +564,8 @@ a:hover {
     font-size: 2.5rem;
     margin-bottom: var(--spacing-xs);
     text-transform: none;
+    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 .note-date {
@@ -553,6 +574,7 @@ a:hover {
     font-size: 0.9rem;
     margin-bottom: var(--spacing-md);
     font-weight: 400;
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 .note-content img {
@@ -566,17 +588,20 @@ a:hover {
 }
 
 .note-content h2, .note-content h3, .note-content h4 {
-    font-family: var(--font-family-headings); /* ZMIANA: Spectral SC */
+    font-family: var(--font-family-headings); /* Spectral SC */
     color: var(--color-primary);
     margin-top: var(--spacing-md);
     margin-bottom: 0.8rem;
     text-transform: none;
+    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 .note-content p {
     margin-bottom: var(--spacing-sm);
     color: var(--color-text-dark);
     font-weight: 400;
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 .note-content ul, .note-content ol {
@@ -601,6 +626,7 @@ a:hover {
     font-size: 0.9rem;
     color: var(--color-primary);
     font-weight: 400;
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 /* --- Strona 404 --- */
@@ -620,11 +646,13 @@ a:hover {
 }
 
 .error-404-container .error-title {
-    font-family: var(--font-family-headings); /* ZMIANA: Spectral SC */
+    font-family: var(--font-family-headings); /* Spectral SC */
     font-size: 3rem;
     color: var(--color-primary);
     margin-bottom: var(--spacing-sm);
     text-transform: none;
+    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 .error-404-container .error-message,
@@ -632,6 +660,8 @@ a:hover {
     font-size: 1.2rem;
     color: var(--color-text-dark);
     margin-bottom: var(--spacing-md);
+    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
+    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
 }
 
 .error-image {
@@ -643,7 +673,7 @@ a:hover {
 }
 /* ==========================================================================
     5. Media Queries (Responsywność)
-    ========================================================================== */
+    ========================================================================= */
 
 /* Mobilne i małe tablety (domyślne style, min-width zaczyna modyfikować) */
 
@@ -790,9 +820,10 @@ a:hover {
         font-size: 2.2rem;
         color: #000;
         margin-bottom: var(--spacing-xs);
-        font-family: var(--font-family-headings); /* ZMIANA: Spectral SC */
+        font-family: var(--font-family-headings); /* Spectral SC */
         text-transform: none;
-        font-weight: 400;
+        font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
+        font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
     }
 
     .recipe-description {
@@ -862,9 +893,10 @@ a:hover {
         font-size: 1.5rem;
         color: #000;
         margin-bottom: 0.8rem;
-        font-family: var(--font-family-headings); /* ZMIANA: Spectral SC */
+        font-family: var(--font-family-headings); /* Spectral SC */
         text-transform: none;
-        font-weight: 400;
+        font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
+        font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
     }
 
     .recipe-ingredients ul,
