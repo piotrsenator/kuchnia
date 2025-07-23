@@ -344,6 +344,10 @@ a:hover {
     4. Style dla poszczególnych komponentów i stron
     ========================================================================== */
 
+/* -------------------------------------------------------------------------- */
+/* --- 4.1. Sekcje i Komponenty Przepisów --- */
+/* -------------------------------------------------------------------------- */
+
 /* --- Karty przepisów (na stronie głównej i kategoriach) --- */
 .recipe-card {
     background-color: var(--color-background-accent);
@@ -398,72 +402,8 @@ a:hover {
     -webkit-box-orient: vertical;
     white-space: normal;
     text-transform: none;
-    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
-}
-
-/* --- Kafelki kategorii (bez zdjęć) --- */
-.category-card {
-    background-color: var(--color-background-accent);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--border-radius-md);
-    padding: var(--spacing-sm) var(--spacing-md);
-    text-align: center;
-    transition: background-color 0.3s ease;
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.category-card:hover {
-    background-color: var(--color-primary);
-}
-
-.category-card-title {
-    font-size: 1.4rem;
-    margin: 0;
-    transition: color 0.3s ease;
-    text-transform: none;
-    min-height: calc(2 * 1.4rem * 1.2);
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    white-space: normal;
-    text-align: center;
-    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
-}
-
-.category-card:hover .category-card-title {
-    color: var(--color-background-light);
-}
-
-/* --- Sekcja Notatek z kuchni na stronie głównej --- */
-.notes-section .note-entry {
-    background-color: var(--color-background-accent);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--border-radius-md);
-    padding: var(--spacing-md);
-    margin-bottom: 0;
-    box-shadow: var(--shadow-sm);
-}
-
-.notes-section .note-entry h3 {
-    font-size: 1.6rem;
-    margin-bottom: var(--spacing-xs);
-    text-transform: none;
-    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
-}
-
-.notes-section .note-entry p {
-    font-size: var(--spacing-sm);
-    color: var(--color-text-dark);
-    margin-bottom: 0.8rem;
     font-weight: 400;
+    font-style: normal;
 }
 
 /* --- Strona pojedynczego przepisu --- */
@@ -485,8 +425,8 @@ a:hover {
     font-size: 3rem;
     margin-bottom: var(--spacing-sm);
     text-transform: none;
-    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    font-weight: 400;
+    font-style: normal;
 }
 
 .recipe-content-wrapper {
@@ -533,134 +473,140 @@ a:hover {
 
 .recipe-details p {
     margin-bottom: var(--spacing-xs);
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
+    font-family: var(--font-family-primary);
     color: var(--color-text-dark);
     font-weight: 400;
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    font-style: normal;
 }
 
 .recipe-details strong {
     color: var(--color-primary);
     font-weight: 400;
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
-}
-/* --- Sekcja z listą notatek (Notes List Section) --- */
-.page-header {
-    text-align: center;
-    margin-bottom: var(--spacing-xxl); /* Zwiększony margines na dole */
+    font-style: normal;
 }
 
-.page-header h1 {
-    font-family: var(--font-family-headings); /* Spectral SC */
-    color: var(--color-primary); /* Nagłówki w kolorze tytułu */
-    font-weight: 400; /* Regularna waga */
-    font-style: normal; /* Normalny styl */
-    font-size: 3rem; /* Rozmiar dla nagłówka strony */
-    margin-bottom: var(--spacing-xs);
-}
+/* -------------------------------------------------------------------------- */
+/* --- 4.2. Sekcje i Komponenty Notatek --- */
+/* -------------------------------------------------------------------------- */
 
-.page-description {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-light); /* Light (waga 300) */
-    color: var(--color-text-dark);
-    font-size: 1.3rem; /* Rozmiar jak dla site-subtitle */
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.notes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 280px to dobra szerokość dla notatek */
-    gap: var(--spacing-lg); /* Większy odstęp między kartami */
-}
-
-.note-card {
+/* --- Sekcja Notatek z kuchni na stronie głównej (mniejsze karty) --- */
+.notes-section .note-entry {
     background-color: var(--color-background-accent);
     border: 1px solid var(--color-secondary);
     border-radius: var(--border-radius-md);
     padding: var(--spacing-md);
-    display: flex; /* Flexbox dla lepszego ułożenia zawartości */
+    margin-bottom: 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.notes-section .note-entry h3 {
+    font-size: 1.6rem;
+    margin-bottom: var(--spacing-xs);
+    text-transform: none;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.notes-section .note-entry p {
+    font-size: var(--spacing-sm);
+    color: var(--color-text-dark);
+    margin-bottom: 0.8rem;
+    font-weight: 400;
+}
+
+/* --- Lista notatek na stronie /notes/ --- */
+.notes-list-section .page-header { /* Specyficzny nagłówek dla strony listy notatek */
+    text-align: center;
+    margin-bottom: var(--spacing-xxl);
+}
+
+.notes-list-section .page-header h1 {
+    font-family: var(--font-family-headings);
+    color: var(--color-primary);
+    font-weight: 400;
+    font-style: normal;
+    font-size: 3rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.notes-list-section .page-description {
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-light);
+    color: var(--color-text-dark);
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.notes-list-section .notes-grid { /* Domyślnie 1 kolumna na desktopie dla strony /notes/ */
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: var(--spacing-lg);
+}
+
+.notes-list-section .note-card {
+    background-color: var(--color-background-accent);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Rozciągnięcie na całą wysokość */
+    justify-content: space-between;
     box-shadow: var(--shadow-md);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.note-card:hover {
+.notes-list-section .note-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
 }
 
-.note-card .note-title {
-    font-family: var(--font-family-headings); /* Spectral SC */
-    font-size: 1.5rem; /* Rozmiar tytułu notatki */
+.notes-list-section .note-card .note-title {
+    font-family: var(--font-family-headings);
+    font-size: 1.8rem;
     margin-bottom: var(--spacing-xs);
     line-height: 1.3;
-    color: var(--color-primary); /* ZMIANA: Nagłówki w kolorze tytułu */
-    text-transform: none; /* ZMIANA: Bez transformacji tekstu */
-    font-weight: 400; /* ZMIANA: Regularna waga */
-    font-style: normal; /* ZMIANA: Normalny styl */
+    color: var(--color-primary);
+    text-transform: none;
+    font-weight: 400;
+    font-style: normal;
 }
 
-.note-card .note-title a {
-    color: var(--color-primary); /* ZMIANA: Kolor linku taki jak nagłówka */
+.notes-list-section .note-card .note-title a {
+    color: var(--color-primary);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.note-card .note-title a:hover {
-    color: var(--color-text-dark); /* Kolor po najechaniu */
+.notes-list-section .note-card .note-title a:hover {
+    color: var(--color-text-dark);
 }
 
-.note-card .note-meta {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
+.notes-list-section .note-card .note-meta {
+    font-family: var(--font-family-primary);
     font-size: 0.9rem;
-    color: var(--color-secondary); /* Delikatniejszy kolor dla metadanych */
+    color: var(--color-secondary);
     margin-bottom: var(--spacing-sm);
-    font-weight: 400; /* Regularna waga */
-    font-style: normal; /* Normalny styl */
+    font-weight: 400;
+    font-style: normal;
 }
 
-.note-card .note-meta time {
-    font-weight: 400; /* Regularna waga */
-    font-style: normal; /* Normalny styl */
-}
-
-.note-card .note-excerpt {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
+.notes-list-section .note-card .note-excerpt {
+    font-family: var(--font-family-primary);
     font-size: 1rem;
     color: var(--color-text-dark);
-    margin-bottom: var(--spacing-md); /* Odstęp przed przyciskiem */
-    flex-grow: 1; /* Wypełnienie dostępnej przestrzeni */
-    font-weight: 400; /* Regularna waga */
-    font-style: normal; /* Normalny styl */
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1;
+    font-weight: 400;
+    font-style: normal;
 }
 
-.note-read-more-container {
-    text-align: center; /* Wyśrodkowanie przycisku */
-    margin-top: auto; /* Przycisk zawsze na dole karty */
+.notes-list-section .note-read-more-container {
+    text-align: right;
+    margin-top: auto;
 }
 
-.read-more-link {
-    /* Style odziedziczone z .button i .secondary-button */
-    margin-top: var(--spacing-sm); /* Dodatkowy odstęp od excerptu */
-}
-
-/* Dostosowanie nagłówków w sekcji notatek na stronie głównej, jeśli używasz tych samych stylów */
-.notes-section .note-entry h3 {
-    font-family: var(--font-family-headings); /* Spectral SC */
-    color: var(--color-primary); /* ZMIANA: Kolor nagłówka */
-    font-weight: 400; /* ZMIANA: Regularna waga */
-    font-style: normal; /* ZMIANA: Normalny styl */
-}
-
-/* Poprawki dla stron pojedynczych notatek i innych */
-.note-single .note-title {
-    font-family: var(--font-family-headings); /* Spectral SC */
-    color: var(--color-primary); /* ZMIANA: Kolor nagłówka */
-    font-weight: 400; /* ZMIANA: Regularna waga */
-    font-style: normal; /* ZMIANA: Normalny styl */
-}
 /* --- Strona pojedynczej notatki --- */
 .note-single {
     max-width: 800px;
@@ -671,26 +617,26 @@ a:hover {
     box-shadow: var(--shadow-lg);
 }
 
-.note-header {
+.note-single .note-header { /* Dodano .note-single dla precyzji */
     text-align: center;
     margin-bottom: var(--spacing-md);
 }
 
-.note-title {
+.note-single .note-title { /* Dodano .note-single dla precyzji */
     font-size: 2.5rem;
     margin-bottom: var(--spacing-xs);
     text-transform: none;
-    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    font-weight: 400;
+    font-style: normal;
 }
 
-.note-date {
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
+.note-single .note-date { /* Dodano .note-single dla precyzji */
+    font-family: var(--font-family-primary);
     color: var(--color-text-dark);
     font-size: 0.9rem;
     margin-bottom: var(--spacing-md);
     font-weight: 400;
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    font-style: normal;
 }
 
 .note-content img {
@@ -704,20 +650,20 @@ a:hover {
 }
 
 .note-content h2, .note-content h3, .note-content h4 {
-    font-family: var(--font-family-headings); /* Spectral SC */
+    font-family: var(--font-family-headings);
     color: var(--color-primary);
     margin-top: var(--spacing-md);
     margin-bottom: 0.8rem;
     text-transform: none;
-    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    font-weight: 400;
+    font-style: normal;
 }
 
 .note-content p {
     margin-bottom: var(--spacing-sm);
     color: var(--color-text-dark);
     font-weight: 400;
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    font-style: normal;
 }
 
 .note-content ul, .note-content ol {
@@ -738,12 +684,60 @@ a:hover {
 .back-to-home-notes-link {
     display: inline-block;
     margin-top: var(--spacing-lg);
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
+    font-family: var(--font-family-primary);
     font-size: 0.9rem;
     color: var(--color-primary);
     font-weight: 400;
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    font-style: normal;
 }
+
+/* -------------------------------------------------------------------------- */
+/* --- 4.3. Sekcje i Komponenty Kategorii --- */
+/* -------------------------------------------------------------------------- */
+
+/* --- Kafelki kategorii (bez zdjęć) --- */
+.category-card {
+    background-color: var(--color-background-accent);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: center;
+    transition: background-color 0.3s ease;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.category-card:hover {
+    background-color: var(--color-primary);
+}
+
+.category-card-title {
+    font-size: 1.4rem;
+    margin: 0;
+    transition: color 0.3s ease;
+    text-transform: none;
+    min-height: calc(2 * 1.4rem * 1.2);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    text-align: center;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.category-card:hover .category-card-title {
+    color: var(--color-background-light);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* --- 4.4. Strona Błędu (404) --- */
+/* -------------------------------------------------------------------------- */
 
 /* --- Strona 404 --- */
 .error-404-container {
@@ -762,13 +756,13 @@ a:hover {
 }
 
 .error-404-container .error-title {
-    font-family: var(--font-family-headings); /* Spectral SC */
+    font-family: var(--font-family-headings);
     font-size: 3rem;
     color: var(--color-primary);
     margin-bottom: var(--spacing-sm);
     text-transform: none;
-    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    font-weight: 400;
+    font-style: normal;
 }
 
 .error-404-container .error-message,
@@ -776,8 +770,8 @@ a:hover {
     font-size: 1.2rem;
     color: var(--color-text-dark);
     margin-bottom: var(--spacing-md);
-    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    font-weight: 400;
+    font-style: normal;
 }
 
 .error-image {
