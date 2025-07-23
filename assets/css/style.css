@@ -164,6 +164,8 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: none; /* Upewniamy się, że nie ma kapitalików */
     font-weight: 400; /* ZMIANA: Ustawiono wagę 400 (regular) */
     font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    margin-top: var(--spacing-md); /* Lub mniejsza wartość */
+    margin-bottom: var(--spacing-sm); /* Lub mniejsza wartość */
 }
 
 h1 { font-size: 2.8rem; }
@@ -212,6 +214,8 @@ a:hover {
 .site-header {
     background-color: var(--color-background-light);
     padding: var(--spacing-xxs) 0;
+    padding-bottom: var(--spacing-md); /* Lub mniejsza wartość */
+    margin-bottom: var(--spacing-lg); /* Lub mniejsza wartość */
     text-align: center;
 }
 
