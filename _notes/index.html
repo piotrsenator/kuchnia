@@ -13,8 +13,8 @@ permalink: /notes/
     <section class="notes-list-section">
         {% if site.notes.size > 0 %}
             <div class="notes-grid"> 
-                {% for note in site.notes reversed %} {# reversed zapewnia sortowanie od najnowszej #}
-                    <div class="note-card"> {# ZMIANA: Zachowujemy note-card #}
+                {% for note in site.notes reversed %} {% # reversed zapewnia sortowanie od najnowszej # %}
+                    <div class="note-card"> 
                         <h3 class="note-title"><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
                         <p class="note-meta">
                             <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%d.%m.%Y" }}</time>
