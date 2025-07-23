@@ -1,0 +1,33 @@
+---
+layout: default
+title: Przepisy: Danie główne mięsne
+permalink: /categories/dania-glowne-miesne.html # WAŻNE: z .html na końcu
+category_slug: dania-glowne-miesne
+---
+
+<div class="category-page">
+    {% assign current_category = site.data.categories | where: "slug", page.category_slug | first %}
+    <h1>{{ current_category.name }}</h1>
+    <p class="category-description">{{ current_category.description }}</p>
+
+    <div class="przepisy-dla-kategorii">
+        {% assign filtered_recipes = site.recipes | where: "category", page.category_slug | sort: "date" | reverse %}
+
+        {% if filtered_recipes.size > 0 %}
+            {% for recipe in filtered_recipes %}
+                <div class="przepis-kategoria-miniaturka">
+                    <a href="{{ recipe.url }}">
+                        {% if recipe.image_main %}
+                            <img src="{{ recipe.image_main }}" alt="{{ recipe.title }}" class="przepis-obraz-kategoria">
+                        {% endif %}
+                        <h3>{{ recipe.title }}</h3>
+                        <p class="przepis-opis-kategoria">{{ recipe.description | truncate: 120 }}</p>
+                        <p class="przepis-data-kategoria">Opublikowano: {{ recipe.date | date: "%Y-%m-%d" }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Brak przepisów w tej kategorii.</p>
+        {% endif %}
+    </div>
+</div>
