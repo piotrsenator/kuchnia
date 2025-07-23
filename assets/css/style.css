@@ -2,12 +2,12 @@
  * style.css
  * Globalne style dla kuchnia.senator.lu
  * Kolorystyka: naturalna, spokojna, elegancka
- * Typografia: czytelna, z charakterem (Source Sans 3, Playfair Display)
+ * Typografia: czytelna, z charakterem (Source Sans 3, Spectral SC, Fraunces)
  * Siatka: responsywna
  */
 
 /* Fonty - załadowane lokalnie */
-/* Source Sans 3 - Regular */
+/* Source Sans 3 - Regular (Waga 400) */
 @font-face {
     font-family: 'Source Sans 3';
     src: url('../fonts/source-sans-3-v18-latin_latin-ext-regular.woff2') format('woff2');
@@ -15,25 +15,34 @@
     font-style: normal;
 }
 
-/* Playfair Display - Regular */
+/* Source Sans 3 - Light (Waga 300) */
 @font-face {
-    font-family: 'Playfair Display';
-    src: url('../fonts/playfair-display-v39-latin_latin-ext-regular.woff2') format('woff2');
+    font-family: 'Source Sans 3';
+    src: url('../fonts/source-sans-3-v18-latin_latin-ext-300.woff2') format('woff2');
+    font-weight: 300; /* Light */
+    font-style: normal;
+}
+
+/* Spectral SC - Regular */
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('../fonts/spectral-sc-v14-latin_latin-ext-regular.woff2') format('woff2');
     font-weight: 400; /* Regular */
     font-style: normal;
 }
 
-/* Playfair Display - Bold */
+/* Fraunces - SemiBold Italic */
 @font-face {
-    font-family: 'Playfair Display';
-    src: url('../fonts/playfair-display-v39-latin_latin-ext-700.woff2') format('woff2');
-    font-weight: 700; /* Bold */
-    font-style: normal;
+    font-family: 'Fraunces';
+    src: url('../fonts/fraunces-v37-latin_latin-ext-600italic.woff2') format('woff2');
+    font-weight: 600; /* SemiBold */
+    font-style: italic;
 }
 
+
 /* ==========================================================================
-   0. Podstawowe resetowanie i ogólne style
-   ========================================================================== */
+    0. Podstawowe resetowanie i ogólne style
+    ========================================================================== */
 
 /* Definicja zmiennych CSS (Custom Properties) */
 :root {
@@ -46,16 +55,21 @@
     --color-white: #FFFFFF; /* Biały */
 
     /* Fonty */
-    --font-family-primary: 'Source Sans 3', sans-serif; /* Font dla tekstu głównego */
-    --font-family-secondary: 'Playfair Display', serif; /* Font dla nagłówków i tytułów */
+    --font-family-primary: 'Source Sans 3', sans-serif; /* ZMIANA: Font dla tekstu głównego (Source Sans 3 Regular) */
+    --font-family-headings: 'Spectral SC', serif; /* ZMIANA: Font dla wszystkich nagłówków h1-h6 (Spectral SC Regular) */
+    --font-family-site-title: 'Fraunces', serif; /* ZMIANA: Font dla site-title (Fraunces SemiBold Italic) */
+    --font-weight-light: 300; /* ZMIANA: Nowa zmienna dla wagi 300 (dla Source Sans 3 Light) */
+
 
     /* Odstępy (Spacing - używane dla konsekwentnych paddingów/marginesów) */
-    --spacing-xs: 0.5rem;   /* ~8px */
-    --spacing-sm: 1rem;     /* ~16px */
-    --spacing-md: 1.5rem;   /* ~24px */
-    --spacing-lg: 2rem;     /* ~32px */
-    --spacing-xl: 3rem;     /* ~48px */
-    --spacing-xxl: 4rem;    /* ~64px */
+    --spacing-xs: 0.5rem;    /* ~8px */
+    --spacing-sm: 1rem;      /* ~16px */
+    --spacing-md: 1.5rem;    /* ~24px */
+    --spacing-lg: 2rem;      /* ~32px */
+    --spacing-xl: 3rem;      /* ~48px */
+    --spacing-xxl: 4rem;     /* ~64px */
+    --spacing-xxs: 0.25rem; /* ~4px - dla minimalnego paddingu */
+
 
     /* Cienie */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.03);
@@ -80,7 +94,7 @@ html {
 }
 
 body {
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
+    font-family: var(--font-family-primary); /* ZMIANA: Główny tekst - Source Sans 3 Regular */
     color: var(--color-text-dark); /* Użycie zmiennej */
     background-color: var(--color-background-light); /* Użycie zmiennej */
     -webkit-font-smoothing: antialiased;
@@ -88,47 +102,76 @@ body {
 }
 
 /* ==========================================================================
-   1. Typografia i linki
-   ========================================================================== */
+    1. Typografia i linki
+    ========================================================================== */
 
-h1, h2, h3, h4, h5, h6,
-.site-title,
-.recipe-card-title,
-.category-card-title,
-.recipe-title,
-.note-title {
-    font-family: var(--font-family-secondary); /* Użycie zmiennej */
-    font-weight: 700; /* Domyślna waga dla nagłówków (Playfair Display Bold) */
-    color: var(--color-primary); /* Użycie zmiennej */
+/* Specyficzne stylowanie dla site-title (Fraunces SemiBold Italic) */
+.site-title {
+    font-family: var(--font-family-site-title); /* ZMIANA: Fraunces */
+    font-weight: 600;
+    font-style: italic;
+    font-size: 3rem; /* Zmniejszono główny tytuł */
+    margin-bottom: var(--spacing-xxs);
     line-height: 1.2;
-    margin-bottom: 0.8em;
-}
-
-/* Nagłówki poza h1 - kapitaliki */
-h2, h3, h4, h5, h6,
-.recipe-card-title,
-.category-card-title,
-.recipe-title,
-.note-title {
-    text-transform: uppercase;
-}
-
-/* site-title i site-subtitle nie powinny być kapitalikami */
-.site-title,
-.site-subtitle,
-.site-description-short {
+    color: var(--color-primary);
     text-transform: none;
-    font-family: var(--font-family-secondary); /* Użycie zmiennej */
-    color: var(--color-primary); /* Użycie zmiennej */
 }
 
+/* site-subtitle i site-description-short używają Source Sans 3 Light */
+.site-subtitle {
+    font-family: var(--font-family-primary); /* ZMIANA: Source Sans 3 */
+    font-weight: var(--font-weight-light); /* ZMIANA: Waga 300 (Light) */
+    color: var(--color-text-dark);
+    font-size: 1.3rem;
+    margin-top: var(--spacing-xxs);
+    margin-bottom: var(--spacing-xs);
+    text-transform: none;
+    font-style: normal;
+}
+
+.site-description-short {
+    font-family: var(--font-family-primary); /* ZMIANA: Source Sans 3 */
+    max-width: 700px;
+    font-weight: var(--font-weight-light); /* ZMIANA: Waga 300 (Light) */
+    margin: var(--spacing-xxs) auto var(--spacing-sm) auto;
+    color: var(--color-text-dark);
+    font-size: 1.2rem;
+    text-transform: none;
+}
+.site-description-short p {
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Opis przepisu - używa Source Sans 3 Regular (domyślny dla body) */
+.recipe-description {
+    font-weight: 400; /* Standardowa waga */
+    font-style: normal; /* Usunięto italic */
+    font-size: 1.2rem;
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Cytaty - używają Source Sans 3 Regular (domyślny dla body) */
+.note-content blockquote {
+    font-style: normal; /* Usunięto italic */
+    font-weight: 400; /* Standardowa waga */
+}
+
+/* Nagłówki używają Spectral SC Regular */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-headings); /* ZMIANA: Spectral SC */
+    text-transform: none; /* Upewniamy się, że nie ma kapitalików */
+}
 
 h1 { font-size: 2.8rem; }
 h2 { font-size: 2.2rem; }
 h3 { font-size: 1.8rem; }
 h4 { font-size: 1.5rem; }
+h5 { font-size: 1.3rem; }
+h6 { font-size: 1.1rem; }
 
-/* Styl dla list w przepisach */
+
+/* Styl dla list w przepisach - używają Source Sans 3 Regular */
 .recipe-ingredients ul,
 .recipe-preparation ol {
     font-family: var(--font-family-primary); /* Użycie zmiennej */
@@ -144,7 +187,7 @@ h4 { font-size: 1.5rem; }
     color: var(--color-primary); /* Użycie zmiennej */
 }
 
-/* Ogólne style dla linków */
+/* Ogólne style dla linków - używają Source Sans 3 Regular */
 a {
     color: var(--color-primary); /* Użycie zmiennej */
     text-decoration: none;
@@ -156,177 +199,151 @@ a:hover {
 }
 
 /* ==========================================================================
-   2. Elementy globalne strony (Header, Footer, Przyciski)
-   ========================================================================== */
+    2. Elementy globalne strony (Header, Footer, Przyciski)
+    ========================================================================== */
 
 .site-header {
     background-color: var(--color-background-light);
-    /* Zmniejszony padding, aby zredukować puste miejsce pod nagłówkiem */
-    padding: var(--spacing-sm) 0 var(--spacing-sm); /* Zmieniono z md na sm (1rem góra/dół) */
+    padding: var(--spacing-xxs) 0;
     text-align: center;
-}
-
-.site-title {
-    font-size: 3rem;
-    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
-}
-
-.site-subtitle {
-    font-weight: 400; /* Regular dla podtytułu strony */
-    color: var(--color-text-dark); /* Użycie zmiennej */
-    font-size: 1.3rem;
-    font-style: normal; /* Usunięto italic */
-    margin-bottom: var(--spacing-sm); /* Zmniejszono z md na sm */
-}
-
-.site-description-short {
-    max-width: 700px;
-    /* Zmniejszony margines, aby zredukować puste miejsce */
-    margin: 0 auto var(--spacing-sm) auto; /* Zmieniono z lg na sm */
-    color: var(--color-text-dark); /* Użycie zmiennej */
-    font-size: 1.2rem;
-}
-
-.site-description-short p {
-    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
 }
 
 .site-footer {
-    background-color: var(--color-background-light); /* Użycie zmiennej */
-    color: var(--color-text-dark); /* Użycie zmiennej */
+    background-color: var(--color-background-light);
+    color: var(--color-text-dark);
     text-align: center;
-    padding: var(--spacing-lg) 0; /* Użycie zmiennej */
-    border-top: 1px solid var(--color-secondary); /* Użycie zmiennej */
-    margin-top: var(--spacing-xl); /* Użycie zmiennej */
+    padding: var(--spacing-lg) 0;
+    border-top: 1px solid var(--color-secondary);
+    margin-top: var(--spacing-xl);
 }
 
-/* Style dla przycisków */
+/* Style dla przycisków - używają Source Sans 3 Regular */
 .button {
     display: inline-block;
-    padding: 0.8rem var(--spacing-md); /* Użycie zmiennej */
-    font-size: var(--spacing-sm); /* Użycie zmiennej */
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
+    padding: 0.8rem var(--spacing-md);
+    font-size: var(--spacing-sm);
+    font-family: var(--font-family-primary); /* ZMIANA: Source Sans 3 */
     cursor: pointer;
-    border-radius: var(--border-radius-sm); /* Użycie zmiennej */
+    border-radius: var(--border-radius-sm);
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     text-align: center;
-    font-weight: 400; /* Usunięto bold */
+    font-weight: 400;
 }
 
 .button-container {
     text-align: center;
-    margin-top: var(--spacing-lg); /* Użycie zmiennej */
+    margin-top: var(--spacing-lg);
 }
 
 .button.primary-button {
-    background-color: var(--color-primary); /* Użycie zmiennej */
-    color: var(--color-background-light); /* Użycie zmiennej */
+    background-color: var(--color-primary);
+    color: var(--color-background-light);
     border: none;
 }
 
 .button.primary-button:hover {
-    background-color: var(--color-text-dark); /* Użycie zmiennej */
-    color: var(--color-background-light); /* Użycie zmiennej */
+    background-color: var(--color-text-dark);
+    color: var(--color-background-light);
 }
 
 .button.secondary-button {
     background-color: transparent;
-    color: var(--color-primary); /* Użycie zmiennej */
-    border: 1px solid var(--color-primary); /* Użycie zmiennej */
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
 }
 
 .button.secondary-button:hover {
-    background-color: var(--color-primary); /* Użycie zmiennej */
-    color: var(--color-background-light); /* Użycie zmiennej */
+    background-color: var(--color-primary);
+    color: var(--color-background-light);
 }
 
-/* Specyficzny styl dla przycisku drukowania */
+/* Specyficzny styl dla przycisku drukowania - używa Source Sans 3 Regular */
 .print-button {
-    background-color: var(--color-primary); /* Użycie zmiennej */
-    color: var(--color-background-light); /* Użycie zmiennej */
+    background-color: var(--color-primary);
+    color: var(--color-background-light);
     border: none;
-    padding: 0.8rem var(--spacing-md); /* Użycie zmiennej */
-    font-size: var(--spacing-sm); /* Użycie zmiennej */
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
+    padding: 0.8rem var(--spacing-md);
+    font-size: var(--spacing-sm);
+    font-family: var(--font-family-primary); /* ZMIANA: Source Sans 3 */
     cursor: pointer;
-    border-radius: var(--border-radius-sm); /* Użycie zmiennej */
+    border-radius: var(--border-radius-sm);
     transition: background-color 0.3s ease;
-    margin-top: var(--spacing-md); /* Użycie zmiennej */
-    font-weight: 400; /* Usunięto bold */
+    margin-top: var(--spacing-md);
+    font-weight: 400;
 }
 
 .print-button:hover {
-    background-color: var(--color-text-dark); /* Użycie zmiennej */
+    background-color: var(--color-text-dark);
 }
 
 /* ==========================================================================
-   3. Układ strony (Content, Grid, Margins)
-   ========================================================================== */
+    3. Układ strony (Content, Grid, Margins)
+    ========================================================================== */
 
 .content {
-    max-width: 1200px; /* Maksymalna szerokość strony */
+    max-width: 1200px;
     margin: 0 auto;
-    padding: var(--spacing-md); /* Użycie zmiennej */
+    padding: var(--spacing-md);
 }
 
 /* Główny kontener strony głównej */
 .main-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md); /* Użycie zmiennej */
+    padding: 0 var(--spacing-md);
 }
 
 /* Odstępy między głównymi sekcjami strony */
 .hero-section,
-/* Usunięto .featured-recipes-section */
 .latest-recipes-section,
 .categories-section,
 .notes-section,
-.about-me-section { /* Dodano również about-me-section, jeśli zostanie włączona */
-    margin-top: var(--spacing-xxl); /* Użycie zmiennej */
-    margin-bottom: var(--spacing-lg); /* Użycie zmiennej */
+.about-me-section {
+    margin-top: var(--spacing-xxl);
+    margin-bottom: var(--spacing-lg);
 }
 
 /* Pierwsza sekcja na stronie głównej nie potrzebuje górnego marginesu */
-/* Zaktualizowano na latest-recipes-section, usunięto featured-recipes-section */
 .main-content .hero-section:first-child,
-.main-content .latest-recipes-section:first-child {
+.main-content .latest-recipes-section:first-child,
+.main-content .categories-section:first-child,
+.main-content .notes-section:first-child {
     margin-top: 0;
 }
 
 /* Siatki dla sekcji (przepisy, kategorie, notatki) */
-.recipes-grid, /* Ogólna klasa dla siatek przepisów */
-.latest-recipes-grid { /* Usunięto .featured-recipes-grid */
+.recipes-grid,
+.latest-recipes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: var(--spacing-lg); /* Użycie zmiennej */
+    gap: var(--spacing-lg);
 }
 
 .categories-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: var(--spacing-lg); /* Użycie zmiennej */
+    gap: var(--spacing-lg);
 }
 
 .notes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Notatki mogą być trochę szersze */
-    gap: var(--spacing-lg); /* Użycie zmiennej */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
 }
 
 /* ==========================================================================
-   4. Style dla poszczególnych komponentów i stron
-   ========================================================================== */
+    4. Style dla poszczególnych komponentów i stron
+    ========================================================================== */
 
 /* --- Karty przepisów (na stronie głównej i kategoriach) --- */
 .recipe-card {
-    background-color: var(--color-background-accent); /* Użycie zmiennej */
-    border: 1px solid var(--color-secondary); /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
+    background-color: var(--color-background-accent);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius-md);
     overflow: hidden;
     text-align: center;
     padding-bottom: 0.8rem;
-    box-shadow: var(--shadow-md); /* Użycie zmiennej */
+    box-shadow: var(--shadow-md);
     transition: transform 0.2s ease;
 }
 
@@ -340,15 +357,15 @@ a:hover {
 }
 
 .recipe-card-link:hover .recipe-card-title {
-    color: var(--color-text-dark); /* Użycie zmiennej */
+    color: var(--color-text-dark);
 }
 
 .recipe-card-image-container {
     width: 100%;
-    padding-bottom: 100%; /* Tworzy kwadratowy kontener na obraz */
+    padding-bottom: 100%;
     position: relative;
     overflow: hidden;
-    margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-sm);
 }
 
 .recipe-card-image-container img {
@@ -365,24 +382,24 @@ a:hover {
 .recipe-card-title {
     font-size: 1.2rem;
     margin-bottom: var(--spacing-xs);
-    min-height: calc(2 * 1.2rem * 1.2); /* Zakładając font-size 1.2rem i line-height około 1.2 */
-    overflow: hidden; /* Ukrywa tekst, który przekracza 2 linie, jeśli tytuł jest bardzo długi */
-    display: -webkit-box; /* Dla wieloliniowego skracania, jeśli to konieczne */
-    -webkit-line-clamp: 2; /* Ograniczenie do 2 linii */
+    min-height: calc(2 * 1.2rem * 1.2);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    white-space: normal; /* Upewnia się, że tekst się łamie */
-    text-transform: uppercase; /* Zastosowanie kapitalików */
+    white-space: normal;
+    text-transform: none;
 }
 
 /* --- Kafelki kategorii (bez zdjęć) --- */
 .category-card {
-    background-color: var(--color-background-accent); /* Użycie zmiennej */
-    border: 1px solid var(--color-secondary); /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
-    padding: var(--spacing-md); /* Użycie zmiennej */
+    background-color: var(--color-background-accent);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-sm) var(--spacing-md);
     text-align: center;
     transition: background-color 0.3s ease;
-    min-height: 120px;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -390,219 +407,231 @@ a:hover {
 }
 
 .category-card:hover {
-    background-color: var(--color-primary); /* Użycie zmiennej */
+    background-color: var(--color-primary);
 }
 
 .category-card-title {
     font-size: 1.4rem;
     margin: 0;
     transition: color 0.3s ease;
-    text-transform: uppercase; /* Zastosowanie kapitalików */
+    text-transform: none;
+    min-height: calc(2 * 1.4rem * 1.2);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    text-align: center;
 }
 
 .category-card:hover .category-card-title {
-    color: var(--color-background-light); /* Użycie zmiennej */
+    color: var(--color-background-light);
 }
 
 /* --- Sekcja Notatek z kuchni na stronie głównej --- */
 .notes-section .note-entry {
-    background-color: var(--color-background-accent); /* Użycie zmiennej */
-    border: 1px solid var(--color-secondary); /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
-    padding: var(--spacing-md); /* Użycie zmiennej */
+    background-color: var(--color-background-accent);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
     margin-bottom: 0;
-    box-shadow: var(--shadow-sm); /* Użycie zmiennej */
+    box-shadow: var(--shadow-sm);
 }
 
 .notes-section .note-entry h3 {
     font-size: 1.6rem;
-    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
-    text-transform: uppercase; /* Zastosowanie kapitalików */
+    margin-bottom: var(--spacing-xs);
+    text-transform: none;
 }
 
 .notes-section .note-entry p {
-    font-size: var(--spacing-sm); /* Użycie zmiennej */
-    color: var(--color-text-dark); /* Użycie zmiennej */
+    font-size: var(--spacing-sm);
+    color: var(--color-text-dark);
     margin-bottom: 0.8rem;
-    font-weight: 400; /* Usunięto bold */
+    font-weight: 400;
 }
 
 /* --- Strona pojedynczego przepisu --- */
 .recipe-single {
     max-width: 900px;
-    margin: var(--spacing-lg) auto; /* Użycie zmiennej */
-    padding: var(--spacing-md); /* Użycie zmiennej */
-    background-color: var(--color-background-accent); /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
-    box-shadow: var(--shadow-lg); /* Użycie zmiennej */
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-md);
+    background-color: var(--color-background-accent);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
 }
 
 .recipe-header {
     text-align: center;
-    margin-bottom: var(--spacing-lg); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-lg);
 }
 
 .recipe-title {
     font-size: 3rem;
-    margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
-    text-transform: uppercase; /* Zastosowanie kapitalików */
-}
-
-.recipe-description {
-    font-weight: 400; /* Usunięto bold */
-    font-size: 1.2rem;
-    font-style: normal; /* Usunięto italic */
-    color: var(--color-text-dark); /* Użycie zmiennej */
-    margin-bottom: var(--spacing-lg); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-sm);
+    text-transform: none;
 }
 
 .recipe-content-wrapper {
     display: grid;
-    gap: var(--spacing-lg); /* Użycie zmiennej */
-    grid-template-columns: 1fr; /* Domyślnie jedna kolumna na mobilnych */
+    gap: var(--spacing-lg);
+    grid-template-columns: 1fr;
 }
 
 .recipe-main-info {
     grid-column: 1 / 2;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Wyśrodkowanie w pionie dla mobile */
+    align-items: center;
 }
 
 .recipe-ingredients {
-    grid-column: 1 / -1; /* Domyślnie na całą szerokość na mobilnych */
+    grid-column: 1 / -1;
 }
 
 .recipe-preparation,
 .recipe-additional-content {
     grid-column: 1 / -1;
-    margin-top: var(--spacing-lg); /* Użycie zmiennej */
+    margin-top: var(--spacing-lg);
 }
 
 .recipe-main-image {
     max-width: 100%;
     width: 100%;
     height: auto;
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
-    margin-bottom: var(--spacing-md); /* Użycie zmiennej */
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-md);
     aspect-ratio: 4 / 3;
     object-fit: cover;
 }
 
 .recipe-details {
     width: 100%;
-    padding: var(--spacing-sm); /* Użycie zmiennej */
-    background-color: var(--color-background-accent); /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
-    border: 1px solid var(--color-secondary); /* Użycie zmiennej */
+    padding: var(--spacing-sm);
+    background-color: var(--color-background-accent);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-secondary);
     margin-top: 0;
 }
 
 .recipe-details p {
-    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-xs);
     font-family: var(--font-family-primary); /* Użycie zmiennej */
-    color: var(--color-text-dark); /* Użycie zmiennej */
-    font-weight: 400; /* Usunięto bold */
+    color: var(--color-text-dark);
+    font-weight: 400;
 }
 
 .recipe-details strong {
-    color: var(--color-primary); /* Użycie zmiennej */
-    font-weight: 400; /* Usunięto bold */
+    color: var(--color-primary);
+    font-weight: 400;
 }
 
 /* --- Strona pojedynczej notatki --- */
 .note-single {
     max-width: 800px;
-    margin: var(--spacing-lg) auto; /* Użycie zmiennej */
-    padding: var(--spacing-md); /* Użycie zmiennej */
-    background-color: var(--color-background-accent); /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
-    box-shadow: var(--shadow-lg); /* Użycie zmiennej */
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-md);
+    background-color: var(--color-background-accent);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
 }
 
 .note-header {
     text-align: center;
-    margin-bottom: var(--spacing-md); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-md);
 }
 
 .note-title {
     font-size: 2.5rem;
-    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
-    text-transform: uppercase; /* Zastosowanie kapitalików */
+    margin-bottom: var(--spacing-xs);
+    text-transform: none;
 }
 
 .note-date {
     font-family: var(--font-family-primary); /* Użycie zmiennej */
-    color: var(--color-text-dark); /* Użycie zmiennej */
+    color: var(--color-text-dark);
     font-size: 0.9rem;
-    margin-bottom: var(--spacing-md); /* Użycie zmiennej */
-    font-weight: 400; /* Usunięto bold */
+    margin-bottom: var(--spacing-md);
+    font-weight: 400;
 }
 
 .note-content img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: var(--spacing-md) auto; /* Użycie zmiennej */
-    border-radius: var(--border-radius-md); /* Użycie zmiennej */
+    margin: var(--spacing-md) auto;
+    border-radius: var(--border-radius-md);
     aspect-ratio: 4 / 3;
     object-fit: cover;
 }
 
 .note-content h2, .note-content h3, .note-content h4 {
-    color: var(--color-primary); /* Użycie zmiennej */
-    margin-top: var(--spacing-md); /* Użycie zmiennej */
+    font-family: var(--font-family-headings); /* ZMIANA: Spectral SC */
+    color: var(--color-primary);
+    margin-top: var(--spacing-md);
     margin-bottom: 0.8rem;
-    text-transform: uppercase; /* Zastosowanie kapitalików */
+    text-transform: none;
 }
 
 .note-content p {
-    margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
-    color: var(--color-text-dark); /* Użycie zmiennej */
-    font-weight: 400; /* Usunięto bold */
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-dark);
+    font-weight: 400;
 }
 
 .note-content ul, .note-content ol {
-    margin-left: var(--spacing-md); /* Użycie zmiennej */
-    margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
+    margin-left: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .note-content blockquote {
-    border-left: 4px solid var(--color-primary); /* Użycie zmiennej */
-    padding-left: var(--spacing-sm); /* Użycie zmiennej */
-    margin: var(--spacing-md) 0; /* Użycie zmiennej */
-    font-style: normal; /* Usunięto italic */
-    color: var(--color-text-dark); /* Użycie zmiennej */
-    font-weight: 400; /* Usunięto bold */
+    border-left: 4px solid var(--color-primary);
+    padding-left: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
+    font-style: normal;
+    color: var(--color-text-dark);
+    font-weight: 400;
 }
 
 .back-to-categories-link,
 .back-to-home-notes-link {
     display: inline-block;
-    margin-top: var(--spacing-lg); /* Użycie zmiennej */
+    margin-top: var(--spacing-lg);
     font-family: var(--font-family-primary); /* Użycie zmiennej */
     font-size: 0.9rem;
-    color: var(--color-primary); /* Użycie zmiennej */
-    font-weight: 400; /* Usunięto bold */
+    color: var(--color-primary);
+    font-weight: 400;
 }
 
 /* --- Strona 404 --- */
-.error-404-page body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+.error-404-container {
+    max-width: 900px;
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-md);
+    background-color: var(--color-background-accent);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
     text-align: center;
+    display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px));
 }
 
-.error-404-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px));
+.error-404-container .error-title {
+    font-family: var(--font-family-headings); /* ZMIANA: Spectral SC */
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    text-transform: none;
+}
+
+.error-404-container .error-message,
+.error-404-container .error-suggestion {
+    font-size: 1.2rem;
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-md);
 }
 
 .error-image {
@@ -610,11 +639,11 @@ a:hover {
     height: auto;
     display: block;
     width: 400px;
+    margin: var(--spacing-md) auto;
 }
-
 /* ==========================================================================
-   5. Media Queries (Responsywność)
-   ========================================================================== */
+    5. Media Queries (Responsywność)
+    ========================================================================== */
 
 /* Mobilne i małe tablety (domyślne style, min-width zaczyna modyfikować) */
 
@@ -622,21 +651,21 @@ a:hover {
 @media (min-width: 768px) {
     h1 { font-size: 3.5rem; }
     h2 { font-size: 2rem; }
+    h3 { font-size: 1.6rem; }
 
     .site-title { font-size: 3.5rem; }
     .site-subtitle { font-size: 1.5rem; }
 
     .content, .main-content {
-        padding: var(--spacing-lg); /* Użycie zmiennej */
+        padding: var(--spacing-lg);
     }
 
     .recipes-grid,
-    /* Usunięto .featured-recipes-grid */
     .latest-recipes-grid,
     .categories-grid,
     .notes-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 kolumny na tabletach */
-        gap: var(--spacing-lg); /* Użycie zmiennej */
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-lg);
     }
 
     /* Układ dla pojedynczego przepisu */
@@ -644,15 +673,16 @@ a:hover {
         grid-template-columns: minmax(250px, 1fr) 2fr;
     }
     .recipe-main-info {
-        align-items: flex-start; /* Dopasowanie do lewej na desktop */
+        align-items: flex-start;
     }
     .recipe-ingredients {
         grid-column: 2 / 3;
     }
 
     .recipe-single,
-    .note-single {
-        padding: var(--spacing-lg); /* Użycie zmiennej */
+    .note-single,
+    .error-404-container {
+        padding: var(--spacing-lg);
     }
 }
 
@@ -660,22 +690,22 @@ a:hover {
 @media (min-width: 1024px) {
     h1 { font-size: 4rem; }
     h2 { font-size: 2.2rem; }
+    h3 { font-size: 1.8rem; }
 
     .site-title { font-size: 4rem; }
     .site-subtitle { font-size: 1.7rem; }
 
     .content, .main-content {
-        padding: var(--spacing-xl); /* Użycie zmiennej */
+        padding: var(--spacing-xl);
     }
 
     .recipes-grid,
-    /* Usunięto .featured-recipes-grid */
     .latest-recipes-grid,
     .categories-grid {
-        grid-template-columns: repeat(4, 1fr); /* 4 kolumny na desktopie */
+        grid-template-columns: repeat(4, 1fr);
     }
     .notes-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 kolumny na desktopie, jeśli chcesz szersze notatki */
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -691,16 +721,15 @@ a:hover {
     .site-description-short { font-size: 1.1rem; }
 
     .content, .main-content {
-        padding: var(--spacing-sm); /* Użycie zmiennej */
+        padding: var(--spacing-sm);
     }
 
     .recipes-grid,
-    /* Usunięto .featured-recipes-grid */
     .latest-recipes-grid,
     .categories-grid,
     .notes-grid {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: var(--spacing-md); /* Użycie zmiennej */
+        gap: var(--spacing-md);
     }
 
     .error-image {
@@ -708,28 +737,28 @@ a:hover {
     }
 }
 
+
 /* ==========================================================================
-   6. Dodatkowe style dla drukowania (Print Styles)
-   ========================================================================== */
+    6. Dodatkowe style dla drukowania (Print Styles)
+    ========================================================================== */
 @media print {
     body {
-        font-family: var(--font-family-primary); /* Użycie zmiennej */
+        font-family: var(--font-family-primary);
         color: #000;
-        background-color: var(--color-white); /* Użycie zmiennej */
+        background-color: var(--color-white);
         margin: 0;
         padding: 0;
     }
 
     @page {
         size: A4 portrait;
-        margin: var(--spacing-md); /* Użycie zmiennej */
+        margin: var(--spacing-md);
     }
 
     /* Ukryj elementy, które nie powinny być drukowane */
     .site-header,
     .site-footer,
     .hero-section,
-    /* Usunięto .featured-recipes-section */
     .latest-recipes-section,
     .categories-section,
     .notes-section,
@@ -748,35 +777,37 @@ a:hover {
         margin: 0;
         padding: 0;
         box-shadow: none;
-        background-color: var(--color-white); /* Użycie zmiennej */
+        background-color: var(--color-white);
         border: none;
     }
 
     .recipe-header {
         text-align: left;
-        margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
+        margin-bottom: var(--spacing-sm);
     }
 
     .recipe-title {
         font-size: 2.2rem;
         color: #000;
-        margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
-        text-transform: uppercase; /* Zastosowanie kapitalików */
+        margin-bottom: var(--spacing-xs);
+        font-family: var(--font-family-headings); /* ZMIANA: Spectral SC */
+        text-transform: none;
+        font-weight: 400;
     }
 
     .recipe-description {
-        font-size: var(--spacing-sm); /* Użycie zmiennej */
+        font-size: var(--spacing-sm);
         color: #333;
-        margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
-        font-style: normal; /* Usunięto italic */
-        font-weight: 400; /* Usunięto bold */
+        margin-bottom: var(--spacing-sm);
+        font-style: normal;
+        font-weight: 400;
     }
 
     .recipe-date {
         font-size: 0.8rem;
         color: #666;
         margin-bottom: 0.3rem;
-        font-weight: 400; /* Usunięto bold */
+        font-weight: 400;
     }
 
     /* Układ kolumn na wydruku (linia po linii) */
@@ -796,7 +827,7 @@ a:hover {
         width: 100% !important;
         float: none !important;
         clear: both !important;
-        margin: var(--spacing-md) 0 0 0 !important; /* Użycie zmiennej */
+        margin: var(--spacing-md) 0 0 0 !important;
         padding: 0;
         box-sizing: border-box;
         page-break-inside: avoid;
@@ -808,21 +839,21 @@ a:hover {
 
     .recipe-details {
         border: none;
-        background-color: var(--color-white); /* Użycie zmiennej */
+        background-color: var(--color-white);
         padding: 0;
-        margin-top: var(--spacing-sm); /* Użycie zmiennej */
+        margin-top: var(--spacing-sm);
     }
 
     .recipe-details p {
         font-size: 0.9rem;
         margin-bottom: 0.3rem;
         color: #000;
-        font-weight: 400; /* Usunięto bold */
+        font-weight: 400;
     }
 
     .recipe-details strong {
         color: #000;
-        font-weight: 400; /* Usunięto bold */
+        font-weight: 400;
     }
 
     .recipe-ingredients h2,
@@ -831,7 +862,9 @@ a:hover {
         font-size: 1.5rem;
         color: #000;
         margin-bottom: 0.8rem;
-        text-transform: uppercase; /* Zastosowanie kapitalików */
+        font-family: var(--font-family-headings); /* ZMIANA: Spectral SC */
+        text-transform: none;
+        font-weight: 400;
     }
 
     .recipe-ingredients ul,
@@ -841,24 +874,24 @@ a:hover {
     .recipe-additional-content ol {
         margin-left: 0;
         list-style-position: outside;
-        padding-left: var(--spacing-md); /* Użycie zmiennej */
-        font-size: var(--spacing-sm); /* Użycie zmiennej */
+        padding-left: var(--spacing-md);
+        font-size: var(--spacing-sm);
         line-height: 1.4;
         margin-bottom: 0.3rem;
         color: #000;
-        font-weight: 400; /* Usunięto bold */
+        font-weight: 400;
     }
 
     .recipe-ingredients ul li::marker,
     .recipe-preparation ol li::marker,
     .recipe-additional-content ul li::marker,
     .recipe-additional-content ol li::marker {
-        color: var(--color-primary); /* Użycie zmiennej */
+        color: var(--color-primary);
     }
 
     a {
         text-decoration: none;
         color: #000 !important;
-        font-weight: 400; /* Usunięto bold */
+        font-weight: 400;
     }
 }
