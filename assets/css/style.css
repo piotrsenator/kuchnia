@@ -2,7 +2,7 @@
  * style.css
  * Globalne style dla kuchnia.senator.lu
  * Kolorystyka: naturalna, spokojna, elegancka
- * Typografia: czytelna, z charakterem (Source Sans 3, Playfair Display, Spectral SC, Fraunces)
+ * Typografia: czytelna, z charakterem (Source Sans 3, Playfair Display)
  * Siatka: responsywna
  */
 
@@ -31,23 +31,6 @@
     font-style: normal;
 }
 
-/* Spectral SC - Regular */
-@font-face {
-    font-family: 'Spectral SC';
-    src: url('../fonts/spectral-sc-v14-latin_latin-ext-regular.woff2') format('woff2');
-    font-weight: 400; /* Regular */
-    font-style: normal;
-}
-
-/* Fraunces - SemiBold Italic */
-@font-face {
-    font-family: 'Fraunces';
-    src: url('../fonts/fraunces-v37-latin_latin-ext-600italic.woff2') format('woff2');
-    font-weight: 600; /* SemiBold */
-    font-style: italic;
-}
-
-
 /* ==========================================================================
    0. Podstawowe resetowanie i ogólne style
    ========================================================================== */
@@ -64,9 +47,7 @@
 
     /* Fonty */
     --font-family-primary: 'Source Sans 3', sans-serif; /* Font dla tekstu głównego */
-    --font-family-secondary: 'Playfair Display', serif; /* Font dla nagłówków i tytułów, domyślne */
-    --font-family-headings: 'Spectral SC', serif; /* Nowy font dla wszystkich nagłówków h1-h6 */
-    --font-family-site-title: 'Fraunces', serif; /* Nowy font dla site-title */
+    --font-family-secondary: 'Playfair Display', serif; /* Font dla nagłówków i tytułów */
 
     /* Odstępy (Spacing - używane dla konsekwentnych paddingów/marginesów) */
     --spacing-xs: 0.5rem;   /* ~8px */
@@ -75,8 +56,6 @@
     --spacing-lg: 2rem;     /* ~32px */
     --spacing-xl: 3rem;     /* ~48px */
     --spacing-xxl: 4rem;    /* ~64px */
-    --spacing-xxs: 0.25rem; /* ~4px - dla minimalnego paddingu */
-
 
     /* Cienie */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.03);
@@ -113,65 +92,34 @@ body {
    ========================================================================== */
 
 h1, h2, h3, h4, h5, h6,
+.site-title,
 .recipe-card-title,
 .category-card-title,
 .recipe-title,
 .note-title {
-    font-family: var(--font-family-headings); /* Nowy font dla wszystkich nagłówków */
-    font-weight: 400; /* Regularna waga dla Spectral SC, anulujemy bold */
+    font-family: var(--font-family-secondary); /* Użycie zmiennej */
+    font-weight: 700; /* Domyślna waga dla nagłówków (Playfair Display Bold) */
     color: var(--color-primary); /* Użycie zmiennej */
     line-height: 1.2;
     margin-bottom: 0.8em;
-    text-transform: none; /* Anulujemy kapitaliki dla wszystkich nagłówków */
 }
 
-/* Specyficzne stylowanie dla site-title (Fraunces SemiBold Italic) */
-.site-title {
-    font-family: var(--font-family-site-title); /* Nowy font dla site-title */
-    font-weight: 600; /* SemiBold */
-    font-style: italic; /* Italic */
-    font-size: 3rem; /* Zmniejszono główny tytuł */
-    margin-bottom: var(--spacing-xs);
-    color: var(--color-primary); /* Upewniamy się, że kolor jest zgodny z paletą */
-    text-transform: none; /* Upewniamy się, że nie ma kapitalików */
+/* Nagłówki poza h1 - kapitaliki */
+h2, h3, h4, h5, h6,
+.recipe-card-title,
+.category-card-title,
+.recipe-title,
+.note-title {
+    text-transform: uppercase;
 }
 
-/* site-subtitle i site-description-short używają Playfair Display */
-.site-subtitle {
-    font-family: var(--font-family-secondary);
-    font-weight: 400; /* Regularna waga, nie pogrubiona */
-    color: var(--color-text-dark);
-    font-size: 1.3rem;
-    margin-bottom: var(--spacing-sm);
-    text-transform: none; /* Upewnienie się, że nie ma kapitalików */
-    font-style: normal; /* Usunięto italic */
-}
-
+/* site-title i site-subtitle nie powinny być kapitalikami */
+.site-title,
+.site-subtitle,
 .site-description-short {
-    font-family: var(--font-family-primary); /* Powrót do Source Sans 3 dla opisu */
-    max-width: 700px;
-    margin: 0 auto var(--spacing-sm) auto;
-    color: var(--color-text-dark);
-    font-size: 1.2rem;
-    text-transform: none; /* Upewnienie się, że nie ma kapitalików */
-}
-.site-description-short p {
-    margin-bottom: var(--spacing-xs);
-}
-
-/* Opis przepisu - usunięto italic i bold */
-.recipe-description {
-    font-weight: 400; /* Standardowa waga, nie pogrubiona */
-    font-style: normal; /* Usunięto italic */
-    font-size: 1.2rem;
-    color: var(--color-text-dark);
-    margin-bottom: var(--spacing-lg);
-}
-
-/* Cytaty - usunięto italic i bold */
-.note-content blockquote {
-    font-style: normal; /* Usunięto italic */
-    font-weight: 400; /* Standardowa waga, nie pogrubiona */
+    text-transform: none;
+    font-family: var(--font-family-secondary); /* Użycie zmiennej */
+    color: var(--color-primary); /* Użycie zmiennej */
 }
 
 
@@ -179,9 +127,6 @@ h1 { font-size: 2.8rem; }
 h2 { font-size: 2.2rem; }
 h3 { font-size: 1.8rem; }
 h4 { font-size: 1.5rem; }
-h5 { font-size: 1.3rem; }
-h6 { font-size: 1.1rem; }
-
 
 /* Styl dla list w przepisach */
 .recipe-ingredients ul,
@@ -216,9 +161,34 @@ a:hover {
 
 .site-header {
     background-color: var(--color-background-light);
-    /* Minimalny padding dla nagłówka */
-    padding: var(--spacing-xxs) 0; /* Bardzo mały padding - 4px góra/dół */
+    /* Zmniejszony padding, aby zredukować puste miejsce pod nagłówkiem */
+    padding: var(--spacing-sm) 0 var(--spacing-sm); /* Zmieniono z md na sm (1rem góra/dół) */
     text-align: center;
+}
+
+.site-title {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
+}
+
+.site-subtitle {
+    font-weight: 400; /* Regular dla podtytułu strony */
+    color: var(--color-text-dark); /* Użycie zmiennej */
+    font-size: 1.3rem;
+    font-style: normal; /* Usunięto italic */
+    margin-bottom: var(--spacing-sm); /* Zmniejszono z md na sm */
+}
+
+.site-description-short {
+    max-width: 700px;
+    /* Zmniejszony margines, aby zredukować puste miejsce */
+    margin: 0 auto var(--spacing-sm) auto; /* Zmieniono z lg na sm */
+    color: var(--color-text-dark); /* Użycie zmiennej */
+    font-size: 1.2rem;
+}
+
+.site-description-short p {
+    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
 }
 
 .site-footer {
@@ -303,7 +273,6 @@ a:hover {
 .main-content {
     max-width: 1200px;
     margin: 0 auto;
-    /* Usunięto padding-top i padding-bottom, by zmaksymalizować kontrolę przez margin-top sekcji */
     padding: 0 var(--spacing-md); /* Użycie zmiennej */
 }
 
@@ -321,9 +290,7 @@ a:hover {
 /* Pierwsza sekcja na stronie głównej nie potrzebuje górnego marginesu */
 /* Zaktualizowano na latest-recipes-section, usunięto featured-recipes-section */
 .main-content .hero-section:first-child,
-.main-content .latest-recipes-section:first-child,
-.main-content .categories-section:first-child, /* Dodano na wypadek, gdyby to była pierwsza sekcja */
-.main-content .notes-section:first-child { /* Dodano na wypadek, gdyby to była pierwsza sekcja */
+.main-content .latest-recipes-section:first-child {
     margin-top: 0;
 }
 
@@ -404,7 +371,7 @@ a:hover {
     -webkit-line-clamp: 2; /* Ograniczenie do 2 linii */
     -webkit-box-orient: vertical;
     white-space: normal; /* Upewnia się, że tekst się łamie */
-    text-transform: none; /* Anulujemy kapitaliki */
+    text-transform: uppercase; /* Zastosowanie kapitalików */
 }
 
 /* --- Kafelki kategorii (bez zdjęć) --- */
@@ -412,14 +379,14 @@ a:hover {
     background-color: var(--color-background-accent); /* Użycie zmiennej */
     border: 1px solid var(--color-secondary); /* Użycie zmiennej */
     border-radius: var(--border-radius-md); /* Użycie zmiennej */
-    padding: var(--spacing-sm) var(--spacing-md); /* Zmniejszony padding góra/dół dla mniejszej wysokości */
+    padding: var(--spacing-md); /* Użycie zmiennej */
     text-align: center;
     transition: background-color 0.3s ease;
-    min-height: auto; /* Usunięto sztywną minimalną wysokość */
+    min-height: 120px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* ZMIANA: Wyśrodkowanie zawartości w pionie */
-    align-items: center; /* ZMIANA: Wyśrodkowanie zawartości w poziomie */
+    justify-content: center;
+    align-items: center;
 }
 
 .category-card:hover {
@@ -428,17 +395,9 @@ a:hover {
 
 .category-card-title {
     font-size: 1.4rem;
-    margin: 0; /* Upewnij się, że nie ma dodatkowych marginesów, które by to psuły */
+    margin: 0;
     transition: color 0.3s ease;
-    text-transform: none; /* Anulujemy kapitaliki */
-    /* Dodatkowe reguły dla dwóch linii, jeśli tytuły kategorii mogą być długie */
-    min-height: calc(2 * 1.4rem * 1.2);
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    white-space: normal;
-    text-align: center; /* Dodatkowo upewniamy się, że tekst w tytule jest wyśrodkowany */
+    text-transform: uppercase; /* Zastosowanie kapitalików */
 }
 
 .category-card:hover .category-card-title {
@@ -458,7 +417,7 @@ a:hover {
 .notes-section .note-entry h3 {
     font-size: 1.6rem;
     margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
-    text-transform: none; /* Anulujemy kapitaliki */
+    text-transform: uppercase; /* Zastosowanie kapitalików */
 }
 
 .notes-section .note-entry p {
@@ -486,7 +445,15 @@ a:hover {
 .recipe-title {
     font-size: 3rem;
     margin-bottom: var(--spacing-sm); /* Użycie zmiennej */
-    text-transform: none; /* Anulujemy kapitaliki */
+    text-transform: uppercase; /* Zastosowanie kapitalików */
+}
+
+.recipe-description {
+    font-weight: 400; /* Usunięto bold */
+    font-size: 1.2rem;
+    font-style: normal; /* Usunięto italic */
+    color: var(--color-text-dark); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-lg); /* Użycie zmiennej */
 }
 
 .recipe-content-wrapper {
@@ -561,7 +528,7 @@ a:hover {
 .note-title {
     font-size: 2.5rem;
     margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
-    text-transform: none; /* Anulujemy kapitaliki */
+    text-transform: uppercase; /* Zastosowanie kapitalików */
 }
 
 .note-date {
@@ -586,7 +553,7 @@ a:hover {
     color: var(--color-primary); /* Użycie zmiennej */
     margin-top: var(--spacing-md); /* Użycie zmiennej */
     margin-bottom: 0.8rem;
-    text-transform: none; /* Anulujemy kapitaliki */
+    text-transform: uppercase; /* Zastosowanie kapitalików */
 }
 
 .note-content p {
@@ -620,46 +587,31 @@ a:hover {
 }
 
 /* --- Strona 404 --- */
-/* Kontener 404 powinien być opakowany w <div class="error-404-container">...</div> */
-.error-404-container {
-    /* Style dla kontenera 404 - IDENCZNE JAK DLA RECIPE-SINGLE */
-    max-width: 900px; /* Taka sama maksymalna szerokość jak przepis */
-    margin: var(--spacing-lg) auto; /* Centrowanie kontenera na stronie */
-    padding: var(--spacing-md); /* Padding jak przepis */
-    background-color: var(--color-background-accent); /* Tło jak przepis */
-    border-radius: var(--border-radius-md); /* Zaokrąglenie jak przepis */
-    box-shadow: var(--shadow-lg); /* Cień jak przepis */
-    text-align: center; /* Wyśrodkowanie tekstu i obrazów w kontenerze */
-    display: flex; /* Użyj flexbox, aby wyśrodkować zawartość wertykalnie */
+.error-404-page body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
     flex-direction: column;
-    justify-content: flex-start; /* ZMIANA TUTAJ: Wyrównanie do góry kontenera */
-    align-items: center; /* Wyśrodkowanie w poziomie (dla elementów flex) */
-    min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px)); /* Upewnij się, że kontener jest wystarczająco wysoki */
 }
 
-/* Dostosuj styl nagłówka i paragrafów wewnątrz kontenera 404 */
-.error-404-container .error-title { /* Użyj error-title, jeśli taka klasa jest w HTML */
-    font-family: var(--font-family-headings); /* Aby używał Spectral SC */
-    font-size: 3rem; /* Dostosowanie rozmiaru nagłówka dla 404 */
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-sm);
-    text-transform: none; /* Upewniamy się, że nie ma kapitalików */
-}
-
-.error-404-container .error-message,
-.error-404-container .error-suggestion {
-    font-size: 1.2rem;
-    color: var(--color-text-dark);
-    margin-bottom: var(--spacing-md);
+.error-404-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px));
 }
 
 .error-image {
     max-width: 100%;
     height: auto;
-    display: block; /* Upewnia się, że obraz jest elementem blokowym dla margin:auto */
-    width: 400px; /* Zapewnia stałą szerokość obrazu na większych ekranach */
-    margin: var(--spacing-md) auto; /* Dodano margines dla lepszego odstępu i wyśrodkowanie */
+    display: block;
+    width: 400px;
 }
+
 /* ==========================================================================
    5. Media Queries (Responsywność)
    ========================================================================== */
@@ -670,7 +622,6 @@ a:hover {
 @media (min-width: 768px) {
     h1 { font-size: 3.5rem; }
     h2 { font-size: 2rem; }
-    h3 { font-size: 1.6rem; } /* Przywrócono, aby było spójne ze Spectral SC */
 
     .site-title { font-size: 3.5rem; }
     .site-subtitle { font-size: 1.5rem; }
@@ -680,6 +631,7 @@ a:hover {
     }
 
     .recipes-grid,
+    /* Usunięto .featured-recipes-grid */
     .latest-recipes-grid,
     .categories-grid,
     .notes-grid {
@@ -699,8 +651,7 @@ a:hover {
     }
 
     .recipe-single,
-    .note-single,
-    .error-404-container { /* Dodano 404 */
+    .note-single {
         padding: var(--spacing-lg); /* Użycie zmiennej */
     }
 }
@@ -709,7 +660,6 @@ a:hover {
 @media (min-width: 1024px) {
     h1 { font-size: 4rem; }
     h2 { font-size: 2.2rem; }
-    h3 { font-size: 1.8rem; } /* Przywrócono, aby było spójne ze Spectral SC */
 
     .site-title { font-size: 4rem; }
     .site-subtitle { font-size: 1.7rem; }
@@ -719,6 +669,7 @@ a:hover {
     }
 
     .recipes-grid,
+    /* Usunięto .featured-recipes-grid */
     .latest-recipes-grid,
     .categories-grid {
         grid-template-columns: repeat(4, 1fr); /* 4 kolumny na desktopie */
@@ -744,6 +695,7 @@ a:hover {
     }
 
     .recipes-grid,
+    /* Usunięto .featured-recipes-grid */
     .latest-recipes-grid,
     .categories-grid,
     .notes-grid {
@@ -755,7 +707,6 @@ a:hover {
         width: 80%;
     }
 }
-
 
 /* ==========================================================================
    6. Dodatkowe style dla drukowania (Print Styles)
@@ -778,6 +729,7 @@ a:hover {
     .site-header,
     .site-footer,
     .hero-section,
+    /* Usunięto .featured-recipes-section */
     .latest-recipes-section,
     .categories-section,
     .notes-section,
@@ -809,9 +761,7 @@ a:hover {
         font-size: 2.2rem;
         color: #000;
         margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
-        font-family: var(--font-family-headings); /* Font dla nagłówków */
-        text-transform: none; /* Anulujemy kapitaliki */
-        font-weight: 400;
+        text-transform: uppercase; /* Zastosowanie kapitalików */
     }
 
     .recipe-description {
@@ -881,9 +831,7 @@ a:hover {
         font-size: 1.5rem;
         color: #000;
         margin-bottom: 0.8rem;
-        font-family: var(--font-family-headings); /* Font dla nagłówków */
-        text-transform: none; /* Anulujemy kapitaliki */
-        font-weight: 400;
+        text-transform: uppercase; /* Zastosowanie kapitalików */
     }
 
     .recipe-ingredients ul,
