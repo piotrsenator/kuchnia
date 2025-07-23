@@ -4,7 +4,7 @@ title: Jajecznica z boczkiem
 description: Tradycyjna jajecznica z chrupiącym boczkiem, idealna na sycące śniadanie.
 image_main: /images/recipes/jajecznica-z-boczkiem-main.jpg
 featured: true
-category: Śniadania
+category: sniadania
 time: 15
 portions: 2
 difficulty: "łatwy" 
