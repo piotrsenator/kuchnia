@@ -5,8 +5,6 @@ title: Strona Główna
 
 <main class="main-page-content content">
 
-    {# Usunięto sekcję "Wybrane Przepisy" zgodnie z prośbą #}
-
     <section class="latest-recipes-section" id="najnowsze-przepisy">
         <h2>Najnowsze Przepisy</h2>
         <div class="latest-recipes-grid recipes-grid">
@@ -18,7 +16,6 @@ title: Strona Główna
             {% endfor %}
         </div>
         {# Zachowany link "Więcej przepisów" który teraz odnosi się do wszystkich przepisów (kategorii) #}
-        <a href="{{ '/categories/index.html' | relative_url }}" class="button">Więcej przepisów</a>
     </section>
 
     <section class="categories-section" id="kategorie">
@@ -48,7 +45,6 @@ title: Strona Główna
                 </div>
             {% endfor %}
         </div>
-        {# Dodano odsyłacz do strony ze wszystkimi notatkami #}
         <a href="{{ '/notatki/' | relative_url }}" class="button">Wszystkie notatki</a>
     </section>
 
