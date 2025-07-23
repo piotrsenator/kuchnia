@@ -516,8 +516,11 @@ a:hover {
 
 /* --- Lista notatek na stronie /notes/ --- */
 .notes-list-section .page-header { /* Specyficzny nagłówek dla strony listy notatek */
-    text-align: center;
+    text-align: left; /* ZMIANA: Wyrównanie do lewej */
     margin-bottom: var(--spacing-xxl);
+    max-width: 800px; /* ZMIANA: Ogranicz szerokość do szerokości notatek */
+    margin-left: auto; /* ZMIANA: Wyśrodkuj kontener nagłówka */
+    margin-right: auto; /* ZMIANA: Wyśrodkuj kontener nagłówka */
 }
 
 .notes-list-section .page-header h1 {
@@ -534,8 +537,8 @@ a:hover {
     font-weight: var(--font-weight-light);
     color: var(--color-text-dark);
     font-size: 1.3rem;
-    max-width: 700px;
-    margin: 0 auto;
+    /* max-width: 700px;  Usunęliśmy to, ponieważ max-width jest już na .page-header */
+    margin: 0; /* ZMIANA: Usuwamy auto, bo chcemy, żeby było wyrównane do lewej w ramce */
 }
 
 .notes-list-section .notes-grid { /* Domyślnie 1 kolumna na desktopie dla strony /notes/ */
