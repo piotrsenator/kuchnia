@@ -1,7 +1,7 @@
 ---
 layout: recipe
 title: Knedle ze śliwką
-category: desery
+category: sniadania
 time: "1 godzina 15 minut"
 portions: "4-6"
 difficulty: "średni"
