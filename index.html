@@ -5,19 +5,7 @@ title: Strona Główna
 
 <main class="main-page-content content">
 
-    <section class="featured-recipes-section">
-        <h2>Wybrane Przepisy</h2>
-        <div class="featured-recipes-grid recipes-grid">
-            {% comment %}
-            Pętla dla wybranych przepisów. Limit ustawiony na 4.
-            Upewnij się, że masz co najmniej 4 przepisy z 'featured: true' w front matter.
-            {% endcomment %}
-            {% assign featured_recipes = site.recipes | where: "featured", true | sort: "date" | reverse %}
-            {% for recipe in featured_recipes limit: 4 %}
-                {% include recipe_card.html recipe=recipe %}
-            {% endfor %}
-        </div>
-    </section>
+    {# Usunięto sekcję "Wybrane Przepisy" zgodnie z prośbą #}
 
     <section class="latest-recipes-section" id="najnowsze-przepisy">
         <h2>Najnowsze Przepisy</h2>
@@ -29,6 +17,8 @@ title: Strona Główna
                 {% include recipe_card.html recipe=recipe %}
             {% endfor %}
         </div>
+        {# Zachowany link "Więcej przepisów" który teraz odnosi się do wszystkich przepisów (kategorii) #}
+        <a href="{{ '/categories/index.html' | relative_url }}" class="button">Więcej przepisów</a>
     </section>
 
     <section class="categories-section" id="kategorie">
@@ -58,6 +48,8 @@ title: Strona Główna
                 </div>
             {% endfor %}
         </div>
+        {# Dodano odsyłacz do strony ze wszystkimi notatkami #}
+        <a href="{{ '/notatki/' | relative_url }}" class="button">Wszystkie notatki</a>
     </section>
 
 </main>
