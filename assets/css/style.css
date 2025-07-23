@@ -345,7 +345,14 @@ a:hover {
 
 .recipe-card-title {
     font-size: 1.2rem;
-    margin-bottom: var(--spacing-xs); /* Użycie zmiennej */
+    margin-bottom: var(--spacing-xs);
+    min-height: calc(2 * 1.2rem * 1.2); /* Zakładając font-size 1.2rem i line-height około 1.2 */
+    /* Możesz dostosować 1.2rem i 1.2 do rzeczywistych wartości lub po prostu ustawić sztywną wartość px/rem, np. min-height: 2.8em; */
+    overflow: hidden; /* Ukrywa tekst, który przekracza 2 linie, jeśli tytuł jest bardzo długi */
+    display: -webkit-box; /* Dla wieloliniowego skracania, jeśli to konieczne */
+    -webkit-line-clamp: 2; /* Ograniczenie do 2 linii */
+    -webkit-box-orient: vertical;
+    white-space: normal; /* Upewnia się, że tekst się łamie */
 }
 
 /* --- Kafelki kategorii (bez zdjęć) --- */
