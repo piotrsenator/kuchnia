@@ -467,56 +467,173 @@ blockquote {
 }
 
 /* 4.2. Strona Pojedynczego Przepisu */
+
+/* Główny kontener strony przepisu */
 .recipe-single {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: var(--spacing-sm);
+    max-width: var(--max-content-width); /* Użyj zmiennej dla maksymalnej szerokości */
+    margin: var(--spacing-md) auto; /* Dodaj górny i dolny margines, wyśrodkuj */
+    padding: var(--spacing-lg); /* Zwiększ padding wewnętrzny */
     background-color: var(--color-background-accent);
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-lg);
 }
+
+/* Nagłówek przepisu */
 .recipe-header {
     text-align: center;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl); /* Zwiększ margines dolny dla przestrzeni */
 }
+
 .recipe-title {
     font-family: var(--font-family-headings);
     font-weight: var(--font-weight-regular);
     font-size: 3rem;
     margin-bottom: var(--spacing-sm);
+    color: var(--color-text-dark); /* Upewnij się, że kolor jest czytelny */
+
+    /* Responsywność dla tytułu */
+    @media (max-width: 768px) {
+        font-size: 2.5rem;
+    }
+    @media (max-width: 480px) {
+        font-size: 2rem;
+    }
 }
+
 .recipe-description {
     font-weight: var(--font-weight-light);
     font-size: 1.2rem;
+    line-height: 1.5;
     margin-bottom: var(--spacing-lg);
+    color: var(--color-text-secondary);
 }
+
+/* Kontener głównej treści przepisu (obrazek, szczegóły, składniki, przygotowanie) */
 .recipe-content-wrapper {
     display: grid;
-    gap: var(--spacing-lg);
-    grid-template-columns: 1fr;
+    gap: var(--spacing-lg); /* Odstęp między elementami w siatce */
+    grid-template-columns: 1fr; /* Domyślnie na małych ekranach - jedna kolumna */
+    align-items: start; /* Dopasuj elementy do początku wierszy */
+
+    @media (min-width: 768px) {
+        /* Na większych ekranach: dwie kolumny */
+        /* Pierwsza kolumna dla obrazka/detali, druga dla składników */
+        grid-template-columns: 1fr 1.5fr; /* Przykładowe proporcje, możesz dostosować (np. 1fr 1fr) */
+    }
 }
+
+/* Kontener obrazka i szczegółów (czas, porcje, trudność) - PO LEWEJ */
+.recipe-main-info {
+    /* Na małych ekranach zajmuje 100% szerokości */
+    grid-column: 1 / -1; /* Domyślnie zajmuje całą szerokość w pojedynczej kolumnie */
+
+    @media (min-width: 768px) {
+        grid-column: 1 / 2; /* Na większych ekranach zajmuje PIERWSZĄ kolumnę */
+    }
+}
+
 .recipe-main-image {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     border-radius: var(--border-radius-md);
     margin-bottom: var(--spacing-md);
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
+    aspect-ratio: 4 / 3; /* Utrzymuje proporcje obrazu */
+    object-fit: cover; /* Dopasowuje obraz do kontenera */
 }
+
+/* Szczegóły przepisu (ramka) */
 .recipe-details {
-    width: 100%;
+    width: 100%; /* Zapewnia, że ramka zajmuje całą dostępną szerokość w kolumnie */
     padding: var(--spacing-sm);
     background-color: var(--color-background-accent);
     border-radius: var(--border-radius-md);
     border: 1px solid var(--color-secondary);
 }
+
 .recipe-details p {
     margin-bottom: var(--spacing-xs);
     font-weight: var(--font-weight-light);
+    line-height: 1.4; /* Popraw czytelność */
+    color: var(--color-text-primary); /* Upewnij się, że kolor jest czytelny */
 }
+
 .recipe-details strong {
     color: var(--color-primary);
     font-weight: var(--font-weight-semibold);
+}
+
+.print-button {
+    /* Stylizacja przycisku drukowania - użyj istniejących klas dla spójności */
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    background-color: var(--color-primary);
+    color: var(--color-background-light);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.print-button:hover {
+    background-color: var(--color-primary-dark);
+}
+
+/* Sekcja Składniki - PO PRAWEJ */
+.recipe-ingredients {
+    /* Na małych ekranach zajmuje 100% szerokości */
+    grid-column: 1 / -1; /* Domyślnie zajmuje całą szerokość w pojedynczej kolumnie */
+
+    @media (min-width: 768px) {
+        grid-column: 2 / 3; /* KLUCZ: Na większych ekranach zajmuje DRUGĄ kolumnę */
+        /* grid-row: 1 / 2; Jeśli chcesz, aby była w tym samym wierszu co main-info */
+    }
+    margin-bottom: var(--spacing-lg); /* Dodaj margines dolny dla odstępu */
+}
+
+/* Sekcje Przygotowanie i Dodatkowa Treść - NA CAŁEJ SZEROKOŚCI PONIŻEJ */
+.recipe-preparation,
+.recipe-additional-content {
+    /* KLUCZ: ZAWSZE zajmuje całą szerokość siatki, czyli wszystkie kolumny */
+    grid-column: 1 / -1; /* Rozciąga element przez wszystkie kolumny siatki */
+    
+    margin-bottom: var(--spacing-lg); /* Dodaj margines dolny dla odstępu między sekcjami */
+}
+
+.recipe-ingredients h2,
+.recipe-preparation h2,
+.recipe-additional-content h2 {
+    font-family: var(--font-family-headings);
+    font-size: 2rem; /* Dopasuj rozmiar do reszty nagłówków */
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-dark);
+}
+
+.recipe-ingredients ul,
+.recipe-preparation ol {
+    list-style-position: inside; /* Upewnij się, że punkty/numerki są wewnątrz tekstu */
+    padding-left: 0; /* Usuń domyślny padding listy */
+}
+
+.recipe-ingredients li,
+.recipe-preparation li {
+    margin-bottom: var(--spacing-xxs);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+}
+
+/* Styl dla kontenera przycisków na dole strony przepisu */
+.recipe-single-button-container {
+    display: flex;
+    flex-wrap: wrap; /* Pozwala przyciskom zawijać się na małych ekranach */
+    justify-content: center; /* Wyśrodkowuje przyciski poziomo */
+    gap: var(--spacing-md); /* Odstęp między przyciskami */
+    margin-top: var(--spacing-xl); /* Odstęp od ostatniej sekcji treści */
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border); /* Opcjonalna linia oddzielająca */
 }
 
 /* ==========================================================================
