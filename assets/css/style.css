@@ -129,46 +129,171 @@ body {
 }
 
 /* ==========================================================================
-    1. Typografia i linki
+    1. Podstawowe Style i Typografia
     ========================================================================== */
 
-/* Specyficzne stylowanie dla site-title (Playfair Display Italic) */
+/* -------------------------------------------------------------------------- */
+/* --- 1.1. Reset i podstawowe style body --- */
+/* -------------------------------------------------------------------------- */
+
+/* Globalny reset marginesów dla głównych elementów tekstowych */
+h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote {
+    margin-top: 0;
+    margin-bottom: var(--spacing-md); /* Domyślny odstęp pod większością elementów */
+}
+
+/* Usuń dolny margines dla ostatniego elementu w kontenerze, aby uniknąć zbędnej przestrzeni */
+.content > *:last-child,
+.main-content > *:last-child,
+.recipe-content > *:last-child,
+.note-content > *:last-child {
+    margin-bottom: 0;
+}
+
+body {
+    font-family: var(--font-family-primary); /* Domyślna czcionka dla całej strony */
+    font-weight: var(--font-weight-regular); /* Domyślna waga dla body (Source Sans 3 Regular) */
+    font-size: 1rem; /* Podstawowy rozmiar fontu (16px) */
+    line-height: 1.6; /* Domyślna wysokość linii dla czytelności */
+    color: var(--color-text-dark); /* Domyślny kolor tekstu */
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- 1.2. Globalne style typografii (Nagłówki i Akapity) --- */
+/* -------------------------------------------------------------------------- */
+
+/* Nagłówki (Spectral SC Regular) */
+h1, h2, h4, h5, h6 { /* h1, h2, h4, h5, h6 używają Spectral SC Regular */
+    font-family: var(--font-family-headings); /* Spectral SC */
+    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
+    font-style: normal;
+    color: var(--color-primary);
+    text-transform: none;
+    margin-top: var(--spacing-xl); /* Większy odstęp przed nową sekcją/ważnym nagłówkiem */
+    margin-bottom: var(--spacing-md);
+}
+
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.3rem; }
+h6 { font-size: 1.1rem; }
+
+/* Nazwa przepisu (h3) - Source Sans 3 SemiBold */
+h3 {
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
+    font-style: normal;
+    font-size: 1.8rem; /* Domyślny rozmiar dla h3 */
+    color: var(--color-primary);
+    text-transform: none;
+    margin-top: var(--spacing-md); /* Standardowy odstęp przed h3 */
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Akapity - Source Sans 3 Light (domyślnie w sekcji 1.1 jest regular, tu nadpisujemy) */
+p {
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
+    font-style: normal;
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-sm); /* Zmniejszony odstęp między akapitami */
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- 1.3. Specyficzne style nagłówków i opisów strony (Home Page) --- */
+/* -------------------------------------------------------------------------- */
+
+/* site-title (Playfair Display Italic) */
 .site-title {
     font-family: var(--font-family-site-title); /* Playfair Display Italic */
     font-weight: var(--font-weight-regular); /* Waga 400, bo Italic 400 */
     font-style: italic;
     font-size: 3rem;
-    margin-bottom: var(--spacing-xxs);
     line-height: 1.2;
     color: var(--color-primary);
     text-transform: none;
+    margin-bottom: var(--spacing-xxs); /* Mały odstęp pod tytułem głównym */
 }
 
 /* site-subtitle i site-description-short używają Source Sans 3 Light */
 .site-subtitle {
     font-family: var(--font-family-primary); /* Source Sans 3 */
     font-weight: var(--font-weight-light); /* Waga 300 (Light) */
-    color: var(--color-text-dark);
-    font-size: 1.3rem;
-    margin-top: var(--spacing-xxs);
-    margin-bottom: var(--spacing-xs);
-    text-transform: none;
     font-style: normal;
+    font-size: 1.3rem;
+    color: var(--color-text-dark);
+    margin-top: var(--spacing-xxs); /* Mały odstęp nad podtytułem */
+    margin-bottom: var(--spacing-xs); /* Mały odstęp pod podtytułem */
+    text-transform: none;
 }
 
 .site-description-short {
     font-family: var(--font-family-primary); /* Source Sans 3 */
-    max-width: 700px;
     font-weight: var(--font-weight-light); /* Waga 300 (Light) */
-    margin: var(--spacing-xxs) auto var(--spacing-sm) auto;
-    color: var(--color-text-dark);
     font-size: 1.2rem;
+    color: var(--color-text-dark);
+    max-width: 700px;
+    margin: var(--spacing-xxs) auto var(--spacing-md) auto; /* Top, Right/Left(auto=center), Bottom */
     text-transform: none;
 }
+
 .site-description-short p {
-    margin-bottom: var(--spacing-xs);
-    font-weight: var(--font-weight-light); /* Treść opisu strony głównej też Source Sans 3 Light */
+    margin-bottom: var(--spacing-xs); /* Mniejszy margines między akapitami w opisie krótkim */
+    font-weight: inherit; /* Dziedzicz wagę z nadrzędnego .site-description-short */
 }
+
+/* -------------------------------------------------------------------------- */
+/* --- 1.4. Style dla list --- */
+/* -------------------------------------------------------------------------- */
+
+/* Styl dla list w przepisach i ogólne listy - używają Source Sans 3 Regular */
+ul, ol {
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-size: 0.95rem; /* Nieco mniejszy rozmiar dla list */
+    line-height: 1.8;
+    color: var(--color-text-dark);
+    margin-left: var(--spacing-md); /* Wcięcie listy */
+    list-style-position: outside; /* Domyślnie na zewnątrz */
+    font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
+    font-style: normal;
+    margin-bottom: var(--spacing-md); /* Odstęp pod listami */
+}
+
+/* Konkretne pozycjonowanie wewnątrz dla list w przepisach */
+.recipe-ingredients ul,
+.recipe-preparation ol {
+    list-style-position: inside; /* Numery/markery wewnątrz listy dla tych konkretnych list */
+    font-weight: var(--font-weight-regular); /* Upewnij się, że są Regular */
+    font-style: normal;
+}
+
+.recipe-ingredients ul li::marker,
+.recipe-preparation ol li::marker {
+    color: var(--color-primary); /* Kolor markerów */
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- 1.5. Style dla linków --- */
+/* -------------------------------------------------------------------------- */
+
+/* Ogólne style dla linków - używają Source Sans 3 Regular */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease; /* Płynna zmiana koloru przy najechaniu */
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
+    font-style: normal;
+}
+
+a:hover {
+    color: var(--color-secondary); /* Kolor po najechaniu */
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- 1.6. Inne specyficzne style tekstowe --- */
+/* -------------------------------------------------------------------------- */
 
 /* Opis przepisu - używa Source Sans 3 Light */
 .recipe-description {
@@ -177,97 +302,22 @@ body {
     font-style: normal;
     font-size: 1.2rem;
     color: var(--color-text-dark);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg); /* Większy odstęp pod opisem przepisu */
 }
 
 /* Cytaty - używają Source Sans 3 Regular */
-.note-content blockquote {
+blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl */
     font-family: var(--font-family-primary); /* Source Sans 3 */
     font-style: normal;
     font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
-}
-
-/* Nagłówki używają Spectral SC Regular i koloru primary */
-h1, h4, h5, h6 { /* h1, h4, h5, h6 używają Spectral SC Regular */
-    font-family: var(--font-family-headings); /* Spectral SC */
-    color: var(--color-primary);
-    text-transform: none;
-    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
-    font-style: normal;
-    margin-top: var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
-}
-
-h1 { font-size: 2.8rem; }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.3rem; }
-h6 { font-size: 1.1rem; }
-
-/* Nagłówki sekcji (h2) - Spectral SC Regular */
-h2 {
-    font-family: var(--font-family-headings); /* Spectral SC */
-    color: var(--color-primary);
-    text-transform: none;
-    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
-    font-style: normal;
-    font-size: 2.2rem; /* Domyślny rozmiar dla h2 */
-    margin-top: var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
-}
-
-/* Nazwa przepisu (h3) - Source Sans 3 SemiBold */
-h3 {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    color: var(--color-primary);
-    text-transform: none;
-    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
-    font-style: normal;
-    font-size: 1.8rem; /* Domyślny rozmiar dla h3 */
-    margin-top: var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
-}
-
-
-/* Styl dla list w przepisach - używają Source Sans 3 Regular (domyślny dla body) */
-.recipe-ingredients ul,
-.recipe-preparation ol {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-size: 0.95rem;
-    line-height: 1.8;
+    font-size: 1.1rem; /* Lekko większy font dla cytatów */
+    line-height: 1.7;
+    padding: var(--spacing-md) var(--spacing-lg);
+    margin: var(--spacing-lg) auto; /* Wyśrodkowanie cytatu */
+    background-color: var(--color-background-accent);
+    border-left: 5px solid var(--color-primary);
     color: var(--color-text-dark);
-    margin-left: var(--spacing-md);
-    list-style-position: inside;
-    font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
-    font-style: normal;
 }
-
-.recipe-ingredients ul li::marker,
-.recipe-preparation ol li::marker {
-    color: var(--color-primary);
-}
-
-/* Ogólne style dla linków - używają Source Sans 3 Regular */
-a {
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: color 0.3s ease;
-    font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
-    font-style: normal;
-}
-
-a:hover {
-    color: var(--color-secondary);
-}
-
-/* Tekst główny (p) używa Source Sans 3 Light */
-p {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-    font-style: normal;
-    color: var(--color-text-dark);
-    margin-bottom: var(--spacing-sm);
-}
-
 
 /* ==========================================================================
     2. Elementy globalne strony (Header, Footer, Przyciski)
@@ -357,50 +407,63 @@ p {
     3. Układ strony (Content, Grid, Margins)
     ========================================================================== */
 
-/* Ogólny kontener dla większości zawartości, zapewnia maksymalną szerokość i wyśrodkowanie */
+/* -------------------------------------------------------------------------- */
+/* --- 3.1. Kontenery Główne Strony --- */
+/* -------------------------------------------------------------------------- */
+
+/* Ogólny kontener dla większości zawartości strony, zapewnia maksymalną szerokość i wyśrodkowanie */
 .content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-md);
+    max-width: 1200px; /* Maksymalna szerokość dla ogólnej zawartości */
+    margin: 0 auto;    /* Wyśrodkowanie kontenera na stronie */
+    padding: var(--spacing-md); /* Domyślny wewnętrzny odstęp */
 }
 
-/* Główny kontener strony głównej - używa podobnych zasad co .content */
+/* Główny kontener strony głównej - używa podobnych zasad co .content, ale z różnicami w paddingu */
 .main-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    max-width: 1200px; /* Maksymalna szerokość dla głównej zawartości strony głównej */
+    margin: 0 auto;    /* Wyśrodkowanie kontenera na stronie */
+    padding: 0 var(--spacing-md); /* Wewnętrzny odstęp tylko boczny */
 }
 
-/* Odstępy między głównymi sekcjami strony - dla spójnego pionowego rytmu */
+/* -------------------------------------------------------------------------- */
+/* --- 3.2. Odstępy Między Głównymi Sekcjami --- */
+/* -------------------------------------------------------------------------- */
+
+/* Standardowe odstępy między głównymi sekcjami strony, dla spójnego pionowego rytmu */
 .hero-section,
 .latest-recipes-section,
 .categories-section,
 .notes-section, /* notes-section to kontener dla .latest-notes-grid na stronie głównej */
 .about-me-section {
-    margin-top: var(--spacing-xxl);
-    margin-bottom: var(--spacing-lg);
+    margin-top: var(--spacing-xl);    /* Zmniejszony górny margines dla sekcji (z --spacing-xxl na --spacing-xl) */
+    margin-bottom: var(--spacing-lg);   /* Standardowy margines na dole sekcji */
 }
 
 /* Pierwsza sekcja na stronie głównej nie potrzebuje górnego marginesu */
 .main-content .hero-section:first-child,
 .main-content .latest-recipes-section:first-child,
 .main-content .categories-section:first-child,
-.main-content .notes-section:first-child { /* Dodane notes-section */
-    margin-top: 0;
+.main-content .notes-section:first-child, /* Upewniamy się, że również dla notes-section na stronie głównej */
+.main-content .about-me-section:first-child { /* Dodane, dla spójności */
+    margin-top: 0; /* Usuwamy górny margines dla pierwszej sekcji, aby uniknąć nadmiernej przestrzeni na początku strony */
 }
 
-/* Siatki dla sekcji (przepisy, kategorie, notatki) - Domyślne style (mobile-first) */
+/* -------------------------------------------------------------------------- */
+/* --- 3.3. Style Siatek (Grid) --- */
+/* -------------------------------------------------------------------------- */
+
+/* Domyślne style dla siatek (gridów) - Mobile-first i domyślna szerokość */
 .recipes-grid,
 .latest-recipes-grid, /* Siatka najnowszych przepisów na stronie głównej */
 .categories-grid,    /* Siatka kategorii na stronie głównej */
 .notes-grid {        /* Domyślna siatka dla notatek (zarówno na stronie głównej, jak i /notes/) */
     display: grid;
-    gap: var(--spacing-lg);
-    max-width: 1200px; /* Domyślnie siatki są szerokie, jak main-content/content */
+    gap: var(--spacing-lg); /* Standardowe odstępy między elementami siatki */
+    max-width: 1200px; /* Domyślnie siatki są szerokie, jak .main-content / .content */
     margin: var(--spacing-lg) auto; /* Wyśrodkowanie siatki na stronie, z marginesami pionowymi */
 }
 
-/* Konkretne style dla siatek (auto-fit minmax) na podstawie typu */
+/* Konkretne style kolumn dla siatek na podstawie ich typu */
 .recipes-grid,
 .latest-recipes-grid {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Elastyczne kolumny dla przepisów */
@@ -414,7 +477,8 @@ p {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Większe kafelki dla notatek */
 }
 
-/* **NOWA REGUŁA:** Ograniczamy szerokość NOTES-GRID TYLKO NA STRONIE /NOTES/ */
+/* Reguła ograniczająca szerokość notes-grid TYLKO na dedykowanej stronie /notes/ */
+/* Ma wyższy priorytet niż ogólne .notes-grid dzięki dodatkowemu selektorowi klasy rodzica */
 .notes-list-section .notes-grid {
     max-width: 800px; /* Ograniczamy szerokość tylko dla siatki na stronie notes.html */
 }
