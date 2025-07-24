@@ -328,8 +328,8 @@ blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl
     text-align: center; /* Wyśrodkowanie zawartości nagłówka */
 
     /* Wewnętrzne odstępy nagłówka (padding) */
-    padding-top: var(--spacing-xl);    /* Mniej przestrzeni nad tytułem (z xxl na xl) */
-    padding-bottom: var(--spacing-lg); /* Mniej przestrzeni pod opisem (z xl na lg) */
+    padding-top: var(--spacing-md);    /* Mniej przestrzeni nad tytułem (z xxl na md) */
+    padding-bottom: var(--spacing-sm); /* Mniej przestrzeni pod opisem (z xl na sm) */
     padding-left: 0;                   /* Brak bocznych odstępów wewnętrznych */
     padding-right: 0;
 
