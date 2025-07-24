@@ -9,12 +9,10 @@ layout: default
     </header>
 
     <div class="note-content">
-        {# Główna zawartość notatki, która pochodzi z pliku Markdown #}
         {{ content }}
     </div>
 
     <div class="button-container note-single-button-container">
-        {# Zmieniono strzałkę dla lepszej intuicji "powrotu", dodano aria-label dla dostępności #}
         <a href="{{ '/notes/' | relative_url }}" class="button secondary-button" aria-label="Wróć do wszystkich notatek">« Wszystkie notatki</a>
     </div>
 </article>
