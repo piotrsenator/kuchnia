@@ -8,7 +8,7 @@ layout: default
         <p class="category-description">{{ page.description }}</p>
     </header>
 
-    <a href="{{ '/' | relative_url }}" class="back-to-categories-link">← Wróć do wszystkich kategorii</a>
+    {# Usuwamy stary link powrotny, który był tutaj #}
 
     <div class="recipes-grid">
 {% assign category_slug = page.slug %}
@@ -22,5 +22,10 @@ layout: default
     <p class="no-recipes-message">Brak przepisów w tej kategorii. Wróć tu wkrótce!</p>
 {% endif %}
 
+    </div>
+
+    {# Dodajemy nowy przycisk na dole, kierujący do sekcji kategorii na stronie głównej #}
+    <div class="button-container">
+        <a href="{{ '/' | relative_url }}#kategorie-przepisow" class="button secondary-button">Wróć do kategorii &raquo;</a>
     </div>
 </div>
