@@ -12,25 +12,27 @@ permalink: /notes/
 
     <section class="notes-list-section">
         {% if site.notes.size > 0 %}
-            <div class="notes-grid"> 
+            <div class="notes-grid">
                 {% for note in site.notes reversed %}
-                    <div class="note-card"> 
+                    {# Dodano klasę .note-box, aby upewnić się, że obramowanie jest zawsze stosowane,
+                       nawet jeśli dziedziczenie CSS nie działałoby idealnie na wszystkich przeglądarkach.
+                       W CSS .note-card już rozszerza .note-box, więc technicznie nie jest to wymagane,
+                       ale nie zaszkodzi dla pewności. #}
+                    <div class="note-card note-box">
                         <h3 class="note-title"><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
                         <p class="note-meta">
                             <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%d.%m.%Y" }}</time>
                             {% if note.author %} by {{ note.author }}{% endif %}
                         </p>
-                        {% comment %}
-                            Użyj excerptu (skrótu) notatki. Jekyll generuje go automatycznie lub możesz go zdefiniować w Front Matter.
-                            Jeśli excerpt jest pusty, można użyć truncatewords, ale lepiej polegać na wbudowanym exceprcie.
-                        {% endcomment %}
+                        {# Preferuj 'excerpt', jeśli istnieje; w przeciwnym razie generuj z 'content'. #}
                         {% if note.excerpt %}
                             <p class="note-excerpt">{{ note.excerpt | strip_html }}</p>
                         {% else %}
                             <p class="note-excerpt">{{ note.content | strip_html | truncatewords: 30 }}</p>
                         {% endif %}
                         <div class="note-read-more-container">
-                            <a href="{{ note.url | relative_url }}" class="read-more-link button primary-button">Czytaj więcej &raquo;</a>
+                            {# Dodano aria-label dla poprawy dostępności #}
+                            <a href="{{ note.url | relative_url }}" class="read-more-link button primary-button" aria-label="Czytaj więcej o {{ note.title | escape }}">Czytaj więcej &raquo;</a>
                         </div>
                     </div>
                 {% endfor %}
