@@ -30,7 +30,7 @@ permalink: /notes/
                             <p class="note-excerpt">{{ note.content | strip_html | truncatewords: 30 }}</p>
                         {% endif %}
                         <div class="note-read-more-container">
-                            <a href="{{ note.url | relative_url }}" class="read-more-link button secondary-button">Czytaj więcej &raquo;</a>
+                            <a href="{{ note.url | relative_url }}" class="read-more-link button primary-button">Czytaj więcej &raquo;</a>
                         </div>
                     </div>
                 {% endfor %}
