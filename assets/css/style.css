@@ -359,62 +359,65 @@ p {
 
 /* Ogólny kontener dla większości zawartości, zapewnia maksymalną szerokość i wyśrodkowanie */
 .content {
-    max-width: 1200px; /* Maksymalna szerokość dla ogólnej zawartości */
-    margin: 0 auto;    /* Wyśrodkowanie kontenera na stronie */
-    padding: var(--spacing-md); /* Domyślny wewnętrzny odstęp */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-md);
 }
 
 /* Główny kontener strony głównej - używa podobnych zasad co .content */
 .main-content {
-    max-width: 1200px; /* Maksymalna szerokość dla głównej zawartości */
-    margin: 0 auto;    /* Wyśrodkowanie kontenera na stronie */
-    padding: 0 var(--spacing-md); /* Wewnętrzny odstęp (tylko boczny) */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
 }
 
 /* Odstępy między głównymi sekcjami strony - dla spójnego pionowego rytmu */
 .hero-section,
 .latest-recipes-section,
 .categories-section,
-.notes-section,
+.notes-section, /* notes-section to kontener dla .latest-notes-grid na stronie głównej */
 .about-me-section {
-    margin-top: var(--spacing-xxl);    /* Duży margines na górze sekcji */
-    margin-bottom: var(--spacing-lg);   /* Standardowy margines na dole sekcji */
+    margin-top: var(--spacing-xxl);
+    margin-bottom: var(--spacing-lg);
 }
 
 /* Pierwsza sekcja na stronie głównej nie potrzebuje górnego marginesu */
 .main-content .hero-section:first-child,
 .main-content .latest-recipes-section:first-child,
 .main-content .categories-section:first-child,
-.main-content .notes-section:first-child {
-    margin-top: 0; /* Usuwamy górny margines dla pierwszej sekcji, aby nie było nadmiernej przestrzeni na początku strony */
+.main-content .notes-section:first-child { /* Dodane notes-section */
+    margin-top: 0;
 }
 
 /* Siatki dla sekcji (przepisy, kategorie, notatki) - Domyślne style (mobile-first) */
 .recipes-grid,
-.latest-recipes-grid {
+.latest-recipes-grid, /* Siatka najnowszych przepisów na stronie głównej */
+.categories-grid,    /* Siatka kategorii na stronie głównej */
+.notes-grid {        /* Domyślna siatka dla notatek (zarówno na stronie głównej, jak i /notes/) */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Elastyczne kolumny, minimum 220px */
-    gap: var(--spacing-lg); /* Odstępy między elementami siatki */
-    max-width: 1200px; /* Maksymalna szerokość siatki */
+    gap: var(--spacing-lg);
+    max-width: 1200px; /* Domyślnie siatki są szerokie, jak main-content/content */
     margin: var(--spacing-lg) auto; /* Wyśrodkowanie siatki na stronie, z marginesami pionowymi */
 }
 
+/* Konkretne style dla siatek (auto-fit minmax) na podstawie typu */
+.recipes-grid,
+.latest-recipes-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Elastyczne kolumny dla przepisów */
+}
+
 .categories-grid {
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Mniejsze kafelki dla kategorii */
-    gap: var(--spacing-lg);
-    max-width: 1200px; /* Maksymalna szerokość siatki kategorii */
-    margin: var(--spacing-lg) auto; /* Wyśrodkowanie siatki kategorii */
 }
 
 .notes-grid {
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Większe kafelki dla notatek */
-    gap: var(--spacing-lg);
-    max-width: 800px; /* Maksymalna szerokość siatki notatek (zgodnie z max-width nagłówka notes) */
-    margin: var(--spacing-lg) auto; /* Wyśrodkowanie siatki notatek */
 }
 
+/* **NOWA REGUŁA:** Ograniczamy szerokość NOTES-GRID TYLKO NA STRONIE /NOTES/ */
+.notes-list-section .notes-grid {
+    max-width: 800px; /* Ograniczamy szerokość tylko dla siatki na stronie notes.html */
+}
 /* ==========================================================================
     4. Style dla poszczególnych komponentów i stron
     ========================================================================== */
@@ -979,9 +982,11 @@ p {
     h1 { font-size: 3.5rem; }
     h2 { font-size: 2rem; }
     h3 { font-size: 1.6rem; }
+    h4 { font-size: 1.3rem; } /* Dodane, dla spójności, jeśli masz h4 */
 
     .site-title { font-size: 3.5rem; }
     .site-subtitle { font-size: 1.5rem; }
+    .site-description-short { font-size: 1.3rem; } /* Dodane, dla spójności */
 
     .content, .main-content {
         padding: var(--spacing-lg);
@@ -991,18 +996,10 @@ p {
     .recipes-grid,
     .latest-recipes-grid,
     .categories-grid,
-    .notes-grid { /* Zostawiamy notes-grid, by na stronie /notes/ był 3-kolumnowy */
+    .notes-grid { /* Notatki na stronie /notes/ */
         grid-template-columns: repeat(3, 1fr);
         gap: var(--spacing-lg);
     }
-
-    /* SPECIFIC DLA NOTATEK NA STRONIE GŁÓWNEJ NA TABLECIE */
-    /* Zapewniamy, że siatka z ostatnimi notatkami na stronie głównej jest szersza */
-    .latest-notes-grid {
-        max-width: 1200px; /* Rozszerzamy do pełnej szerokości contentu */
-        margin: var(--spacing-lg) auto; /* Wyśrodkowanie */
-    }
-
 
     /* Układ dla pojedynczego przepisu */
     .recipe-content-wrapper {
@@ -1015,6 +1012,7 @@ p {
         grid-column: 2 / 3;
     }
 
+    /* Wyśrodkowanie i maksymalna szerokość dla pojedynczych stron contentu */
     .recipe-single,
     .note-single,
     .error-404-container {
@@ -1024,6 +1022,7 @@ p {
         margin-right: auto;
     }
 
+    /* Wyśrodkowanie i maksymalna szerokość dla nagłówków stron list (notatek, kategorii) */
     .notes-list-section .page-header,
     .category-header {
         max-width: 800px;
@@ -1037,36 +1036,30 @@ p {
     h1 { font-size: 4rem; }
     h2 { font-size: 2.2rem; }
     h3 { font-size: 1.8rem; }
+    h4 { font-size: 1.6rem; } /* Dodane, dla spójności, jeśli masz h4 */
 
     .site-title { font-size: 4rem; }
     .site-subtitle { font-size: 1.7rem; }
+    .site-description-short { font-size: 1.4rem; } /* Dodane, dla spójności */
+
 
     .content, .main-content {
         padding: var(--spacing-xl);
     }
 
     .recipes-grid,
-    .latest-recipes-grid,
+    .latest-recipes-grid, /* Notatki na stronie głównej */
     .categories-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr); /* 4 kolumny dla przepisów i kategorii */
     }
 
-    /* Zmiana dla notes-grid na stronie /notes/ */
+    /* Zmiana dla notes-grid (strona /notes/) */
     .notes-grid {
         grid-template-columns: repeat(3, 1fr); /* 3 kolumny dla notes.html */
-        max-width: 800px; /* Maksymalna szerokość siatki notatek na stronie /notes/ */
-        margin: var(--spacing-lg) auto;
+        /* max-width jest kontrolowane przez .notes-list-section .notes-grid w sekcji 3 */
     }
 
-    /* SPECIFIC DLA NOTATEK NA STRONIE GŁÓWNEJ NA DESKTOPIE */
-    /* Nadpisanie, żeby ostatnie notatki na stronie głównej były szersze */
-    .latest-notes-grid {
-        grid-template-columns: repeat(3, 1fr); /* Jeśli chcesz 3 kolumny dla 3 notatek */
-        max-width: 1200px; /* Rozszerzamy do pełnej szerokości contentu */
-        margin: var(--spacing-lg) auto; /* Wyśrodkowanie */
-    }
-
-
+    /* Wyśrodkowanie i maksymalna szerokość dla nagłówków stron list (notatek, kategorii) */
     .notes-list-section .page-header,
     .category-header {
         max-width: 900px;
@@ -1074,6 +1067,7 @@ p {
         margin-right: auto;
     }
 
+    /* Wyśrodkowanie i maksymalna szerokość dla pojedynczych stron contentu */
     .recipe-single,
     .note-single,
     .error-404-container {
@@ -1082,7 +1076,7 @@ p {
     }
 }
 
-/* Mobilne, mniejsze fonty */
+/* Mobilne, mniejsze fonty (breakpoint: <= 767px) */
 @media (max-width: 767px) {
     h1 { font-size: 2.8rem; }
     h2 { font-size: 2.2rem; }
@@ -1114,6 +1108,7 @@ p {
         width: 80%;
     }
 
+    /* Wyśrodkowanie i pełna szerokość dla pojedynczych stron contentu na mobilnych */
     .recipe-single,
     .note-single,
     .error-404-container {
@@ -1122,6 +1117,7 @@ p {
         margin: 0 auto;
     }
 
+    /* Nagłówki stron list (notatek, kategorii) na mobilnych */
     .notes-list-section .page-header,
     .category-header {
         max-width: 100%;
