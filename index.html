@@ -12,9 +12,6 @@ title: Strona Główna
             {% for recipe in site.recipes limit: 4 %}
                 {% include recipe_card.html recipe=recipe %}
             {% endfor %}
-            <div class="button-container">
-                <a href="{{ '/recipes/' | relative_url }}" class="button primary-button">Wszystkie przepisy</a>
-            </div>
         </div>
     </section>
 
