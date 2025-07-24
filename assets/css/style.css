@@ -328,13 +328,13 @@ blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl
     text-align: center; /* Wyśrodkowanie zawartości nagłówka */
 
     /* Wewnętrzne odstępy nagłówka (padding) */
-    padding-top: var(--spacing-md);    /* Mniej przestrzeni nad tytułem (z xxl na md) */
-    padding-bottom: var(--spacing-sm); /* Mniej przestrzeni pod opisem (z xl na sm) */
+    padding-top: var(--spacing-sm);    /* Mniej przestrzeni nad tytułem (z xxl na sm) */
+    padding-bottom: var(--spacing-xs); /* Mniej przestrzeni pod opisem (z xl na xs) */
     padding-left: 0;                   /* Brak bocznych odstępów wewnętrznych */
     padding-right: 0;
 
     /* Zewnętrzny odstęp pod nagłówkiem (margin) */
-    margin-bottom: var(--spacing-sm);  /* Mniejszy odstęp do kolejnej sekcji (z md na sm) */
+    margin-bottom: var(--spacing-xs);  /* Mniejszy odstęp do kolejnej sekcji (z md na xs) */
 }
 .site-footer {
     background-color: var(--color-background-light);
