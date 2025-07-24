@@ -805,9 +805,40 @@ p {
 /* --- 4.3. Sekcje i Komponenty Kategorii --- */
 /* -------------------------------------------------------------------------- */
 
-/* -------------------------------------------------------------------------- */
-/* --- 4.3. Sekcje i Komponenty Kategorii --- */
-/* -------------------------------------------------------------------------- */
+/* Nagłówek strony kategorii (category.html) */
+.category-header {
+    text-align: center; /* Wyśrodkowanie tekstu */
+    margin-bottom: var(--spacing-lg); /* Możesz dostosować ten margines */
+    max-width: 900px; /* Dopasuj tę szerokość do max-width kontenera siatki */
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: var(--spacing-md); /* Dodaj trochę paddingu na górze, jeśli nagłówek jest na samej górze strony */
+}
+
+/* Tytuł kategorii na stronie kategorii (h1) - Spectral SC Regular */
+.category-header .category-title {
+    font-family: var(--font-family-headings); /* Spectral SC */
+    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
+    font-style: normal;
+    font-size: 3rem; /* Rozmiar jak dla h1 */
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-primary);
+    text-transform: none;
+}
+
+/* Opis kategorii na stronie kategorii (p) - Source Sans 3 Light */
+.category-header .category-description {
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
+    color: var(--color-text-dark);
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+/* Usunąć style dla .back-to-categories-link, jeśli już go nie używasz na górze */
+.back-to-categories-link {
+    display: none; /* Ukrywamy stary link powrotny na górze */
+}
 
 /* --- Kafelki kategorii (bez zdjęć) --- */
 .category-card {
