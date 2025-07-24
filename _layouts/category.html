@@ -7,9 +7,6 @@ layout: default
         <h1 class="category-title">{{ page.title }}</h1>
         <p class="category-description">{{ page.description }}</p>
     </header>
-
-    {# Usuwamy stary link powrotny, który był tutaj #}
-
     <div class="recipes-grid">
 {% assign category_slug = page.slug %}
 {% assign filtered_recipes = site.recipes | where: "category", category_slug %}
@@ -23,8 +20,6 @@ layout: default
 {% endif %}
 
     </div>
-
-    {# Dodajemy nowy przycisk na dole, kierujący do sekcji kategorii na stronie głównej #}
     <div class="button-container">
         <a href="{{ '/' | relative_url }}#kategorie-przepisow" class="button secondary-button">Wróć do kategorii &raquo;</a>
     </div>
