@@ -1,101 +1,85 @@
 /*
  * style.css
  * Globalne style dla kuchnia.senator.lu
- * Kolorystyka: naturalna, spokojna, elegancka
- * Typografia: czytelna, z charakterem (Playfair Display, Source Sans 3, Spectral SC)
- * Siatka: responsywna
+ * Wersja zoptymalizowana: poprawiona struktura, spójne odstępy, uproszczone media queries.
+ *
+ * STRUKTURA:
+ * 0. Konfiguracja Globalna (Fonty, Zmienne)
+ * 1. Style Podstawowe i Reset (Body, Typografia)
+ * 2. Układ (Layout, Grid, Header, Footer)
+ * 3. Komponenty (Przyciski, Karty)
+ * 4. Style Stron (Home, Przepis, Notatki, Kategoria, 404)
+ * 5. Media Queries (Responsywność)
+ * 6. Style Druku
  */
 
-/* Fonty - załadowane lokalnie */
-/* Playfair Display - Regular (Waga 400) */
+/* ==========================================================================
+   0. KONFIGURACJA GLOBALNA
+   ========================================================================== */
+
+/* 0.1. Definicje Fontów */
 @font-face {
     font-family: 'Playfair Display';
     src: url('../fonts/playfair-display-v39-latin_latin-ext-regular.woff2') format('woff2');
-    font-weight: 400; /* Regular */
-    font-style: normal;
+    font-weight: 400; font-style: normal;
 }
-
-/* Playfair Display - Italic (Waga 400) */
 @font-face {
     font-family: 'Playfair Display';
-    src: url('../fonts/playfair-display-v39-latin_latin-ext-italic.woff2') format('woff2'); /* Ten plik został dodany */
-    font-weight: 400; /* Regular Italic */
-    font-style: italic;
+    src: url('../fonts/playfair-display-v39-latin_latin-ext-italic.woff2') format('woff2');
+    font-weight: 400; font-style: italic;
 }
-
-/* Playfair Display - Bold (Waga 700) */
 @font-face {
     font-family: 'Playfair Display';
     src: url('../fonts/playfair-display-v39-latin_latin-ext-700.woff2') format('woff2');
-    font-weight: 700; /* Bold */
-    font-style: normal;
+    font-weight: 700; font-style: normal;
 }
-
-/* Source Sans 3 - Light (Waga 300) */
 @font-face {
     font-family: 'Source Sans 3';
     src: url('../fonts/source-sans-3-v18-latin_latin-ext-300.woff2') format('woff2');
-    font-weight: 300; /* Light */
-    font-style: normal;
+    font-weight: 300; font-style: normal;
 }
-
-/* Source Sans 3 - Regular (Waga 400) */
 @font-face {
     font-family: 'Source Sans 3';
     src: url('../fonts/source-sans-3-v18-latin_latin-ext-regular.woff2') format('woff2');
-    font-weight: 400; /* Regular */
-    font-style: normal;
+    font-weight: 400; font-style: normal;
 }
-
-/* Source Sans 3 - SemiBold (Waga 600) */
 @font-face {
     font-family: 'Source Sans 3';
-    src: url('../fonts/source-sans-3-v18-latin_latin-ext-600.woff2') format('woff2'); /* Ten plik został dodany */
-    font-weight: 600; /* SemiBold */
-    font-style: normal;
+    src: url('../fonts/source-sans-3-v18-latin_latin-ext-600.woff2') format('woff2');
+    font-weight: 600; font-style: normal;
 }
-
-/* Spectral SC - Regular (Waga 400) */
 @font-face {
     font-family: 'Spectral SC';
     src: url('../fonts/spectral-sc-v14-latin_latin-ext-regular.woff2') format('woff2');
-    font-weight: 400; /* Regular */
-    font-style: normal;
+    font-weight: 400; font-style: normal;
 }
 
-
-/* ==========================================================================
-    0. Podstawowe resetowanie i ogólne style
-    ========================================================================== */
-
-/* Definicja zmiennych CSS (Custom Properties) */
+/* 0.2. Zmienne CSS (Custom Properties) */
 :root {
     /* Kolory */
-    --color-primary: #A9643E; /* Kolor akcentu (dla nagłówków, linków, głównych przycisków) */
-    --color-secondary: #BDB7AF; /* Kolor dla elementów drugorzędnych (np. obramowania, subtelne tła) */
-    --color-text-dark: #2E2E2E; /* Kolor ciemnego tekstu (główny tekst, nagłówki na jasnym tle) */
-    --color-background-light: #FAF5EF; /* Kolor jasnego tła (główne tło strony) */
-    --color-background-accent: #F1EBE3; /* Kolor tła dla wyróżnionych elementów (np. karty, panele) */
-    --color-white: #FFFFFF; /* Biały */
+    --color-primary: #A9643E;
+    --color-secondary: #BDB7AF;
+    --color-text-dark: #2E2E2E;
+    --color-background-light: #FAF5EF;
+    --color-background-accent: #F1EBE3;
+    --color-white: #FFFFFF;
 
     /* Fonty */
-    --font-family-primary: 'Source Sans 3', sans-serif; /* Domyślny font dla tekstu (Regular) */
-    --font-family-headings: 'Spectral SC', serif; /* Font dla nagłówków h1-h6 i h2 sekcji */
-    --font-family-site-title: 'Playfair Display', serif; /* Font dla site-title (Playfair Display Italic) */
-    --font-weight-light: 300; /* Source Sans 3 Light */
-    --font-weight-regular: 400; /* Source Sans 3 Regular / Spectral SC Regular / Playfair Display Italic */
-    --font-weight-semibold: 600; /* Source Sans 3 SemiBold */
+    --font-family-primary: 'Source Sans 3', sans-serif;
+    --font-family-headings: 'Spectral SC', serif;
+    --font-family-site-title: 'Playfair Display', serif;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-semibold: 600;
 
-
-    /* Odstępy (Spacing - używane dla konsekwentnych paddingów/marginesów) */
-    --spacing-xs: 0.5rem;     /* ~8px */
-    --spacing-sm: 1rem;       /* ~16px */
-    --spacing-md: 1.5rem;     /* ~24px */
-    --spacing-lg: 2rem;       /* ~32px */
-    --spacing-xl: 3rem;       /* ~48px */
-    --spacing-xxl: 4rem;      /* ~64px */
-    --spacing-xxs: 0.25rem;   /* ~4px - dla minimalnego paddingu */
-
+    /* Odstępy */
+    --spacing-xxs: 0.25rem;  /* 4px */
+    --spacing-xs: 0.5rem;    /* 8px */
+    --spacing-sm: 1rem;      /* 16px */
+    --spacing-md: 1.5rem;    /* 24px */
+    --spacing-lg: 2rem;      /* 32px */
+    --spacing-xl: 3rem;      /* 48px */
+    --spacing-xxl: 4rem;     /* 64px */
 
     /* Cienie */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.03);
@@ -107,6 +91,11 @@
     --border-radius-md: 8px;
 }
 
+/* ==========================================================================
+   1. STYLE PODSTAWOWE I RESET
+   ========================================================================== */
+
+/* 1.1. Globalny Reset i `body` */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -114,35 +103,26 @@
 }
 
 html {
-    font-size: 16px; /* Bazowy rozmiar fontu */
+    font-size: 16px;
     line-height: 1.6;
     scroll-behavior: smooth;
 }
 
 body {
-    font-family: var(--font-family-primary); /* Główny tekst - Source Sans 3 Regular (domyślny) */
-    font-weight: var(--font-weight-regular); /* Domyślna waga dla body */
-    color: var(--color-text-dark); /* Użycie zmiennej */
-    background-color: var(--color-background-light); /* Użycie zmiennej */
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-dark);
+    background-color: var(--color-background-light);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* ==========================================================================
-    1. Podstawowe Style i Typografia
-    ========================================================================== */
-
-/* -------------------------------------------------------------------------- */
-/* --- 1.1. Reset i podstawowe style body --- */
-/* -------------------------------------------------------------------------- */
-
-/* Globalny reset marginesów dla głównych elementów tekstowych */
+/* 1.2. Podstawowa Typografia */
 h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote {
-    margin-top: 0;
-    margin-bottom: var(--spacing-md); /* Domyślny odstęp pod większością elementów */
+    margin-bottom: var(--spacing-md); /* Domyślny odstęp dolny */
 }
 
-/* Usuń dolny margines dla ostatniego elementu w kontenerze, aby uniknąć zbędnej przestrzeni */
+/* Usuń dolny margines dla ostatniego elementu, aby uniknąć zbędnej przestrzeni */
 .content > *:last-child,
 .main-content > *:last-child,
 .recipe-content > *:last-child,
@@ -150,386 +130,216 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote {
     margin-bottom: 0;
 }
 
-body {
-    font-family: var(--font-family-primary); /* Domyślna czcionka dla całej strony */
-    font-weight: var(--font-weight-regular); /* Domyślna waga dla body (Source Sans 3 Regular) */
-    font-size: 1rem; /* Podstawowy rozmiar fontu (16px) */
-    line-height: 1.6; /* Domyślna wysokość linii dla czytelności */
-    color: var(--color-text-dark); /* Domyślny kolor tekstu */
-}
-
-/* -------------------------------------------------------------------------- */
-/* --- 1.2. Globalne style typografii (Nagłówki i Akapity) --- */
-/* -------------------------------------------------------------------------- */
-
-/* Nagłówki (Spectral SC Regular) */
-h1, h2, h4, h5, h6 { /* h1, h2, h4, h5, h6 używają Spectral SC Regular */
-    font-family: var(--font-family-headings); /* Spectral SC */
-    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
-    font-style: normal;
+h1, h2, h4, h5, h6 {
+    font-family: var(--font-family-headings);
+    font-weight: var(--font-weight-regular);
     color: var(--color-primary);
-    text-transform: none;
-    margin-top: var(--spacing-xl); /* Większy odstęp przed nową sekcją/ważnym nagłówkiem */
-    margin-bottom: var(--spacing-md);
+    margin-top: var(--spacing-xl);
 }
 
 h1 { font-size: 2.8rem; }
 h2 { font-size: 2.2rem; }
+h3 { /* Nazwa przepisu, tytuł notatki w karcie */
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-semibold);
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
 h4 { font-size: 1.5rem; }
 h5 { font-size: 1.3rem; }
 h6 { font-size: 1.1rem; }
 
-/* Nazwa przepisu (h3) - Source Sans 3 SemiBold */
-h3 {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
-    font-style: normal;
-    font-size: 1.8rem; /* Domyślny rozmiar dla h3 */
-    color: var(--color-primary);
-    text-transform: none;
-    margin-top: var(--spacing-md); /* Standardowy odstęp przed h3 */
-    margin-bottom: var(--spacing-sm);
-}
-
-/* Akapity - Source Sans 3 Light (domyślnie w sekcji 1.1 jest regular, tu nadpisujemy) */
 p {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-    font-style: normal;
-    color: var(--color-text-dark);
-    margin-bottom: var(--spacing-sm); /* Zmniejszony odstęp między akapitami */
+    font-weight: var(--font-weight-light);
+    margin-bottom: var(--spacing-sm); /* Mniejszy odstęp między akapitami */
 }
 
-/* -------------------------------------------------------------------------- */
-/* --- 1.3. Specyficzne style nagłówków i opisów strony (Home Page) --- */
-/* -------------------------------------------------------------------------- */
-
-/* site-title (Playfair Display Italic) */
-.site-title {
-    font-family: var(--font-family-site-title); /* Playfair Display Italic */
-    font-weight: var(--font-weight-regular); /* Waga 400, bo Italic 400 */
-    font-style: italic;
-    font-size: 3rem;
-    line-height: 1.2;
-    color: var(--color-primary);
-    text-transform: none;
-    margin-bottom: var(--spacing-xxs); /* Mały odstęp pod tytułem głównym */
-}
-
-/* site-subtitle i site-description-short używają Source Sans 3 Light */
-.site-subtitle {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-light); /* Waga 300 (Light) */
-    font-style: normal;
-    font-size: 1.3rem;
-    color: var(--color-text-dark);
-    margin-top: var(--spacing-xxs); /* Mały odstęp nad podtytułem */
-    margin-bottom: var(--spacing-xs); /* Mały odstęp pod podtytułem */
-    text-transform: none;
-}
-
-.site-description-short {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-light); /* Waga 300 (Light) */
-    font-size: 1.2rem;
-    color: var(--color-text-dark);
-    max-width: 700px;
-    margin: var(--spacing-xxs) auto var(--spacing-md) auto; /* Top, Right/Left(auto=center), Bottom */
-    text-transform: none;
-}
-
-.site-description-short p {
-    margin-bottom: var(--spacing-xs); /* Mniejszy margines między akapitami w opisie krótkim */
-    font-weight: inherit; /* Dziedzicz wagę z nadrzędnego .site-description-short */
-}
-
-/* -------------------------------------------------------------------------- */
-/* --- 1.4. Style dla list --- */
-/* -------------------------------------------------------------------------- */
-
-/* Styl dla list w przepisach i ogólne listy - używają Source Sans 3 Regular */
-ul, ol {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-size: 0.95rem; /* Nieco mniejszy rozmiar dla list */
-    line-height: 1.8;
-    color: var(--color-text-dark);
-    margin-left: var(--spacing-md); /* Wcięcie listy */
-    list-style-position: outside; /* Domyślnie na zewnątrz */
-    font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
-    font-style: normal;
-    margin-bottom: var(--spacing-md); /* Odstęp pod listami */
-}
-
-/* Konkretne pozycjonowanie wewnątrz dla list w przepisach */
-.recipe-ingredients ul,
-.recipe-preparation ol {
-    list-style-position: inside; /* Numery/markery wewnątrz listy dla tych konkretnych list */
-    font-weight: var(--font-weight-regular); /* Upewnij się, że są Regular */
-    font-style: normal;
-}
-
-.recipe-ingredients ul li::marker,
-.recipe-preparation ol li::marker {
-    color: var(--color-primary); /* Kolor markerów */
-}
-
-/* -------------------------------------------------------------------------- */
-/* --- 1.5. Style dla linków --- */
-/* -------------------------------------------------------------------------- */
-
-/* Ogólne style dla linków - używają Source Sans 3 Regular */
 a {
     color: var(--color-primary);
     text-decoration: none;
-    transition: color 0.3s ease; /* Płynna zmiana koloru przy najechaniu */
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
-    font-style: normal;
+    transition: color 0.3s ease;
+    font-weight: var(--font-weight-regular);
 }
-
 a:hover {
-    color: var(--color-secondary); /* Kolor po najechaniu */
+    color: var(--color-secondary);
 }
 
-/* -------------------------------------------------------------------------- */
-/* --- 1.6. Inne specyficzne style tekstowe --- */
-/* -------------------------------------------------------------------------- */
-
-/* Opis przepisu - używa Source Sans 3 Light */
-.recipe-description {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-    font-style: normal;
-    font-size: 1.2rem;
-    color: var(--color-text-dark);
-    margin-bottom: var(--spacing-lg); /* Większy odstęp pod opisem przepisu */
+ul, ol {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-left: var(--spacing-md);
+    list-style-position: outside;
+    font-weight: var(--font-weight-regular);
 }
 
-/* Cytaty - używają Source Sans 3 Regular */
-blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl */
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-style: normal;
-    font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
-    font-size: 1.1rem; /* Lekko większy font dla cytatów */
+.recipe-ingredients ul,
+.recipe-preparation ol {
+    list-style-position: inside;
+}
+.recipe-ingredients ul li::marker,
+.recipe-preparation ol li::marker {
+    color: var(--color-primary);
+}
+
+blockquote {
+    font-weight: var(--font-weight-regular);
+    font-size: 1.1rem;
     line-height: 1.7;
     padding: var(--spacing-md) var(--spacing-lg);
-    margin: var(--spacing-lg) auto; /* Wyśrodkowanie cytatu */
+    margin: var(--spacing-lg) auto;
     background-color: var(--color-background-accent);
     border-left: 5px solid var(--color-primary);
-    color: var(--color-text-dark);
 }
 
 /* ==========================================================================
-    2. Elementy globalne strony (Header, Footer, Przyciski)
-    ========================================================================== */
+   2. UKŁAD (LAYOUT)
+   ========================================================================== */
 
+/* 2.1. Główne Kontenery */
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-sm);
+}
+.main-page-content.content {
+    padding: 0 var(--spacing-sm);
+}
+.content.page-with-list {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* 2.2. Nagłówek i Stopka */
 .site-header {
     background-color: var(--color-background-light);
-    text-align: center; /* Wyśrodkowanie zawartości nagłówka */
-
-    /* Wewnętrzne odstępy nagłówka (padding) */
-    padding-top: var(--spacing-sm);    /* Mniej przestrzeni nad tytułem (z xxl na sm) */
-    padding-bottom: var(--spacing-xs); /* Mniej przestrzeni pod opisem (z xl na xs) */
-    padding-left: 0;                   /* Brak bocznych odstępów wewnętrznych */
-    padding-right: 0;
-
-    /* Zewnętrzny odstęp pod nagłówkiem (margin) */
-    margin-bottom: var(--spacing-xs);  /* Mniejszy odstęp do kolejnej sekcji (z md na xs) */
+    text-align: center;
+    padding: var(--spacing-sm) 0 var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
 }
 .site-footer {
     background-color: var(--color-background-light);
-    color: var(--color-text-dark);
     text-align: center;
     padding: var(--spacing-lg) 0;
     border-top: 1px solid var(--color-secondary);
     margin-top: var(--spacing-xl);
-    font-family: var(--font-family-primary); /* Source Sans 3 Light */
     font-weight: var(--font-weight-light);
 }
 
-/* Style dla przycisków - używają Source Sans 3 SemiBold */
+/* 2.3. Sekcje Strony i Siatki (Grid) */
+.hero-section,
+.latest-recipes-section,
+.categories-section,
+.notes-section,
+.about-me-section {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+}
+.main-content > section:first-child {
+    margin-top: 0;
+}
+
+.recipes-grid,
+.latest-recipes-grid,
+.categories-grid,
+.notes-grid {
+    display: grid;
+    gap: var(--spacing-md);
+    max-width: 1200px;
+    margin: var(--spacing-md) auto;
+    padding: 0 var(--spacing-sm);
+    box-sizing: border-box;
+}
+.recipes-grid, .latest-recipes-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.categories-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.notes-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.notes-list-section .notes-grid {
+    max-width: 800px;
+    grid-template-columns: 1fr; /* Domyślnie jedna kolumna na stronie z listą notatek */
+}
+
+
+/* ==========================================================================
+   3. KOMPONENTY
+   ========================================================================== */
+
+/* 3.1. Przyciski */
 .button {
     display: inline-block;
-    padding: 0.8rem var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--spacing-sm);
-    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-semibold);
     cursor: pointer;
     border-radius: var(--border-radius-sm);
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     text-align: center;
-    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
-    font-style: normal;
 }
-
 .button-container {
     text-align: center;
     margin-top: var(--spacing-lg);
 }
-
 .button.primary-button {
     background-color: transparent;
     color: var(--color-primary);
     border: 1px solid var(--color-primary);
 }
-
 .button.primary-button:hover {
     background-color: var(--color-primary);
     color: var(--color-background-light);
 }
-
 .button.secondary-button {
     background-color: var(--color-primary);
     color: var(--color-background-light);
     border: none;
 }
-
 .button.secondary-button:hover {
     background-color: var(--color-text-dark);
-    color: var(--color-background-light);
 }
-
-/* Specyficzny styl dla przycisku drukowania - używa Source Sans 3 SemiBold */
 .print-button {
     background-color: var(--color-primary);
     color: var(--color-background-light);
     border: none;
-    padding: 0.8rem var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--spacing-sm);
-    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-semibold);
     cursor: pointer;
     border-radius: var(--border-radius-sm);
     transition: background-color 0.3s ease;
     margin-top: var(--spacing-md);
-    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
-    font-style: normal;
 }
-
 .print-button:hover {
     background-color: var(--color-text-dark);
 }
 
-/* ==========================================================================
-    3. Układ strony (Content, Grid, Margins)
-    ========================================================================== */
 
-/* -------------------------------------------------------------------------- */
-/* --- 3.1. Kontenery Główne Strony --- */
-/* -------------------------------------------------------------------------- */
-
-/* Ogólny kontener dla większości zawartości strony */
-.content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-md); /* Domyślny wewnętrzny odstęp */
-}
-
-/* Główny kontener strony głównej - upewniamy się, że nadpisuje .content */
-.main-page-content.content { /* Selektor z dwiema klasami ma wyższą specyficzność */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md); /* Zero paddingu góra/dół, tylko boczny */
-}
-
-/* **WAŻNE: NOWA REGUŁA DLA STRON Z LISTAMI (np. notes.html)** */
-.content.page-with-list {
-    padding-left: 0;   /* Zeruje lewy padding */
-    padding-right: 0;  /* Zeruje prawy padding */
-}
-
-/* -------------------------------------------------------------------------- */
-/* --- 3.2. Odstępy Między Głównymi Sekcjami --- */
-/* -------------------------------------------------------------------------- */
-
-/* Standardowe odstępy między głównymi sekcjami strony, dla spójnego pionowego rytmu */
-.hero-section,
-.latest-recipes-section,
-.categories-section,
-.notes-section, /* notes-section to kontener dla .latest-notes-grid na stronie głównej */
-.about-me-section {
-    margin-top: var(--spacing-xl);    /* Zmniejszony górny margines dla sekcji (z --spacing-xxl na --spacing-xl) */
-    margin-bottom: var(--spacing-lg);   /* Standardowy margines na dole sekcji */
-}
-
-/* Pierwsza sekcja na stronie głównej nie potrzebuje górnego marginesu */
-.main-content .hero-section:first-child,
-.main-content .latest-recipes-section:first-child,
-.main-content .categories-section:first-child,
-.main-content .notes-section:first-child, /* Upewniamy się, że również dla notes-section na stronie głównej */
-.main-content .about-me-section:first-child { /* Dodane, dla spójności */
-    margin-top: 0; /* Usuwamy górny margines dla pierwszej sekcji, aby uniknąć nadmiernej przestrzeni na początku strony */
-}
-
-/* -------------------------------------------------------------------------- */
-/* --- 3.3. Style Siatek (Grid) --- */
-/* -------------------------------------------------------------------------- */
-
-/* Domyślne style dla siatek (gridów) - Mobile-first i domyślna szerokość */
-.recipes-grid,
-.latest-recipes-grid, /* Siatka najnowszych przepisów na stronie głównej */
-.categories-grid,    /* Siatka kategorii na stronie głównej */
-.notes-grid {        /* Domyślna siatka dla notatek (zarówno na stronie głównej, jak i /notes/) */
-    display: grid;
-    gap: var(--spacing-lg); /* Standardowe odstępy między elementami siatki */
-    max-width: 1200px; /* Domyślnie siatki są szerokie, jak .main-content / .content */
-    margin: var(--spacing-lg) auto; /* Wyśrodkowanie siatki na stronie, z marginesami pionowymi */
-}
-
-/* Konkretne style kolumn dla siatek na podstawie ich typu */
-.recipes-grid,
-.latest-recipes-grid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Elastyczne kolumny dla przepisów */
-}
-
-.categories-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Mniejsze kafelki dla kategorii */
-}
-
-.notes-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Większe kafelki dla notatek */
-}
-
-/* Reguła ograniczająca szerokość notes-grid TYLKO na dedykowanej stronie /notes/ */
-/* Ma wyższy priorytet niż ogólne .notes-grid dzięki dodatkowemu selektorowi klasy rodzica */
-.notes-list-section .notes-grid {
-    max-width: 800px; /* Ograniczamy szerokość tylko dla siatki na stronie notes.html */
-}
-/* ==========================================================================
-    4. Style dla poszczególnych komponentów i stron
-    ========================================================================== */
-
-/* -------------------------------------------------------------------------- */
-/* --- 4.1. Sekcje i Komponenty Przepisów --- */
-/* -------------------------------------------------------------------------- */
-
-/* --- Karty przepisów (na stronie głównej i kategoriach) --- */
+/* 3.2. Karta Przepisu (.recipe-card) */
 .recipe-card {
     background-color: var(--color-background-accent);
     border: 1px solid var(--color-secondary);
     border-radius: var(--border-radius-md);
     overflow: hidden;
     text-align: center;
-    padding-bottom: 0.8rem; /* Pozostawiamy ten padding */
+    padding-bottom: var(--spacing-xs);
     box-shadow: var(--shadow-md);
     transition: transform 0.2s ease;
-    /* Jeśli w karcie przepisu masz tylko obrazek i tytuł,
-       a chcesz, by cała karta miała stałą wysokość,
-       możesz dodać min-height tutaj i dopasować Flexbox dla .recipe-card.
-       Na razie skupiamy się na tytule. */
 }
-
 .recipe-card:hover {
     transform: translateY(-5px);
 }
-
 .recipe-card-link {
     display: block;
     color: inherit;
 }
-
 .recipe-card-link:hover .recipe-card-title {
     color: var(--color-text-dark);
 }
-
 .recipe-card-image-container {
     width: 100%;
     padding-bottom: 100%;
@@ -537,213 +347,186 @@ blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl
     overflow: hidden;
     margin-bottom: var(--spacing-sm);
 }
-
 .recipe-card-image-container img {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     object-fit: cover;
-    object-position: center center;
-    display: block;
 }
-
-/* Nazwa przepisu w karcie (h3) - Source Sans 3 SemiBold */
 .recipe-card-title {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
-    font-style: normal;
-    font-size: 1.2rem; /* Pozostawiamy rozmiar fontu */
-    line-height: 1.2; /* Ważne dla stałej wysokości linii */
-    margin-bottom: var(--spacing-xs); /* Zachowujemy margines pod tytułem */
-    color: var(--color-primary); /* Domyślny kolor tytułu */
-    text-transform: none;
-    text-align: center; /* Wyśrodkowanie poziome */
-
-    /* Kluczowe zmiany dla stałej wysokości i wyśrodkowania pionowego */
-    min-height: calc(2 * 1.2rem * 1.2); /* Obliczamy min-height dla 2 linii tekstu */
-    display: flex; /* Włączamy Flexbox dla samego tytułu */
-    align-items: center; /* Wyśrodkowanie pionowe zawartości wewnątrz .recipe-card-title */
-    justify-content: center; /* Wyśrodkowanie poziome (może być redundantne z text-align) */
-
-    /* Przywracamy obcinanie tekstu do 2 linii z elipsą */
+    font-weight: var(--font-weight-semibold);
+    font-size: 1.2rem;
+    line-height: 1.2;
+    margin: 0; /* Usunięto marginesy, aby flexbox działał poprawnie */
+    padding: 0 var(--spacing-xs) var(--spacing-xs); /* Dodano padding dla estetyki */
+    color: var(--color-primary);
+    min-height: calc(2 * 1.2rem * 1.2); /* Min-height dla 2 linii tekstu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
+    display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    white-space: normal;
-    display: -webkit-box; /* Ważne dla -webkit-line-clamp */
 }
 
-/* --- Strona pojedynczego przepisu --- */
+/* 3.3. Karta Kategorii (.category-card) */
+.category-card {
+    background-color: var(--color-background-accent);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: center;
+    transition: background-color 0.3s ease;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.category-card:hover {
+    background-color: var(--color-primary);
+}
+.category-card-title {
+    font-weight: var(--font-weight-semibold);
+    font-size: 1.4rem;
+    line-height: 1.2;
+    margin: 0;
+    transition: color 0.3s ease;
+    min-height: calc(2 * 1.4rem * 1.2); /* Min-height dla 2 linii */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.category-card:hover .category-card-title {
+    color: var(--color-background-light);
+}
+.category-post-count {
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    margin-top: var(--spacing-xxs);
+    flex-shrink: 0;
+}
+
+
+/* ==========================================================================
+   4. STYLE STRON
+   ========================================================================== */
+
+/* 4.1. Strona Główna */
+.site-title {
+    font-family: var(--font-family-site-title);
+    font-weight: var(--font-weight-regular);
+    font-style: italic;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xxs);
+}
+.site-subtitle, .site-description-short {
+    font-weight: var(--font-weight-light);
+    color: var(--color-text-dark);
+}
+.site-subtitle {
+    font-size: 1.1rem;
+    margin-top: var(--spacing-xxs);
+    margin-bottom: var(--spacing-xs);
+}
+.site-description-short {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: var(--spacing-xxs) auto var(--spacing-md) auto;
+}
+.site-description-short p {
+    margin-bottom: var(--spacing-xs);
+    font-weight: inherit;
+}
+
+/* 4.2. Strona Pojedynczego Przepisu */
 .recipe-single {
-    max-width: 900px;
-    margin: var(--spacing-lg) auto;
-    padding: var(--spacing-md);
+    max-width: 100%;
+    margin: 0 auto;
+    padding: var(--spacing-sm);
     background-color: var(--color-background-accent);
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-lg);
 }
-
 .recipe-header {
     text-align: center;
     margin-bottom: var(--spacing-lg);
 }
-
-/* Tytuł przepisu na pojedynczej stronie (h1 w kontekście strony) - Spectral SC Regular */
 .recipe-title {
-    font-family: var(--font-family-headings); /* Spectral SC */
-    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
-    font-style: normal;
+    font-family: var(--font-family-headings);
+    font-weight: var(--font-weight-regular);
     font-size: 3rem;
     margin-bottom: var(--spacing-sm);
-    text-transform: none;
 }
-
+.recipe-description {
+    font-weight: var(--font-weight-light);
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-lg);
+}
 .recipe-content-wrapper {
     display: grid;
     gap: var(--spacing-lg);
     grid-template-columns: 1fr;
 }
-
-.recipe-main-info {
-    grid-column: 1 / 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.recipe-ingredients {
-    grid-column: 1 / -1;
-}
-
-.recipe-preparation,
-.recipe-additional-content {
-    grid-column: 1 / -1;
-    margin-top: var(--spacing-lg);
-}
-
 .recipe-main-image {
     max-width: 100%;
-    width: 100%;
     height: auto;
     border-radius: var(--border-radius-md);
     margin-bottom: var(--spacing-md);
     aspect-ratio: 4 / 3;
     object-fit: cover;
 }
-
 .recipe-details {
     width: 100%;
     padding: var(--spacing-sm);
     background-color: var(--color-background-accent);
     border-radius: var(--border-radius-md);
     border: 1px solid var(--color-secondary);
-    margin-top: 0;
 }
-
-/* Treść przepisu, opis - Source Sans 3 Light */
 .recipe-details p {
     margin-bottom: var(--spacing-xs);
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    color: var(--color-text-dark);
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-    font-style: normal;
+    font-weight: var(--font-weight-light);
 }
-
 .recipe-details strong {
     color: var(--color-primary);
-    font-weight: var(--font-weight-semibold); /* Wartość pogrubiona w szczegółach przepisu */
-    font-style: normal;
+    font-weight: var(--font-weight-semibold);
 }
 
-/* ==========================================================================
-   4.2. Sections and Note Components
-   ========================================================================== */
+/* 4.3. Strony Notatek (ogólne, lista, pojedyncza) */
 
-/* --- 4.2.1. Main Page Notes Section (Smaller Cards) --- */
-/* Styles for note cards displayed on the homepage, if applicable */
+/* Wpis notatki (np. na stronie głównej) */
 .notes-section .note-entry {
     background-color: var(--color-background-accent);
     border: 1px solid var(--color-secondary);
     border-radius: var(--border-radius-md);
     padding: var(--spacing-md);
-    margin-bottom: 0; /* Managed by grid/gap if in a grid layout */
     box-shadow: var(--shadow-sm);
 }
+.notes-section .note-entry h3 { font-size: 1.6rem; margin-bottom: var(--spacing-xs); }
+.notes-section .note-entry p { font-size: var(--spacing-sm); margin-bottom: var(--spacing-sm); }
 
-/* Heading for notes on the main page (h3) - Source Sans 3 SemiBold */
-.notes-section .note-entry h3 {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
-    font-style: normal;
-    font-size: 1.6rem;
-    margin-bottom: var(--spacing-xs);
-    text-transform: none;
-    /* No text-align: center here, as per request */
-}
 
-/* Text content of notes on the main page (p) - Source Sans 3 Light */
-.notes-section .note-entry p {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-    font-style: normal;
-    font-size: var(--spacing-sm);
-    color: var(--color-text-dark);
-    margin-bottom: 0.8rem;
-}
-
----
-
-/* ==========================================================================
-   4.2.2. Notes List Page (notes.html)
-   ========================================================================== */
-
-/* Page header for the notes list (contains h1 "Wszystkie notatki" and description p) */
+/* Strona z listą notatek */
 .notes-list-section .page-header {
-    text-align: center;         /* CRUCIAL: Centers text and inline elements (like h1) within the header */
-    max-width: 800px;           /* Limits header width for consistency with the grid */
-    margin-left: auto;
-    margin-right: auto;         /* Centers the header block itself horizontally */
-
-    /* Vertical spacing for the header */
-    padding-top: var(--spacing-xl);     /* Space above the main title */
-    padding-bottom: var(--spacing-lg);  /* Space below the header description */
-    margin-bottom: var(--spacing-md);   /* Space before the note grid */
+    text-align: center;
+    max-width: 100%;
+    margin-left: auto; margin-right: auto;
+    padding: var(--spacing-xl) var(--spacing-sm) var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
+.notes-list-section .page-header h1 { font-size: 3rem; margin-bottom: var(--spacing-xs); }
+.notes-list-section .page-description { font-weight: var(--font-weight-light); font-size: 1.3rem; margin: 0; }
 
-/* Main title of the notes list page (h1) - "Wszystkie notatki" */
-.notes-list-section .page-header h1 {
-    font-family: var(--font-family-headings); /* Spectral SC */
-    font-weight: var(--font-weight-regular);  /* Spectral SC Regular */
-    font-style: normal;
-    font-size: 3rem;
-    margin-bottom: var(--spacing-xs); /* Small space below h1 */
-    line-height: 1.2;
-    color: var(--color-primary);
-    text-transform: none;
-    /* text-align: center is inherited from its parent .page-header */
-}
-
-/* Description of the notes list page (p.page-description) */
-.notes-list-section .page-description {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-light);   /* Source Sans 3 Light */
-    font-size: 1.3rem;
-    color: var(--color-text-dark);
-    margin: 0; /* Ensures no extra margins */
-    /* text-align: center is inherited from its parent .page-header */
-}
-
-/* Notes grid layout */
-.notes-list-section .notes-grid {
-    grid-template-columns: 1fr; /* Sets grid to a single column, always */
-    max-width: 800px;           /* Limits the width of the note grid */
-    margin: var(--spacing-lg) auto; /* Centers the grid with vertical spacing */
-    gap: var(--spacing-lg);     /* Space between note cards */
-}
-
-/* Individual note card */
+/* Karta notatki na stronie listy */
 .notes-list-section .note-card {
     background-color: var(--color-background-accent);
     border: 1px solid var(--color-secondary);
@@ -751,389 +534,99 @@ blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl
     padding: var(--spacing-md);
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Stretches content vertically, pushing button to bottom */
+    justify-content: space-between;
     box-shadow: var(--shadow-md);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+.notes-list-section .note-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.notes-list-section .note-card .note-title { font-size: 1.8rem; margin-bottom: var(--spacing-xs); }
+.notes-list-section .note-card .note-title a { color: var(--color-primary); transition: color 0.3s ease; }
+.notes-list-section .note-card .note-title a:hover { color: var(--color-text-dark); }
+.notes-list-section .note-card .note-meta { font-size: 0.9rem; color: var(--color-secondary); margin-bottom: var(--spacing-sm); }
+.notes-list-section .note-card .note-excerpt { font-weight: var(--font-weight-light); font-size: 1rem; margin-bottom: var(--spacing-md); flex-grow: 1; }
+.notes-list-section .note-read-more-container { text-align: right; margin-top: auto; }
 
-.notes-list-section .note-card:hover {
-    transform: translateY(-5px); /* Subtle lift effect on hover */
-    box-shadow: var(--shadow-lg); /* Enhanced shadow on hover */
-}
-
-/* Title of the note within the card (h3) */
-.notes-list-section .note-card .note-title {
-    font-family: var(--font-family-primary);    /* Source Sans 3 */
-    font-weight: var(--font-weight-semibold);   /* Source Sans 3 SemiBold */
-    font-style: normal;
-    font-size: 1.8rem;
-    margin-bottom: var(--spacing-xs); /* Small space below the title */
-    line-height: 1.3;
-    color: var(--color-primary);
-    text-transform: none;
-    /* No text-align: center here, as per request */
-}
-
-.notes-list-section .note-card .note-title a {
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.notes-list-section .note-card .note-title a:hover {
-    color: var(--color-text-dark); /* Color change on hover */
-}
-
-/* Note metadata (date) */
-.notes-list-section .note-card .note-meta {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
-    font-style: normal;
-    font-size: 0.9rem;
-    color: var(--color-secondary);
-    margin-bottom: var(--spacing-sm); /* Space below metadata */
-    /* No text-align: center here, as per request */
-}
-
-/* Note excerpt (summary) */
-.notes-list-section .note-card .note-excerpt {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-light);   /* Source Sans 3 Light */
-    font-style: normal;
-    font-size: 1rem;
-    color: var(--color-text-dark);
-    margin-bottom: var(--spacing-md); /* Space below excerpt */
-    flex-grow: 1; /* Allows excerpt to expand and push "Read more" to the bottom */
-    text-align: left; /* Keep excerpt text left-aligned for readability */
-}
-
-/* Container for the "Read more" button */
-.notes-list-section .note-read-more-container {
-    text-align: right;     /* Remains aligned to the right, as per your original code */
-    margin-top: auto;      /* Pushes the button to the bottom of the card */
-}
-
----
-
-/* ==========================================================================
-   4.2.3. Single Note Page
-   ========================================================================== */
-
+/* Strona pojedynczej notatki */
 .note-single {
-    max-width: 800px;
-    margin: var(--spacing-lg) auto;
-    padding: var(--spacing-md);
-    background-color: var(--color-background-accent);
-    border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-lg);
-}
-
-.note-single .note-header {
-    text-align: center; /* Centers the content (title, date) of the single note header */
-    margin-bottom: var(--spacing-md);
-}
-
-/* Title of the single note (h1) - Spectral SC Regular */
-.note-single .note-title {
-    font-family: var(--font-family-headings); /* Spectral SC */
-    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
-    font-style: normal;
-    font-size: 2.5rem;
-    margin-bottom: var(--spacing-xs);
-    text-transform: none;
-    /* text-align: center is inherited from .note-header */
-}
-
-/* Date of the single note - Source Sans 3 Light */
-.note-single .note-date {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    color: var(--color-text-dark);
-    font-size: 0.9rem;
-    margin-bottom: var(--spacing-md);
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-    font-style: normal;
-    /* text-align: center is inherited from .note-header */
-}
-
-.note-content img {
     max-width: 100%;
-    height: auto;
-    display: block;
-    margin: var(--spacing-md) auto;
-    border-radius: var(--border-radius-md);
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-}
-
-/* Headings within the note content (h2, h3, h4) - Spectral SC Regular */
-.note-content h2, .note-content h3, .note-content h4 {
-    font-family: var(--font-family-headings); /* Spectral SC */
-    color: var(--color-primary);
-    margin-top: var(--spacing-md);
-    margin-bottom: 0.8rem;
-    text-transform: none;
-    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
-    font-style: normal;
-    /* No text-align: center here, as per request */
-}
-
-/* Paragraph text within the note content (p) - Source Sans 3 Light */
-.note-content p {
-    margin-bottom: var(--spacing-sm);
-    color: var(--color-text-dark);
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-    font-style: normal;
-}
-
-/* Lists within the note content - Source Sans 3 Light */
-.note-content ul, .note-content ol {
-    margin-left: var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-    font-style: normal;
-}
-
-/* Blockquote within the note content - Source Sans 3 Light */
-.note-content blockquote {
-    border-left: 4px solid var(--color-primary);
-    padding-left: var(--spacing-sm);
-    margin: var(--spacing-md) 0;
-    font-style: normal;
-    color: var(--color-text-dark);
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-}
-
-/* Back links (e.g., "Back to Categories") - Source Sans 3 Light */
-.back-to-categories-link,
-.back-to-home-notes-link {
-    display: inline-block;
-    margin-top: var(--spacing-lg);
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-size: 0.9rem;
-    color: var(--color-primary);
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-    font-style: normal;
-    /* No text-align: center here, as per request */
-}
-/* -------------------------------------------------------------------------- */
-/* --- 4.3. Sekcje i Komponenty Kategorii --- */
-/* -------------------------------------------------------------------------- */
-
-/* Nagłówek strony kategorii (category.html) */
-.category-header {
-    text-align: center; /* Wyśrodkowanie tekstu */
-    margin-bottom: var(--spacing-lg); /* Możesz dostosować ten margines */
-    max-width: 900px; /* Dopasuj tę szerokość do max-width kontenera siatki */
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: var(--spacing-md); /* Dodaj trochę paddingu na górze, jeśli nagłówek jest na samej górze strony */
-}
-
-/* Tytuł kategorii na stronie kategorii (h1) - Spectral SC Regular */
-.category-header .category-title {
-    font-family: var(--font-family-headings); /* Spectral SC */
-    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
-    font-style: normal;
-    font-size: 3rem; /* Rozmiar jak dla h1 */
-    margin-bottom: var(--spacing-xs);
-    color: var(--color-primary);
-    text-transform: none;
-}
-
-/* Opis kategorii na stronie kategorii (p) - Source Sans 3 Light */
-.category-header .category-description {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-    color: var(--color-text-dark);
-    font-size: 1.3rem;
-    margin: 0;
-}
-
-/* Usunąć style dla .back-to-categories-link, jeśli już go nie używasz na górze */
-.back-to-categories-link {
-    display: none; /* Ukrywamy stary link powrotny na górze */
-}
-
-/* --- Kafelki kategorii (bez zdjęć) --- */
-.category-card {
+    margin: var(--spacing-sm) auto;
+    padding: var(--spacing-sm);
     background-color: var(--color-background-accent);
-    border: 1px solid var(--color-secondary);
     border-radius: var(--border-radius-md);
-    padding: var(--spacing-sm) var(--spacing-md); /* Zachowaj ten padding lub dostosuj, jeśli potrzebujesz więcej/mniej przestrzeni od krawędzi */
+    box-shadow: var(--shadow-lg);
+}
+.note-single .note-header { text-align: center; margin-bottom: var(--spacing-md); }
+.note-single .note-title { font-family: var(--font-family-headings); font-size: 2.5rem; margin-bottom: var(--spacing-xs); }
+.note-single .note-date { font-size: 0.9rem; margin-bottom: var(--spacing-md); font-weight: var(--font-weight-light); }
+.note-content img { max-width: 100%; height: auto; display: block; margin: var(--spacing-md) auto; border-radius: var(--border-radius-md); aspect-ratio: 4/3; object-fit: cover; }
+.note-content h2, .note-content h3, .note-content h4 { font-family: var(--font-family-headings); margin-top: var(--spacing-md); margin-bottom: var(--spacing-sm); }
+.note-content p, .note-content ul, .note-content ol, .note-content blockquote { font-weight: var(--font-weight-light); }
+.back-to-categories-link, .back-to-home-notes-link { display: inline-block; margin-top: var(--spacing-lg); font-size: 0.9rem; font-weight: var(--font-weight-light); }
+
+
+/* 4.4. Strona Kategorii */
+.category-header {
     text-align: center;
-    transition: background-color 0.3s ease;
-    /* Usunięcie display: flex, flex-direction, justify-content, align-items z .category-card
-       bo będziemy to robić bezpośrednio na tytule.
-       Albo zachowujemy je, jeśli .category-card ma więcej elementów niż tylko tytuł, np. licznik.
-       Jeśli jest tylko tytuł i licznik, to flexbox na .category-card jest OK, a wyśrodkowanie
-       tytułu zrobimy na .category-card-title */
-
-    /* Upewniamy się, że min-height karty jest wystarczająca, jeśli ma ona inne elementy.
-       Jeśli tytuł jest jedynym elementem, to wystarczy min-height na tytule.
-       Zostawmy tu `auto` i skupmy się na tytule, to bardziej elastyczne. */
-    min-height: auto; /* Pozostawiamy auto dla elastyczności, główne wyśrodkowanie będzie na tytule */
-    display: flex; /* Pozostawiamy dla całej karty, jeśli ma więcej elementów */
-    flex-direction: column; /* Pozostawiamy dla całej karty, jeśli ma więcej elementów */
-    justify-content: center; /* Pozostawiamy dla całej karty, jeśli ma więcej elementów - wyśrodkuje jej zawartość */
-    align-items: center; /* Pozostawiamy dla całej karty, jeśli ma więcej elementów */
+    margin-bottom: var(--spacing-lg);
+    max-width: 100%;
+    margin-left: auto; margin-right: auto;
+    padding: var(--spacing-md) var(--spacing-sm) 0;
 }
+.category-header .category-title { font-family: var(--font-family-headings); font-size: 3rem; margin-bottom: var(--spacing-xs); }
+.category-header .category-description { font-weight: var(--font-weight-light); font-size: 1.3rem; margin: 0; }
 
-.category-card:hover {
-    background-color: var(--color-primary);
-}
-
-/* Nazwa kategorii (np. Zupy) w karcie - Source Sans 3 SemiBold */
-.category-card-title {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
-    font-style: normal;
-    font-size: 1.4rem;
-    line-height: 1.2; /* Ważne dla stałej wysokości linii */
-    margin: 0; /* Upewnij się, że nie ma marginesów, które psują wyśrodkowanie */
-    transition: color 0.3s ease;
-    text-transform: none;
-    text-align: center;
-
-    /* Kluczowe zmiany dla stałej wysokości i wyśrodkowania tekstu */
-    min-height: calc(2 * 1.4rem * 1.2); /* Przywracamy min-height dla 2 linii tekstu (font-size * line-height * liczba linii) */
-    display: flex; /* Włączamy Flexbox dla samego tytułu */
-    align-items: center; /* Wyśrodkowanie pionowe zawartości wewnątrz .category-card-title */
-    justify-content: center; /* Wyśrodkowanie poziome zawartości wewnątrz .category-card-title */
-    flex-grow: 1; /* Pozwala na rozciąganie, jeśli karta ma inne elementy */
-
-    /* Przywracamy obcinanie tekstu, jeśli chcesz, aby zawsze był ograniczony do 2 linii */
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    white-space: normal;
-}
-
-
-.category-card:hover .category-card-title {
-    color: var(--color-background-light);
-}
-
-/* Dodatkowo, jeśli masz licznik przepisów w kategorii */
-.category-post-count {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
-    font-style: normal;
-    font-size: 0.9rem;
-    color: var(--color-primary);
-    margin-top: var(--spacing-xxs);
-    flex-shrink: 0; /* Zapobiega zmniejszaniu się licznika */
-}
-
-/* -------------------------------------------------------------------------- */
-/* --- 4.4. Strona Błędu (404) --- */
-/* -------------------------------------------------------------------------- */
-
-/* --- Strona 404 --- */
+/* 4.5. Strona Błędu (404) */
 .error-404-container {
-    max-width: 900px;
-    margin: var(--spacing-lg) auto;
-    padding: var(--spacing-md);
+    max-width: 100%;
+    margin: var(--spacing-sm) auto;
+    padding: var(--spacing-sm);
     background-color: var(--color-background-accent);
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-lg);
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    /* min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px)); */
 }
-
-/* Tytuł błędu (h1) - Spectral SC Regular */
-.error-404-container .error-title {
-    font-family: var(--font-family-headings); /* Spectral SC */
-    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
-    font-style: normal;
-    font-size: 3rem;
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-sm);
-    text-transform: none;
-}
-
-/* Wiadomość o błędzie - Source Sans 3 Light */
+.error-404-container .error-title { font-family: var(--font-family-headings); font-size: 3rem; margin-bottom: var(--spacing-sm); }
 .error-404-container .error-message,
 .error-404-container .error-suggestion {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-    font-style: normal;
+    font-weight: var(--font-weight-light);
     font-size: 1.2rem;
-    color: var(--color-text-dark);
     margin-bottom: var(--spacing-md);
 }
-
 .error-image {
-    max-width: 100%;
+    max-width: 80%;
     height: auto;
     display: block;
     width: 400px;
     margin: var(--spacing-md) auto;
 }
 
-/* ==========================================================================
-    5. Media Queries (Responsywność)
-    ========================================================================= */
 
-/* Mobilne i małe tablety (domyślne style, min-width zaczyna modyfikować) */
+/* ==========================================================================
+   5. MEDIA QUERIES (RESPONSYWNOŚĆ)
+   ========================================================================== */
 
 /* Tablet (breakpoint: >= 768px) */
 @media (min-width: 768px) {
     h1 { font-size: 3.5rem; }
     h2 { font-size: 2rem; }
     h3 { font-size: 1.6rem; }
-    h4 { font-size: 1.3rem; } /* Dodane, dla spójności, jeśli masz h4 */
-
     .site-title { font-size: 3.5rem; }
     .site-subtitle { font-size: 1.5rem; }
-    .site-description-short { font-size: 1.3rem; } /* Dodane, dla spójności */
+    .site-description-short { font-size: 1.3rem; }
 
-    .content, .main-content {
-        padding: var(--spacing-lg);
-    }
+    .content, .main-content { padding: var(--spacing-lg); }
 
-    /* Układ dla siatek na tablecie - 3 kolumny */
-    .recipes-grid,
-    .latest-recipes-grid,
-    .categories-grid,
-    .notes-grid { /* Notatki na stronie /notes/ */
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--spacing-lg);
-    }
+    .recipes-grid, .latest-recipes-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .recipes-grid, .latest-recipes-grid, .categories-grid, .notes-grid { gap: var(--spacing-lg); }
 
-    /* Układ dla pojedynczego przepisu */
-    .recipe-content-wrapper {
-        grid-template-columns: minmax(250px, 1fr) 2fr;
-    }
-    .recipe-main-info {
-        align-items: flex-start;
-    }
-    .recipe-ingredients {
-        grid-column: 2 / 3;
-    }
+    .recipe-single, .note-single, .error-404-container { padding: var(--spacing-lg); max-width: 900px; }
+    .notes-list-section .page-header, .category-header { max-width: 800px; }
 
-    /* Wyśrodkowanie i maksymalna szerokość dla pojedynczych stron contentu */
-    .recipe-single,
-    .note-single,
-    .error-404-container {
-        padding: var(--spacing-lg);
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+    .recipe-content-wrapper { grid-template-columns: minmax(250px, 1fr) 2fr; }
+    .recipe-main-info { align-items: flex-start; }
+    .recipe-ingredients { grid-column: 2 / 3; }
 
-    /* Wyśrodkowanie i maksymalna szerokość dla nagłówków stron list (notatek, kategorii) */
-    .notes-list-section .page-header,
-    .category-header {
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+    .error-image { width: 400px; }
 }
 
 /* Desktop (breakpoint: >= 1024px) */
@@ -1141,265 +634,50 @@ blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl
     h1 { font-size: 4rem; }
     h2 { font-size: 2.2rem; }
     h3 { font-size: 1.8rem; }
-    h4 { font-size: 1.6rem; } /* Dodane, dla spójności, jeśli masz h4 */
-
+    h4 { font-size: 1.6rem; }
     .site-title { font-size: 4rem; }
     .site-subtitle { font-size: 1.7rem; }
-    .site-description-short { font-size: 1.4rem; } /* Dodane, dla spójności */
+    .site-description-short { font-size: 1.4rem; }
 
+    .content, .main-content { padding: var(--spacing-xl); }
 
-    .content, .main-content {
-        padding: var(--spacing-xl);
-    }
+    .recipes-grid, .latest-recipes-grid, .categories-grid { grid-template-columns: repeat(4, 1fr); }
+    .notes-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .notes-list-section .notes-grid { grid-template-columns: 1fr; }
 
-    .recipes-grid,
-    .latest-recipes-grid, /* Notatki na stronie głównej */
-    .categories-grid {
-        grid-template-columns: repeat(4, 1fr); /* 4 kolumny dla przepisów i kategorii */
-    }
-
-    /* Zmiana dla notes-grid (strona /notes/) */
-    .notes-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 kolumny dla notes.html */
-        /* max-width jest kontrolowane przez .notes-list-section .notes-grid w sekcji 3 */
-    }
-
-    /* Wyśrodkowanie i maksymalna szerokość dla nagłówków stron list (notatek, kategorii) */
-    .notes-list-section .page-header,
-    .category-header {
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Wyśrodkowanie i maksymalna szerokość dla pojedynczych stron contentu */
-    .recipe-single,
-    .note-single,
-    .error-404-container {
-        padding: var(--spacing-xl);
-        max-width: 900px;
-    }
+    .recipe-single, .note-single, .error-404-container { padding: var(--spacing-xl); }
+    .notes-list-section .page-header, .category-header { max-width: 900px; }
 }
 
-/* Mobilne, mniejsze fonty (breakpoint: <= 767px) */
-@media (max-width: 767px) {
-    h1 { font-size: 2.8rem; }
-    h2 { font-size: 2.2rem; }
-    h3 { font-size: 1.8rem; }
-    h4 { font-size: 1.5rem; }
-
-    .site-title { font-size: 2.5rem; }
-    .site-subtitle { font-size: 1.1rem; }
-    .site-description-short { font-size: 1.1rem; }
-
-    .content, .main-content {
-        padding: var(--spacing-sm);
-    }
-
-    /* Domyślny responsywny układ siatek na mobilnych */
-    .recipes-grid,
-    .latest-recipes-grid,
-    .categories-grid,
-    .notes-grid {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: var(--spacing-md);
-        max-width: 100%; /* Upewniamy się, że są responsywne na mobilnych */
-        margin: var(--spacing-md) auto;
-        padding: 0 var(--spacing-sm); /* Dodajemy padding, żeby siatka nie dotykała krawędzi */
-        box-sizing: border-box;
-    }
-
-    .error-image {
-        width: 80%;
-    }
-
-    /* Wyśrodkowanie i pełna szerokość dla pojedynczych stron contentu na mobilnych */
-    .recipe-single,
-    .note-single,
-    .error-404-container {
-        padding: var(--spacing-sm);
-        max-width: 100%;
-        margin: 0 auto;
-    }
-
-    /* Nagłówki stron list (notatek, kategorii) na mobilnych */
-    .notes-list-section .page-header,
-    .category-header {
-        max-width: 100%;
-        padding-left: var(--spacing-sm);
-        padding-right: var(--spacing-sm);
-        box-sizing: border-box;
-    }
-}
 
 /* ==========================================================================
-    6. Dodatkowe style dla drukowania (Print Styles)
-    ========================================================================== */
+   6. STYLE DRUKU
+   ========================================================================== */
 @media print {
     body {
-        font-family: var(--font-family-primary); /* Source Sans 3 Light */
+        font-family: var(--font-family-primary);
         color: #000;
         background-color: var(--color-white);
-        margin: 0;
-        padding: 0;
+        margin: 0; padding: 0;
     }
+    @page { size: A4 portrait; margin: var(--spacing-md); }
 
-    @page {
-        size: A4 portrait;
-        margin: var(--spacing-md);
-    }
-
-    /* Ukryj elementy, które nie powinny być drukowane */
-    .site-header,
-    .site-footer,
-    .hero-section,
-    .latest-recipes-section,
-    .categories-section,
-    .notes-section,
-    .about-me-section,
-    .print-button,
-    .back-to-categories-link,
-    .back-to-home-notes-link,
-    .error-404-page,
-    .recipe-main-image {
+    .site-header, .site-footer, .hero-section, .latest-recipes-section, .categories-section, .notes-section, .about-me-section, .print-button, .back-to-categories-link, .back-to-home-notes-link, .error-404-page, .recipe-main-image {
         display: none !important;
     }
-
-    /* Pokaż tylko zawartość przepisu */
-    .recipe-single {
-        max-width: 100%;
-        margin: 0;
-        padding: 0;
-        box-shadow: none;
-        background-color: var(--color-white);
-        border: none;
-    }
-
-    .recipe-header {
-        text-align: left;
-        margin-bottom: var(--spacing-sm);
-    }
-
-    /* Tytuł przepisu na wydruku - Spectral SC Regular */
-    .recipe-title {
-        font-size: 2.2rem;
-        color: #000;
-        margin-bottom: var(--spacing-xs);
-        font-family: var(--font-family-headings); /* Spectral SC */
-        text-transform: none;
-        font-weight: var(--font-weight-regular);
-        font-style: normal;
-    }
-
-    /* Opis przepisu na wydruku - Source Sans 3 Light */
-    .recipe-description {
-        font-family: var(--font-family-primary); /* Source Sans 3 */
-        font-size: var(--spacing-sm);
-        color: #333;
-        margin-bottom: var(--spacing-sm);
-        font-style: normal;
-        font-weight: var(--font-weight-light);
-    }
-
-    /* Data przepisu na wydruku - Source Sans 3 Light */
-    .recipe-date {
-        font-family: var(--font-family-primary); /* Source Sans 3 */
-        font-size: 0.8rem;
-        color: #666;
-        margin-bottom: 0.3rem;
-        font-weight: var(--font-weight-light);
-    }
-
-    /* Układ kolumn na wydruku (linia po linii) */
-    .recipe-content-wrapper {
-        display: block;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    .recipe-main-info,
-    .recipe-ingredients,
-    .recipe-preparation,
-    .recipe-additional-content {
-        display: block;
-        width: 100% !important;
-        float: none !important;
-        clear: both !important;
-        margin: var(--spacing-md) 0 0 0 !important;
-        padding: 0;
-        box-sizing: border-box;
-        page-break-inside: avoid;
-    }
-
-    .recipe-content-wrapper > *:first-child {
-        margin-top: 0 !important;
-    }
-
-    .recipe-details {
-        border: none;
-        background-color: var(--color-white);
-        padding: 0;
-        margin-top: var(--spacing-sm);
-    }
-
-    /* Tekst w recipe-details na wydruku - Source Sans 3 Light */
-    .recipe-details p {
-        font-family: var(--font-family-primary); /* Source Sans 3 */
-        font-size: 0.9rem;
-        margin-bottom: 0.3rem;
-        color: #000;
-        font-weight: var(--font-weight-light);
-    }
-
-    /* Pogrubiony tekst w recipe-details na wydruku - Source Sans 3 SemiBold */
-    .recipe-details strong {
-        color: #000;
-        font-weight: var(--font-weight-semibold);
-    }
-
-    /* Nagłówki w treści przepisu na wydruku - Spectral SC Regular */
-    .recipe-ingredients h2,
-    .recipe-preparation h2,
-    .recipe-additional-content h2 {
-        font-size: 1.5rem;
-        color: #000;
-        margin-bottom: 0.8rem;
-        font-family: var(--font-family-headings); /* Spectral SC */
-        text-transform: none;
-        font-weight: var(--font-weight-regular);
-        font-style: normal;
-    }
-
-    /* Listy w treści przepisu na wydruku - Source Sans 3 Light */
-    .recipe-ingredients ul,
-    .recipe-preparation ol,
-    .recipe-additional-content p,
-    .recipe-additional-content ul,
-    .recipe-additional-content ol {
-        font-family: var(--font-family-primary); /* Source Sans 3 */
-        margin-left: 0;
-        list-style-position: outside;
-        padding-left: var(--spacing-md);
-        font-size: var(--spacing-sm);
-        line-height: 1.4;
-        margin-bottom: 0.3rem;
-        color: #000;
-        font-weight: var(--font-weight-light);
-    }
-
-    .recipe-ingredients ul li::marker,
-    .recipe-preparation ol li::marker,
-    .recipe-additional-content ul li::marker,
-    .recipe-additional-content ol li::marker {
-        color: var(--color-primary);
-    }
-
-    /* Linki na wydruku - Source Sans 3 Regular */
-    a {
-        text-decoration: none;
-        color: #000 !important;
-        font-weight: var(--font-weight-regular);
-    }
+    .recipe-single { max-width: 100%; margin: 0; padding: 0; box-shadow: none; background-color: var(--color-white); border: none; }
+    .recipe-header { text-align: left; margin-bottom: var(--spacing-sm); }
+    .recipe-title { font-size: 2.2rem; color: #000; margin-bottom: var(--spacing-xs); font-family: var(--font-family-headings); font-weight: var(--font-weight-regular); }
+    .recipe-description { font-family: var(--font-family-primary); font-size: var(--spacing-sm); color: #333; margin-bottom: var(--spacing-sm); font-weight: var(--font-weight-light); }
+    .recipe-date { font-family: var(--font-family-primary); font-size: 0.8rem; color: #666; margin-bottom: 0.3rem; font-weight: var(--font-weight-light); }
+    .recipe-content-wrapper { display: block; width: 100%; margin: 0; padding: 0; }
+    .recipe-main-info, .recipe-ingredients, .recipe-preparation, .recipe-additional-content { display: block; width: 100% !important; float: none !important; clear: both !important; margin: var(--spacing-md) 0 0 0 !important; padding: 0; page-break-inside: avoid; }
+    .recipe-content-wrapper > *:first-child { margin-top: 0 !important; }
+    .recipe-details { border: none; background-color: var(--color-white); padding: 0; margin-top: var(--spacing-sm); }
+    .recipe-details p { font-family: var(--font-family-primary); font-size: 0.9rem; margin-bottom: 0.3rem; color: #000; font-weight: var(--font-weight-light); }
+    .recipe-details strong { color: #000; font-weight: var(--font-weight-semibold); }
+    .recipe-ingredients h2, .recipe-preparation h2, .recipe-additional-content h2 { font-size: 1.5rem; color: #000; margin-bottom: 0.8rem; font-family: var(--font-family-headings); font-weight: var(--font-weight-regular); }
+    .recipe-ingredients ul, .recipe-preparation ol, .recipe-additional-content p, .recipe-additional-content ul, .recipe-additional-content ol { font-family: var(--font-family-primary); margin-left: 0; list-style-position: outside; padding-left: var(--spacing-md); font-size: var(--spacing-sm); line-height: 1.4; margin-bottom: 0.3rem; color: #000; font-weight: var(--font-weight-light); }
+    .recipe-ingredients ul li::marker, .recipe-preparation ol li::marker, .recipe-additional-content ul li::marker, .recipe-additional-content ol li::marker { color: var(--color-primary); }
+    a { text-decoration: none; color: #000 !important; font-weight: var(--font-weight-regular); }
 }
