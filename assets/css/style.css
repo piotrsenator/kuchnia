@@ -362,15 +362,17 @@ blockquote {
     padding: 0 var(--spacing-xs) var(--spacing-xs); /* Dodano padding dla estetyki */
     color: var(--color-primary);
     min-height: calc(2 * 1.2rem * 1.2); /* Min-height dla 2 linii tekstu */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    display: -webkit-box;
+
+    /* Zmieniona kolejność display: prefiksowane na początku, standardowe na końcu */
+    display: -webkit-box; /* Starsze, prefiksowane dla WebKit */
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-}
 
+    display: flex; /* Nowsze, standardowe dla Flexbox */
+    align-items: center;    /* Wyśrodkowanie pionowe tekstu w ramach TEGO kontenera */
+    justify-content: center; /* Wyśrodkowanie poziome tekstu w ramach TEGO kontenera */
+    overflow: hidden;
+}
 /* 3.3. Karta Kategorii (.category-card) */
 .category-card {
     background-color: var(--color-background-accent);
