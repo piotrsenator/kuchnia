@@ -685,41 +685,67 @@ blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl
     margin-bottom: 0.8rem;
 }
 
-/* --- Lista notatek na stronie /notes/ --- */
+/* ==========================================================================
+    4.2. Sekcje i Komponenty Notatek (strona notes.html)
+    ========================================================================== */
+
+/* Nagłówek dla strony listy notatek */
 .notes-list-section .page-header {
-    /* Zmieniamy text-align na center */
-    text-align: center; /* Zmienione z 'left' */
-    margin-bottom: var(--spacing-xxl);
-    max-width: 800px; /* To już zapewnia taką samą szerokość jak notatki na mniejszych ekranach */
+    text-align: center; /* Wyśrodkowuje tekst i elementy inline wewnątrz nagłówka */
+    max-width: 800px;   /* Ogranicza szerokość nagłówka, zapewniając spójność z siatką */
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto; /* Wyśrodkowuje sam blok nagłówka */
+
+    /* Odstępy pionowe nagłówka */
+    padding-top: var(--spacing-xl);     /* Przestrzeń nad tytułem (możesz dostosować) */
+    padding-bottom: var(--spacing-lg);  /* Przestrzeń pod opisem nagłówka */
+    margin-bottom: var(--spacing-md);   /* Zmniejszony odstęp do siatki notatek (z XXL na MD) */
 }
 
-/* Tytuł nagłówka strony listy notatek (h1) - Spectral SC Regular */
+/* Tytuł nagłówka strony listy notatek (h1) */
 .notes-list-section .page-header h1 {
     font-family: var(--font-family-headings); /* Spectral SC */
-    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
+    font-weight: var(--font-weight-regular);  /* Spectral SC Regular */
     font-style: normal;
     font-size: 3rem;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs); /* Mały odstęp pod h1 */
+    line-height: 1.2;
+    color: var(--color-primary);
+    text-transform: none;
 }
 
-/* Opis strony listy notatek (p) - Source Sans 3 Light */
+/* Opis strony listy notatek (p.page-description) */
 .notes-list-section .page-description {
     font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-    color: var(--color-text-dark);
+    font-weight: var(--font-weight-light);   /* Source Sans 3 Light */
     font-size: 1.3rem;
-    margin: 0;
+    color: var(--color-text-dark);
+    margin: 0; /* Upewnij się, że nie ma dodatkowych marginesów */
 }
 
+/* Siatka notatek (notes-grid) */
 .notes-list-section .notes-grid {
-    grid-template-columns: 1fr;
-    max-width: 800px;
-    margin: 0 auto;
-    gap: var(--spacing-lg);
+    grid-template-columns: 1fr; /* Na mniejszych ekranach (mobile-first) jedna kolumna */
+    max-width: 800px;           /* Ogranicza szerokość siatki notatek */
+    margin: var(--spacing-lg) auto; /* Wyśrodkowanie siatki z pionowymi odstępami */
+    gap: var(--spacing-lg);     /* Odstęp między kartami notatek */
 }
 
+/* Dostosowanie siatki na większych ekranach (np. tablet, desktop) */
+@media (min-width: 768px) { /* Przykład breakpointu dla tabletów */
+    .notes-list-section .notes-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2-3 kolumny */
+    }
+}
+
+@media (min-width: 1024px) { /* Przykład breakpointu dla desktopów */
+    .notes-list-section .notes-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* 2-3 kolumny z większymi kartami */
+    }
+}
+
+
+/* Karta notatki (note-card) */
 .notes-list-section .note-card {
     background-color: var(--color-background-accent);
     border: 1px solid var(--color-secondary);
@@ -727,23 +753,23 @@ blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl
     padding: var(--spacing-md);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; /* Rozciąga zawartość pionowo, umieszczając button na dole */
     box-shadow: var(--shadow-md);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .notes-list-section .note-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px); /* Delikatne uniesienie karty */
+    box-shadow: var(--shadow-lg); /* Zwiększony cień */
 }
 
-/* Tytuł notatki w karcie (h3) - Source Sans 3 SemiBold */
+/* Tytuł notatki w karcie (h3) */
 .notes-list-section .note-card .note-title {
-    font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
+    font-family: var(--font-family-primary);    /* Source Sans 3 */
+    font-weight: var(--font-weight-semibold);   /* Source Sans 3 SemiBold */
     font-style: normal;
     font-size: 1.8rem;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs); /* Mały odstęp pod tytułem */
     line-height: 1.3;
     color: var(--color-primary);
     text-transform: none;
@@ -756,33 +782,34 @@ blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl
 }
 
 .notes-list-section .note-card .note-title a:hover {
-    color: var(--color-text-dark);
+    color: var(--color-text-dark); /* Kolor po najechaniu */
 }
 
-/* Metadane notatki (data) - Source Sans 3 Regular */
+/* Metadane notatki (data) */
 .notes-list-section .note-card .note-meta {
     font-family: var(--font-family-primary); /* Source Sans 3 */
-    font-size: 0.9rem;
-    color: var(--color-secondary);
-    margin-bottom: var(--spacing-sm);
     font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
     font-style: normal;
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm); /* Odstęp pod metadanymi */
 }
 
-/* Fragment notatki (excerpt) - Source Sans 3 Light */
+/* Fragment notatki (excerpt) */
 .notes-list-section .note-card .note-excerpt {
     font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-light);   /* Source Sans 3 Light */
+    font-style: normal;
     font-size: 1rem;
     color: var(--color-text-dark);
-    margin-bottom: var(--spacing-md);
-    flex-grow: 1;
-    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
-    font-style: normal;
+    margin-bottom: var(--spacing-md); /* Odstęp pod excerptem */
+    flex-grow: 1; /* Pozwala excerptowi rozciągnąć się i zepchnąć "Czytaj więcej" na dół */
 }
 
+/* Kontener dla przycisku "Czytaj więcej" */
 .notes-list-section .note-read-more-container {
-    text-align: right;
-    margin-top: auto;
+    text-align: right;   /* Wyrównuje przycisk do prawej */
+    margin-top: auto;    /* Zepchnie przycisk na sam dół karty (dzięki flex-grow na excerpt) */
 }
 
 /* --- Strona pojedynczej notatki --- */
