@@ -416,18 +416,18 @@ blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl
 /* --- 3.1. Kontenery Główne Strony --- */
 /* -------------------------------------------------------------------------- */
 
-/* Ogólny kontener dla większości zawartości strony, zapewnia maksymalną szerokość i wyśrodkowanie */
+/* Ogólny kontener dla większości zawartości strony */
 .content {
-    max-width: 1200px; /* Maksymalna szerokość dla ogólnej zawartości */
-    margin: 0 auto;    /* Wyśrodkowanie kontenera na stronie */
+    max-width: 1200px;
+    margin: 0 auto;
     padding: var(--spacing-md); /* Domyślny wewnętrzny odstęp */
 }
 
-/* Główny kontener strony głównej - używa podobnych zasad co .content, ale z różnicami w paddingu */
-.main-content {
-    max-width: 1200px; /* Maksymalna szerokość dla głównej zawartości strony głównej */
-    margin: 0 auto;    /* Wyśrodkowanie kontenera na stronie */
-    padding: 0 var(--spacing-md); /* Wewnętrzny odstęp tylko boczny */
+/* Główny kontener strony głównej - upewniamy się, że nadpisuje .content */
+.main-page-content.content { /* Selektor z dwiema klasami ma wyższą specyficzność */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md); /* Zero paddingu góra/dół, tylko boczny */
 }
 
 /* -------------------------------------------------------------------------- */
