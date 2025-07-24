@@ -605,8 +605,8 @@ blockquote {
     /* KLUCZ: ZAWSZE zajmuje całą szerokość siatki, czyli wszystkie kolumny */
     grid-column: 1 / -1; /* Rozciąga element przez wszystkie kolumny siatki */
     
-    margin-top: var(--spacing-lg, 2rem); /* Odstęp od poprzednich sekcji */
-    margin-bottom: var(--spacing-lg); /* Dodaj margines dolny dla odstępu między sekcjami */
+    margin-top: 0; /* Wyzerowany górny margines, było: margin-top: var(--spacing-lg, 2rem); */
+    margin-bottom: 0; /* Wyzerowany dolny margines, było margin-bottom: var(--spacing-lg); */ 
 }
 
 /* Style nagłówków i list dla składników i przygotowania */
@@ -638,8 +638,8 @@ blockquote {
     flex-wrap: wrap; /* Pozwala przyciskom zawijać się na małych ekranach */
     justify-content: center; /* Wyśrodkowuje przyciski poziomo */
     gap: var(--spacing-md); /* Odstęp między przyciskami */
-    margin-top: var(--spacing-xl); /* Odstęp od ostatniej sekcji treści */
-    padding-top: var(--spacing-md);
+    margin-top: var(--spacing-md); /* Odstęp od ostatniej sekcji treści */
+    padding-top: var(--spacing-xs);
     border-top: 1px solid var(--color-border); /* Opcjonalna linia oddzielająca */
 }
 /* ==========================================================================
