@@ -92,7 +92,7 @@ layout: default
         <div class="button-container recipe-single-button-container">
            
             <a href="{{ '/categories/' | relative_url }}{{ page.category }}.html" class="button primary-button" aria-label="Wróć do przepisów w kategorii {{ category_name | default: page.category | escape }}">
-                « Wszystkie przepisy w {{ category_name | default: 'tej kategorii' }}
+                « {{ category_name | default: 'Kategoria' }}
             </a>
          
             <a href="{{ '/' | relative_url }}#kategorie" class="button primary-button" aria-label="Wróć do wszystkich kategorii na stronie głównej">
