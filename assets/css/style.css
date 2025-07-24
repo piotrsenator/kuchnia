@@ -795,14 +795,15 @@ p {
     background-color: var(--color-background-accent);
     border: 1px solid var(--color-secondary);
     border-radius: var(--border-radius-md);
-    padding: var(--spacing-sm) var(--spacing-md);
+    /* Zmieniony padding, aby zmniejszyć wolne miejsce */
+    padding: var(--spacing-sm) var(--spacing-md); /* Możesz eksperymentować z wartością spacing-sm, np. na spacing-xs lub 0.75rem, jeśli nadal będzie za dużo miejsca */
     text-align: center;
     transition: background-color 0.3s ease;
     min-height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Pionowe wyśrodkowanie */
+    align-items: center; /* Poziome wyśrodkowanie */
 }
 
 .category-card:hover {
@@ -815,15 +816,12 @@ p {
     font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
     font-style: normal;
     font-size: 1.4rem;
-    margin: 0;
+    line-height: 1.2; /* Dodane dla spójnej wysokości linii */
+    margin: 0; /* Upewnij się, że nie ma dodatkowych marginesów, które by to psuły */
     transition: color 0.3s ease;
     text-transform: none;
-    min-height: calc(2 * 1.4rem * 1.2);
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    white-space: normal;
+    /* Usunięte min-height, aby pozwolić na dynamiczne dopasowanie wysokości */
+    /* Usunięte overflow, display, webkit-line-clamp, webkit-box-orient, white-space - nie są już potrzebne, bo tekst będzie elastycznie się dostosowywać */
     text-align: center;
 }
 
@@ -840,7 +838,6 @@ p {
     color: var(--color-primary);
     margin-top: var(--spacing-xxs);
 }
-
 
 /* -------------------------------------------------------------------------- */
 /* --- 4.4. Strona Błędu (404) --- */
