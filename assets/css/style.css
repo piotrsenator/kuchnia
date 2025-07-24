@@ -2,16 +2,32 @@
  * style.css
  * Globalne style dla kuchnia.senator.lu
  * Kolorystyka: naturalna, spokojna, elegancka
- * Typografia: czytelna, z charakterem (Source Sans 3, Spectral SC, Fraunces)
+ * Typografia: czytelna, z charakterem (Playfair Display, Source Sans 3, Spectral SC)
  * Siatka: responsywna
  */
 
 /* Fonty - załadowane lokalnie */
-/* Source Sans 3 - Regular (Waga 400) */
+/* Playfair Display - Regular (Waga 400) */
 @font-face {
-    font-family: 'Source Sans 3';
-    src: url('../fonts/source-sans-3-v18-latin_latin-ext-regular.woff2') format('woff2');
+    font-family: 'Playfair Display';
+    src: url('../fonts/playfair-display-v39-latin_latin-ext-regular.woff2') format('woff2');
     font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
+/* Playfair Display - Italic (Waga 400) */
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('../fonts/playfair-display-v39-latin_latin-ext-italic.woff2') format('woff2'); /* Ten plik został dodany */
+    font-weight: 400; /* Regular Italic */
+    font-style: italic;
+}
+
+/* Playfair Display - Bold (Waga 700) */
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('../fonts/playfair-display-v39-latin_latin-ext-700.woff2') format('woff2');
+    font-weight: 700; /* Bold */
     font-style: normal;
 }
 
@@ -23,20 +39,28 @@
     font-style: normal;
 }
 
-/* Spectral SC - Regular */
+/* Source Sans 3 - Regular (Waga 400) */
+@font-face {
+    font-family: 'Source Sans 3';
+    src: url('../fonts/source-sans-3-v18-latin_latin-ext-regular.woff2') format('woff2');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
+/* Source Sans 3 - SemiBold (Waga 600) */
+@font-face {
+    font-family: 'Source Sans 3';
+    src: url('../fonts/source-sans-3-v18-latin_latin-ext-600.woff2') format('woff2'); /* Ten plik został dodany */
+    font-weight: 600; /* SemiBold */
+    font-style: normal;
+}
+
+/* Spectral SC - Regular (Waga 400) */
 @font-face {
     font-family: 'Spectral SC';
     src: url('../fonts/spectral-sc-v14-latin_latin-ext-regular.woff2') format('woff2');
     font-weight: 400; /* Regular */
     font-style: normal;
-}
-
-/* Fraunces - SemiBold Italic */
-@font-face {
-    font-family: 'Fraunces';
-    src: url('../fonts/fraunces-v37-latin_latin-ext-600italic.woff2') format('woff2');
-    font-weight: 600; /* SemiBold */
-    font-style: italic;
 }
 
 
@@ -55,20 +79,22 @@
     --color-white: #FFFFFF; /* Biały */
 
     /* Fonty */
-    --font-family-primary: 'Source Sans 3', sans-serif; /* Font dla tekstu głównego (Source Sans 3 Regular) */
-    --font-family-headings: 'Spectral SC', serif; /* Font dla wszystkich nagłówków h1-h6 (Spectral SC Regular) */
-    --font-family-site-title: 'Fraunces', serif; /* Font dla site-title (Fraunces SemiBold Italic) */
-    --font-weight-light: 300; /* Nowa zmienna dla wagi 300 (dla Source Sans 3 Light) */
+    --font-family-primary: 'Source Sans 3', sans-serif; /* Domyślny font dla tekstu (Regular) */
+    --font-family-headings: 'Spectral SC', serif; /* Font dla nagłówków h1-h6 i h2 sekcji */
+    --font-family-site-title: 'Playfair Display', serif; /* Font dla site-title (Playfair Display Italic) */
+    --font-weight-light: 300; /* Source Sans 3 Light */
+    --font-weight-regular: 400; /* Source Sans 3 Regular / Spectral SC Regular / Playfair Display Italic */
+    --font-weight-semibold: 600; /* Source Sans 3 SemiBold */
 
 
     /* Odstępy (Spacing - używane dla konsekwentnych paddingów/marginesów) */
-    --spacing-xs: 0.5rem;    /* ~8px */
-    --spacing-sm: 1rem;      /* ~16px */
-    --spacing-md: 1.5rem;    /* ~24px */
-    --spacing-lg: 2rem;      /* ~32px */
-    --spacing-xl: 3rem;      /* ~48px */
-    --spacing-xxl: 4rem;     /* ~64px */
-    --spacing-xxs: 0.25rem; /* ~4px - dla minimalnego paddingu */
+    --spacing-xs: 0.5rem;     /* ~8px */
+    --spacing-sm: 1rem;       /* ~16px */
+    --spacing-md: 1.5rem;     /* ~24px */
+    --spacing-lg: 2rem;       /* ~32px */
+    --spacing-xl: 3rem;       /* ~48px */
+    --spacing-xxl: 4rem;      /* ~64px */
+    --spacing-xxs: 0.25rem;   /* ~4px - dla minimalnego paddingu */
 
 
     /* Cienie */
@@ -94,7 +120,8 @@ html {
 }
 
 body {
-    font-family: var(--font-family-primary); /* Główny tekst - Source Sans 3 Regular */
+    font-family: var(--font-family-primary); /* Główny tekst - Source Sans 3 Regular (domyślny) */
+    font-weight: var(--font-weight-regular); /* Domyślna waga dla body */
     color: var(--color-text-dark); /* Użycie zmiennej */
     background-color: var(--color-background-light); /* Użycie zmiennej */
     -webkit-font-smoothing: antialiased;
@@ -105,12 +132,12 @@ body {
     1. Typografia i linki
     ========================================================================== */
 
-/* Specyficzne stylowanie dla site-title (Fraunces SemiBold Italic) */
+/* Specyficzne stylowanie dla site-title (Playfair Display Italic) */
 .site-title {
-    font-family: var(--font-family-site-title); /* Fraunces */
-    font-weight: 600;
+    font-family: var(--font-family-site-title); /* Playfair Display Italic */
+    font-weight: var(--font-weight-regular); /* Waga 400, bo Italic 400 */
     font-style: italic;
-    font-size: 3rem; /* Zmniejszono główny tytuł */
+    font-size: 3rem;
     margin-bottom: var(--spacing-xxs);
     line-height: 1.2;
     color: var(--color-primary);
@@ -140,72 +167,107 @@ body {
 }
 .site-description-short p {
     margin-bottom: var(--spacing-xs);
+    font-weight: var(--font-weight-light); /* Treść opisu strony głównej też Source Sans 3 Light */
 }
 
-/* Opis przepisu - używa Source Sans 3 Regular (domyślny dla body) */
+/* Opis przepisu - używa Source Sans 3 Light */
 .recipe-description {
-    font-weight: 400; /* ZMIANA: Usunięto italic, ustawiono wagę 400 */
-    font-style: normal; /* ZMIANA: Upewnienie się, że jest normal */
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
+    font-style: normal;
     font-size: 1.2rem;
     color: var(--color-text-dark);
     margin-bottom: var(--spacing-lg);
 }
 
-/* Cytaty - używają Source Sans 3 Regular (domyślny dla body) */
+/* Cytaty - używają Source Sans 3 Regular */
 .note-content blockquote {
-    font-style: normal; /* ZMIANA: Usunięto italic */
-    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-style: normal;
+    font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
 }
 
 /* Nagłówki używają Spectral SC Regular i koloru primary */
-h1, h2, h3, h4, h5, h6 {
+h1, h4, h5, h6 { /* h1, h4, h5, h6 używają Spectral SC Regular */
     font-family: var(--font-family-headings); /* Spectral SC */
-    color: var(--color-primary); /* ZMIANA: Kolor nagłówków zgodny z kolorem tytułu */
-    text-transform: none; /* Upewniamy się, że nie ma kapitalików */
-    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 (regular) */
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
-    margin-top: var(--spacing-md); /* Lub mniejsza wartość */
-    margin-bottom: var(--spacing-sm); /* Lub mniejsza wartość */
+    color: var(--color-primary);
+    text-transform: none;
+    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
+    font-style: normal;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 h1 { font-size: 2.8rem; }
-h2 { font-size: 2.2rem; }
-h3 { font-size: 1.8rem; }
 h4 { font-size: 1.5rem; }
 h5 { font-size: 1.3rem; }
 h6 { font-size: 1.1rem; }
 
+/* Nagłówki sekcji (h2) - Spectral SC Regular */
+h2 {
+    font-family: var(--font-family-headings); /* Spectral SC */
+    color: var(--color-primary);
+    text-transform: none;
+    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
+    font-style: normal;
+    font-size: 2.2rem; /* Domyślny rozmiar dla h2 */
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
 
-/* Styl dla list w przepisach - używają Source Sans 3 Regular */
+/* Nazwa przepisu (h3) - Source Sans 3 SemiBold */
+h3 {
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    color: var(--color-primary);
+    text-transform: none;
+    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
+    font-style: normal;
+    font-size: 1.8rem; /* Domyślny rozmiar dla h3 */
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+
+/* Styl dla list w przepisach - używają Source Sans 3 Regular (domyślny dla body) */
 .recipe-ingredients ul,
 .recipe-preparation ol {
-    font-family: var(--font-family-primary); /* Użycie zmiennej */
+    font-family: var(--font-family-primary); /* Source Sans 3 */
     font-size: 0.95rem;
     line-height: 1.8;
-    color: var(--color-text-dark); /* Użycie zmiennej */
-    margin-left: var(--spacing-md); /* Użycie zmiennej */
+    color: var(--color-text-dark);
+    margin-left: var(--spacing-md);
     list-style-position: inside;
-    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
+    font-style: normal;
 }
 
 .recipe-ingredients ul li::marker,
 .recipe-preparation ol li::marker {
-    color: var(--color-primary); /* Użycie zmiennej */
+    color: var(--color-primary);
 }
 
 /* Ogólne style dla linków - używają Source Sans 3 Regular */
 a {
-    color: var(--color-primary); /* Użycie zmiennej */
+    color: var(--color-primary);
     text-decoration: none;
     transition: color 0.3s ease;
-    font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
+    font-style: normal;
 }
 
 a:hover {
-    color: var(--color-secondary); /* Użycie zmiennej */
+    color: var(--color-secondary);
 }
+
+/* Tekst główny (p) używa Source Sans 3 Light */
+p {
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
+    font-style: normal;
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
 
 /* ==========================================================================
     2. Elementy globalne strony (Header, Footer, Przyciski)
@@ -214,8 +276,8 @@ a:hover {
 .site-header {
     background-color: var(--color-background-light);
     padding: var(--spacing-xxs) 0;
-    padding-bottom: var(--spacing-md); /* Lub mniejsza wartość */
-    margin-bottom: var(--spacing-lg); /* Lub mniejsza wartość */
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
     text-align: center;
 }
 
@@ -226,9 +288,11 @@ a:hover {
     padding: var(--spacing-lg) 0;
     border-top: 1px solid var(--color-secondary);
     margin-top: var(--spacing-xl);
+    font-family: var(--font-family-primary); /* Source Sans 3 Light */
+    font-weight: var(--font-weight-light);
 }
 
-/* Style dla przycisków - używają Source Sans 3 Regular */
+/* Style dla przycisków - używają Source Sans 3 SemiBold */
 .button {
     display: inline-block;
     padding: 0.8rem var(--spacing-md);
@@ -238,8 +302,8 @@ a:hover {
     border-radius: var(--border-radius-sm);
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     text-align: center;
-    font-weight: 400;
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
+    font-style: normal;
 }
 
 .button-container {
@@ -269,7 +333,7 @@ a:hover {
     color: var(--color-background-light);
 }
 
-/* Specyficzny styl dla przycisku drukowania - używa Source Sans 3 Regular */
+/* Specyficzny styl dla przycisku drukowania - używa Source Sans 3 SemiBold */
 .print-button {
     background-color: var(--color-primary);
     color: var(--color-background-light);
@@ -281,8 +345,8 @@ a:hover {
     border-radius: var(--border-radius-sm);
     transition: background-color 0.3s ease;
     margin-top: var(--spacing-md);
-    font-weight: 400;
-    font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
+    font-style: normal;
 }
 
 .print-button:hover {
@@ -396,7 +460,11 @@ a:hover {
     display: block;
 }
 
+/* Nazwa przepisu w karcie (h3) - Source Sans 3 SemiBold */
 .recipe-card-title {
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
+    font-style: normal;
     font-size: 1.2rem;
     margin-bottom: var(--spacing-xs);
     min-height: calc(2 * 1.2rem * 1.2);
@@ -406,8 +474,6 @@ a:hover {
     -webkit-box-orient: vertical;
     white-space: normal;
     text-transform: none;
-    font-weight: 400;
-    font-style: normal;
 }
 
 /* --- Strona pojedynczego przepisu --- */
@@ -425,12 +491,14 @@ a:hover {
     margin-bottom: var(--spacing-lg);
 }
 
+/* Tytuł przepisu na pojedynczej stronie (h1 w kontekście strony) - Spectral SC Regular */
 .recipe-title {
+    font-family: var(--font-family-headings); /* Spectral SC */
+    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
+    font-style: normal;
     font-size: 3rem;
     margin-bottom: var(--spacing-sm);
     text-transform: none;
-    font-weight: 400;
-    font-style: normal;
 }
 
 .recipe-content-wrapper {
@@ -475,17 +543,18 @@ a:hover {
     margin-top: 0;
 }
 
+/* Treść przepisu, opis - Source Sans 3 Light */
 .recipe-details p {
     margin-bottom: var(--spacing-xs);
-    font-family: var(--font-family-primary);
+    font-family: var(--font-family-primary); /* Source Sans 3 */
     color: var(--color-text-dark);
-    font-weight: 400;
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
     font-style: normal;
 }
 
 .recipe-details strong {
     color: var(--color-primary);
-    font-weight: 400;
+    font-weight: var(--font-weight-semibold); /* Wartość pogrubiona w szczegółach przepisu */
     font-style: normal;
 }
 
@@ -503,49 +572,54 @@ a:hover {
     box-shadow: var(--shadow-sm);
 }
 
+/* Nagłówek notatki na stronie głównej (h3) - Source Sans 3 SemiBold */
 .notes-section .note-entry h3 {
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
+    font-style: normal;
     font-size: 1.6rem;
     margin-bottom: var(--spacing-xs);
     text-transform: none;
-    font-weight: 400;
-    font-style: normal;
 }
 
+/* Tekst notatki na stronie głównej (p) - Source Sans 3 Light */
 .notes-section .note-entry p {
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
+    font-style: normal;
     font-size: var(--spacing-sm);
     color: var(--color-text-dark);
     margin-bottom: 0.8rem;
-    font-weight: 400;
 }
 
 /* --- Lista notatek na stronie /notes/ --- */
-.notes-list-section .page-header { /* Specyficzny nagłówek dla strony listy notatek */
-    text-align: left; /* ZMIANA: Wyrównanie do lewej */
+.notes-list-section .page-header {
+    text-align: left;
     margin-bottom: var(--spacing-xxl);
-    max-width: 800px; /* ZMIANA: Ogranicz szerokość do szerokości notatek */
-    margin-left: auto; /* ZMIANA: Wyśrodkuj kontener nagłówka */
-    margin-right: auto; /* ZMIANA: Wyśrodkuj kontener nagłówka */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* Tytuł nagłówka strony listy notatek (h1) - Spectral SC Regular */
 .notes-list-section .page-header h1 {
-    font-family: var(--font-family-headings);
-    color: var(--color-primary);
-    font-weight: 400;
+    font-family: var(--font-family-headings); /* Spectral SC */
+    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
     font-style: normal;
     font-size: 3rem;
     margin-bottom: var(--spacing-xs);
 }
 
+/* Opis strony listy notatek (p) - Source Sans 3 Light */
 .notes-list-section .page-description {
-    font-family: var(--font-family-primary);
-    font-weight: var(--font-weight-light);
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
     color: var(--color-text-dark);
     font-size: 1.3rem;
-    /* max-width: 700px;  Usunęliśmy to, ponieważ max-width jest już na .page-header */
-    margin: 0; /* ZMIANA: Usuwamy auto, bo chcemy, żeby było wyrównane do lewej w ramce */
+    margin: 0;
 }
 
-.notes-list-section .notes-grid { /* Domyślnie 1 kolumna na desktopie dla strony /notes/ */
+.notes-list-section .notes-grid {
     grid-template-columns: 1fr;
     max-width: 800px;
     margin: 0 auto;
@@ -569,15 +643,16 @@ a:hover {
     box-shadow: var(--shadow-lg);
 }
 
+/* Tytuł notatki w karcie (h3) - Source Sans 3 SemiBold */
 .notes-list-section .note-card .note-title {
-    font-family: var(--font-family-headings);
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
+    font-style: normal;
     font-size: 1.8rem;
     margin-bottom: var(--spacing-xs);
     line-height: 1.3;
     color: var(--color-primary);
     text-transform: none;
-    font-weight: 400;
-    font-style: normal;
 }
 
 .notes-list-section .note-card .note-title a {
@@ -590,22 +665,24 @@ a:hover {
     color: var(--color-text-dark);
 }
 
+/* Metadane notatki (data) - Source Sans 3 Regular */
 .notes-list-section .note-card .note-meta {
-    font-family: var(--font-family-primary);
+    font-family: var(--font-family-primary); /* Source Sans 3 */
     font-size: 0.9rem;
     color: var(--color-secondary);
     margin-bottom: var(--spacing-sm);
-    font-weight: 400;
+    font-weight: var(--font-weight-regular); /* Source Sans 3 Regular */
     font-style: normal;
 }
 
+/* Fragment notatki (excerpt) - Source Sans 3 Light */
 .notes-list-section .note-card .note-excerpt {
-    font-family: var(--font-family-primary);
+    font-family: var(--font-family-primary); /* Source Sans 3 */
     font-size: 1rem;
     color: var(--color-text-dark);
     margin-bottom: var(--spacing-md);
     flex-grow: 1;
-    font-weight: 400;
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
     font-style: normal;
 }
 
@@ -624,25 +701,28 @@ a:hover {
     box-shadow: var(--shadow-lg);
 }
 
-.note-single .note-header { /* Dodano .note-single dla precyzji */
+.note-single .note-header {
     text-align: center;
     margin-bottom: var(--spacing-md);
 }
 
-.note-single .note-title { /* Dodano .note-single dla precyzji */
+/* Tytuł pojedynczej notatki (h1) - Spectral SC Regular */
+.note-single .note-title {
+    font-family: var(--font-family-headings); /* Spectral SC */
+    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
+    font-style: normal;
     font-size: 2.5rem;
     margin-bottom: var(--spacing-xs);
     text-transform: none;
-    font-weight: 400;
-    font-style: normal;
 }
 
-.note-single .note-date { /* Dodano .note-single dla precyzji */
-    font-family: var(--font-family-primary);
+/* Data notatki - Source Sans 3 Light */
+.note-single .note-date {
+    font-family: var(--font-family-primary); /* Source Sans 3 */
     color: var(--color-text-dark);
     font-size: 0.9rem;
     margin-bottom: var(--spacing-md);
-    font-weight: 400;
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
     font-style: normal;
 }
 
@@ -656,45 +736,53 @@ a:hover {
     object-fit: cover;
 }
 
+/* Nagłówki w treści notatki (h2, h3, h4) - Spectral SC Regular */
 .note-content h2, .note-content h3, .note-content h4 {
-    font-family: var(--font-family-headings);
+    font-family: var(--font-family-headings); /* Spectral SC */
     color: var(--color-primary);
     margin-top: var(--spacing-md);
     margin-bottom: 0.8rem;
     text-transform: none;
-    font-weight: 400;
+    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
     font-style: normal;
 }
 
+/* Treść notatki (p) - Source Sans 3 Light */
 .note-content p {
     margin-bottom: var(--spacing-sm);
     color: var(--color-text-dark);
-    font-weight: 400;
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
     font-style: normal;
 }
 
+/* Listy w notatce - Source Sans 3 Light */
 .note-content ul, .note-content ol {
     margin-left: var(--spacing-md);
     margin-bottom: var(--spacing-sm);
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
+    font-style: normal;
 }
 
+/* Cytat w notatce - Source Sans 3 Light */
 .note-content blockquote {
     border-left: 4px solid var(--color-primary);
     padding-left: var(--spacing-sm);
     margin: var(--spacing-md) 0;
     font-style: normal;
     color: var(--color-text-dark);
-    font-weight: 400;
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
 }
 
+/* Linki powrotne - Source Sans 3 Light */
 .back-to-categories-link,
 .back-to-home-notes-link {
     display: inline-block;
     margin-top: var(--spacing-lg);
-    font-family: var(--font-family-primary);
+    font-family: var(--font-family-primary); /* Source Sans 3 */
     font-size: 0.9rem;
     color: var(--color-primary);
-    font-weight: 400;
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
     font-style: normal;
 }
 
@@ -721,7 +809,11 @@ a:hover {
     background-color: var(--color-primary);
 }
 
+/* Nazwa kategorii (np. Zupy) w karcie - Source Sans 3 SemiBold */
 .category-card-title {
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
+    font-style: normal;
     font-size: 1.4rem;
     margin: 0;
     transition: color 0.3s ease;
@@ -733,12 +825,20 @@ a:hover {
     -webkit-box-orient: vertical;
     white-space: normal;
     text-align: center;
-    font-weight: 400;
-    font-style: normal;
 }
 
 .category-card:hover .category-card-title {
     color: var(--color-background-light);
+}
+
+/* Dodatkowo, jeśli masz licznik przepisów w kategorii */
+.category-post-count {
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-semibold); /* Source Sans 3 SemiBold */
+    font-style: normal;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    margin-top: var(--spacing-xxs);
 }
 
 
@@ -762,23 +862,26 @@ a:hover {
     min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px));
 }
 
+/* Tytuł błędu (h1) - Spectral SC Regular */
 .error-404-container .error-title {
-    font-family: var(--font-family-headings);
+    font-family: var(--font-family-headings); /* Spectral SC */
+    font-weight: var(--font-weight-regular); /* Spectral SC Regular */
+    font-style: normal;
     font-size: 3rem;
     color: var(--color-primary);
     margin-bottom: var(--spacing-sm);
     text-transform: none;
-    font-weight: 400;
-    font-style: normal;
 }
 
+/* Wiadomość o błędzie - Source Sans 3 Light */
 .error-404-container .error-message,
 .error-404-container .error-suggestion {
+    font-family: var(--font-family-primary); /* Source Sans 3 */
+    font-weight: var(--font-weight-light); /* Source Sans 3 Light */
+    font-style: normal;
     font-size: 1.2rem;
     color: var(--color-text-dark);
     margin-bottom: var(--spacing-md);
-    font-weight: 400;
-    font-style: normal;
 }
 
 .error-image {
@@ -890,7 +993,7 @@ a:hover {
     ========================================================================== */
 @media print {
     body {
-        font-family: var(--font-family-primary);
+        font-family: var(--font-family-primary); /* Source Sans 3 Light */
         color: #000;
         background-color: var(--color-white);
         margin: 0;
@@ -933,29 +1036,34 @@ a:hover {
         margin-bottom: var(--spacing-sm);
     }
 
+    /* Tytuł przepisu na wydruku - Spectral SC Regular */
     .recipe-title {
         font-size: 2.2rem;
         color: #000;
         margin-bottom: var(--spacing-xs);
         font-family: var(--font-family-headings); /* Spectral SC */
         text-transform: none;
-        font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
-        font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+        font-weight: var(--font-weight-regular);
+        font-style: normal;
     }
 
+    /* Opis przepisu na wydruku - Source Sans 3 Light */
     .recipe-description {
+        font-family: var(--font-family-primary); /* Source Sans 3 */
         font-size: var(--spacing-sm);
         color: #333;
         margin-bottom: var(--spacing-sm);
         font-style: normal;
-        font-weight: 400;
+        font-weight: var(--font-weight-light);
     }
 
+    /* Data przepisu na wydruku - Source Sans 3 Light */
     .recipe-date {
+        font-family: var(--font-family-primary); /* Source Sans 3 */
         font-size: 0.8rem;
         color: #666;
         margin-bottom: 0.3rem;
-        font-weight: 400;
+        font-weight: var(--font-weight-light);
     }
 
     /* Układ kolumn na wydruku (linia po linii) */
@@ -992,18 +1100,22 @@ a:hover {
         margin-top: var(--spacing-sm);
     }
 
+    /* Tekst w recipe-details na wydruku - Source Sans 3 Light */
     .recipe-details p {
+        font-family: var(--font-family-primary); /* Source Sans 3 */
         font-size: 0.9rem;
         margin-bottom: 0.3rem;
         color: #000;
-        font-weight: 400;
+        font-weight: var(--font-weight-light);
     }
 
+    /* Pogrubiony tekst w recipe-details na wydruku - Source Sans 3 SemiBold */
     .recipe-details strong {
         color: #000;
-        font-weight: 400;
+        font-weight: var(--font-weight-semibold);
     }
 
+    /* Nagłówki w treści przepisu na wydruku - Spectral SC Regular */
     .recipe-ingredients h2,
     .recipe-preparation h2,
     .recipe-additional-content h2 {
@@ -1012,15 +1124,17 @@ a:hover {
         margin-bottom: 0.8rem;
         font-family: var(--font-family-headings); /* Spectral SC */
         text-transform: none;
-        font-weight: 400; /* ZMIANA: Ustawiono wagę 400 */
-        font-style: normal; /* ZMIANA: Upewniono się, że jest normal */
+        font-weight: var(--font-weight-regular);
+        font-style: normal;
     }
 
+    /* Listy w treści przepisu na wydruku - Source Sans 3 Light */
     .recipe-ingredients ul,
     .recipe-preparation ol,
     .recipe-additional-content p,
     .recipe-additional-content ul,
     .recipe-additional-content ol {
+        font-family: var(--font-family-primary); /* Source Sans 3 */
         margin-left: 0;
         list-style-position: outside;
         padding-left: var(--spacing-md);
@@ -1028,7 +1142,7 @@ a:hover {
         line-height: 1.4;
         margin-bottom: 0.3rem;
         color: #000;
-        font-weight: 400;
+        font-weight: var(--font-weight-light);
     }
 
     .recipe-ingredients ul li::marker,
@@ -1038,9 +1152,10 @@ a:hover {
         color: var(--color-primary);
     }
 
+    /* Linki na wydruku - Source Sans 3 Regular */
     a {
         text-decoration: none;
         color: #000 !important;
-        font-weight: 400;
+        font-weight: var(--font-weight-regular);
     }
 }
