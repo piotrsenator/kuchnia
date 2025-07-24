@@ -312,24 +312,24 @@ p {
 }
 
 .button.primary-button {
-    background-color: var(--color-primary);
-    color: var(--color-background-light);
-    border: none;
-}
-
-.button.primary-button:hover {
-    background-color: var(--color-text-dark);
-    color: var(--color-background-light);
-}
-
-.button.secondary-button {
     background-color: transparent;
     color: var(--color-primary);
     border: 1px solid var(--color-primary);
 }
 
-.button.secondary-button:hover {
+.button.primary-button:hover {
     background-color: var(--color-primary);
+    color: var(--color-background-light);
+}
+
+.button.secondary-button {
+    background-color: var(--color-primary);
+    color: var(--color-background-light);
+    border: none;
+}
+
+.button.secondary-button:hover {
+    background-color: var(--color-text-dark);
     color: var(--color-background-light);
 }
 
