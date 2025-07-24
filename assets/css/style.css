@@ -430,6 +430,12 @@ blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl
     padding: 0 var(--spacing-md); /* Zero paddingu góra/dół, tylko boczny */
 }
 
+/* **WAŻNE: NOWA REGUŁA DLA STRON Z LISTAMI (np. notes.html)** */
+.content.page-with-list {
+    padding-left: 0;   /* Zeruje lewy padding */
+    padding-right: 0;  /* Zeruje prawy padding */
+}
+
 /* -------------------------------------------------------------------------- */
 /* --- 3.2. Odstępy Między Głównymi Sekcjami --- */
 /* -------------------------------------------------------------------------- */
