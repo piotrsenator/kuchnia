@@ -616,7 +616,6 @@ blockquote {
     font-family: var(--font-family-headings);
     font-size: 2rem; /* Dopasuj rozmiar do reszty nagłówków */
     margin-bottom: var(--spacing-md);
-    color: var(--color-text-dark);
 }
 
 .recipe-ingredients ul,
