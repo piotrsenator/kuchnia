@@ -501,61 +501,108 @@ blockquote {
     font-weight: var(--font-weight-semibold);
 }
 
-/* 4.3. Strony Notatek (ogólne, lista, pojedyncza) */
+/* ==========================================================================
+   4.3. Style Stron Notatek (Zoptymalizowane)
+   ========================================================================== */
 
-/* Wpis notatki (np. na stronie głównej) */
-.notes-section .note-entry {
-    background-color: var(--color-background-accent);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--border-radius-md);
-    padding: var(--spacing-md);
-    box-shadow: var(--shadow-sm);
-}
-.notes-section .note-entry h3 { font-size: 1.6rem; margin-bottom: var(--spacing-xs); }
-.notes-section .note-entry p { font-size: var(--spacing-sm); margin-bottom: var(--spacing-sm); }
+/* --------------------------------------------------------------------------
+   4.3.1. Nagłówek i Opis Strony Listy (/notes/)
+   -------------------------------------------------------------------------- */
 
-/* Nagłówek dla stron typu lista (np. /notes/) */
 .page-with-list > .page-header {
-    text-align: center;         /* 1. Centruje tekst wewnątrz nagłówka */
-    max-width: 800px;           /* 2. Ogranicza maksymalną szerokość bloku nagłówka */
-    margin-left: auto;          /* 3. W połączeniu z max-width, centruje cały blok */
-    margin-right: auto;         /* w poziomie na stronie. */
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-md); /* Skrócony zapis margin */
     padding: var(--spacing-xl) var(--spacing-sm) var(--spacing-lg);
-    margin-bottom: var(--spacing-md);
 }
 
-/* Tytuł na stronie listy notatek */
 .page-with-list > .page-header h1 {
     font-size: 3rem;
     margin-bottom: var(--spacing-xs);
 }
 
-/* Opis na stronie listy notatek */
 .page-with-list > .page-header .page-description {
     font-weight: var(--font-weight-light);
     font-size: 1.3rem;
     margin: 0;
 }
 
-/* Karta notatki na stronie listy */
-.notes-list-section .note-card {
+/* --------------------------------------------------------------------------
+   4.3.2. Wspólny Styl dla Boksów Notatek (Optymalizacja)
+   -------------------------------------------------------------------------- */
+
+/* NOWA klasa bazowa, która zawiera powtarzające się style */
+.note-box {
     background-color: var(--color-background-accent);
     border: 1px solid var(--color-secondary);
     border-radius: var(--border-radius-md);
     padding: var(--spacing-md);
+}
+
+/* --------------------------------------------------------------------------
+   4.3.3. Specyficzne Style dla Notatek
+   -------------------------------------------------------------------------- */
+
+/* Wpis notatki na stronie głównej (używa bazy .note-box) */
+.notes-section .note-entry {
+    box-shadow: var(--shadow-sm); /* Tylko unikalny cień */
+}
+
+.notes-section .note-entry h3 {
+    font-size: 1.6rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.notes-section .note-entry p {
+    font-size: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+
+/* Karta notatki na stronie listy (używa bazy .note-box) */
+.notes-list-section .note-card {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md); /* Inny, unikalny cień */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.notes-list-section .note-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
-.notes-list-section .note-card .note-title { font-size: 1.8rem; margin-bottom: var(--spacing-xs); }
-.notes-list-section .note-card .note-title a { color: var(--color-primary); transition: color 0.3s ease; }
-.notes-list-section .note-card .note-title a:hover { color: var(--color-text-dark); }
-.notes-list-section .note-card .note-meta { font-size: 0.9rem; color: var(--color-secondary); margin-bottom: var(--spacing-sm); }
-.notes-list-section .note-card .note-excerpt { font-weight: var(--font-weight-light); font-size: 1rem; margin-bottom: var(--spacing-md); flex-grow: 1; }
-.notes-list-section .note-read-more-container { text-align: right; margin-top: auto; }
+
+.notes-list-section .note-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.notes-list-section .note-card .note-title {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.notes-list-section .note-card .note-title a {
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+}
+
+.notes-list-section .note-card .note-title a:hover {
+    color: var(--color-text-dark);
+}
+
+.notes-list-section .note-card .note-meta {
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.notes-list-section .note-card .note-excerpt {
+    font-weight: var(--font-weight-light);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1; /* Pozwala sekcji rosnąć i wypychać przycisk na dół */
+}
+
+.notes-list-section .note-read-more-container {
+    text-align: right;
+    margin-top: auto; /* Wypycha przycisk na sam dół karty */
+}
 
 /* Strona pojedynczej notatki */
 .note-single {
