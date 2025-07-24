@@ -376,20 +376,22 @@ blockquote {
     background-color: var(--color-background-accent);
     border: 1px solid var(--color-secondary);
     border-radius: var(--border-radius-md);
-    /* Zmniejszono padding pionowy */
-    padding: var(--spacing-xs) var(--spacing-md); /* Zmieniono var(--spacing-sm) na var(--spacing-xs) dla góry/dołu */
+    /* ZMNIEJSZONY PADDING pionowy */
+    padding: var(--spacing-xs) var(--spacing-md); /* Góra/dół 8px, lewo/prawo 24px */
     text-align: center;
     transition: background-color 0.3s ease;
-    /* Usunięto min-height: auto; - niepotrzebne przy fixed height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* To wyśrodkowuje całą zawartość karty w pionie */
-    align-items: center;    /* To wyśrodkowuje całą zawartość karty w poziomie */
 
-    /* Ustawienie stałej wysokości dla wszystkich kart kategorii */
-    /* Należy dostosować tę wartość tak, aby pomieściła dwie linie tekstu + licznik postów z zapasem */
-    min-height: 120px; /* Przykładowa wysokość, dostosuj wg potrzeb. To klucz do jednolitej wysokości. */
-    height: auto; /* Zapewnia elastyczność, ale min-height będzie dominować */
+    display: flex;
+    flex-direction: column; /* Ustawienie układu pionowego */
+    justify-content: space-between; /* Nowość: Rozdziela zawartość (tytuł i licznik) równomiernie pionowo */
+    align-items: center;    /* Wyśrodkowanie w poziomie */
+
+    /* KLUCZOWA ZMIANA: STAŁA WYSOKOŚĆ KARTY */
+    /* Obliczanie: (2 linie * line-height) + paddingi + wysokość licznika + marginesy */
+    /* Przykład dla font-size: 1.4rem (22.4px), line-height: 1.2, spacing-xs: 8px, font-size licznika 0.9rem (~14.4px) */
+    /* Ok. (22.4px * 1.2 * 2) + (8px * 2) + 14.4px + (kilka px na margines) = ~53.76 + 16 + 14.4 = ~84.16px */
+    /* Spróbujmy wartości, która na pewno pomieści dwie linie i licznik. */
+    min-height: 100px; /* Dostosuj tę wartość! Zacznij od 100px i zwiększaj/zmniejszaj. */
 }
 .category-card:hover {
     background-color: var(--color-primary);
@@ -398,17 +400,21 @@ blockquote {
     font-weight: var(--font-weight-semibold);
     font-size: 1.4rem;
     line-height: 1.2;
-    margin: 0;
+    margin: 0; /* Usuwamy marginesy, aby flexbox miał pełną kontrolę */
     transition: color 0.3s ease;
-    /* min-height usuwamy stąd, przenosimy logikę stałej wysokości do .category-card */
-    /* Usunięto: min-height: calc(2 * 1.4rem * 1.2); */
 
+    /* KLUCZOWA ZMIANA: DISPLAY: FLEX dla samego tytułu, aby wyśrodkować tekst w nim */
     display: flex;
-    align-items: center; /* Wyśrodkowanie pionowe tekstu w ramach swojego kontenera */
-    justify-content: center; /* Wyśrodkowanie poziome tekstu w ramach swojego kontenera */
-    flex-grow: 1; /* To jest KLUCZOWE - pozwala tytułowi zająć dostępną przestrzeń wewnątrz .category-card */
+    align-items: center;    /* Wyśrodkowanie pionowe tekstu w ramach TEGO kontenera */
+    justify-content: center; /* Wyśrodkowanie poziome tekstu w ramach TEGO kontenera */
+    text-align: center; /* Dodatkowe zabezpieczenie dla wyśrodkowania tekstu */
+
+    flex-grow: 1; /* Pozwoli temu elementowi zająć całą dostępną przestrzeń w kolumnie */
+    width: 100%; /* Upewnij się, że element tytułu zajmuje pełną szerokość */
+
     overflow: hidden;
-    display: -webkit-box; /* Potrzebne dla -webkit-line-clamp */
+    /* Styles for multi-line ellipsis */
+    display: -webkit-box;
     -webkit-line-clamp: 2; /* Ograniczenie do 2 linii */
     -webkit-box-orient: vertical;
 }
@@ -419,10 +425,9 @@ blockquote {
     font-weight: var(--font-weight-semibold);
     font-size: 0.9rem;
     color: var(--color-primary);
-    margin-top: var(--spacing-xxs);
+    margin-top: var(--spacing-xxs); /* Minimalny margines górny */
     flex-shrink: 0; /* Zapobiega zmniejszaniu się licznika postów */
 }
-
 
 /* ==========================================================================
    4. STYLE STRON
