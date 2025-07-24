@@ -987,13 +987,22 @@ p {
         padding: var(--spacing-lg);
     }
 
+    /* Układ dla siatek na tablecie - 3 kolumny */
     .recipes-grid,
     .latest-recipes-grid,
     .categories-grid,
-    .notes-grid {
+    .notes-grid { /* Zostawiamy notes-grid, by na stronie /notes/ był 3-kolumnowy */
         grid-template-columns: repeat(3, 1fr);
         gap: var(--spacing-lg);
     }
+
+    /* SPECIFIC DLA NOTATEK NA STRONIE GŁÓWNEJ NA TABLECIE */
+    /* Zapewniamy, że siatka z ostatnimi notatkami na stronie głównej jest szersza */
+    .latest-notes-grid {
+        max-width: 1200px; /* Rozszerzamy do pełnej szerokości contentu */
+        margin: var(--spacing-lg) auto; /* Wyśrodkowanie */
+    }
+
 
     /* Układ dla pojedynczego przepisu */
     .recipe-content-wrapper {
@@ -1010,19 +1019,14 @@ p {
     .note-single,
     .error-404-container {
         padding: var(--spacing-lg);
-        /* Zapewniamy spójną max-width dla tych głównych kontenerów na tablecie */
         max-width: 900px;
         margin-left: auto;
         margin-right: auto;
     }
 
-    /* Nagłówki stron listy (notatek, kategorii) na tablecie - jeśli potrzebują dopasowania */
     .notes-list-section .page-header,
     .category-header {
-        /* Już miały max-width: 800px i auto marginesy, więc tu tylko upewniamy się,
-           że są poprawnie wyśrodkowane na szerszych ekranach.
-           text-align: center; już jest ustawione dla obu w sekcji 4. */
-        max-width: 800px; /* Utrzymujemy tę szerokość dla spójności z siatką notes-grid 1fr */
+        max-width: 800px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -1046,14 +1050,26 @@ p {
     .categories-grid {
         grid-template-columns: repeat(4, 1fr);
     }
+
+    /* Zmiana dla notes-grid na stronie /notes/ */
     .notes-grid {
-        grid-template-columns: repeat(3, 1fr); /* Spójność z poprzednimi ustaleniami */
+        grid-template-columns: repeat(3, 1fr); /* 3 kolumny dla notes.html */
+        max-width: 800px; /* Maksymalna szerokość siatki notatek na stronie /notes/ */
+        margin: var(--spacing-lg) auto;
     }
 
-    /* Nagłówki stron listy (notatek, kategorii) na desktopie */
+    /* SPECIFIC DLA NOTATEK NA STRONIE GŁÓWNEJ NA DESKTOPIE */
+    /* Nadpisanie, żeby ostatnie notatki na stronie głównej były szersze */
+    .latest-notes-grid {
+        grid-template-columns: repeat(3, 1fr); /* Jeśli chcesz 3 kolumny dla 3 notatek */
+        max-width: 1200px; /* Rozszerzamy do pełnej szerokości contentu */
+        margin: var(--spacing-lg) auto; /* Wyśrodkowanie */
+    }
+
+
     .notes-list-section .page-header,
     .category-header {
-        max-width: 900px; /* Rozszerzamy do 900px, by lepiej pasował do ogólnego contentu */
+        max-width: 900px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -1062,7 +1078,7 @@ p {
     .note-single,
     .error-404-container {
         padding: var(--spacing-xl);
-        max-width: 900px; /* Spójność z nagłówkami i ogólnym contentem */
+        max-width: 900px;
     }
 }
 
@@ -1081,34 +1097,37 @@ p {
         padding: var(--spacing-sm);
     }
 
+    /* Domyślny responsywny układ siatek na mobilnych */
     .recipes-grid,
     .latest-recipes-grid,
     .categories-grid,
     .notes-grid {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: var(--spacing-md);
+        max-width: 100%; /* Upewniamy się, że są responsywne na mobilnych */
+        margin: var(--spacing-md) auto;
+        padding: 0 var(--spacing-sm); /* Dodajemy padding, żeby siatka nie dotykała krawędzi */
+        box-sizing: border-box;
     }
 
     .error-image {
         width: 80%;
     }
 
-    /* Upewniamy się, że główne kontenery strony są responsywne na mobilnych */
     .recipe-single,
     .note-single,
     .error-404-container {
-        padding: var(--spacing-sm); /* Zmniejszamy padding na mobilnych */
-        max-width: 100%; /* Rozciągnij na całą szerokość ekranu (minus padding) */
-        margin: 0 auto; /* Upewnij się, że są wyśrodkowane */
+        padding: var(--spacing-sm);
+        max-width: 100%;
+        margin: 0 auto;
     }
 
-    /* Nagłówki stron listy (notatek, kategorii) na mobilnych */
     .notes-list-section .page-header,
     .category-header {
-        max-width: 100%; /* Na mobilnych nie ograniczamy tak mocno */
+        max-width: 100%;
         padding-left: var(--spacing-sm);
         padding-right: var(--spacing-sm);
-        box-sizing: border-box; /* Ważne, aby padding nie dodawał szerokości */
+        box-sizing: border-box;
     }
 }
 
