@@ -731,20 +731,6 @@ blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl
     gap: var(--spacing-lg);     /* Odstęp między kartami notatek */
 }
 
-/* Dostosowanie siatki na większych ekranach (np. tablet, desktop) */
-@media (min-width: 768px) { /* Przykład breakpointu dla tabletów */
-    .notes-list-section .notes-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2-3 kolumny */
-    }
-}
-
-@media (min-width: 1024px) { /* Przykład breakpointu dla desktopów */
-    .notes-list-section .notes-grid {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* 2-3 kolumny z większymi kartami */
-    }
-}
-
-
 /* Karta notatki (note-card) */
 .notes-list-section .note-card {
     background-color: var(--color-background-accent);
