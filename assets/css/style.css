@@ -466,29 +466,29 @@ blockquote {
     font-weight: inherit;
 }
 
-/* 4.2. Strona Pojedynczego Przepisu */
+/* --- Strona pojedynczego przepisu --- */
 
 /* Główny kontener strony przepisu */
 .recipe-single {
-    max-width: var(--max-content-width); /* Użyj zmiennej dla maksymalnej szerokości */
-    margin: var(--spacing-md) auto; /* Dodaj górny i dolny margines, wyśrodkuj */
-    padding: var(--spacing-lg); /* Zwiększ padding wewnętrzny */
-    background-color: var(--color-background-accent);
-    border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-lg);
+    max-width: var(--max-content-width, 900px); /* Użyj zmiennej lub domyślnej wartości */
+    margin: var(--spacing-lg, 2rem) auto; /* Użyj zmiennej lub domyślnej wartości */
+    padding: var(--spacing-lg, 1.5rem); /* Użyj zmiennej lub domyślnej wartości */
+    background-color: var(--color-background-accent, #F1EBE3);
+    border-radius: var(--border-radius-md, 8px);
+    box-shadow: var(--shadow-lg, 0 4px 12px rgba(0, 0, 0, 0.08));
 }
 
 /* Nagłówek przepisu */
 .recipe-header {
     text-align: center;
-    margin-bottom: var(--spacing-xl); /* Zwiększ margines dolny dla przestrzeni */
+    margin-bottom: var(--spacing-xl, 2rem); /* Zwiększ margines dolny dla lepszego odstępu */
 }
 
 .recipe-title {
-    font-family: var(--font-family-headings);
-    font-weight: var(--font-weight-regular);
-    font-size: 3rem;
-    margin-bottom: var(--spacing-sm);
+    font-family: var(--font-family-headings); /* Zachowaj zmienną dla czcionki */
+    font-weight: var(--font-weight-regular); /* Zachowaj zmienną dla wagi czcionki */
+    font-size: 3rem; /* Zachowaj rozmiar */
+    margin-bottom: var(--spacing-sm, 1rem); /* Zachowaj margines */
     color: var(--color-text-dark); /* Upewnij się, że kolor jest czytelny */
 
     /* Responsywność dla tytułu */
@@ -501,24 +501,25 @@ blockquote {
 }
 
 .recipe-description {
-    font-weight: var(--font-weight-light);
-    font-size: 1.2rem;
-    line-height: 1.5;
-    margin-bottom: var(--spacing-lg);
-    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-light, 400); /* Użyj zmiennej lub domyślnej wartości */
+    font-size: 1.2rem; /* Zachowaj rozmiar */
+    line-height: 1.5; /* Dodaj dla lepszej czytelności */
+    font-style: italic; /* Zachowaj styl */
+    color: var(--color-text-secondary, #2E2E2E); /* Użyj zmiennej lub domyślnej wartości */
+    margin-bottom: var(--spacing-lg, 2rem); /* Zachowaj margines */
 }
 
 /* Kontener głównej treści przepisu (obrazek, szczegóły, składniki, przygotowanie) */
 .recipe-content-wrapper {
     display: grid;
-    gap: var(--spacing-lg); /* Odstęp między elementami w siatce */
+    gap: var(--spacing-lg, 2rem); /* Odstęp między elementami w siatce */
     grid-template-columns: 1fr; /* Domyślnie na małych ekranach - jedna kolumna */
     align-items: start; /* Dopasuj elementy do początku wierszy */
 
     @media (min-width: 768px) {
         /* Na większych ekranach: dwie kolumny */
-        /* Pierwsza kolumna dla obrazka/detali, druga dla składników */
-        grid-template-columns: 1fr 1.5fr; /* Przykładowe proporcje, możesz dostosować (np. 1fr 1fr) */
+        /* Pierwsza kolumna dla obrazka/detali (np. 1fr), druga dla składników (np. 1.5fr) */
+        grid-template-columns: 1fr 1.5fr; /* Dostosuj proporcje (np. 1fr 1fr, 300px 1fr) */
     }
 }
 
@@ -526,6 +527,9 @@ blockquote {
 .recipe-main-info {
     /* Na małych ekranach zajmuje 100% szerokości */
     grid-column: 1 / -1; /* Domyślnie zajmuje całą szerokość w pojedynczej kolumnie */
+    display: flex; /* Zachowaj flexbox dla wewnętrznego układu */
+    flex-direction: column;
+    align-items: center; /* Zachowaj wyśrodkowanie w pionie dla mobile */
 
     @media (min-width: 768px) {
         grid-column: 1 / 2; /* Na większych ekranach zajmuje PIERWSZĄ kolumnę */
@@ -533,33 +537,35 @@ blockquote {
 }
 
 .recipe-main-image {
+    max-width: 100%;
     width: 100%;
     height: auto;
-    border-radius: var(--border-radius-md);
-    margin-bottom: var(--spacing-md);
-    aspect-ratio: 4 / 3; /* Utrzymuje proporcje obrazu */
-    object-fit: cover; /* Dopasowuje obraz do kontenera */
+    border-radius: var(--border-radius-md, 8px);
+    margin-bottom: var(--spacing-md, 1.5rem);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
 }
 
 /* Szczegóły przepisu (ramka) */
 .recipe-details {
     width: 100%; /* Zapewnia, że ramka zajmuje całą dostępną szerokość w kolumnie */
-    padding: var(--spacing-sm);
-    background-color: var(--color-background-accent);
-    border-radius: var(--border-radius-md);
-    border: 1px solid var(--color-secondary);
+    padding: var(--spacing-sm, 1rem); /* Użyj zmiennej lub domyślnej wartości */
+    background-color: var(--color-background-accent, #F1EBE3);
+    border-radius: var(--border-radius-md, 8px);
+    border: 1px solid var(--color-secondary, #BDB7AF); /* Użyj zmiennej lub domyślnej wartości */
+    margin-top: 0; /* Zachowaj margines */
 }
 
 .recipe-details p {
-    margin-bottom: var(--spacing-xs);
-    font-weight: var(--font-weight-light);
+    margin-bottom: var(--spacing-xs, 0.5rem); /* Użyj zmiennej lub domyślnej wartości */
+    font-family: var(--font-family-body); /* Użyj zmiennej lub domyślnej wartości */
     line-height: 1.4; /* Popraw czytelność */
-    color: var(--color-text-primary); /* Upewnij się, że kolor jest czytelny */
+    color: var(--color-text-primary, #2E2E2E); /* Użyj zmiennej lub domyślnej wartości */
 }
 
 .recipe-details strong {
-    color: var(--color-primary);
-    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary, #A9643E); /* Użyj zmiennej lub domyślnej wartości */
+    font-weight: var(--font-weight-semibold); /* Zachowaj zmienną dla wagi czcionki */
 }
 
 .print-button {
@@ -588,7 +594,7 @@ blockquote {
 
     @media (min-width: 768px) {
         grid-column: 2 / 3; /* KLUCZ: Na większych ekranach zajmuje DRUGĄ kolumnę */
-        /* grid-row: 1 / 2; Jeśli chcesz, aby była w tym samym wierszu co main-info */
+        /* grid-row: 1 / 2; Jeśli chcesz, aby była w tym samym wierszu co main-info, dodaj to */
     }
     margin-bottom: var(--spacing-lg); /* Dodaj margines dolny dla odstępu */
 }
@@ -599,9 +605,11 @@ blockquote {
     /* KLUCZ: ZAWSZE zajmuje całą szerokość siatki, czyli wszystkie kolumny */
     grid-column: 1 / -1; /* Rozciąga element przez wszystkie kolumny siatki */
     
+    margin-top: var(--spacing-lg, 2rem); /* Odstęp od poprzednich sekcji */
     margin-bottom: var(--spacing-lg); /* Dodaj margines dolny dla odstępu między sekcjami */
 }
 
+/* Style nagłówków i list dla składników i przygotowania */
 .recipe-ingredients h2,
 .recipe-preparation h2,
 .recipe-additional-content h2 {
@@ -635,7 +643,6 @@ blockquote {
     padding-top: var(--spacing-md);
     border-top: 1px solid var(--color-border); /* Opcjonalna linia oddzielająca */
 }
-
 /* ==========================================================================
    4.3. Style Stron Notatek (Zoptymalizowane)
    ========================================================================== */
