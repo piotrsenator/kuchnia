@@ -6,14 +6,10 @@ title: Strona Główna
     <section class="latest-recipes-section" id="najnowsze-przepisy">
         <h2>Najnowsze Przepisy</h2>
         <div class="latest-recipes-grid recipes-grid">
-            {# Pętla dla najnowszych przepisów. Limit ustawiony na 4. #}
+            {% #Pętla dla najnowszych przepisów. Limit ustawiony na 4.# %}
             {% for recipe in site.recipes limit: 4 %}
                 {% include recipe_card.html recipe=recipe %}
             {% endfor %}
-        </div>
-        /* Dodano przycisk "Wszystkie przepisy" dla spójności i nawigacji */
-        <div class="button-container">
-            <a href="{{ '/recipes/' | relative_url }}" class="button primary-button">Wszystkie przepisy</a>
         </div>
     </section>
 
@@ -37,14 +33,17 @@ title: Strona Główna
             {% for note in site.notes limit: 3 %}
                 
                 <div class="note-entry note-box">
-                    /* Linkowanie całego bloku notatki jest lepsze dla klikalności */
+                    {% #Linkowanie całego bloku notatki jest lepsze dla klikalności # %}
                     <a href="{{ note.url | relative_url }}" class="note-link-wrapper" aria-label="Czytaj całą notatkę: {{ note.title | escape }}">
                         <h3>{{ note.title }}</h3>
                         <p class="note-excerpt">{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
                                             </a>
-                    /* Jeśli preferujesz osobny link "Czytaj więcej", możesz go przywrócić,
-                       ale pamiętaj o usunięciu linkowania całego bloku. 
-                     <a href="{{ note.url | relative_url }}" class="read-more">Czytaj więcej &raquo;</a> */
+                     {% comment %}
+                     Jeśli preferujesz osobny link "Czytaj więcej", możesz go przywrócić,
+                     ale pamiętaj o usunięciu linkowania całego bloku. 
+                     <a href="{{ note.url | relative_url }}" class="read-more">Czytaj więcej &raquo;</a> 
+                     {% endcomment %}
+                    
                 </div>
             {% endfor %}
         </div>
