@@ -376,14 +376,20 @@ blockquote {
     background-color: var(--color-background-accent);
     border: 1px solid var(--color-secondary);
     border-radius: var(--border-radius-md);
-    padding: var(--spacing-sm) var(--spacing-md);
+    /* Zmniejszono padding pionowy */
+    padding: var(--spacing-xs) var(--spacing-md); /* Zmieniono var(--spacing-sm) na var(--spacing-xs) dla góry/dołu */
     text-align: center;
     transition: background-color 0.3s ease;
-    min-height: auto;
+    /* Usunięto min-height: auto; - niepotrzebne przy fixed height */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* To wyśrodkowuje całą zawartość karty w pionie */
+    align-items: center;    /* To wyśrodkowuje całą zawartość karty w poziomie */
+
+    /* Ustawienie stałej wysokości dla wszystkich kart kategorii */
+    /* Należy dostosować tę wartość tak, aby pomieściła dwie linie tekstu + licznik postów z zapasem */
+    min-height: 120px; /* Przykładowa wysokość, dostosuj wg potrzeb. To klucz do jednolitej wysokości. */
+    height: auto; /* Zapewnia elastyczność, ale min-height będzie dominować */
 }
 .category-card:hover {
     background-color: var(--color-primary);
@@ -394,14 +400,16 @@ blockquote {
     line-height: 1.2;
     margin: 0;
     transition: color 0.3s ease;
-    min-height: calc(2 * 1.4rem * 1.2); /* Min-height dla 2 linii */
+    /* min-height usuwamy stąd, przenosimy logikę stałej wysokości do .category-card */
+    /* Usunięto: min-height: calc(2 * 1.4rem * 1.2); */
+
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
+    align-items: center; /* Wyśrodkowanie pionowe tekstu w ramach swojego kontenera */
+    justify-content: center; /* Wyśrodkowanie poziome tekstu w ramach swojego kontenera */
+    flex-grow: 1; /* To jest KLUCZOWE - pozwala tytułowi zająć dostępną przestrzeń wewnątrz .category-card */
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
+    display: -webkit-box; /* Potrzebne dla -webkit-line-clamp */
+    -webkit-line-clamp: 2; /* Ograniczenie do 2 linii */
     -webkit-box-orient: vertical;
 }
 .category-card:hover .category-card-title {
@@ -412,7 +420,7 @@ blockquote {
     font-size: 0.9rem;
     color: var(--color-primary);
     margin-top: var(--spacing-xxs);
-    flex-shrink: 0;
+    flex-shrink: 0; /* Zapobiega zmniejszaniu się licznika postów */
 }
 
 
