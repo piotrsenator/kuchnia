@@ -74,8 +74,36 @@ layout: default
            pozostaw poniższy blok. W przeciwnym razie możesz go usunąć. {% endcomment %}
         {% if content != "" %}
              <section class="recipe-additional-content">
-                {{ content }}
+                 {{ content }}
              </section>
         {% endif %}
     </div>
+
+    {# NOWY KOD: Przycisk do strony kategorii #}
+    {% if page.category %}
+        {% assign category_name = "" %}
+        {% for cat in site.data.categories %}
+            {% if cat.slug == page.category %}
+                {% assign category_name = cat.name %}
+                {% break %}
+            {% endif %}
+        {% endfor %}
+
+        <div class="button-container recipe-single-button-container">
+            <a href="{{ '/categories/' | relative_url }}{{ page.category }}.html" class="button secondary-button" aria-label="Wróć do przepisów w kategorii {{ category_name | default: page.category | escape }}">
+                « Wszystkie przepisy w {{ category_name | default: 'tej kategorii' }}
+            </a>
+            <a href="{{ '/recipes/' | relative_url }}" class="button primary-button" aria-label="Wróć do wszystkich przepisów">
+                Wszystkie przepisy
+            </a>
+        </div>
+    {% else %}
+        {# Jeśli przepis nie ma kategorii, wyświetl tylko przycisk do wszystkich przepisów #}
+        <div class="button-container recipe-single-button-container">
+            <a href="{{ '/recipes/' | relative_url }}" class="button primary-button" aria-label="Wróć do wszystkich przepisów">
+                Wszystkie przepisy
+            </a>
+        </div>
+    {% endif %}
+
 </article>
