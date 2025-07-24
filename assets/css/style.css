@@ -514,17 +514,28 @@ blockquote {
 .notes-section .note-entry h3 { font-size: 1.6rem; margin-bottom: var(--spacing-xs); }
 .notes-section .note-entry p { font-size: var(--spacing-sm); margin-bottom: var(--spacing-sm); }
 
-
-/* Strona z listą notatek */
-.notes-list-section .page-header {
-    text-align: center;
-    max-width: 100%;
-    margin-left: auto; margin-right: auto;
+/* Nagłówek dla stron typu lista (np. /notes/) */
+.page-with-list > .page-header {
+    text-align: center;         /* 1. Centruje tekst wewnątrz nagłówka */
+    max-width: 800px;           /* 2. Ogranicza maksymalną szerokość bloku nagłówka */
+    margin-left: auto;          /* 3. W połączeniu z max-width, centruje cały blok */
+    margin-right: auto;         /* w poziomie na stronie. */
     padding: var(--spacing-xl) var(--spacing-sm) var(--spacing-lg);
     margin-bottom: var(--spacing-md);
 }
-.notes-list-section .page-header h1 { font-size: 3rem; margin-bottom: var(--spacing-xs); }
-.notes-list-section .page-description { font-weight: var(--font-weight-light); font-size: 1.3rem; margin: 0; }
+
+/* Tytuł na stronie listy notatek */
+.page-with-list > .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Opis na stronie listy notatek */
+.page-with-list > .page-header .page-description {
+    font-weight: var(--font-weight-light);
+    font-size: 1.3rem;
+    margin: 0;
+}
 
 /* Karta notatki na stronie listy */
 .notes-list-section .note-card {
