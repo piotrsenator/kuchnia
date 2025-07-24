@@ -531,7 +531,7 @@ blockquote {
     text-align: center;
     max-width: 800px;
     margin: 0 auto var(--spacing-md); /* Skrócony zapis margin */
-    padding: var(--spacing-xl) var(--spacing-sm) var(--spacing-lg);
+    padding: 0 var(--spacing-md) var(--spacing-xl); /* Góra 0, lewo/prawo 24px, dół 48px */
 }
 
 .page-with-list > .page-header h1 {
