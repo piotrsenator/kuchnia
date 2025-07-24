@@ -14,24 +14,21 @@ permalink: /notes/
         {% if site.notes.size > 0 %}
             <div class="notes-grid">
                 {% for note in site.notes reversed %}
-                    {# Dodano klasę .note-box, aby upewnić się, że obramowanie jest zawsze stosowane,
-                       nawet jeśli dziedziczenie CSS nie działałoby idealnie na wszystkich przeglądarkach.
-                       W CSS .note-card już rozszerza .note-box, więc technicznie nie jest to wymagane,
-                       ale nie zaszkodzi dla pewności. #}
+
                     <div class="note-card note-box">
                         <h3 class="note-title"><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
                         <p class="note-meta">
                             <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%d.%m.%Y" }}</time>
                             {% if note.author %} by {{ note.author }}{% endif %}
                         </p>
-                        {# Preferuj 'excerpt', jeśli istnieje; w przeciwnym razie generuj z 'content'. #}
+
                         {% if note.excerpt %}
                             <p class="note-excerpt">{{ note.excerpt | strip_html }}</p>
                         {% else %}
                             <p class="note-excerpt">{{ note.content | strip_html | truncatewords: 30 }}</p>
                         {% endif %}
                         <div class="note-read-more-container">
-                            {# Dodano aria-label dla poprawy dostępności #}
+
                             <a href="{{ note.url | relative_url }}" class="read-more-link button primary-button" aria-label="Czytaj więcej o {{ note.title | escape }}">Czytaj więcej &raquo;</a>
                         </div>
                     </div>
