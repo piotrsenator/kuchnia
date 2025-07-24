@@ -396,6 +396,7 @@ blockquote {
 .category-card:hover {
     background-color: var(--color-primary);
 }
+
 .category-card-title {
     font-weight: var(--font-weight-semibold);
     font-size: 1.4rem;
@@ -403,7 +404,12 @@ blockquote {
     margin: 0; /* Usuwamy marginesy, aby flexbox miał pełną kontrolę */
     transition: color 0.3s ease;
 
-    /* KLUCZOWA ZMIANA: DISPLAY: FLEX dla samego tytułu, aby wyśrodkować tekst w nim */
+    /* Styles for multi-line ellipsis (prefixed first) */
+    display: -webkit-box; /* Starsze, prefiksowane dla WebKit */
+    -webkit-line-clamp: 2; /* Ograniczenie do 2 linii */
+    -webkit-box-orient: vertical;
+
+    /* KLUCZOWA ZMIANA: DISPLAY: FLEX dla samego tytułu, aby wyśrodkować tekst w nim (standardowe na końcu) */
     display: flex;
     align-items: center;    /* Wyśrodkowanie pionowe tekstu w ramach TEGO kontenera */
     justify-content: center; /* Wyśrodkowanie poziome tekstu w ramach TEGO kontenera */
@@ -413,10 +419,6 @@ blockquote {
     width: 100%; /* Upewnij się, że element tytułu zajmuje pełną szerokość */
 
     overflow: hidden;
-    /* Styles for multi-line ellipsis */
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Ograniczenie do 2 linii */
-    -webkit-box-orient: vertical;
 }
 .category-card:hover .category-card-title {
     color: var(--color-background-light);
