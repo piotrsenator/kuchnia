@@ -325,12 +325,17 @@ blockquote { /* Zamiast .note-content blockquote, niech to będzie globalny styl
 
 .site-header {
     background-color: var(--color-background-light);
-    padding: var(--spacing-xxs) 0;
-    padding-bottom: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
-    text-align: center;
-}
+    text-align: center; /* Wyśrodkowanie zawartości nagłówka */
 
+    /* Wewnętrzne odstępy nagłówka (padding) */
+    padding-top: var(--spacing-xxl);    /* Duża przestrzeń NAD tytułem (3.5rem) */
+    padding-bottom: var(--spacing-xl); /* Komfortowa przestrzeń POD opisem (2.5rem) */
+    padding-left: 0;                   /* Brak bocznych odstępów wewnętrznych */
+    padding-right: 0;
+
+    /* Zewnętrzny odstęp pod nagłówkiem (margin) */
+    margin-bottom: var(--spacing-md);  /* Zmniejszony odstęp do kolejnej sekcji (1.5rem) */
+}
 .site-footer {
     background-color: var(--color-background-light);
     color: var(--color-text-dark);
