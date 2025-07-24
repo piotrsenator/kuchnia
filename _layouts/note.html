@@ -13,5 +13,8 @@ layout: default
         {{ content }}
     </div>
 
-    <a href="{{ '/' | relative_url }}#notatki-z-kuchni" class="back-to-home-notes-link">← Wróć do sekcji notatek na stronie głównej</a>
+    {# Zastępujemy istniejący link nowym przyciskiem #}
+    <div class="button-container note-single-button-container">
+        <a href="{{ '/notes/' | relative_url }}" class="button secondary-button">Wszystkie notatki &raquo;</a>
+    </div>
 </article>
