@@ -357,27 +357,28 @@ p {
     3. Układ strony (Content, Grid, Margins)
     ========================================================================== */
 
+/* Ogólny kontener dla większości zawartości, zapewnia maksymalną szerokość i wyśrodkowanie */
 .content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-md);
+    max-width: 1200px; /* Maksymalna szerokość dla ogólnej zawartości */
+    margin: 0 auto;    /* Wyśrodkowanie kontenera na stronie */
+    padding: var(--spacing-md); /* Domyślny wewnętrzny odstęp */
 }
 
-/* Główny kontener strony głównej */
+/* Główny kontener strony głównej - używa podobnych zasad co .content */
 .main-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    max-width: 1200px; /* Maksymalna szerokość dla głównej zawartości */
+    margin: 0 auto;    /* Wyśrodkowanie kontenera na stronie */
+    padding: 0 var(--spacing-md); /* Wewnętrzny odstęp (tylko boczny) */
 }
 
-/* Odstępy między głównymi sekcjami strony */
+/* Odstępy między głównymi sekcjami strony - dla spójnego pionowego rytmu */
 .hero-section,
 .latest-recipes-section,
 .categories-section,
 .notes-section,
 .about-me-section {
-    margin-top: var(--spacing-xxl);
-    margin-bottom: var(--spacing-lg);
+    margin-top: var(--spacing-xxl);    /* Duży margines na górze sekcji */
+    margin-bottom: var(--spacing-lg);   /* Standardowy margines na dole sekcji */
 }
 
 /* Pierwsza sekcja na stronie głównej nie potrzebuje górnego marginesu */
@@ -385,27 +386,33 @@ p {
 .main-content .latest-recipes-section:first-child,
 .main-content .categories-section:first-child,
 .main-content .notes-section:first-child {
-    margin-top: 0;
+    margin-top: 0; /* Usuwamy górny margines dla pierwszej sekcji, aby nie było nadmiernej przestrzeni na początku strony */
 }
 
-/* Siatki dla sekcji (przepisy, kategorie, notatki) */
+/* Siatki dla sekcji (przepisy, kategorie, notatki) - Domyślne style (mobile-first) */
 .recipes-grid,
 .latest-recipes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Elastyczne kolumny, minimum 220px */
+    gap: var(--spacing-lg); /* Odstępy między elementami siatki */
+    max-width: 1200px; /* Maksymalna szerokość siatki */
+    margin: var(--spacing-lg) auto; /* Wyśrodkowanie siatki na stronie, z marginesami pionowymi */
 }
 
 .categories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Mniejsze kafelki dla kategorii */
     gap: var(--spacing-lg);
+    max-width: 1200px; /* Maksymalna szerokość siatki kategorii */
+    margin: var(--spacing-lg) auto; /* Wyśrodkowanie siatki kategorii */
 }
 
 .notes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Większe kafelki dla notatek */
     gap: var(--spacing-lg);
+    max-width: 800px; /* Maksymalna szerokość siatki notatek (zgodnie z max-width nagłówka notes) */
+    margin: var(--spacing-lg) auto; /* Wyśrodkowanie siatki notatek */
 }
 
 /* ==========================================================================
@@ -960,6 +967,7 @@ p {
     width: 400px;
     margin: var(--spacing-md) auto;
 }
+
 /* ==========================================================================
     5. Media Queries (Responsywność)
     ========================================================================= */
@@ -1002,6 +1010,21 @@ p {
     .note-single,
     .error-404-container {
         padding: var(--spacing-lg);
+        /* Zapewniamy spójną max-width dla tych głównych kontenerów na tablecie */
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Nagłówki stron listy (notatek, kategorii) na tablecie - jeśli potrzebują dopasowania */
+    .notes-list-section .page-header,
+    .category-header {
+        /* Już miały max-width: 800px i auto marginesy, więc tu tylko upewniamy się,
+           że są poprawnie wyśrodkowane na szerszych ekranach.
+           text-align: center; już jest ustawione dla obu w sekcji 4. */
+        max-width: 800px; /* Utrzymujemy tę szerokość dla spójności z siatką notes-grid 1fr */
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -1024,7 +1047,22 @@ p {
         grid-template-columns: repeat(4, 1fr);
     }
     .notes-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr); /* Spójność z poprzednimi ustaleniami */
+    }
+
+    /* Nagłówki stron listy (notatek, kategorii) na desktopie */
+    .notes-list-section .page-header,
+    .category-header {
+        max-width: 900px; /* Rozszerzamy do 900px, by lepiej pasował do ogólnego contentu */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .recipe-single,
+    .note-single,
+    .error-404-container {
+        padding: var(--spacing-xl);
+        max-width: 900px; /* Spójność z nagłówkami i ogólnym contentem */
     }
 }
 
@@ -1054,8 +1092,25 @@ p {
     .error-image {
         width: 80%;
     }
-}
 
+    /* Upewniamy się, że główne kontenery strony są responsywne na mobilnych */
+    .recipe-single,
+    .note-single,
+    .error-404-container {
+        padding: var(--spacing-sm); /* Zmniejszamy padding na mobilnych */
+        max-width: 100%; /* Rozciągnij na całą szerokość ekranu (minus padding) */
+        margin: 0 auto; /* Upewnij się, że są wyśrodkowane */
+    }
+
+    /* Nagłówki stron listy (notatek, kategorii) na mobilnych */
+    .notes-list-section .page-header,
+    .category-header {
+        max-width: 100%; /* Na mobilnych nie ograniczamy tak mocno */
+        padding-left: var(--spacing-sm);
+        padding-right: var(--spacing-sm);
+        box-sizing: border-box; /* Ważne, aby padding nie dodawał szerokości */
+    }
+}
 
 /* ==========================================================================
     6. Dodatkowe style dla drukowania (Print Styles)
