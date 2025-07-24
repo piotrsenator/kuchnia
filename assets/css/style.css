@@ -608,9 +608,10 @@ p {
 
 /* --- Lista notatek na stronie /notes/ --- */
 .notes-list-section .page-header {
-    text-align: left;
+    /* Zmieniamy text-align na center */
+    text-align: center; /* Zmienione z 'left' */
     margin-bottom: var(--spacing-xxl);
-    max-width: 800px;
+    max-width: 800px; /* To już zapewnia taką samą szerokość jak notatki na mniejszych ekranach */
     margin-left: auto;
     margin-right: auto;
 }
