@@ -6,10 +6,15 @@ title: Strona Główna
     <section class="latest-recipes-section" id="najnowsze-przepisy">
         <h2>Najnowsze Przepisy</h2>
         <div class="latest-recipes-grid recipes-grid">
-            {% #Pętla dla najnowszych przepisów. Limit ustawiony na 4.# %}
+            {% comment %}
+            Pętla dla najnowszych przepisów. Limit ustawiony na 4.
+            {% endcomment %}
             {% for recipe in site.recipes limit: 4 %}
                 {% include recipe_card.html recipe=recipe %}
             {% endfor %}
+            <div class="button-container">
+                <a href="{{ '/recipes/' | relative_url }}" class="button primary-button">Wszystkie przepisy</a>
+            </div>
         </div>
     </section>
 
@@ -17,10 +22,9 @@ title: Strona Główna
         <h2>Kategorie</h2>
         <div class="categories-grid">
             {% for category in site.data.categories %}
-      
                 <a href="{{ '/categories/' | relative_url }}{{ category.slug }}.html" class="category-card" aria-label="Zobacz kategorię: {{ category.name | escape }}">
                     <h3 class="category-card-title">{{ category.name }}</h3>
-                    <span class="category-post-count">{{ site.recipes | where:"category", category.slug | size }} przepisów</span> 
+                    <span class="category-post-count">{{ site.recipes | where:"category", category.slug | size }} przepisów</span>
                 </a>
             {% endfor %}
         </div>
@@ -29,21 +33,20 @@ title: Strona Główna
     <section class="notes-section" id="notatki-z-kuchni">
         <h2>Notatki z Kuchni</h2>
         <div class="notes-grid">
-        
             {% for note in site.notes limit: 3 %}
-                
                 <div class="note-entry note-box">
-                    {% #Linkowanie całego bloku notatki jest lepsze dla klikalności # %}
+                    {% comment %}
+                    Linkowanie całego bloku notatki jest lepsze dla klikalności.
+                    {% endcomment %}
                     <a href="{{ note.url | relative_url }}" class="note-link-wrapper" aria-label="Czytaj całą notatkę: {{ note.title | escape }}">
                         <h3>{{ note.title }}</h3>
                         <p class="note-excerpt">{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
-                                            </a>
-                     {% comment %}
-                     Jeśli preferujesz osobny link "Czytaj więcej", możesz go przywrócić,
-                     ale pamiętaj o usunięciu linkowania całego bloku. 
-                     <a href="{{ note.url | relative_url }}" class="read-more">Czytaj więcej &raquo;</a> 
-                     {% endcomment %}
-                    
+                    </a>
+                    {% comment %}
+                    Jeśli preferujesz osobny link "Czytaj więcej", możesz go przywrócić,
+                    ale pamiętaj o usunięciu linkowania całego bloku.
+                    <a href="{{ note.url | relative_url }}" class="read-more">Czytaj więcej &raquo;</a>
+                    {% endcomment %}
                 </div>
             {% endfor %}
         </div>
