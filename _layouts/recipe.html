@@ -18,6 +18,8 @@ layout: default
             
             <img src="{{ final_image_path | relative_url }}" alt="{{ page.title | default: 'Brak zdjęcia przepisu' }}" class="recipe-main-image">
             
+            {% comment %} Ukrywamy sekcję recipe-details na razie {% endcomment %}
+            {% comment %}
             <div class="recipe-details">
                 {% if page.time %}
                     <p><strong>Czas przygotowania:</strong> {{ page.time }}</p>
@@ -28,21 +30,24 @@ layout: default
                 {% if page.difficulty %}
                     <p><strong>Poziom trudności:</strong> {{ page.difficulty }}</p>
                 {% endif %}
-                {% comment %} Uwagi przeniesione do content, ale jeśli chcesz tu drobne uwagi, możesz zostawić. {% endcomment %}
-                {% comment %} {% if page.notes %}
-                    <p><strong>Uwagi:</strong> {{ page.notes }}</p>
-                {% endif %} {% endcomment %}
             </div>
+            {% endcomment %}
         </aside>
 
+        {# Nowa sekcja dla składników, która będzie obok obrazka na desktopie #}
+        <div class="recipe-ingredients-side">
+            {# W tym miejscu będziemy szukać nagłówka "Składniki" i jego listy #}
+            {{ content | split:'## Przygotowanie:' | first | split:'## Składniki:' | last }}
+        </div>
+
         <div class="recipe-main-content">
-            {{ content }}
+            {# Reszta treści: Przygotowanie i Uwagi #}
+            {{ content | split:'## Przygotowanie:' | last | prepend:'## Przygotowanie:' }}
         </div>
     </div>
 
     <div class="button-container recipe-single-button-container">
-        {% comment %} Przycisk "Drukuj przepis" przeniesiony tutaj {% endcomment %}
-        <button class="print-button button primary-button" onclick="window.print()" aria-label="Drukuj przepis">Drukuj przepis</button>
+        <button class="print-button button secondary-button" onclick="window.print()" aria-label="Drukuj przepis">Drukuj przepis</button>
 
         {% if page.category %}
             {% assign category_name = "" %}
