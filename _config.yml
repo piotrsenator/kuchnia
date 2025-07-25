@@ -39,6 +39,11 @@ defaults:
       layout: "note" # Użyj layoutu note.html
       image_main: "/images/general/placeholder-recipe.jpg" # Domyślny placeholder dla zdjęć notatek
 
+# Ustawienia SASS/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed # Kompresja CSS dla optymalizacji
+
 # Wykluczenia (pliki/foldery, które Jekyll ma ignorować)
 exclude:
   - Gemfile
