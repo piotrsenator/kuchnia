@@ -3,10 +3,10 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   4.1. Strona pojedynczego przepisu
+   4.2. Strona pojedynczego przepisu
    -------------------------------------------------------------------------- */
 
-/* 4.1.1. Główny kontener strony przepisu */
+/* Główny kontener strony przepisu */
 .recipe-single {
     max-width: var(--max-content-width, 900px);
     margin: var(--spacing-lg) auto;
@@ -16,7 +16,7 @@
     box-shadow: var(--shadow-lg);
 }
 
-/* 4.1.2. Nagłówek przepisu */
+/* Nagłówek przepisu */
 .recipe-header {
     text-align: center;
     margin-bottom: var(--spacing-xl);
@@ -49,7 +49,7 @@
     margin-bottom: var(--spacing-lg);
 }
 
-/* 4.1.3. Kontener głównej treści przepisu (obrazek, składniki, przygotowanie, uwagi) */
+/* Kontener głównej treści przepisu (obrazek, składniki, przygotowanie, uwagi) */
 .recipe-content-wrapper {
     display: grid;
     gap: var(--spacing-lg); /* Odstęp między elementami w siatce */
@@ -66,7 +66,7 @@
     }
 }
 
-/* 4.1.4. Kontener obrazka (lewa kolumna na desktopie) */
+/* Kontener obrazka (lewa kolumna na desktopie) */
 .recipe-main-info {
     grid-column: 1 / -1; /* Domyślnie zajmuje całą szerokość w pojedynczej kolumnie na mobile */
     display: flex;
@@ -90,12 +90,12 @@
     object-fit: cover;
 }
 
-/* 4.1.5. Sekcja szczegółów przepisu (ukryta) */
+/* Sekcja szczegółów przepisu (ukryta) */
 .recipe-details {
     display: none; /* Ukrywa tę sekcję, jak ustalono */
 }
 
-/* 4.1.6. Sekcja składników (prawa kolumna na desktopie, pod obrazkiem na mobile) */
+/* Sekcja składników (prawa kolumna na desktopie, pod obrazkiem na mobile) */
 .recipe-ingredients-side {
     grid-column: 1 / -1; /* Domyślnie na małych ekranach zajmuje całą szerokość */
     margin-bottom: var(--spacing-lg); /* Margines dolny dla odstępu na mobile */
@@ -107,7 +107,7 @@
     }
 }
 
-/* 4.1.7. Główna treść przepisu (Przygotowanie, Uwagi - cały dół) */
+/* Główna treść przepisu (Przygotowanie, Uwagi - cały dół) */
 .recipe-main-content {
     grid-column: 1 / -1; /* ZAWSZE zajmuje całą szerokość siatki, czyli wszystkie kolumny */
     grid-area: content; /* Przypisujemy do obszaru 'content' */
@@ -115,7 +115,7 @@
     margin-bottom: 0; /* Wyzerowany dolny margines */
 }
 
-/* 4.1.8. Stylizacja nagłówków w sekcjach treści */
+/* Stylizacja nagłówków w sekcjach treści */
 .recipe-ingredients-side h2,
 .recipe-main-content h2 {
     font-family: var(--font-family-headings);
@@ -124,7 +124,7 @@
     color: var(--color-primary);
 }
 
-/* 4.1.9. Stylizacja list (ul/ol) w sekcjach treści */
+/* Stylizacja list (ul/ol) w sekcjach treści */
 .recipe-ingredients-side ul,
 .recipe-main-content ol,
 .recipe-main-content ul {
@@ -140,7 +140,7 @@
     margin-bottom: var(--spacing-xxs);
 }
 
-/* 4.1.10. Styl dla kontenera przycisków na dole strony przepisu */
+/* Styl dla kontenera przycisków na dole strony przepisu */
 .recipe-single-button-container {
     display: flex;
     flex-wrap: wrap;
@@ -151,7 +151,7 @@
     border-top: 1px solid var(--color-secondary);
 }
 
-/* 4.1.11. Meta dane przepisu (stopka) */
+/* Meta dane przepisu (stopka) */
 .recipe-footer-meta {
     text-align: right;
     margin-top: 20px;
