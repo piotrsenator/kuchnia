@@ -5,14 +5,60 @@ layout: default
 <article class="note-single">
     <header class="note-header">
         <h1 class="note-title">{{ page.title }}</h1>
-        <p class="note-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d.%m.%Y" }}</time></p>
+        {% if page.description %}
+            <p class="note-description">{{ page.description }}</p>
+        {% endif %}
     </header>
 
-    <div class="note-content">
-        {{ content }}
+    <div class="note-content-wrapper">
+        {% comment %} Logika wyświetlania obrazka w notatkach - CAŁY BLOK WARUNKOWY {% endcomment %}
+        {% assign image_prefix = '/images/notes/' %}
+        {% assign raw_image_name = page.image_main %}
+        {% assign final_image_path_notes = nil %}
+
+        {% if raw_image_name %}
+            {% if raw_image_name contains '/' %}
+                {% assign final_image_path_notes = raw_image_name %} {# Jeśli podano pełną ścieżkę (np. /assets/my-image.jpg), użyj jej #}
+            {% else %}
+                {% assign final_image_path_notes = image_prefix | append: raw_image_name %} {# W przeciwnym razie dodaj prefiks katalogu dla notatek #}
+            {% endif %}
+        {% endif %}
+
+        {% if final_image_path_notes %}
+            <aside class="note-main-info">
+                <img src="{{ final_image_path_notes | relative_url }}" alt="{{ page.title | default: 'Zdjęcie notatki' }}" class="note-main-image">
+            </aside>
+        {% endif %}
+
+        <div class="note-main-content">
+            {{ content }}
+        </div>
     </div>
 
     <div class="button-container note-single-button-container">
-        <a href="{{ '/notes/' | relative_url }}" class="button secondary-button" aria-label="Wróć do wszystkich notatek">« Wszystkie notatki</a>
+        <a href="{{ '/' | relative_url }}#notes" class="button primary-button" aria-label="Wróć do wszystkich notatek na stronie głównej">
+            Wszystkie notatki
+        </a>
     </div>
+
+    {% comment %} Sekcja daty aktualizacji/publikacji na dole {% endcomment %}
+    <div class="note-footer-meta">
+        {% comment %} Definicja mapowania miesięcy {% endcomment %}
+        {% assign month_names = "Styczeń,Luty,Marzec,Kwiecień,Maj,Czerwiec,Lipiec,Sierpień,Wrzesień,Październik,Listopad,Grudzień" | split: "," %}
+
+        {% if page.last_modified_at %}
+            {% assign day = page.last_modified_at | date: "%-d" %}
+            {% assign month_number = page.last_modified_at | date: "%-m" | minus: 1 %}
+            {% assign month_name_pl = month_names[month_number] %}
+            {% assign year = page.last_modified_at | date: "%Y" %}
+            <p class="note-date">Ostatnia aktualizacja: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ day }} {{ month_name_pl }} {{ year }}</time></p>
+        {% elsif page.date %}
+            {% assign day = page.date | date: "%-d" %}
+            {% assign month_number = page.date | date: "%-m" | minus: 1 %}
+            {% assign month_name_pl = month_names[month_number] %}
+            {% assign year = page.date | date: "%Y" %}
+            <p class="note-date">Opublikowano: <time datetime="{{ page.date | date_to_xmlschema }}">{{ day }} {{ month_name_pl }} {{ year }}</time></p>
+        {% endif %}
+    </div>
+
 </article>
