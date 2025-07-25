@@ -1,23 +1,46 @@
 ---
-# Front matter (Jekyll potrzebuje tego na początku plików SCSS/Sass)
 ---
+// Ten plik jest głównym punktem wejścia dla Twoich stylów Sass (SCSS).
+// Jekyll przetwarza ten plik i wszystkie importowane przez niego partiale
+// do jednego, skompilowanego pliku CSS (zazwyczaj main.css w katalogu _site/assets/css/).
 
-// 1. Import zmiennych (zawsze na początku)
+// Pamiętaj: Wszelkie definicje CSS i reguły stylów powinny znajdować się
+// w odpowiednich partialach (plikach zaczynających się od `_` w folderze `_sass/`).
+// Ten plik `main.scss` powinien zawierać głównie dyrektywy `@import`.
+
+// WAŻNE: Puste front matter `--- ---` na początku jest wymagane przez Jekylla,
+// aby poprawnie przetworzył ten plik jako plik Sass.
+
+// 1. GLOBALNE USTAWIANIA I STYLE PODSTAWOWE
+// Plik _base.scss zawiera definicje fontów (@font-face),
+// zmienne CSS (custom properties w :root), globalny reset stylów
+// oraz podstawowe style dla elementów HTML takich jak body, nagłówki, akapity, linki.
 @import 'base';
 
-// 2. Style bazowe dla HTML
+// 2. UKŁAD STRONY (LAYOUT)
+// Plik _layout.scss definiuje ogólną strukturę i układ Twojej strony,
+// w tym style dla kontenerów głównych, nagłówka strony (header), stopki (footer)
+// i ogólnych siatek (grid system).
 @import 'layout';
 
-// 3. Komponenty UI
-@import 'components/main-nav';
-@import 'components/buttons';
-@import 'components/recipe-card';
-@import 'components/note-card';
+// 3. KOMPONENTY WIELOKROTNEGO UŻYTKU
+// Ten folder zawiera style dla mniejszych, modułowych komponentów UI,
+// które mogą być używane w wielu miejscach na stronie.
+@import 'components/main-nav';      // Stylizacja głównej nawigacji
+@import 'components/buttons';       // Stylizacja przycisków
+@import 'components/category-card'; // Stylizacja kart kategorii
+@import 'components/recipe-card';   // Stylizacja kart przepisów
+@import 'components/note-card';     // Stylizacja kart notatek
+// Dodaj tutaj inne komponenty, które utworzysz w folderze _sass/components/
+// np. @import 'components/social-icons';
+// np. @import 'components/pagination';
 
-// 4. Style specyficzne dla stron
-@import 'pages/home';
-@import 'pages/recipe-single';
-@import 'pages/note-single';
-
-// 5. Klasy pomocnicze (opcjonalnie)
-// @import 'utilities';
+// 4. STYLE SPECYFICZNE DLA STRON
+// Ten folder zawiera style, które są unikalne dla konkretnych typów stron
+// lub ich głównych sekcji.
+@import 'pages/home';               // Stylizacja strony głównej
+@import 'pages/recipe-single';      // Stylizacja pojedynczej strony przepisu
+@import 'pages/note-single';        // Stylizacja pojedynczej strony notatki
+@import 'pages/category';           // Stylizacja strony kategorii (jak przed chwilą omawialiśmy)
+@import 'pages/404';                // Stylizacja strony błędu 404 (jak przed chwilą omawialiśmy)
+// Dodaj tutaj inne style dla konkretnych stron, które utworzysz w folderze _sass/pages/
