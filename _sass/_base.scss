@@ -219,6 +219,11 @@ blockquote {
     .recipe-main-info { align-items: flex-start; }
     .recipe-ingredients { grid-column: 2 / 3; }
 
+    /* Poprawka dla rozmiaru h1 w .page-with-list na tabletach i większych */
+    .page-with-list > .page-header h1 {
+        font-size: 3.5rem; /* Zwiększono rozmiar, aby był zgodny z ogólnym h1 dla tej rozdzielczości */
+    }
+
     .error-image { width: 400px; }
 }
 
@@ -240,5 +245,9 @@ blockquote {
 
     .recipe-single, .note-single, .error-404-container { padding: var(--spacing-xl); }
     .notes-list-section .page-header, .category-header { max-width: 900px; }
-}
 
+    /* Poprawka dla rozmiaru h1 w .page-with-list na desktopach */
+    .page-with-list > .page-header h1 {
+        font-size: 4rem; /* Zwiększono rozmiar, aby był zgodny z ogólnym h1 dla tej rozdzielczości */
+    }
+}
