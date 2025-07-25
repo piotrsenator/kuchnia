@@ -1,235 +1,154 @@
-/* Układ strony pojedynczego Przepisu */
+/* --- Strona pojedynczego przepisu --- */
+
+/* 4.1.1. Główny kontener strony przepisu */
 .recipe-single {
-    max-width: var(--max-content-width);
-    margin: var(--spacing-md) auto;
+    max-width: var(--max-content-width, 900px);
+    margin: var(--spacing-lg) auto;
     padding: var(--spacing-lg);
     background-color: var(--color-background-accent);
     border-radius: var(--border-radius-md);
-    box-shadow: var(--box-shadow-lg);
+    box-shadow: var(--shadow-lg);
+}
 
-    .recipe-header {
-        text-align: center;
-        margin-bottom: var(--spacing-xl);
+/* 4.1.2. Nagłówek przepisu */
+.recipe-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
 
-        .recipe-title {
-            font-size: 3rem;
-            margin-bottom: var(--spacing-sm);
-        }
-        @media (max-width: 768px) {
-            .recipe-title {
-                font-size: 2.5rem;
-            }
-        }
-        @media (max-width: 480px) {
-            .recipe-title {
-                font-size: 2rem;
-            }
-        }
-
-        .recipe-description {
-            font-weight: var(--font-weight-light);
-            font-size: 1.2rem;
-            line-height: 1.5;
-            font-style: italic;
-            color: var(--color-text-dark);
-            margin-bottom: var(--spacing-lg);
-        }
+.recipe-title {
+    font-family: var(--font-family-headings);
+    font-weight: var(--font-weight-regular);
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-dark);
+}
+@media (max-width: 768px) {
+    .recipe-title {
+        font-size: 2.5rem;
     }
-
-    .recipe-content-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-lg);
-        margin-bottom: var(--spacing-lg);
-
-        .recipe-main-info {
-            width: 100%;
-            max-width: 450px; /* Ogranicz maksymalną szerokość obrazka */
-            margin: 0 auto var(--spacing-lg) auto;
-            flex-shrink: 0;
-
-            .recipe-main-image {
-                max-width: 100%;
-                height: auto;
-                display: block;
-                border-radius: var(--border-radius-md);
-                aspect-ratio: 16 / 9; /* Przykładowe proporcje dla obrazka głównego */
-                object-fit: cover;
-            }
-
-            .recipe-details {
-                font-size: 1rem;
-                line-height: 1.5;
-                margin-top: var(--spacing-md);
-                padding: var(--spacing-sm);
-                background-color: var(--color-background-light);
-                border-radius: var(--border-radius-sm);
-                border: 1px dashed var(--color-secondary);
-
-                p {
-                    margin-bottom: var(--spacing-xs);
-                    &:last-child { margin-bottom: 0; }
-                }
-            }
-        }
-
-        .recipe-ingredients-side {
-            width: 100%;
-            background-color: var(--color-background-light);
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius-md);
-            border: 1px solid var(--color-secondary);
-
-            h2 {
-                margin-top: 0;
-                color: var(--color-primary);
-                font-size: 1.8rem;
-                margin-bottom: var(--spacing-md);
-                text-align: center;
-            }
-
-            ul {
-                list-style: none;
-                padding: 0;
-                li {
-                    margin-bottom: var(--spacing-xs);
-                    font-size: 1.1rem;
-                    line-height: 1.4;
-                    position: relative;
-                    padding-left: var(--spacing-md);
-
-                    &::before {
-                        content: '•';
-                        color: var(--color-primary);
-                        position: absolute;
-                        left: 0;
-                        font-weight: var(--font-weight-bold);
-                    }
-                }
-            }
-        }
-
-        .recipe-main-content {
-            flex-grow: 1;
-            line-height: 1.6;
-
-            h2, h3, h4 {
-                font-family: var(--font-family-headings);
-                font-size: 1.8rem;
-                margin-top: var(--spacing-lg);
-                margin-bottom: var(--spacing-md);
-                color: var(--color-primary);
-            }
-            p { margin-bottom: var(--spacing-md); }
-            ul, ol { margin-bottom: var(--spacing-md); }
-            img { // Obrazki wstawione w treści markdown
-                max-width: 100%;
-                height: auto;
-                display: block;
-                margin: var(--spacing-lg) auto;
-                border-radius: var(--border-radius-md);
-            }
-        }
+}
+@media (max-width: 480px) {
+    .recipe-title {
+        font-size: 2rem;
     }
+}
 
-    // Media query dla układu desktopowego
+.recipe-description {
+    font-weight: var(--font-weight-light);
+    font-size: 1.2rem;
+    line-height: 1.5;
+    font-style: italic;
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* 4.1.3. Kontener głównej treści przepisu (obrazek, składniki, przygotowanie, uwagi) */
+.recipe-content-wrapper {
+    display: grid;
+    gap: var(--spacing-lg); /* Odstęp między elementami w siatce */
+    grid-template-columns: 1fr; /* Domyślnie na małych ekranach - jedna kolumna */
+    align-items: start; /* Dopasuj elementy do początku wierszy */
+    margin-bottom: var(--spacing-lg); /* Dodatkowy margines dolny dla kontenera głównego */
+
     @media (min-width: 768px) {
-        .recipe-content-wrapper {
-            flex-direction: row; /* Obrazek i składniki obok siebie */
-            align-items: flex-start;
-
-            .recipe-main-info {
-                width: 40%; /* Obrazek zajmuje 40% miejsca */
-                margin: 0; /* Usuń margines auto */
-                padding-right: var(--spacing-md); /* Margines między obrazkiem a składnikami */
-            }
-
-            .recipe-ingredients-side {
-                width: 30%; /* Składniki zajmują 30% miejsca */
-                order: 1; /* Upewnij się, że są po lewej od content-wrapper */
-            }
-
-            .recipe-main-info {
-                order: 2; /* Obrazek po prawej od składników, w obrębie tej kolumny */
-            }
-            
-            // To jest na desktopie, składniki i obrazek powinny być obok siebie,
-            // a następnie treść przygotowania pod spodem.
-            // Poprawiamy to, żeby składniki i obrazek były w osobnej kolumnie, a przygotowanie w pełnej szerokości.
-            // Zmieńmy architekturę na 3 kolumny dla desktopu.
-            // Lewa: Obrazek + Detale. Środkowa: Składniki. Prawa: Treść.
-
-            // Resetujemy flex-direction dla wrapper'a
-            flex-direction: column; 
-
-            .recipe-main-and-ingredients-row { // Nowy kontener dla górnej sekcji na desktopie
-                display: flex;
-                gap: var(--spacing-lg);
-                margin-bottom: var(--spacing-lg);
-                align-items: flex-start; // Wyrównanie do góry
-            }
-
-            .recipe-main-info {
-                width: 30%; // Zmieniamy szerokość obrazka
-                margin: 0;
-            }
-
-            .recipe-ingredients-side {
-                width: 30%; // Zmieniamy szerokość składników
-                margin: 0;
-            }
-
-            // Teraz, by to działało, potrzebujesz jeszcze jednego wrappera w HTML:
-            // <div class="recipe-content-wrapper">
-            //     <div class="recipe-main-and-ingredients-row"> // NOWY
-            //         <aside class="recipe-main-info">...</aside>
-            //         <div class="recipe-ingredients-side">...</div>
-            //     </div>
-            //     <div class="recipe-main-content">...</div>
-            // </div>
-            // To znacząca zmiana w HTML. Jeśli chcesz zachować obecny HTML, to układ będzie:
-            // Obrazek, potem Składniki, potem reszta (wszystko w jednej kolumnie na mobile,
-            // albo obrazek obok składników, a przygotowanie pod nimi na desktopie).
-
-            // Zostawmy poprzednią prostszą logikę, gdzie obrazek i składniki są w jednej kolumnie
-            // na mobile i dwóch kolumnach na desktopie.
-            // Jeśli chcesz trzykolumnowy układ, będziemy musieli zmienić HTML.
-            // Zatem powracam do propozycji z poprzedniej odpowiedzi.
-
-            flex-direction: row; /* Na desktopie - rząd (obrazek + składniki obok treści) */
-            align-items: flex-start;
-
-            .recipe-main-info {
-                width: 40%; /* Obrazek zajmuje 40% miejsca w lewej kolumnie */
-                margin: 0 var(--spacing-lg) 0 0;
-            }
-            .recipe-ingredients-side {
-                width: 30%; /* Składniki zajmują 30% miejsca, jeśli są w osobnej kolumnie */
-                margin-right: var(--spacing-lg); /* Opcjonalnie: odstęp od treści głównej */
-                flex-shrink: 0;
-            }
-            .recipe-main-content {
-                flex-grow: 1; /* Treść zajmuje resztę */
-            }
-        }
+        /* Na większych ekranach: dwie kolumny */
+        grid-template-columns: minmax(250px, 1fr) 2fr; /* Kolumna obrazka i składników / Kolumna przygotowania */
+        grid-template-areas:
+            "image ingredients"
+            "content content"; /* Definicja obszarów dla łatwiejszego pozycjonowania */
     }
+}
 
-    .button-container {
-        justify-content: center;
-        margin-top: var(--spacing-md);
-        padding-top: var(--spacing-xs);
-        border-top: 1px solid var(--color-secondary);
-    }
-    
-    .recipe-footer-meta {
-        text-align: right;
-        margin-top: var(--spacing-md);
-        font-size: 0.9em;
-        color: #777;
+/* 4.1.4. Kontener obrazka (lewa kolumna na desktopie) */
+.recipe-main-info {
+    grid-column: 1 / -1; /* Domyślnie zajmuje całą szerokość w pojedynczej kolumnie na mobile */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Wyśrodkowanie na mobile */
 
-        .recipe-date {
-            font-size: 0.9rem;
-            font-weight: var(--font-weight-light);
-        }
+    @media (min-width: 768px) {
+        grid-column: 1 / 2; /* Na większych ekranach zajmuje PIERWSZĄ kolumnę */
+        grid-area: image; /* Przypisujemy do obszaru 'image' */
+        align-items: flex-start; /* Wyrównanie do lewej na desktopie */
     }
+}
+
+.recipe-main-image {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-md);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+/* 4.1.5. Sekcja szczegółów przepisu (ukryta) */
+.recipe-details {
+    display: none; /* Ukrywa tę sekcję, jak ustalono */
+}
+
+/* 4.1.6. Sekcja składników (prawa kolumna na desktopie, pod obrazkiem na mobile) */
+.recipe-ingredients-side {
+    grid-column: 1 / -1; /* Domyślnie na małych ekranach zajmuje całą szerokość */
+    margin-bottom: var(--spacing-lg); /* Margines dolny dla odstępu na mobile */
+
+    @media (min-width: 768px) {
+        grid-column: 2 / 3; /* Na desktopie zajmuje DRUGĄ kolumnę */
+        grid-area: ingredients; /* Przypisujemy do obszaru 'ingredients' */
+        margin-bottom: 0; /* Usuń dolny margines, gdy jest obok obrazka */
+    }
+}
+
+/* 4.1.7. Główna treść przepisu (Przygotowanie, Uwagi - cały dół) */
+.recipe-main-content {
+    grid-column: 1 / -1; /* ZAWSZE zajmuje całą szerokość siatki, czyli wszystkie kolumny */
+    grid-area: content; /* Przypisujemy do obszaru 'content' */
+    margin-top: 0; /* Wyzerowany górny margines */
+    margin-bottom: 0; /* Wyzerowany dolny margines */
+}
+
+/* 4.1.8. Stylizacja nagłówków w sekcjach treści */
+.recipe-ingredients-side h2,
+.recipe-main-content h2 {
+    font-family: var(--font-family-headings);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+}
+
+/* 4.1.9. Stylizacja list (ul/ol) w sekcjach treści */
+.recipe-ingredients-side ul,
+.recipe-main-content ol,
+.recipe-main-content ul {
+    list-style-position: inside;
+    padding-left: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-dark);
+}
+
+.recipe-ingredients-side li,
+.recipe-main-content li {
+    margin-bottom: var(--spacing-xxs);
+}
+
+/* 4.1.10. Styl dla kontenera przycisków na dole strony przepisu */
+.recipe-single-button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-xs);
+    border-top: 1px solid var(--color-secondary);
+}
+
+/* 4.1.11. Meta dane przepisu (stopka) */
+.recipe-footer-meta {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #777;
 }
