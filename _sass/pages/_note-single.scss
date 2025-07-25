@@ -81,19 +81,6 @@
         }
     }
 
-    // Media query dla układu desktopowego
-    @media (min-width: 768px) {
-        .note-content-wrapper {
-            flex-direction: row; /* Na desktopie układ rzędowy (obrazek obok tekstu) */
-            align-items: flex-start;
-
-            .note-main-info {
-                width: 35%; /* Ustaw szerokość obrazka na desktopie */
-                margin: 0 var(--spacing-lg) 0 0;
-            }
-        }
-    }
-
     .note-single-button-container {
         display: flex;
         justify-content: center;
