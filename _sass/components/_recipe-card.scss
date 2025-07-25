@@ -53,8 +53,12 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 
+    overflow: hidden; /* Ukrywa tekst, który wykracza poza 2 linie */
+    text-overflow: ellipsis; /* Dodaje "..." na końcu, jeśli tekst jest ucięty (opcjonalnie, działa z display: -webkit-box) */
+
+    /* Wyrównanie pionowe i poziome (zachowaj, jeśli chcesz wyśrodkować tekst w ramce) */
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+
 }
