@@ -1,4 +1,14 @@
+// Definiuj kolory jako zmienne Sass na początku pliku
+$primary-color: #8B4513;    // Brąz (saddlebrown)
+$secondary-color: #D2B48C;  // Brąz (tan)
+$accent-color: #B0C4DE;     // Niebiesko-szary (lightsteelblue)
+$text-light-color: #F5F5DC; // Beżowy (beige)
+$text-dark-color: #333333;  // Ciemnoszary
+$background-light-color: #FDF5E6; // Kremowy (oldlace)
+$background-accent-color: #FFFFFF; // Biały
+
 // Globalne Zmienne CSS (CSS Custom Properties)
+// Tutaj przypisujesz zmienne Sass do zmiennych CSS
 :root {
     --font-family-base: 'Montserrat', sans-serif;
     --font-family-headings: 'Merriweather', serif;
@@ -8,19 +18,20 @@
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
 
-    --color-primary: #8B4513; // Brąz (saddlebrown)
-    --color-secondary: #D2B48C; // Brąz (tan)
-    --color-accent: #B0C4DE; // Niebiesko-szary (lightsteelblue)
-    --color-text-light: #F5F5DC; // Beżowy (beige)
-    --color-text-dark: #333333; // Ciemnoszary
-    --color-background-light: #FDF5E6; // Kremowy (oldlace)
-    --color-background-accent: #FFFFFF; // Biały
+    --color-primary: #{$primary-color}; // Użyj interpolacji do przypisania zmiennej Sass
+    --color-secondary: #{$secondary-color};
+    --color-accent: #{$accent-color};
+    --color-text-light: #{$text-light-color};
+    --color-text-dark: #{$text-dark-color};
+    --color-background-light: #{$background-light-color};
+    --color-background-accent: #{$background-accent-color};
 
+    // ... reszta Twoich zmiennych CSS
     --spacing-xs: 0.5rem;   // 8px
     --spacing-sm: 1rem;     // 16px
     --spacing-md: 1.5rem;   // 24px
     --spacing-lg: 2rem;     // 32px
-    --spacing-xl: 3rem;     // 48px
+    --spacing-xl: 3rem;     // 48px;
 
     --border-radius-sm: 4px;
     --border-radius-md: 8px;
@@ -32,7 +43,6 @@
 
     --max-content-width: 1200px;
 }
-
 /* Styl bazowy */
 html {
     scroll-behavior: smooth;
