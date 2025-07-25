@@ -70,3 +70,50 @@
     max-width: 800px;
     grid-template-columns: 1fr; /* Domyślnie jedna kolumna na stronie z listą notatek */
 }
+
+
+
+/* ==========================================================================
+   6. STYLE DRUKU
+   ========================================================================== */
+@media print {
+    body {
+        font-family: var(--font-family-primary);
+        color: #000;
+        background-color: var(--color-white);
+        margin: 0; padding: 0;
+    }
+    @page { size: A4 portrait; margin: var(--spacing-md); }
+
+    .site-header,
+    .site-footer,
+    .hero-section,
+    .latest-recipes-section,
+    .categories-section,
+    .notes-section,
+    .about-me-section,
+    .print-button, /* Ten jest już obecny, ale dobrze, że tu jest */
+    .button-container, /* DODANE: ukryje cały kontener z przyciskami */
+    .recipe-footer-meta, /* DODANE: ukryje sekcję z datą aktualizacji */
+    .back-to-categories-link,
+    .back-to-home-notes-link,
+    .error-404-page,
+    .recipe-main-image {
+        display: none !important;
+    }
+    .recipe-single { max-width: 100%; margin: 0; padding: 0; box-shadow: none; background-color: var(--color-white); border: none; }
+    .recipe-header { text-align: left; margin-bottom: var(--spacing-sm); }
+    .recipe-title { font-size: 2.2rem; color: #000; margin-bottom: var(--spacing-xs); font-family: var(--font-family-headings); font-weight: var(--font-weight-regular); }
+    .recipe-description { font-family: var(--font-family-primary); font-size: var(--spacing-sm); color: #333; margin-bottom: var(--spacing-sm); font-weight: var(--font-weight-light); }
+    .recipe-date { font-family: var(--font-family-primary); font-size: 0.8rem; color: #666; margin-bottom: 0.3rem; font-weight: var(--font-weight-light); }
+    .recipe-content-wrapper { display: block; width: 100%; margin: 0; padding: 0; }
+    .recipe-main-info, .recipe-ingredients, .recipe-preparation, .recipe-additional-content { display: block; width: 100% !important; float: none !important; clear: both !important; margin: var(--spacing-md) 0 0 0 !important; padding: 0; page-break-inside: avoid; }
+    .recipe-content-wrapper > *:first-child { margin-top: 0 !important; }
+    .recipe-details { border: none; background-color: var(--color-white); padding: 0; margin-top: var(--spacing-sm); }
+    .recipe-details p { font-family: var(--font-family-primary); font-size: 0.9rem; margin-bottom: 0.3rem; color: #000; font-weight: var(--font-weight-light); }
+    .recipe-details strong { color: #000; font-weight: var(--font-weight-semibold); }
+    .recipe-ingredients h2, .recipe-preparation h2, .recipe-additional-content h2 { font-size: 1.5rem; color: #000; margin-bottom: 0.8rem; font-family: var(--font-family-headings); font-weight: var(--font-weight-regular); }
+    .recipe-ingredients ul, .recipe-preparation ol, .recipe-additional-content p, .recipe-additional-content ul, .recipe-additional-content ol { font-family: var(--font-family-primary); margin-left: 0; list-style-position: outside; padding-left: var(--spacing-md); font-size: var(--spacing-sm); line-height: 1.4; margin-bottom: 0.3rem; color: #000; font-weight: var(--font-weight-light); }
+    .recipe-ingredients ul li::marker, .recipe-preparation ol li::marker, .recipe-additional-content ul li::marker, .recipe-additional-content ol li::marker { color: var(--color-primary); }
+    a { text-decoration: none; color: #000 !important; font-weight: var(--font-weight-regular); }
+}
