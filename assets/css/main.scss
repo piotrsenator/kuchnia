@@ -31,9 +31,6 @@
 @import 'components/category-card'; // Stylizacja kart kategorii
 @import 'components/recipe-card';   // Stylizacja kart przepisów
 @import 'components/note-card';     // Stylizacja kart notatek
-// Dodaj tutaj inne komponenty, które utworzysz w folderze _sass/components/
-// np. @import 'components/social-icons';
-// np. @import 'components/pagination';
 
 // 4. STYLE SPECYFICZNE DLA STRON
 // Ten folder zawiera style, które są unikalne dla konkretnych typów stron
@@ -43,4 +40,4 @@
 @import 'pages/note-single';        // Stylizacja pojedynczej strony notatki
 @import 'pages/category';           // Stylizacja strony kategorii (jak przed chwilą omawialiśmy)
 @import 'pages/404';                // Stylizacja strony błędu 404 (jak przed chwilą omawialiśmy)
-// Dodaj tutaj inne style dla konkretnych stron, które utworzysz w folderze _sass/pages/
+
