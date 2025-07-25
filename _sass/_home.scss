@@ -1,0 +1,46 @@
+/* Układ strony głównej - sekcje */
+.featured-recipes, .featured-notes, .about-section {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.recipe-grid, .note-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+/* Sekcja "O mnie" */
+.about-section {
+    background-color: var(--color-background-accent);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    box-shadow: var(--box-shadow-md);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-xl); /* Odstęp od kolejnej sekcji */
+
+    h2 {
+        font-size: 2.2rem;
+        color: var(--color-primary);
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: var(--spacing-sm);
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about-image {
+        max-width: 300px;
+        height: auto;
+        border-radius: 50%; /* Okrągły obrazek */
+        margin-top: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+        box-shadow: var(--box-shadow-sm);
+    }
+}
