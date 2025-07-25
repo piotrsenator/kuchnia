@@ -2,48 +2,142 @@
 layout: default
 ---
 
-<article class="note-single">
-    <header class="note-header">
-        <h1 class="note-title">{{ page.title }}</h1>
+<article class="recipe-single">
+    <header class="recipe-header">
+        <h1 class="recipe-title">{{ page.title }}</h1>
         {% if page.description %}
-            <p class="note-description">{{ page.description }}</p>
+            <p class="recipe-description">{{ page.description }}</p>
         {% endif %}
     </header>
 
-    <div class="note-content-wrapper">
-        {% comment %} Logika wyświetlania obrazka w notatkach - CAŁY BLOK WARUNKOWY {% endcomment %}
-        {% assign image_prefix = '/images/notes/' %}
-        {% assign raw_image_name = page.image_main %}
-        {% assign final_image_path_notes = nil %}
+    {% comment %}
+    Liquid do dzielenia treści na sekcje
+    {% endcomment %}
+    {% assign full_content_html = content %}
 
-        {% if raw_image_name %}
-            {% if raw_image_name contains '/' %}
-                {% assign final_image_path_notes = raw_image_name %} {% comment} Jeśli podano pełną ścieżkę (np. /assets/my-image.jpg), użyj jej {% endcomment %}
-            {% else %}
-                {% assign final_image_path_notes = image_prefix | append: raw_image_name %} {# W przeciwnym razie dodaj prefiks katalogu dla notatek #}
+    {% comment %}
+    Dzielimy na sekcję Składniki i resztę
+    {% endcomment %}
+    {% assign parts_after_ingredients_h2 = full_content_html | split:'<h2 id="składniki">Składniki:</h2>' %}
+    {% assign content_after_ingredients_h2 = parts_after_ingredients_h2[1] %}
+
+    {% comment %}
+    Dzielimy resztę na Przygotowanie i Uwagi
+    {% endcomment %}
+    {% assign parts_after_preparation_h2 = content_after_ingredients_h2 | split:'<h2 id="przygotowanie">Przygotowanie:</h2>' %}
+    {% assign ingredients_content_only = parts_after_preparation_h2[0] %}
+    {% assign content_after_preparation_h2 = parts_after_preparation_h2[1] %}
+
+    {% comment %}
+    Dzielimy resztę po Przygotowaniu na właściwe Przygotowanie i Uwagi
+    {% endcomment %}
+    {% assign parts_after_notes_h2 = content_after_preparation_h2 | split:'<h2 id="uwagi">Uwagi:</h2>' %}
+    {% assign preparation_content_only = parts_after_notes_h2[0] %}
+    {% assign notes_content_only = parts_after_notes_h2[1] %}
+
+    {% comment %}
+    Odbudowujemy zmienne dla poszczególnych sekcji z ich nagłówkami
+    {% endcomment %}
+    {% assign ingredients_block_html = '<h2 id="składniki">Składniki:</h2>' | append: ingredients_content_only %}
+    {% assign preparation_block_html = '<h2 id="przygotowanie">Przygotowanie:</h2>' | append: preparation_content_only %}
+    
+    {% assign notes_block_html = '' %}
+    {% if notes_content_only %}
+        {% assign notes_block_html = '<h2 id="uwagi">Uwagi:</h2>' | append: notes_content_only %}
+    {% endif %}
+
+
+    <div class="recipe-content-wrapper">
+        <aside class="recipe-main-info">
+            {% comment %}
+            Logika wyświetlania obrazka głównego przepisu z placeholderem
+            {% endcomment %}
+            {% assign image_prefix = '/images/recipes/' %}
+            {% assign raw_image_name = page.image_main %}
+            {% assign default_placeholder_path = '/images/general/placeholder-recipe.jpg' %}
+            
+            {% assign final_image_path = default_placeholder_path %}
+            {% comment %}Domyślnie ustawiamy na placeholder{% endcomment %}
+
+            {% if raw_image_name %}
+            {% comment %}Sprawdzamy, czy obrazek jest zdefiniowany w front matter{% endcomment %}
+                {% if raw_image_name contains '/' %}
+                    {% assign final_image_path = raw_image_name %}
+                    {% comment %}Jeśli podano pełną ścieżkę, użyj jej{% endcomment %}
+                {% else %}
+                    {% assign final_image_path = image_prefix | append: raw_image_name %}
+                    {% comment %}W przeciwnym razie dodaj prefiks katalogu{% endcomment %}
+                {% endif %}
             {% endif %}
-        {% endif %}
+            
+            <img src="{{ final_image_path | relative_url }}" alt="{{ page.title | default: 'Zdjęcie przepisu' }}" class="recipe-main-image">
+            
+            {% comment %}
+            Ukrywamy sekcję recipe-details na razie
+            {% endcomment %}
+            {% comment %}
+            <div class="recipe-details">
+                {% if page.time %}
+                    <p><strong>Czas przygotowania:</strong> {{ page.time }}</p>
+                {% endif %}
+                {% if page.servings %}
+                    <p><strong>Liczba porcji:</strong> {{ page.servings }}</p>
+                {% endif %}
+                {% if page.difficulty %}
+                    <p><strong>Poziom trudności:</strong> {{ page.difficulty }}</p>
+                {% endif %}
+            </div>
+            {% endcomment %}
+        </aside>
 
-        {% if final_image_path_notes %}
-            <aside class="note-main-info">
-                <img src="{{ final_image_path_notes | relative_url }}" alt="{{ page.title | default: 'Zdjęcie notatki' }}" class="note-main-image">
-            </aside>
-        {% endif %}
+        {% comment %}
+        Sekcja Składniki (na prawo od obrazka na desktopie)
+        {% endcomment %}
+        <div class="recipe-ingredients-side">
+            {{ ingredients_block_html }}
+        </div>
 
-        <div class="note-main-content">
-            {{ content }}
+        {% comment %}
+        Sekcje Przygotowanie i Uwagi (pod obrazkiem, na całą szerokość)
+        {% endcomment %}
+        <div class="recipe-main-content">
+            {{ preparation_block_html }}
+            {{ notes_block_html }}
         </div>
     </div>
 
-    <div class="button-container note-single-button-container">
-        <a href="{{ '/' | relative_url }}#notes" class="button primary-button" aria-label="Wróć do wszystkich notatek na stronie głównej">
-            Wszystkie notatki
+    <div class="button-container recipe-single-button-container">
+        {% comment %}
+        Przycisk "Drukuj przepis" przeniesiony tutaj
+        {% endcomment %}
+        <button class="print-button button secondary-button" onclick="window.print()" aria-label="Drukuj przepis">Drukuj przepis</button>
+
+        {% if page.category %}
+            {% assign category_name = "" %}
+            {% for cat in site.data.categories %}
+                {% if cat.slug == page.category %}
+                    {% assign category_name = cat.name %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+            
+            <a href="{{ '/categories/' | relative_url }}{{ page.category }}.html" class="button primary-button" aria-label="Wróć do przepisów w kategorii {{ category_name | default: page.category | escape }}">
+                « {{ category_name | default: 'Kategoria' }}
+            </a>
+        {% endif %}
+        
+        <a href="{{ '/' | relative_url }}#kategorie" class="button primary-button" aria-label="Wróć do wszystkich kategorii na stronie głównej">
+            Wszystkie kategorie
         </a>
     </div>
 
-    {% comment %} Sekcja daty aktualizacji/publikacji na dole {% endcomment %}
-    <div class="note-footer-meta">
-        {% comment %} Definicja mapowania miesięcy {% endcomment %}
+    {% comment %}
+    Sekcja daty aktualizacji/publikacji na dole
+    {% endcomment %}
+    <div class="recipe-footer-meta">
+        {% comment %}
+        Definicja mapowania miesięcy
+        {% endcomment %}
         {% assign month_names = "Styczeń,Luty,Marzec,Kwiecień,Maj,Czerwiec,Lipiec,Sierpień,Wrzesień,Październik,Listopad,Grudzień" | split: "," %}
 
         {% if page.last_modified_at %}
@@ -51,13 +145,13 @@ layout: default
             {% assign month_number = page.last_modified_at | date: "%-m" | minus: 1 %}
             {% assign month_name_pl = month_names[month_number] %}
             {% assign year = page.last_modified_at | date: "%Y" %}
-            <p class="note-date">Ostatnia aktualizacja: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ day }} {{ month_name_pl }} {{ year }}</time></p>
+            <p class="recipe-date">Ostatnia aktualizacja: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ day }} {{ month_name_pl }} {{ year }}</time></p>
         {% elsif page.date %}
             {% assign day = page.date | date: "%-d" %}
             {% assign month_number = page.date | date: "%-m" | minus: 1 %}
             {% assign month_name_pl = month_names[month_number] %}
             {% assign year = page.date | date: "%Y" %}
-            <p class="note-date">Opublikowano: <time datetime="{{ page.date | date_to_xmlschema }}">{{ day }} {{ month_name_pl }} {{ year }}</time></p>
+            <p class="recipe-date">Opublikowano: <time datetime="{{ page.date | date_to_xmlschema }}">{{ day }} {{ month_name_pl }} {{ year }}</time></p>
         {% endif %}
     </div>
 
