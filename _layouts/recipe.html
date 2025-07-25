@@ -34,14 +34,14 @@ layout: default
             {% endcomment %}
         </aside>
 
-        {# Nowa sekcja dla składników, która będzie obok obrazka na desktopie #}
+        {% comment %} Nowa sekcja dla składników, która będzie obok obrazka na desktopie {% endcomment %}
         <div class="recipe-ingredients-side">
-            {# W tym miejscu będziemy szukać nagłówka "Składniki" i jego listy #}
+            {% comment %} W tym miejscu będziemy szukać nagłówka "Składniki" i jego listy {% endcomment %}
             {{ content | split:'## Przygotowanie:' | first | split:'## Składniki:' | last }}
         </div>
 
         <div class="recipe-main-content">
-            {# Reszta treści: Przygotowanie i Uwagi #}
+            {% comment %} Reszta treści: Przygotowanie i Uwagi {% endcomment %}
             {{ content | split:'## Przygotowanie:' | last | prepend:'## Przygotowanie:' }}
         </div>
     </div>
