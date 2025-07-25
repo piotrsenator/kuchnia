@@ -27,9 +27,11 @@ layout: default
         {% endif %}
 
         {% if final_image_path_notes %}
-            <aside class="note-main-info">
-                <img src="{{ final_image_path_notes | relative_url }}" alt="{{ page.title | default: 'Zdjęcie notatki' }}" class="note-main-image">
-            </aside>
+        <aside class="note-main-info">
+            {% if page.image_main %}
+                <img src="{{ page.image_main | relative_url }}" alt="{{ page.title | default: 'Zdjęcie notatki' }}" class="note-main-image">
+            {% endif %}
+        </aside>
         {% endif %}
 
         <div class="note-main-content">
