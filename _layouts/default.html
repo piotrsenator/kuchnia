@@ -5,36 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} | {{ site.title }}</title>
 
-    <!-- Podstawowe meta tagi SEO -->
     <meta name="description" content="{{ page.description | default: site.description }}">
     <meta name="keywords" content="{{ page.keywords | default: site.keywords }}">
 
-    <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:title" content="{{ page.title | default: site.title }}">
     <meta property="og:description" content="{{ page.description | default: site.description }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
-    <!-- Dodaj domyślny obrazek lub użyj page.image_main jeśli istnieje -->
-    <meta property="og:image" content="{{ site.url }}{{ page.image_main | default: '/assets/images/social-share-default.jpg' | relative_url }}">
+    {% if page.image_main %}
+        {% assign og_twitter_image_path = page.image_main %}
+        {% comment %} Dodatkowa logika, jeśli page.image_main nie jest pełną ścieżką {% endcomment %}
+        {% unless og_twitter_image_path contains '/' %}
+            {% assign og_twitter_image_path = '/images/notes/' | append: og_twitter_image_path %}
+        {% endunless %}
+        <meta property="og:image" content="{{ site.url }}{{ og_twitter_image_path | relative_url }}">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="{{ site.url }}{{ og_twitter_image_path | relative_url }}">
+    {% endif %}
     <meta property="og:site_name" content="{{ site.title }}">
-
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ page.title | default: site.title }}">
-    <meta name="twitter:description" content="{{ page.description | default: site.description }}">
-    <!-- Dodaj domyślny obrazek lub użyj page.image_main jeśli istnieje -->
-    <meta name="twitter:image" content="{{ site.url }}{{ page.image_main | default: '/assets/images/social-share-default.jpg' | relative_url }}">
-
+  
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-    <!-- Fonty @font-face zostały przeniesione do style.css -->
-</head>
+    </head>
 <body>
     {% include header.html %}
-
     {{ content }}
-
     {% include footer.html %}
 </body>
 </html>
