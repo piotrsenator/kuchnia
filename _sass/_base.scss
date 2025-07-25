@@ -57,6 +57,12 @@ body {
     color: var(--color-text-dark);
 }
 
+img {
+    max-width: 100%; /* Sprawia, że obraz nigdy nie jest szerszy niż jego rodzic */
+    height: auto;    /* Zachowuje proporcje obrazu */
+    display: block;  /* Usuwa dodatkową przestrzeń pod obrazkami */
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-family-headings);
     font-weight: var(--font-weight-bold);
