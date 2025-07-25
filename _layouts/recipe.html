@@ -10,19 +10,27 @@ layout: default
     {% endif %}
   </header>
 
-  {% comment %} Przetwarzanie treści na sekcje {% endcomment %}
+  {% comment %} Podział treści na sekcje: Składniki, Przygotowanie, Uwagi {% endcomment %}
   {% assign content_html = content %}
   {% assign sections = content_html | split: '<h2 id="składniki">Składniki:</h2>' %}
-  {% assign ingredients_and_more = sections[1] %}
+  {% assign ingredients_and_more = sections[1] | default: "" %}
   {% assign ingredients = ingredients_and_more | split: '<h2 id="przygotowanie">Przygotowanie:</h2>' %}
-  {% assign ingredients_content = ingredients[0] %}
+  {% assign ingredients_content = ingredients[0] | default: "" %}
   {% assign preparation_and_notes = ingredients[1] | default: "" %}
   {% assign prep_split = preparation_and_notes | split: '<h2 id="uwagi">Uwagi:</h2>' %}
-  {% assign preparation_content = prep_split[0] %}
+  {% assign preparation_content = prep_split[0] | default: "" %}
   {% assign notes_content = prep_split[1] | default: "" %}
 
-  {% assign ingredients_block = '<h2 id="składniki">Składniki:</h2>' | append: ingredients_content %}
-  {% assign preparation_block = '<h2 id="przygotowanie">Przygotowanie:</h2>' | append: preparation_content %}
+  {% assign ingredients_block = '' %}
+  {% if ingredients_content != '' %}
+    {% assign ingredients_block = '<h2 id="składniki">Składniki:</h2>' | append: ingredients_content %}
+  {% endif %}
+
+  {% assign preparation_block = '' %}
+  {% if preparation_content != '' %}
+    {% assign preparation_block = '<h2 id="przygotowanie">Przygotowanie:</h2>' | append: preparation_content %}
+  {% endif %}
+
   {% assign notes_block = '' %}
   {% if notes_content != '' %}
     {% assign notes_block = '<h2 id="uwagi">Uwagi:</h2>' | append: notes_content %}
@@ -30,16 +38,15 @@ layout: default
 
   <div class="recipe-content-wrapper">
     <aside class="recipe-main-info">
-      {% assign image_prefix = '/images/recipes/' %}
+      {% comment %} Obsługa ścieżki do obrazka głównego {% endcomment %}
       {% assign default_image = '/images/general/placeholder-recipe.jpg' %}
-      {% assign image_name = page.image_main %}
       {% assign image_path = default_image %}
-
-      {% if image_name %}
-        {% assign image_path = image_name contains '/' 
-          | if 
-            | true: image_name 
-            | false: image_prefix | append: image_name %}
+      {% if page.image_main %}
+        {% if page.image_main contains '/' %}
+          {% assign image_path = page.image_main %}
+        {% else %}
+          {% assign image_path = '/images/recipes/' | append: page.image_main %}
+        {% endif %}
       {% endif %}
 
       <img src="{{ image_path | relative_url }}" alt="{{ page.title | default: 'Zdjęcie przepisu' }}" class="recipe-main-image">
@@ -79,7 +86,6 @@ layout: default
 
   <div class="recipe-footer-meta">
     {% assign months = "Styczeń,Luty,Marzec,Kwiecień,Maj,Czerwiec,Lipiec,Sierpień,Wrzesień,Październik,Listopad,Grudzień" | split: "," %}
-
     {% assign date_source = page.last_modified_at | default: page.date %}
     {% if date_source %}
       {% assign day = date_source | date: "%-d" %}
