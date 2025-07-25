@@ -11,7 +11,7 @@
     margin-block: var(--spacing-sm);
     background-color: var(--color-background-accent);
     border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-lg); /* Użyto 'shadow' zamiast 'box-shadow' dla spójności ze zmienną */
+    box-shadow: var(--shadow-lg);
 }
 
 /* --------------------------------------------------------------------------
@@ -54,8 +54,8 @@
     display: block;
     width: 80%;
     height: auto;
-    aspect-ratio: 4 / 3; 
-    margin-inline: auto; /* Wyśrodkowanie */
+    aspect-ratio: 4 / 3;
+    margin-inline: auto;
     margin-block: var(--spacing-md);
     object-fit: cover;
     border-radius: var(--border-radius-md);
@@ -104,10 +104,10 @@
 /* Obrazki w treści mają ograniczoną szerokość, aby nie dominowały nad tekstem */
 .note-single__main-content img {
     display: block;
-    max-width: 80%; /* Ograniczenie szerokości do 80% kontenera treści */
+    max-width: 80%;
     height: auto;
-    aspect-ratio: 4 / 3; 
-    margin-inline: auto; /* Wyśrodkowanie */
+    aspect-ratio: 4 / 3;
+    margin-inline: auto;
     margin-block: var(--spacing-md);
     border-radius: var(--border-radius-md);
 }
@@ -126,7 +126,7 @@
 .note-single__footer {
     text-align: right;
     margin-top: var(--spacing-md);
-    font-size: 0.9rem; /* Użycie spójnej jednostki 'rem' */
+    font-size: 0.9rem;
     font-weight: var(--font-weight-light);
     color: #777;
 }
