@@ -98,10 +98,21 @@ layout: default
 
     {% comment %} Sekcja daty aktualizacji/publikacji na dole {% endcomment %}
     <div class="recipe-footer-meta">
+        {% comment %} Definicja mapowania miesięcy {% endcomment %}
+        {% assign month_names = "Styczeń,Luty,Marzec,Kwiecień,Maj,Czerwiec,Lipiec,Sierpień,Wrzesień,Październik,Listopad,Grudzień" | split: "," %}
+
         {% if page.last_modified_at %}
-            <p class="recipe-date">Ostatnia aktualizacja: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%d %b %Y" }}</time></p>
+            {% assign day = page.last_modified_at | date: "%-d" %}
+            {% assign month_number = page.last_modified_at | date: "%-m" | minus: 1 %}
+            {% assign month_name_pl = month_names[month_number] %}
+            {% assign year = page.last_modified_at | date: "%Y" %}
+            <p class="recipe-date">Ostatnia aktualizacja: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ day }} {{ month_name_pl }} {{ year }}</time></p>
         {% elsif page.date %}
-            <p class="recipe-date">Opublikowano: <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time></p>
+            {% assign day = page.date | date: "%-d" %}
+            {% assign month_number = page.date | date: "%-m" | minus: 1 %}
+            {% assign month_name_pl = month_names[month_number] %}
+            {% assign year = page.date | date: "%Y" %}
+            <p class="recipe-date">Opublikowano: <time datetime="{{ page.date | date_to_xmlschema }}">{{ day }} {{ month_name_pl }} {{ year }}</time></p>
         {% endif %}
     </div>
 
