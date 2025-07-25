@@ -4,61 +4,68 @@
 
 /* 3.4. Karta Przepisu (.recipe-card) */
 .recipe-card {
-    background-color: var(--color-background-accent);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--border-radius-md);
-    overflow: hidden;
-    text-align: center;
-    padding-bottom: var(--spacing-xs);
-    box-shadow: var(--shadow-md);
-    transition: transform 0.2s ease;
+  background-color: var(--color-background-accent);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: var(--spacing-xs);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease;
 }
+
 .recipe-card:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
+
 .recipe-card-link {
-    display: block;
-    color: inherit;
+  display: block;
+  color: inherit;
 }
+
 .recipe-card-link:hover .recipe-card-title {
-    color: var(--color-text-dark);
+  color: var(--color-text-dark);
 }
+
 .recipe-card-image-container {
-    width: 100%;
-    padding-bottom: 100%; /* TO JEST KLUCZ DO KWADRATOWEGO KSZTAŁTU */
-    position: relative;
-    overflow: hidden;
-    margin-bottom: var(--spacing-sm);
-    /* Dodaj te zaokrąglenia, jeśli nie ma ich w .recipe-card: */
-    border-top-left-radius: var(--border-radius-md);
-    border-top-right-radius: var(--border-radius-md);
+  width: 100%;
+  padding-bottom: 100%; /* klucz do kwadratowego kształtu */
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--spacing-sm);
+  border-top-left-radius: var(--border-radius-md);
+  border-top-right-radius: var(--border-radius-md);
 }
+
 .recipe-card-image-container img {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%; /* Obrazek wypełnia cały kwadratowy kontener */
-    object-fit: cover; /* Obrazek zostanie przycięty, aby wypełnić kwadrat, zachowując proporcje */
-    display: block; /* Upewnia się, że obrazek jest blokowy */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* obraz wypełnia cały kwadrat */
+  object-fit: cover; /* przycięcie obrazu przy zachowaniu proporcji */
+  display: block;
 }
+
 .recipe-card-title {
-    font-weight: var(--font-weight-semibold);
-    font-size: 1.2rem;
-    line-height: 1.2;
-    margin: 0;
-    padding: 0 var(--spacing-xs) var(--spacing-xs);
-    color: var(--color-primary);
-    min-height: calc(3 * 1.2rem * 1.2);
+  font-weight: var(--font-weight-semibold);
+  font-size: 1.2rem;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0 var(--spacing-xs) var(--spacing-xs);
+  color: var(--color-primary);
+  min-height: calc(3 * 1.2rem * 1.2); /* wysokość na ok. 3 linie tekstu */
 
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+  /* wieloliniowe ograniczenie tekstu do 2 linii */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 
-    overflow: hidden; /* Ukrywa tekst, który wykracza poza 2 linie */
-    text-overflow: ellipsis; /* Dodaje "..." na końcu, jeśli tekst jest ucięty (opcjonalnie, działa z display: -webkit-box) */
+  overflow: hidden;
+  text-overflow: ellipsis;
 
-    /* Wyrównanie pionowe i poziome (zachowaj, jeśli chcesz wyśrodkować tekst w ramce) */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+  /* wyśrodkowanie tekstu pionowo i poziomo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
