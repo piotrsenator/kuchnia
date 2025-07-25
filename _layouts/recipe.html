@@ -10,6 +10,24 @@ layout: default
         {% endif %}
     </header>
 
+    {% comment %} Liquid do dzielenia treści na sekcje {% endcomment %}
+    {% assign full_content_html = content %}
+
+    {% comment %} Dzielimy całość na blok "Składniki" i resztę po "Przygotowanie" {% endcomment %}
+    {% assign parts_by_prep = full_content_html | split:'<h2>Przygotowanie:</h2>' %}
+    {% assign ingredients_block_html = parts_by_prep[0] %} {% comment %} Zawiera Składniki:<h2> i <ul> {% endcomment %}
+
+    {% comment %} Dzielimy resztę na blok "Przygotowanie" i "Uwagi" {% endcomment %}
+    {% assign remaining_content = parts_by_prep[1] %}
+    {% assign parts_by_notes = remaining_content | split:'<h2>Uwagi:</h2>' %}
+    
+    {% assign preparation_block_html = '<h2>Przygotowanie:</h2>' | append: parts_by_notes[0] %} {% comment %} Zawiera Przygotowanie:<h2> i <ol> {% endcomment %}
+
+    {% assign notes_block_html = '' %}
+    {% if parts_by_notes[1] %}
+      {% assign notes_block_html = '<h2>Uwagi:</h2>' | append: parts_by_notes[1] %} {% comment %} Zawiera Uwagi:<h2> i <p> {% endcomment %}
+    {% endif %}
+
     <div class="recipe-content-wrapper">
         <aside class="recipe-main-info">
             {% comment %} Logika wyświetlania obrazka {% endcomment %}
@@ -34,19 +52,20 @@ layout: default
             {% endcomment %}
         </aside>
 
-        {% comment %} Nowa sekcja dla składników, która będzie obok obrazka na desktopie {% endcomment %}
+        {% comment %} Sekcja Składniki (na prawo od obrazka na desktopie) {% endcomment %}
         <div class="recipe-ingredients-side">
-            {% comment %} W tym miejscu będziemy szukać nagłówka "Składniki" i jego listy {% endcomment %}
-            {{ content | split:'## Przygotowanie:' | first | split:'## Składniki:' | last }}
+            {{ ingredients_block_html }}
         </div>
 
+        {% comment %} Sekcje Przygotowanie i Uwagi (pod obrazkiem, na całą szerokość) {% endcomment %}
         <div class="recipe-main-content">
-            {% comment %} Reszta treści: Przygotowanie i Uwagi {% endcomment %}
-            {{ content | split:'## Przygotowanie:' | last | prepend:'## Przygotowanie:' }}
+            {{ preparation_block_html }}
+            {{ notes_block_html }}
         </div>
     </div>
 
     <div class="button-container recipe-single-button-container">
+        {% comment %} Przycisk "Drukuj przepis" przeniesiony tutaj {% endcomment %}
         <button class="print-button button secondary-button" onclick="window.print()" aria-label="Drukuj przepis">Drukuj przepis</button>
 
         {% if page.category %}
