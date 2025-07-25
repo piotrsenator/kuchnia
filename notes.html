@@ -28,8 +28,7 @@ permalink: /notes/
                             <p class="note-excerpt">{{ note.content | strip_html | truncatewords: 30 }}</p>
                         {% endif %}
                         <div class="note-read-more-container">
-
-                            <a href="{{ note.url | relative_url }}" class="read-more-link button primary-button" aria-label="Czytaj więcej o {{ note.title | escape }}">Czytaj więcej &raquo;</a>
+                            <a href="{{ '/notes/' | relative_url }}" class="button primary-button"> Wszystkie notatki </a>
                         </div>
                     </div>
                 {% endfor %}
