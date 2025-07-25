@@ -21,21 +21,22 @@ permalink: /notes/
                             {% assign image_prefix = '/images/notes/' %}
                             {% assign raw_image_name = note.image_main %}
                             {% assign final_image_path = nil %}
-                            
                             {% if raw_image_name %}
-                                {% if raw_image_name contains '/' or raw_image_name | slice: 0, 1 == '/' %}
+                                {% assign first_char = raw_image_name | slice: 0, 1 %}
+                                {% if first_char == '/' or raw_image_name contains '/' %}
                                     {% assign final_image_path = raw_image_name %}
                                 {% else %}
                                     {% assign final_image_path = image_prefix | append: raw_image_name %}
                                 {% endif %}
                             {% endif %}
-                            
+
                             {% if final_image_path %}
                                 <img src="{{ final_image_path | relative_url }}" alt="{{ note.title }}" class="note-card__image">
                             {% else %}
                                 <div class="note-card__image note-card__image--placeholder"></div>
                             {% endif %}
                         </div>
+
                         <div class="note-card__content">
                             <h3 class="note-card__title">
                                 <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
@@ -46,11 +47,13 @@ permalink: /notes/
                                 </time>
                                 {% if note.author %} by {{ note.author }}{% endif %}
                             </p>
+
                             {% if note.excerpt %}
                                 <p class="note-card__excerpt">{{ note.excerpt | strip_html }}</p>
                             {% else %}
                                 <p class="note-card__excerpt">{{ note.content | strip_html | truncatewords: 30 }}</p>
                             {% endif %}
+
                             <div class="note-card__footer">
                                 <a href="{{ note.url | relative_url }}" class="button primary-button">
                                     Czytaj dalej
