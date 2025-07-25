@@ -1,5 +1,9 @@
+/* ==========================================================================
+   3. KOMPONENTY
+   ========================================================================== */
 
 /* 3.3. Karta Kategorii (.category-card) */
+
 .category-card {
     background-color: var(--color-background-accent);
     border: 1px solid var(--color-secondary);
