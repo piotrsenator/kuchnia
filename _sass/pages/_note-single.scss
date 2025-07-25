@@ -56,7 +56,7 @@
     height: auto;
     aspect-ratio: 4 / 3; 
     margin-inline: auto; /* Wyśrodkowanie */
-    margin-block: var(--spacing-md)
+    margin-block: var(--spacing-md);
     object-fit: cover;
     border-radius: var(--border-radius-md);
 }
