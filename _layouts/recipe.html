@@ -13,20 +13,29 @@ layout: default
     {% comment %} Liquid do dzielenia treści na sekcje {% endcomment %}
     {% assign full_content_html = content %}
 
-    {% comment %} Dzielimy całość na blok "Składniki" i resztę po "Przygotowanie" {% endcomment %}
-    {% assign parts_by_prep = full_content_html | split:'<h2>Przygotowanie:</h2>' %}
-    {% assign ingredients_block_html = parts_by_prep[0] %} {% comment %} Zawiera Składniki:<h2> i <ul> {% endcomment %}
+    {% comment %} Dzielimy na sekcję Składniki i resztę {% endcomment %}
+    {% assign parts_after_ingredients_h2 = full_content_html | split:'<h2 id="składniki">Składniki:</h2>' %}
+    {% assign content_after_ingredients_h2 = parts_after_ingredients_h2[1] %}
 
-    {% comment %} Dzielimy resztę na blok "Przygotowanie" i "Uwagi" {% endcomment %}
-    {% assign remaining_content = parts_by_prep[1] %}
-    {% assign parts_by_notes = remaining_content | split:'<h2>Uwagi:</h2>' %}
+    {% comment %} Dzielimy resztę na Przygotowanie i Uwagi {% endcomment %}
+    {% assign parts_after_preparation_h2 = content_after_ingredients_h2 | split:'<h2 id="przygotowanie">Przygotowanie:</h2>' %}
+    {% assign ingredients_content_only = parts_after_preparation_h2[0] %}
+    {% assign content_after_preparation_h2 = parts_after_preparation_h2[1] %}
+
+    {% comment %} Dzielimy resztę po Przygotowaniu na właściwe Przygotowanie i Uwagi {% endcomment %}
+    {% assign parts_after_notes_h2 = content_after_preparation_h2 | split:'<h2 id="uwagi">Uwagi:</h2>' %}
+    {% assign preparation_content_only = parts_after_notes_h2[0] %}
+    {% assign notes_content_only = parts_after_notes_h2[1] %}
+
+    {% comment %} Odbudowujemy zmienne dla poszczególnych sekcji z ich nagłówkami {% endcomment %}
+    {% assign ingredients_block_html = '<h2 id="składniki">Składniki:</h2>' | append: ingredients_content_only %}
+    {% assign preparation_block_html = '<h2 id="przygotowanie">Przygotowanie:</h2>' | append: preparation_content_only %}
     
-    {% assign preparation_block_html = '<h2>Przygotowanie:</h2>' | append: parts_by_notes[0] %} {% comment %} Zawiera Przygotowanie:<h2> i <ol> {% endcomment %}
-
     {% assign notes_block_html = '' %}
-    {% if parts_by_notes[1] %}
-      {% assign notes_block_html = '<h2>Uwagi:</h2>' | append: parts_by_notes[1] %} {% comment %} Zawiera Uwagi:<h2> i <p> {% endcomment %}
+    {% if notes_content_only %}
+        {% assign notes_block_html = '<h2 id="uwagi">Uwagi:</h2>' | append: notes_content_only %}
     {% endif %}
+
 
     <div class="recipe-content-wrapper">
         <aside class="recipe-main-info">
