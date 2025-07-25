@@ -2,76 +2,76 @@
    2. UKŁAD (LAYOUT)
    ========================================================================== */
 
-/* 2.1. Główne Kontenery */
+/* 2.1. Główne kontenery */
 .content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-sm);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-sm);
 }
 .main-page-content.content {
-    padding: 0 var(--spacing-sm);
+  padding: 0 var(--spacing-sm);
 }
 .content.page-with-list {
-    padding-left: 0;
-    padding-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-/* 2.2. Nagłówek i Stopka */
+/* 2.2. Nagłówek i stopka */
 .site-header {
-    background-color: var(--color-background-light);
-    text-align: center;
-    padding: var(--spacing-sm) 0 var(--spacing-xs);
-    margin-bottom: var(--spacing-xs);
+  background-color: var(--color-background-light);
+  text-align: center;
+  padding: var(--spacing-sm) 0 var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
 }
 .site-footer {
-    background-color: var(--color-background-light);
-    text-align: center;
-    padding: var(--spacing-lg) 0;
-    border-top: 1px solid var(--color-secondary);
-    margin-top: var(--spacing-xl);
-    font-weight: var(--font-weight-light);
+  background-color: var(--color-background-light);
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+  margin-top: var(--spacing-xl);
+  border-top: 1px solid var(--color-secondary);
+  font-weight: var(--font-weight-light);
 }
 
-/* 2.3. Sekcje Strony i Siatki (Grid) */
+/* 2.3. Sekcje strony */
 .hero-section,
 .latest-recipes-section,
 .categories-section,
 .notes-section,
 .about-me-section {
-    margin-top: var(--spacing-xl);
-    margin-bottom: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
 }
 .main-content > section:first-child {
-    margin-top: 0;
+  margin-top: 0;
 }
 
+/* 2.4. Siatki (grid) */
 .recipes-grid,
 .latest-recipes-grid,
 .categories-grid,
 .notes-grid {
-    display: grid;
-    gap: var(--spacing-md);
-    max-width: 1200px;
-    margin: var(--spacing-md) auto;
-    padding: 0 var(--spacing-sm);
-    box-sizing: border-box;
+  display: grid;
+  gap: var(--spacing-md);
+  max-width: 1200px;
+  margin: var(--spacing-md) auto;
+  padding: 0 var(--spacing-sm);
+  box-sizing: border-box;
 }
-.recipes-grid, .latest-recipes-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-}
+.recipes-grid,
+.latest-recipes-grid,
 .categories-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 .notes-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 .notes-list-section .notes-grid {
-    max-width: 800px;
-    grid-template-columns: 1fr; /* Domyślnie jedna kolumna na stronie z listą notatek */
+  max-width: 800px;
+  grid-template-columns: 1fr;
 }
 
 /* ==========================================================================
-   STYL DRUKU
+   6. STYL DRUKU
    ========================================================================== */
 @media print {
   body {
@@ -87,7 +87,7 @@
     margin: var(--spacing-md);
   }
 
-  /* Ukrywamy zbędne sekcje */
+  /* Ukryj niepotrzebne elementy */
   .site-header,
   .site-footer,
   .hero-section,
@@ -110,9 +110,9 @@
     max-width: 100%;
     margin: 0;
     padding: 0;
+    border: none;
     box-shadow: none !important;
     background-color: var(--color-white) !important;
-    border: none;
   }
 
   .recipe-header {
@@ -122,26 +122,26 @@
 
   .recipe-title {
     font-size: 2.2rem;
-    color: #000;
     margin-bottom: var(--spacing-xs);
     font-family: var(--font-family-headings);
     font-weight: var(--font-weight-regular);
+    color: #000;
   }
 
   .recipe-description {
-    font-family: var(--font-family-primary);
     font-size: var(--spacing-sm);
-    color: #333;
     margin-bottom: var(--spacing-sm);
+    font-family: var(--font-family-primary);
     font-weight: var(--font-weight-light);
+    color: #333;
   }
 
   .recipe-date {
-    font-family: var(--font-family-primary);
     font-size: 0.8rem;
-    color: #666;
     margin-bottom: 0.3rem;
+    font-family: var(--font-family-primary);
     font-weight: var(--font-weight-light);
+    color: #666;
   }
 
   .recipe-content-wrapper {
@@ -158,7 +158,7 @@
   .recipe-main-content {
     display: block;
     width: 100% !important;
-    margin: var(--spacing-md) 0 0 0 !important;
+    margin-top: var(--spacing-md) !important;
     padding: 0;
     page-break-inside: avoid;
   }
@@ -167,24 +167,26 @@
     margin-top: 0 !important;
   }
 
-  /* Sekcje zawartości */
+  /* Typografia wewnętrzna */
   h2 {
     font-size: 1.5rem;
-    color: #000;
     margin-bottom: 0.8rem;
     font-family: var(--font-family-headings);
     font-weight: var(--font-weight-regular);
+    color: #000;
   }
 
-  ul, ol, p {
-    font-family: var(--font-family-primary);
-    margin-left: 0;
-    padding-left: var(--spacing-md);
+  ul,
+  ol,
+  p {
     font-size: var(--spacing-sm);
     line-height: 1.4;
     margin-bottom: 0.3rem;
-    color: #000;
+    margin-left: 0;
+    padding-left: var(--spacing-md);
+    font-family: var(--font-family-primary);
     font-weight: var(--font-weight-light);
+    color: #000;
   }
 
   ul li::marker,
