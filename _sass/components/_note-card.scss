@@ -3,7 +3,7 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   4.3.1. Nagłówek i Opis Strony Listy (/notes/)
+   Nagłówek i Opis Strony Listy (/notes/)
    -------------------------------------------------------------------------- */
 
 .page-with-list > .page-header {
@@ -25,7 +25,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   4.3.2. Wspólny Styl dla Boksów Notatek (Optymalizacja)
+   Wspólny Styl dla Boksów Notatek (Optymalizacja)
    -------------------------------------------------------------------------- */
 
 /* NOWA klasa bazowa, która zawiera powtarzające się style */
@@ -37,7 +37,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   4.3.3. Specyficzne Style dla Notatek
+   Specyficzne Style dla Notatek
    -------------------------------------------------------------------------- */
 
 /* Wpis notatki na stronie głównej (używa bazy .note-box) */
@@ -101,8 +101,12 @@
     margin-top: auto; /* Wypycha przycisk na sam dół karty */
 }
 
-/* Strona pojedynczej notatki */
-/* Strona pojedynczej notatki */
+
+/* --------------------------------------------------------------------------
+    Strona pojedynczej notatki 
+   -------------------------------------------------------------------------- */
+
+
 .note-single {
     max-width: var(--max-content-width, 800px); /* Użyj max-width z zmienną lub stałą wartością dla całego kontenera */
     margin: var(--spacing-sm) auto;
@@ -113,14 +117,11 @@
 }
 .note-single .note-header { text-align: center; margin-bottom: var(--spacing-md); }
 .note-single .note-title { font-family: var(--font-family-headings); font-size: 2.5rem; margin-bottom: var(--spacing-xs); }
-/* .note-single .note-date - przenieś tę klasę do .note-footer-meta, bo tam jest renderowana */
-
-/* NOWE / ZAKTUALIZOWANE SEKCJE DLA GŁÓWNEGO OBRAZKA NOTATKI */
 
 .note-content-wrapper {
     display: flex;
     flex-direction: column; /* Na mobile układ kolumnowy */
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
 }
 
@@ -138,7 +139,7 @@
     height: auto; /* KLUCZOWE: Zachowuje proporcje obrazka */
     display: block; /* Eliminuje zbędne spacje pod obrazkiem */
     border-radius: var(--border-radius-md); /* Zaokrąglone rogi */
-    aspect-ratio: 16 / 9; /* Przykładowe proporcje (np. panoramiczny) */
+    aspect-ratio: 4 / 3; /* Przykładowe proporcje (np. panoramiczny) */
     object-fit: cover; /* Dopasuj obrazek do proporcji kontenera, przycinając jeśli trzeba */
 }
 
@@ -158,17 +159,7 @@
 }
 
 
-/* Pozostałe style dla notatki, które już miałeś */
-.note-content img { /* To jest dla obrazków W TREŚCI Markdown */
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: var(--spacing-md) auto;
-    border-radius: var(--border-radius-md);
-    /* Usuń aspect-ratio i object-fit stąd, chyba że chcesz, aby WSZYSTKIE obrazy w treści miały te same proporcje */
-    /* aspect-ratio: 4/3; */
-    /* object-fit: cover; */
-}
+.note-content img { max-width: 80%; height: auto; display: block; margin: var(--spacing-md) auto; border-radius: var(--border-radius-md); aspect-ratio: 4/3; object-fit: cover; }
 .note-content h2, .note-content h3, .note-content h4 { font-family: var(--font-family-headings); margin-top: var(--spacing-md); margin-bottom: var(--spacing-sm); }
 .note-content p, .note-content ul, .note-content ol, .note-content blockquote { font-weight: var(--font-weight-light); }
 .note-single-button-container { /* Zastępuje .back-to-categories-link, .back-to-home-notes-link */
