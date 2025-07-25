@@ -1,0 +1,26 @@
+/* 4.5. Strona Błędu (404) */
+.error-404-container {
+    max-width: 100%;
+    margin: var(--spacing-sm) auto;
+    padding: var(--spacing-sm);
+    background-color: var(--color-background-accent);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+}
+.error-404-container .error-title { font-family: var(--font-family-headings); font-size: 3rem; margin-bottom: var(--spacing-sm); }
+.error-404-container .error-message,
+.error-404-container .error-suggestion {
+    font-weight: var(--font-weight-light);
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-md);
+}
+.error-image {
+    max-width: 80%;
+    height: auto;
+    display: block;
+    width: 400px;
+    margin: var(--spacing-md) auto;
+}
+
+
