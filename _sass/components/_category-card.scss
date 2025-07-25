@@ -5,60 +5,53 @@
 /* 3.3. Karta Kategorii (.category-card) */
 
 .category-card {
-    background-color: var(--color-background-accent);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--border-radius-md);
-    /* ZMNIEJSZONY PADDING pionowy */
-    padding: var(--spacing-xs) var(--spacing-md); /* Góra/dół 8px, lewo/prawo 24px */
-    text-align: center;
-    transition: background-color 0.3s ease;
+  background-color: var(--color-background-accent);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-xs) var(--spacing-md); /* pionowo 8px, poziomo 24px */
+  text-align: center;
+  transition: background-color 0.3s ease;
 
-    display: flex;
-    flex-direction: column; /* Ustawienie układu pionowego */
-    justify-content: space-between; /* Nowość: Rozdziela zawartość (tytuł i licznik) równomiernie pionowo */
-    align-items: center;    /* Wyśrodkowanie w poziomie */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
-    /* KLUCZOWA ZMIANA: STAŁA WYSOKOŚĆ KARTY */
-    /* Obliczanie: (2 linie * line-height) + paddingi + wysokość licznika + marginesy */
-    /* Przykład dla font-size: 1.4rem (22.4px), line-height: 1.2, spacing-xs: 8px, font-size licznika 0.9rem (~14.4px) */
-    /* Ok. (22.4px * 1.2 * 2) + (8px * 2) + 14.4px + (kilka px na margines) = ~53.76 + 16 + 14.4 = ~84.16px */
-    /* Spróbujmy wartości, która na pewno pomieści dwie linie i licznik. */
-    min-height: 100px; /* Dostosuj tę wartość! Zacznij od 100px i zwiększaj/zmniejszaj. */
+  min-height: 100px;
 }
+
 .category-card:hover {
-    background-color: var(--color-primary);
+  background-color: var(--color-primary);
 }
 
 .category-card-title {
-    font-weight: var(--font-weight-semibold);
-    font-size: 1.4rem;
-    line-height: 1.2;
-    margin: 0; /* Usuwamy marginesy, aby flexbox miał pełną kontrolę */
-    transition: color 0.3s ease;
+  font-weight: var(--font-weight-semibold);
+  font-size: 1.4rem;
+  line-height: 1.2;
+  margin: 0;
+  text-align: center;
+  transition: color 0.3s ease;
 
-    /* Styles for multi-line ellipsis (prefixed first) */
-    display: -webkit-box; /* Starsze, prefiksowane dla WebKit */
-    -webkit-line-clamp: 2; /* Ograniczenie do 2 linii */
-    -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 
-    /* KLUCZOWA ZMIANA: DISPLAY: FLEX dla samego tytułu, aby wyśrodkować tekst w nim (standardowe na końcu) */
-    display: flex;
-    align-items: center;    /* Wyśrodkowanie pionowe tekstu w ramach TEGO kontenera */
-    justify-content: center; /* Wyśrodkowanie poziome tekstu w ramach TEGO kontenera */
-    text-align: center; /* Dodatkowe zabezpieczenie dla wyśrodkowania tekstu */
-
-    flex-grow: 1; /* Pozwoli temu elementowi zająć całą dostępną przestrzeń w kolumnie */
-    width: 100%; /* Upewnij się, że element tytułu zajmuje pełną szerokość */
-
-    overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-grow: 1;
+  overflow: hidden;
 }
+
 .category-card:hover .category-card-title {
-    color: var(--color-background-light);
+  color: var(--color-background-light);
 }
+
 .category-post-count {
-    font-weight: var(--font-weight-semibold);
-    font-size: 0.9rem;
-    color: var(--color-primary);
-    margin-top: var(--spacing-xxs); /* Minimalny margines górny */
-    flex-shrink: 0; /* Zapobiega zmniejszaniu się licznika postów */
+  font-weight: var(--font-weight-semibold);
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  margin-top: var(--spacing-xxs);
+  flex-shrink: 0;
 }
