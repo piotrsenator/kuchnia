@@ -1,17 +1,36 @@
 /* ==========================================================================
-   4. Style Stron 
+   4. STYLE STRON
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   4.4 Strona Kategorii
+   4.4. Strona Kategorii
    -------------------------------------------------------------------------- */
 
 .category-header {
     text-align: center;
-    margin-bottom: var(--spacing-lg);
-    max-width: 100%;
-    margin-left: auto; margin-right: auto;
-    padding: var(--spacing-md) var(--spacing-sm) 0;
+    margin-bottom: var(--spacing-xl);
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-sm);
 }
-.category-header .category-title { font-family: var(--font-family-headings); font-size: 3rem; margin-bottom: var(--spacing-xs); }
-.category-header .category-description { font-weight: var(--font-weight-light); font-size: 1.3rem; margin: 0; }
+
+.category-header .category-title {
+    font-family: var(--font-family-headings);
+    font-size: 2.8rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-primary);
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+}
+
+.category-header .category-description {
+    font-weight: var(--font-weight-light);
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--color-text-dark);
+    line-height: 1.4;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
