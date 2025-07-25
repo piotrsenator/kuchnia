@@ -46,7 +46,7 @@ layout: default
             
             {% assign final_image_path = default_placeholder_path %} {% comment %} Domyślnie ustawiamy na placeholder {% endcomment %}
 
-            {% if raw_image_name %} {# Sprawdzamy, czy obrazek jest zdefiniowany w front matter #}
+            {% if raw_image_name %} {% comment %} Sprawdzamy, czy obrazek jest zdefiniowany w front matter {% endcomment %}
                 {% if raw_image_name contains '/' %}
                     {% assign final_image_path = raw_image_name %} {% comment %} Jeśli podano pełną ścieżkę, użyj jej {% endcomment %}
                 {% else %}
