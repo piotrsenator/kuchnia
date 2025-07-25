@@ -12,7 +12,7 @@ Pamiętam, jak babcia piekła drożdżowe ciasto z rabarbarem i kruszonką. Ten 
 
 Co roku obiecuję sobie, że spróbuję czegoś nowego z rabarbarem. Kompot? Już mam! Dżem? Słoiki stoją w spiżarni! Tarta? Ależ oczywiście! W tym sezonie postawiłem na **rabarbarowe crumble** z dodatkiem truskawek i owsa. Szybkie, proste i zawsze się udaje, nawet jeśli pieczesz pierwszy raz w życiu.
 
-![Rabarbar w ogródku](o-tym-ze-znow-rabarbar-garden.jpg)
+![Rabarbar w ogródku](images/notes/o-tym-ze-znow-rabarbar-garden.jpg)
 
 ### Nie tylko na słodko!
 
