@@ -1,159 +1,148 @@
 /* ==========================================================================
-   4. STYLE STRON
+   RECIPE SINGLE PAGE
    ========================================================================== */
-/* --------------------------------------------------------------------------
-   4.2. Strona pojedynczego przepisu
-   -------------------------------------------------------------------------- */
 
-/* Główny kontener strony przepisu */
 .recipe-single {
-    max-width: var(--max-content-width, 900px);
-    margin: var(--spacing-lg) auto;
-    padding: var(--spacing-lg);
-    background-color: var(--color-background-accent);
-    border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-lg);
+  max-width: 860px;
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-md);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-lg);
 }
 
-/* Nagłówek przepisu */
+/* --- Nagłówek przepisu --- */
 .recipe-header {
-    text-align: center;
-    margin-bottom: var(--spacing-xl);
+  text-align: left;
+  margin-bottom: var(--spacing-md);
 }
 
 .recipe-title {
-    font-family: var(--font-family-headings);
-    font-weight: var(--font-weight-regular);
-    font-size: 3rem;
-    margin-bottom: var(--spacing-sm);
-    color: var(--color-text-dark);
-}
-@media (max-width: 768px) {
-    .recipe-title {
-        font-size: 2.5rem;
-    }
-}
-@media (max-width: 480px) {
-    .recipe-title {
-        font-size: 2rem;
-    }
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  font-family: var(--font-family-headings);
+  margin-bottom: var(--spacing-xs);
 }
 
 .recipe-description {
-    font-weight: var(--font-weight-light);
-    font-size: 1.2rem;
-    line-height: 1.5;
-    font-style: italic;
-    color: var(--color-text-dark);
-    margin-bottom: var(--spacing-lg);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.5;
+  font-family: var(--font-family-primary);
 }
 
-/* Kontener głównej treści przepisu (obrazek, składniki, przygotowanie, uwagi) */
+/* --- Układ główny --- */
 .recipe-content-wrapper {
-    display: grid;
-    gap: var(--spacing-lg); /* Odstęp między elementami w siatce */
-    grid-template-columns: 1fr; /* Domyślnie na małych ekranach - jedna kolumna */
-    align-items: start; /* Dopasuj elementy do początku wierszy */
-    margin-bottom: var(--spacing-lg); /* Dodatkowy margines dolny dla kontenera głównego */
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
 
-    @media (min-width: 768px) {
-        /* Na większych ekranach: dwie kolumny */
-        grid-template-columns: minmax(250px, 1fr) 2fr; /* Kolumna obrazka i składników / Kolumna przygotowania */
-        grid-template-areas:
-            "image ingredients"
-            "content content"; /* Definicja obszarów dla łatwiejszego pozycjonowania */
-    }
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* Kontener obrazka (lewa kolumna na desktopie) */
+/* --- Lewa kolumna: obrazek i informacje --- */
 .recipe-main-info {
-    grid-column: 1 / -1; /* Domyślnie zajmuje całą szerokość w pojedynczej kolumnie na mobile */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Wyśrodkowanie na mobile */
-
-    @media (min-width: 768px) {
-        grid-column: 1 / 2; /* Na większych ekranach zajmuje PIERWSZĄ kolumnę */
-        grid-area: image; /* Przypisujemy do obszaru 'image' */
-        align-items: flex-start; /* Wyrównanie do lewej na desktopie */
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .recipe-main-image {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-    border-radius: var(--border-radius-md);
-    margin-bottom: var(--spacing-md);
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
+  width: 100%;
+  max-width: 320px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--spacing-sm);
 }
 
-/* Sekcja szczegółów przepisu (ukryta) */
-.recipe-details {
-    display: none; /* Ukrywa tę sekcję, jak ustalono */
-}
-
-/* Sekcja składników (prawa kolumna na desktopie, pod obrazkiem na mobile) */
+/* --- Prawa kolumna: składniki --- */
 .recipe-ingredients-side {
-    grid-column: 1 / -1; /* Domyślnie na małych ekranach zajmuje całą szerokość */
-    margin-bottom: var(--spacing-lg); /* Margines dolny dla odstępu na mobile */
-
-    @media (min-width: 768px) {
-        grid-column: 2 / 3; /* Na desktopie zajmuje DRUGĄ kolumnę */
-        grid-area: ingredients; /* Przypisujemy do obszaru 'ingredients' */
-        margin-bottom: 0; /* Usuń dolny margines, gdy jest obok obrazka */
-    }
+  padding-top: var(--spacing-xs);
 }
 
-/* Główna treść przepisu (Przygotowanie, Uwagi - cały dół) */
+.recipe-ingredients-side h2 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+  font-family: var(--font-family-headings);
+}
+
+.recipe-ingredients-side ul {
+  margin: 0;
+  padding-left: var(--spacing-md);
+  list-style: disc;
+}
+
+.recipe-ingredients-side li {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 300;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-family-primary);
+}
+
+/* --- Sekcja przygotowania i uwag --- */
 .recipe-main-content {
-    grid-column: 1 / -1; /* ZAWSZE zajmuje całą szerokość siatki, czyli wszystkie kolumny */
-    grid-area: content; /* Przypisujemy do obszaru 'content' */
-    margin-top: 0; /* Wyzerowany górny margines */
-    margin-bottom: 0; /* Wyzerowany dolny margines */
+  grid-column: 1 / -1;
+  margin-top: var(--spacing-md);
 }
 
-/* Stylizacja nagłówków w sekcjach treści */
-.recipe-ingredients-side h2,
 .recipe-main-content h2 {
-    font-family: var(--font-family-headings);
-    font-size: 2rem;
-    margin-bottom: var(--spacing-md);
-    color: var(--color-primary);
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
+  font-family: var(--font-family-headings);
 }
 
-/* Stylizacja list (ul/ol) w sekcjach treści */
-.recipe-ingredients-side ul,
 .recipe-main-content ol,
 .recipe-main-content ul {
-    list-style-position: inside;
-    padding-left: 0;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--color-text-dark);
+  padding-left: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
 }
 
-.recipe-ingredients-side li,
-.recipe-main-content li {
-    margin-bottom: var(--spacing-xxs);
+.recipe-main-content li,
+.recipe-main-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 300;
+  font-family: var(--font-family-primary);
+  margin-bottom: 0.25rem;
 }
 
-/* Styl dla kontenera przycisków na dole strony przepisu */
-.recipe-single-button-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-md);
-    padding-top: var(--spacing-xs);
-    border-top: 1px solid var(--color-secondary);
+/* --- Przyciski na dole --- */
+.button-container {
+  margin-top: var(--spacing-lg);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  justify-content: center;
 }
 
-/* Meta dane przepisu (stopka) */
+.button {
+  font-size: 0.95rem;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+/* --- Data publikacji/aktualizacji --- */
 .recipe-footer-meta {
-    text-align: right;
-    margin-top: 20px;
-    font-size: 0.9em;
-    color: #777;
+  margin-top: var(--spacing-lg);
+  text-align: left;
+}
+
+.recipe-date {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-weight: 300;
+  font-family: var(--font-family-primary);
 }
