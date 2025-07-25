@@ -3,7 +3,7 @@ title: Nowy gulasz wołowy z warzywami
 category: dania-glowne-miesne
 date: 2024-07-22
 last_modified_at: 2024-07-22
-image_main: "/images/recipes/gulasz-wolowy-main.jpg"
+image_main: "gulasz-wolowy-main.jpg"
 tags: [wołowina]
 ---
 ## Składniki:
