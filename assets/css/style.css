@@ -510,7 +510,7 @@ blockquote {
     font-size: 1.2rem;
     line-height: 1.5;
     font-style: italic;
-    color: var(--color-text-dark); /* Użyto zmiennej z globalnych definicji */
+    color: var(--color-text-dark);
     margin-bottom: var(--spacing-lg);
 }
 
@@ -551,7 +551,7 @@ blockquote {
     height: auto;
     border-radius: var(--border-radius-md);
     margin-bottom: var(--spacing-md);
-    aspect-ratio: 4 / 3; /* Zachowaj proporcje obrazka */
+    aspect-ratio: 4 / 3;
     object-fit: cover;
 }
 
@@ -561,7 +561,7 @@ blockquote {
 }
 
 /* 4.1.6. Sekcja składników (prawa kolumna na desktopie, pod obrazkiem na mobile) */
-.recipe-ingredients-side { /* Używamy nowej klasy, aby uniknąć kolizji z ewentualnym `page.ingredients` */
+.recipe-ingredients-side {
     grid-column: 1 / -1; /* Domyślnie na małych ekranach zajmuje całą szerokość */
     margin-bottom: var(--spacing-lg); /* Margines dolny dla odstępu na mobile */
 
@@ -581,24 +581,23 @@ blockquote {
 }
 
 /* 4.1.8. Stylizacja nagłówków w sekcjach treści */
-/* Zakładamy, że Składniki, Przygotowanie i Uwagi będą w Markdown jako ## */
 .recipe-ingredients-side h2,
 .recipe-main-content h2 {
     font-family: var(--font-family-headings);
     font-size: 2rem;
     margin-bottom: var(--spacing-md);
-    color: var(--color-primary); /* Upewnij się, że nagłówki są w kolorze primary */
+    color: var(--color-primary);
 }
 
 /* 4.1.9. Stylizacja list (ul/ol) w sekcjach treści */
 .recipe-ingredients-side ul,
 .recipe-main-content ol,
-.recipe-main-content ul { /* Dodajemy ul dla uwag jeśli są w formie listy */
-    list-style-position: inside; /* Upewnij się, że punkty/numerki są wewnątrz tekstu */
-    padding-left: 0; /* Usuń domyślny padding listy */
+.recipe-main-content ul {
+    list-style-position: inside;
+    padding-left: 0;
     font-size: 1rem;
     line-height: 1.6;
-    color: var(--color-text-dark); /* Użyto zmiennej z globalnych definicji */
+    color: var(--color-text-dark);
 }
 
 .recipe-ingredients-side li,
@@ -612,9 +611,9 @@ blockquote {
     flex-wrap: wrap;
     justify-content: center;
     gap: var(--spacing-md);
-    margin-top: var(--spacing-md); /* Odstęp od ostatniej sekcji treści */
+    margin-top: var(--spacing-md);
     padding-top: var(--spacing-xs);
-    border-top: 1px solid var(--color-secondary); /* Użyto zmiennej z globalnych definicji */
+    border-top: 1px solid var(--color-secondary);
 }
 
 /* 4.1.11. Meta dane przepisu (stopka) */
@@ -622,7 +621,7 @@ blockquote {
     text-align: right;
     margin-top: 20px;
     font-size: 0.9em;
-    color: #777; /* Możesz tu użyć zmiennej CSS, np. var(--color-secondary) lub nowej zmiennej dla tekstu pomocniczego */
+    color: #777;
 }
 /* ==========================================================================
    4.3. Style Stron Notatek (Zoptymalizowane)
