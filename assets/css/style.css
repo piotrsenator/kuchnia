@@ -855,7 +855,20 @@ blockquote {
     }
     @page { size: A4 portrait; margin: var(--spacing-md); }
 
-    .site-header, .site-footer, .hero-section, .latest-recipes-section, .categories-section, .notes-section, .about-me-section, .print-button, .back-to-categories-link, .back-to-home-notes-link, .error-404-page, .recipe-main-image {
+    .site-header,
+    .site-footer,
+    .hero-section,
+    .latest-recipes-section,
+    .categories-section,
+    .notes-section,
+    .about-me-section,
+    .print-button, /* Ten jest już obecny, ale dobrze, że tu jest */
+    .button-container, /* DODANE: ukryje cały kontener z przyciskami */
+    .recipe-footer-meta, /* DODANE: ukryje sekcję z datą aktualizacji */
+    .back-to-categories-link,
+    .back-to-home-notes-link,
+    .error-404-page,
+    .recipe-main-image {
         display: none !important;
     }
     .recipe-single { max-width: 100%; margin: 0; padding: 0; box-shadow: none; background-color: var(--color-white); border: none; }
