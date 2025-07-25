@@ -8,24 +8,11 @@ layout: default
         {% if page.description %}
             <p class="recipe-description">{{ page.description }}</p>
         {% endif %}
-
-        {% comment %} Opcjonalne wyświetlanie daty publikacji/modyfikacji {% endcomment %}
-        {% if page.date %}
-            <p class="recipe-date">Opublikowano: <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time></p>
-        {% endif %}
-        {% if page.last_modified_at %}
-            <p class="recipe-date">Ostatnia aktualizacja: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%d %b %Y" }}</time></p>
-        {% endif %}
     </header>
 
     <div class="recipe-content-wrapper">
-        <aside class="recipe-main-info"> {% comment %} Zmieniono z div na aside dla lepszej semantyki {% endcomment %}
-            {% comment %}
-            Logika wyświetlania obrazka:
-            Preferuje page.image_main.
-            Jeśli page.image_main jest puste, używa site.data.placeholders.recipe_image (z _data/placeholders.yml).
-            W ostateczności używa domyślnej ścieżki /images/general/placeholder-recipe.jpg.
-            {% endcomment %}
+        <aside class="recipe-main-info">
+            {% comment %} Logika wyświetlania obrazka {% endcomment %}
             {% assign default_placeholder_path = '/images/general/placeholder-recipe.jpg' %}
             {% assign final_image_path = page.image_main | default: site.data.placeholders.recipe_image | default: default_placeholder_path %}
             
@@ -35,77 +22,54 @@ layout: default
                 {% if page.time %}
                     <p><strong>Czas przygotowania:</strong> {{ page.time }}</p>
                 {% endif %}
-                {% if page.servings %} {# Poprawiono na 'servings' #}
+                {% if page.servings %}
                     <p><strong>Liczba porcji:</strong> {{ page.servings }}</p>
                 {% endif %}
                 {% if page.difficulty %}
                     <p><strong>Poziom trudności:</strong> {{ page.difficulty }}</p>
                 {% endif %}
-                {% if page.notes %}
+                {% comment %} Uwagi przeniesione do content, ale jeśli chcesz tu drobne uwagi, możesz zostawić. {% endcomment %}
+                {% comment %} {% if page.notes %}
                     <p><strong>Uwagi:</strong> {{ page.notes }}</p>
-                {% endif %}
-                <button class="print-button" onclick="window.print()" aria-label="Drukuj przepis">Drukuj przepis</button>
+                {% endif %} {% endcomment %}
             </div>
         </aside>
 
-        {% if page.ingredients %}
-            <section class="recipe-ingredients">
-                <h2>Składniki</h2>
-                <ul>
-                    {% for ingredient in page.ingredients %}
-                        <li>{{ ingredient }}</li>
-                    {% endfor %}
-                </ul>
-            </section>
-        {% endif %}
-
-        {% if page.preparation %}
-            <section class="recipe-preparation">
-                <h2>Przygotowanie</h2>
-                <ol>
-                    {% for step in page.preparation %}
-                        <li>{{ step }}</li>
-                    {% endfor %}
-                </ol>
-            </section>
-        {% endif %}
-
-        {% comment %} Jeśli masz jakąś dodatkową treść markdown, która nie jest składnikami/przygotowaniem,
-           pozostaw poniższy blok. W przeciwnym razie możesz go usunąć. {% endcomment %}
-        {% if content != "" %}
-             <section class="recipe-additional-content">
-                 {{ content }}
-             </section>
-        {% endif %}
+        <div class="recipe-main-content">
+            {{ content }}
+        </div>
     </div>
 
+    <div class="button-container recipe-single-button-container">
+        {% comment %} Przycisk "Drukuj przepis" przeniesiony tutaj {% endcomment %}
+        <button class="print-button button primary-button" onclick="window.print()" aria-label="Drukuj przepis">Drukuj przepis</button>
 
-    {% if page.category %}
-        {% assign category_name = "" %}
-        {% for cat in site.data.categories %}
-            {% if cat.slug == page.category %}
-                {% assign category_name = cat.name %}
-                {% break %}
-            {% endif %}
-        {% endfor %}
-
-        <div class="button-container recipe-single-button-container">
-           
+        {% if page.category %}
+            {% assign category_name = "" %}
+            {% for cat in site.data.categories %}
+                {% if cat.slug == page.category %}
+                    {% assign category_name = cat.name %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+            
             <a href="{{ '/categories/' | relative_url }}{{ page.category }}.html" class="button primary-button" aria-label="Wróć do przepisów w kategorii {{ category_name | default: page.category | escape }}">
                 « {{ category_name | default: 'Kategoria' }}
             </a>
-         
-            <a href="{{ '/' | relative_url }}#kategorie" class="button primary-button" aria-label="Wróć do wszystkich kategorii na stronie głównej">
-                Wszystkie kategorie
-            </a>
-        </div>
-    {% else %}
+        {% endif %}
+        
+        <a href="{{ '/' | relative_url }}#kategorie" class="button primary-button" aria-label="Wróć do wszystkich kategorii na stronie głównej">
+            Wszystkie kategorie
+        </a>
+    </div>
 
-        <div class="button-container recipe-single-button-container">
-            <a href="{{ '/' | relative_url }}#kategorie" class="button primary-button" aria-label="Wróć do wszystkich kategorii na stronie głównej">
-                Wszystkie kategorie
-            </a>
-        </div>
-    {% endif %}
+    {% comment %} Sekcja daty aktualizacji/publikacji na dole {% endcomment %}
+    <div class="recipe-footer-meta">
+        {% if page.last_modified_at %}
+            <p class="recipe-date">Ostatnia aktualizacja: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%d %b %Y" }}</time></p>
+        {% elsif page.date %}
+            <p class="recipe-date">Opublikowano: <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time></p>
+        {% endif %}
+    </div>
 
 </article>
