@@ -113,19 +113,3 @@
     font-weight: var(--font-weight-light);
     color: #777;
 }
-
-/* --------------------------------------------------------------------------
-   Układ desktopowy dla pojedynczej notatki (od 768px)
-   -------------------------------------------------------------------------- */
-@media (min-width: 768px) {
-    .note-single__content-wrapper {
-        flex-direction: row;
-        align-items: flex-start;
-    }
-
-    .note-single__main-info {
-        width: 35%;
-        max-width: 400px; /* Ograniczenie szerokości obrazka na desktopie */
-        margin-right: var(--spacing-lg);
-    }
-}
