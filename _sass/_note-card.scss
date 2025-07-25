@@ -1,0 +1,56 @@
+/* Karta Notatki (.note-card) */
+.note-card {
+    background-color: var(--color-background-accent);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--box-shadow-md);
+    transition: transform 0.2s ease;
+    padding: var(--spacing-sm);
+    text-align: left; /* Zmienione na left dla lepszej czytelności notatek */
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    &-link {
+        display: block;
+        color: inherit;
+    }
+
+    &-image-container {
+        width: 100%;
+        padding-bottom: 56.25%; /* Proporcje 16:9 dla notatek */
+        position: relative;
+        overflow: hidden;
+        margin-bottom: var(--spacing-sm);
+        border-radius: var(--border-radius-sm); /* Zmienione na sm dla kart notatek */
+
+        img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    &-title {
+        font-weight: var(--font-weight-semibold);
+        font-size: 1.1rem;
+        line-height: 1.3;
+        margin: var(--spacing-xs) 0;
+        color: var(--color-primary);
+        min-height: calc(2 * 1.1rem * 1.3);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    &-date {
+        font-size: 0.85rem;
+        color: #777;
+        margin-bottom: var(--spacing-xs);
+    }
+}
