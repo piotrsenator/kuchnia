@@ -1,103 +1,130 @@
-
 /* ==========================================================================
-   4. STYLE STRON
+   Komponent: Strona pojedynczej notatki
    ========================================================================== */
-/* --------------------------------------------------------------------------
-   4.3. Układ strony pojedynczej Notatki
-   -------------------------------------------------------------------------- */
 
+/* --------------------------------------------------------------------------
+   Główny kontener
+   -------------------------------------------------------------------------- */
 .note-single {
     max-width: var(--max-content-width, 800px);
-    margin: var(--spacing-sm) auto;
+    margin-inline: auto;
+    margin-block: var(--spacing-sm);
     padding: var(--spacing-sm);
     background-color: var(--color-background-accent);
     border-radius: var(--border-radius-md);
-    box-shadow: var(--box-shadow-lg);
+    box-shadow: var(--shadow-lg); /* Użyto 'shadow' zamiast 'box-shadow' dla spójności ze zmienną */
+}
 
-    .note-header {
-        text-align: center;
-        margin-bottom: var(--spacing-md);
+/* --------------------------------------------------------------------------
+   Nagłówek, treść i obrazek
+   -------------------------------------------------------------------------- */
+.note-single__header {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
 
-        .note-title {
-            font-family: var(--font-family-headings);
-            font-size: 2.5rem;
-            margin-bottom: var(--spacing-xs);
-        }
-        .note-description {
-            font-weight: var(--font-weight-light);
-            font-size: 1.2rem;
-            line-height: 1.5;
-            font-style: italic;
-            color: var(--color-text-dark);
-            margin-bottom: var(--spacing-lg);
-        }
+.note-single__title {
+    font-family: var(--font-family-headings);
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.note-single__description {
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-light);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-lg);
+}
+
+.note-single__content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.note-single__main-info {
+    flex-shrink: 0;
+}
+
+.note-single__main-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9; /* Bardziej panoramiczne proporcje */
+    object-fit: cover;
+    border-radius: var(--border-radius-md);
+}
+
+/* --------------------------------------------------------------------------
+   Stylowanie tagów wewnątrz treści artykułu
+   -------------------------------------------------------------------------- */
+.note-single__main-content {
+    flex-grow: 1;
+    line-height: 1.6;
+}
+
+.note-single__main-content h2,
+.note-single__main-content h3,
+.note-single__main-content h4 {
+    font-family: var(--font-family-headings);
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.note-single__main-content p,
+.note-single__main-content ul,
+.note-single__main-content ol,
+.note-single__main-content blockquote {
+    font-weight: var(--font-weight-light);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Obrazki w treści mają ograniczoną szerokość, aby nie dominowały nad tekstem */
+.note-single__main-content img {
+    display: block;
+    max-width: 80%; /* Ograniczenie szerokości do 80% kontenera treści */
+    height: auto;
+    margin-inline: auto; /* Wyśrodkowanie */
+    margin-block: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+}
+
+/* --------------------------------------------------------------------------
+   Stopka strony (przyciski i metadane)
+   -------------------------------------------------------------------------- */
+.note-single__actions {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-xs);
+    border-top: 1px solid var(--color-secondary);
+}
+
+.note-single__footer {
+    text-align: right;
+    margin-top: var(--spacing-md);
+    font-size: 0.9rem; /* Użycie spójnej jednostki 'rem' */
+    font-weight: var(--font-weight-light);
+    color: #777;
+}
+
+/* --------------------------------------------------------------------------
+   Układ desktopowy dla pojedynczej notatki (od 768px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+    .note-single__content-wrapper {
+        flex-direction: row;
+        align-items: flex-start;
     }
 
-    .note-content-wrapper {
-        display: flex;
-        flex-direction: column; /* Na mobile układ kolumnowy */
-        gap: var(--spacing-lg);
-        margin-bottom: var(--spacing-lg);
-
-        .note-main-info {
-            width: 100%;
-            /* max-width: 400px; Opcjonalnie: ograniczenie szerokości obrazka na desktopie */
-            margin: 0 auto var(--spacing-lg) auto;
-            flex-shrink: 0;
-
-            .note-main-image {
-                max-width: 100%;
-                height: auto;
-                display: block;
-                border-radius: var(--border-radius-md);
-                aspect-ratio: 16 / 9; /* Przykładowe proporcje dla obrazka głównego */
-                object-fit: cover;
-            }
-        }
-
-        .note-main-content {
-            flex-grow: 1;
-            line-height: 1.6;
-
-            h2, h3, h4 {
-                font-family: var(--font-family-headings);
-                font-size: 1.8rem;
-                margin-top: var(--spacing-lg);
-                margin-bottom: var(--spacing-md);
-                color: var(--color-primary);
-            }
-            p, ul, ol, blockquote {
-                font-weight: var(--font-weight-light);
-                margin-bottom: var(--spacing-md);
-            }
-            img { /* Obrazki wstawione w treści Markdown */
-                max-width: 80%;
-                height: auto;
-                display: block;
-                margin: var(--spacing-md) auto;
-                border-radius: var(--border-radius-md);
-                /* Usunięto aspect-ratio i object-fit, aby zachować oryginalne proporcje */
-            }
-        }
-    }
-
-    .note-single-button-container {
-        display: flex;
-        justify-content: center;
-        margin-top: var(--spacing-md);
-        padding-top: var(--spacing-xs);
-        border-top: 1px solid var(--color-secondary);
-    }
-    
-    .note-footer-meta {
-        text-align: right;
-        margin-top: var(--spacing-md);
-        font-size: 0.9em;
-        color: #777;
-
-        .note-date {
-            font-size: 0.9rem;
-            font-weight: var(--font-weight-light);
-        }
+    .note-single__main-info {
+        width: 35%;
+        max-width: 400px; /* Ograniczenie szerokości obrazka na desktopie */
+        margin-right: var(--spacing-lg);
     }
 }
