@@ -10,6 +10,7 @@
     font-family: var(--font-family-site-title);
     font-weight: var(--font-weight-regular);
     font-style: italic;
+    /* USUNIĘTO: font-size: 2.5rem; */
     line-height: 1.2;
     color: var(--color-primary);
     margin-bottom: var(--spacing-xxs);
@@ -19,12 +20,12 @@
     color: var(--color-text-dark);
 }
 .site-subtitle {
-    font-size: 1.1rem;
+    /* font-size: 1.1rem; */
     margin-top: var(--spacing-xxs);
     margin-bottom: var(--spacing-xs);
 }
 .site-description-short {
-    font-size: 1.1rem;
+    /* font-size: 1.1rem; */ 
     max-width: 700px;
     margin: var(--spacing-xxs) auto var(--spacing-md) auto;
 }
