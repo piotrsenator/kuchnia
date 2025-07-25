@@ -13,16 +13,27 @@
 }
 
 .main-nav li a {
-    color: var(--color-text-light);
+    color: var(--color-text-dark);
     font-weight: var(--font-weight-semibold);
     font-size: 1.1rem;
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--border-radius-sm);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.main-nav li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+.main-nav li a:hover,
+.main-nav li a:focus {
+    background-color: rgba(169, 100, 62, 0.2); /* wariant z kolorem primary w transparentnej wersji */
+    color: var(--color-primary);
+    outline: none;
+}
+
+/* Accessibility: focus-visible for keyboard navigation */
+.main-nav li a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
 @media (max-width: 768px) {
