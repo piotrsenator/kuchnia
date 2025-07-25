@@ -193,3 +193,52 @@ blockquote {
     background-color: var(--color-background-accent);
     border-left: 5px solid var(--color-primary);
 }
+
+/* ==========================================================================
+   5. MEDIA QUERIES (RESPONSYWNOŚĆ)
+   ========================================================================== */
+
+/* Tablet (breakpoint: >= 768px) */
+@media (min-width: 768px) {
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.6rem; }
+    .site-title { font-size: 3.5rem; }
+    .site-subtitle { font-size: 1.5rem; }
+    .site-description-short { font-size: 1.3rem; }
+
+    .content, .main-content { padding: var(--spacing-lg); }
+
+    .recipes-grid, .latest-recipes-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .recipes-grid, .latest-recipes-grid, .categories-grid, .notes-grid { gap: var(--spacing-lg); }
+
+    .recipe-single, .note-single, .error-404-container { padding: var(--spacing-lg); max-width: 900px; }
+    .notes-list-section .page-header, .category-header { max-width: 800px; }
+
+    .recipe-content-wrapper { grid-template-columns: minmax(250px, 1fr) 2fr; }
+    .recipe-main-info { align-items: flex-start; }
+    .recipe-ingredients { grid-column: 2 / 3; }
+
+    .error-image { width: 400px; }
+}
+
+/* Desktop (breakpoint: >= 1024px) */
+@media (min-width: 1024px) {
+    h1 { font-size: 4rem; }
+    h2 { font-size: 2.2rem; }
+    h3 { font-size: 1.8rem; }
+    h4 { font-size: 1.6rem; }
+    .site-title { font-size: 4rem; }
+    .site-subtitle { font-size: 1.7rem; }
+    .site-description-short { font-size: 1.4rem; }
+
+    .content, .main-content { padding: var(--spacing-xl); }
+
+    .recipes-grid, .latest-recipes-grid, .categories-grid { grid-template-columns: repeat(4, 1fr); }
+    .notes-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .notes-list-section .notes-grid { grid-template-columns: 1fr; }
+
+    .recipe-single, .note-single, .error-404-container { padding: var(--spacing-xl); }
+    .notes-list-section .page-header, .category-header { max-width: 900px; }
+}
+
