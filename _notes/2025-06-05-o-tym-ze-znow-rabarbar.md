@@ -1,5 +1,4 @@
 ---
-layout: note
 title: O tym, że znowu rabarbar, czyli słodka obsesja
 date: 2025-06-05
 image_main: "/images/notes/o-tym-ze-znow-rabarbar-main.jpg"
