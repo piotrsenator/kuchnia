@@ -16,31 +16,39 @@ permalink: /notes/
         {% if site.notes.size > 0 %}
             <div class="notes-grid">
                 {% for note in site.notes reversed %}
-                    <div class="note-card note-box">
-                        <h3 class="note-card__title">
-                            <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
-                        </h3>
-                        <p class="note-card__meta">
-                            <time datetime="{{ note.date | date_to_xmlschema }}">
-                                {{ note.date | date: "%d.%m.%Y" }}
-                            </time>
-                            {% if note.author %} by {{ note.author }}{% endif %}
-                        </p>
 
-                        {% if note.excerpt %}
-                            <p class="note-card__excerpt">{{ note.excerpt | strip_html }}</p>
-                        {% else %}
-                            <p class="note-card__excerpt">{{ note.content | strip_html | truncatewords: 30 }}</p>
-                        {% endif %}
+                    <div class="note-card-horizontal">
+    <div class="note-card__image-wrapper">
+        {% if note.image_main %}
+            <img src="{{ note.image_main | relative_url }}" alt="{{ note.title }}" class="note-card__image">
+        {% else %}
+            <div class="note-card__image note-card__image--placeholder"></div>
+        {% endif %}
+    </div>
+    <div class="note-card__content">
+        <h3 class="note-card__title">
+            <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+        </h3>
+        <p class="note-card__meta">
+            <time datetime="{{ note.date | date_to_xmlschema }}">
+                {{ note.date | date: "%d.%m.%Y" }}
+            </time>
+            {% if note.author %} by {{ note.author }}{% endif %}
+        </p>
 
-                        <div class="note-card__footer">
-                            <a href="{{ note.url | relative_url }}" class="button primary-button">
-                                Czytaj dalej
-                            </a>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+        {% if note.excerpt %}
+            <p class="note-card__excerpt">{{ note.excerpt | strip_html }}</p>
+        {% else %}
+            <p class="note-card__excerpt">{{ note.content | strip_html | truncatewords: 30 }}</p>
+        {% endif %}
+
+        <div class="note-card__footer">
+            <a href="{{ note.url | relative_url }}" class="button primary-button">
+                Czytaj dalej
+            </a>
+        </div>
+    </div>
+</div>
         {% else %}
             <p>Brak notatek do wyświetlenia.</p>
         {% endif %}
