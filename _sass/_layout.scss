@@ -70,77 +70,131 @@
     grid-template-columns: 1fr; /* Domyślnie jedna kolumna na stronie z listą notatek */
 }
 
-
 /* ==========================================================================
-   STYLE DRUKU
+   STYL DRUKU
    ========================================================================== */
 @media print {
-    body {
-        font-family: var(--font-family-primary);
-        color: #000;
-        background-color: var(--color-white);
-        margin: 0; padding: 0;
-    }
-    @page { size: A4 portrait; margin: var(--spacing-md); }
+  body {
+    font-family: var(--font-family-primary);
+    color: #000;
+    background-color: var(--color-white);
+    margin: 0;
+    padding: 0;
+  }
 
-    .site-header,
-    .site-footer,
-    .hero-section,
-    .latest-recipes-section,
-    .categories-section,
-    .notes-section,
-    .about-me-section,
-    .print-button,
-    .button-container,
-    .recipe-footer-meta,
-    .back-to-categories-link,
-    .back-to-home-notes-link,
-    .error-404-page,
-    .recipe-main-image { /* recipe-main-image ukryte, więc to nie ono tworzy pierwszą kolumnę */
-        display: none !important;
-    }
-    .recipe-single {
-        max-width: 100%;
-        margin: 0;
-        padding: 0;
-        box-shadow: none !important; /* Dodano !important, aby na pewno usunąć cień */
-        background-color: var(--color-white) !important; /* Dodano !important, aby na pewno usunąć tło */
-        border: none;
-    }
-    .recipe-header { text-align: left; margin-bottom: var(--spacing-sm); }
-    .recipe-title { font-size: 2.2rem; color: #000; margin-bottom: var(--spacing-xs); font-family: var(--font-family-headings); font-weight: var(--font-weight-regular); }
-    .recipe-description { font-family: var(--font-family-primary); font-size: var(--spacing-sm); color: #333; margin-bottom: var(--spacing-sm); font-weight: var(--font-weight-light); }
-    .recipe-date { font-family: var(--font-family-primary); font-size: 0.8rem; color: #666; margin-bottom: 0.3rem; font-weight: var(--font-weight-light); }
+  @page {
+    size: A4 portrait;
+    margin: var(--spacing-md);
+  }
 
-    /* Zmienione: Użycie flexbox dla układu kolumnowego podczas druku */
-    .recipe-content-wrapper {
-        display: flex !important; /* Ustaw jako flex container */
-        flex-direction: column !important; /* Ułóż elementy w jednej kolumnie */
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        gap: 0; /* Usuń ewentualne luki z grida */
-    }
+  /* Ukrywamy zbędne sekcje */
+  .site-header,
+  .site-footer,
+  .hero-section,
+  .latest-recipes-section,
+  .categories-section,
+  .notes-section,
+  .about-me-section,
+  .print-button,
+  .button-container,
+  .recipe-footer-meta,
+  .back-to-categories-link,
+  .back-to-home-notes-link,
+  .error-404-page,
+  .recipe-main-image {
+    display: none !important;
+  }
 
-    /* POPRAWKA: Zmienione selektory dla wydruku, aby pasowały do HTML */
-    .recipe-main-info,
-    .recipe-ingredients-side,
-    .recipe-main-content,
-    .recipe-additional-content {
-        display: block; /* Upewnij się, że są blokami */
-        width: 100% !important; /* Zajmują całą dostępną szerokość */
-        float: none !important;
-        clear: both !important;
-        margin: var(--spacing-md) 0 0 0 !important;
-        padding: 0;
-        page-break-inside: avoid;
-    }
-    .recipe-content-wrapper > *:first-child { margin-top: 0 !important; }
-    .recipe-details { border: none; background-color: var(--color-white); padding: 0; margin-top: var(--spacing-sm); }
-    .recipe-details p { font-family: var(--font-family-primary); font-size: 0.9rem; margin-bottom: 0.3rem; color: #000; font-weight: var(--font-weight-light); }
-    .recipe-details strong { color: #000; font-weight: var(--font-weight-semibold); }
-    .recipe-ingredients h2, .recipe-preparation h2, .recipe-additional-content h2 { font-size: 1.5rem; color: #000; margin-bottom: 0.8rem; font-family: var(--font-family-headings); font-weight: var(--font-weight-regular); }
-    .recipe-ingredients ul, .recipe-preparation ol, .recipe-additional-content p, .recipe-additional-content ul, .recipe-additional-content ol { font-family: var(--font-family-primary); margin-left: 0; list-style-position: outside; padding-left: var(--spacing-md); font-size: var(--spacing-sm); line-height: 1.4; margin-bottom: 0.3rem; color: #000; font-weight: var(--font-weight-light); }
-    .recipe-ingredients ul li::marker, .recipe-preparation ol li::marker, .recipe-additional-content ul li::marker, .recipe-additional-content ol li::marker { color: var(--color-primary); }
-    a { text-decoration: none; color: #000 !important; font-weight: var(--font-weight-regular); }
+  /* Główna karta przepisu */
+  .recipe-single {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none !important;
+    background-color: var(--color-white) !important;
+    border: none;
+  }
+
+  .recipe-header {
+    text-align: left;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .recipe-title {
+    font-size: 2.2rem;
+    color: #000;
+    margin-bottom: var(--spacing-xs);
+    font-family: var(--font-family-headings);
+    font-weight: var(--font-weight-regular);
+  }
+
+  .recipe-description {
+    font-family: var(--font-family-primary);
+    font-size: var(--spacing-sm);
+    color: #333;
+    margin-bottom: var(--spacing-sm);
+    font-weight: var(--font-weight-light);
+  }
+
+  .recipe-date {
+    font-family: var(--font-family-primary);
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.3rem;
+    font-weight: var(--font-weight-light);
+  }
+
+  .recipe-content-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+  }
+
+  .recipe-main-info,
+  .recipe-ingredients-side,
+  .recipe-main-content {
+    display: block;
+    width: 100% !important;
+    margin: var(--spacing-md) 0 0 0 !important;
+    padding: 0;
+    page-break-inside: avoid;
+  }
+
+  .recipe-content-wrapper > *:first-child {
+    margin-top: 0 !important;
+  }
+
+  /* Sekcje zawartości */
+  h2 {
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 0.8rem;
+    font-family: var(--font-family-headings);
+    font-weight: var(--font-weight-regular);
+  }
+
+  ul, ol, p {
+    font-family: var(--font-family-primary);
+    margin-left: 0;
+    padding-left: var(--spacing-md);
+    font-size: var(--spacing-sm);
+    line-height: 1.4;
+    margin-bottom: 0.3rem;
+    color: #000;
+    font-weight: var(--font-weight-light);
+  }
+
+  ul li::marker,
+  ol li::marker {
+    color: var(--color-primary);
+  }
+
+  a {
+    text-decoration: none;
+    color: #000 !important;
+    font-weight: var(--font-weight-regular);
+  }
 }
