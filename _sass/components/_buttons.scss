@@ -22,7 +22,7 @@
 }
 
 .primary-button:hover {
-    background-color: darken(var(--color-primary), 10%); // Przyciemnienie koloru - przykład użycia funkcji Sass
+    background-color: darken($primary-color, 10%); // POPRAWIONE
 }
 
 .secondary-button {
@@ -31,7 +31,7 @@
 }
 
 .secondary-button:hover {
-    background-color: darken(var(--color-secondary), 10%);
+    background-color: darken($secondary-color, 10%); // POPRAWIONE
 }
 
 .button-container {
