@@ -1,260 +1,210 @@
-/*
- * style.css
- * Globalne style dla kuchnia.senator.lu
- * Wersja zoptymalizowana: poprawiona struktura, spójne odstępy, uproszczone media queries.
- *
- * STRUKTURA:
- * 0. Konfiguracja Globalna (Fonty, Zmienne)
- * 1. Style Podstawowe i Reset (Body, Typografia)
- * 2. Układ (Layout, Grid, Header, Footer)
- * 3. Komponenty (Przyciski, Karty)
- * 4. Style Stron (Home, Przepis, Notatki, Kategoria, 404)
- * 5. Media Queries (Responsywność)
- * 6. Style Druku
- */
-
 /* ==========================================================================
-   1. GLOBALNE USTAWIANIA I STYLE PODSTAWOWE
-   ========================================================================== */
+   style.css — Globalne style dla kuchnia.senator.lu
+   Wersja zoptymalizowana i uporządkowana
+   ==========================================================================
 
-/* Definicje Fontów */
+   STRUKTURA:
+   0. Fonty i Zmienne
+   1. Reset i Typografia
+   2. Layout i Komponenty
+   3. Responsywność
+*/
+
+/* === 0. FONTY I ZMIENNE === */
 @font-face {
-    font-family: 'Playfair Display';
-    src: url('../fonts/playfair-display-v39-latin_latin-ext-regular.woff2') format('woff2');
-    font-weight: 400; font-style: normal;
-    font-display: swap;
+  font-family: 'Playfair Display';
+  src: url('../fonts/playfair-display-v39-latin_latin-ext-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
-    font-family: 'Playfair Display';
-    src: url('../fonts/playfair-display-v39-latin_latin-ext-italic.woff2') format('woff2');
-    font-weight: 400; font-style: italic;
-    font-display: swap;
+  font-family: 'Playfair Display';
+  src: url('../fonts/playfair-display-v39-latin_latin-ext-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
 }
 @font-face {
-    font-family: 'Playfair Display';
-    src: url('../fonts/playfair-display-v39-latin_latin-ext-700.woff2') format('woff2');
-    font-weight: 700; font-style: normal;
-    font-display: swap;
+  font-family: 'Playfair Display';
+  src: url('../fonts/playfair-display-v39-latin_latin-ext-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
-    font-family: 'Source Sans 3';
-    src: url('../fonts/source-sans-3-v18-latin_latin-ext-300.woff2') format('woff2');
-    font-weight: 300; font-style: normal;
-    font-display: swap;
+  font-family: 'Source Sans 3';
+  src: url('../fonts/source-sans-3-v18-latin_latin-ext-300.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
-    font-family: 'Source Sans 3';
-    src: url('../fonts/source-sans-3-v18-latin_latin-ext-regular.woff2') format('woff2');
-    font-weight: 400; font-style: normal;
-    font-display: swap;
+  font-family: 'Source Sans 3';
+  src: url('../fonts/source-sans-3-v18-latin_latin-ext-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
-    font-family: 'Source Sans 3';
-    src: url('../fonts/source-sans-3-v18-latin_latin-ext-600.woff2') format('woff2');
-    font-weight: 600; font-style: normal;
-    font-display: swap;
+  font-family: 'Source Sans 3';
+  src: url('../fonts/source-sans-3-v18-latin_latin-ext-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
-    font-family: 'Spectral SC';
-    src: url('../fonts/spectral-sc-v14-latin_latin-ext-regular.woff2') format('woff2');
-    font-weight: 400; font-style: normal;
-    font-display: swap;
+  font-family: 'Spectral SC';
+  src: url('../fonts/spectral-sc-v14-latin_latin-ext-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-/* Zmienne CSS (Custom Properties) */
 :root {
-    /* Kolory */
-    --color-primary: #A9643E;
-    --color-secondary: #BDB7AF;
-    --color-text-dark: #2E2E2E;
-    --color-background-light: #FAF5EF;
-    --color-background-accent: #F1EBE3;
-    --color-white: #FFFFFF;
+  --color-primary: #A9643E;
+  --color-secondary: #BDB7AF;
+  --color-text-dark: #2E2E2E;
+  --color-background-light: #FAF5EF;
+  --color-background-accent: #F1EBE3;
+  --color-white: #FFFFFF;
 
-    /* Fonty */
-    --font-family-primary: 'Source Sans 3', sans-serif;
-    --font-family-headings: 'Spectral SC', serif;
-    --font-family-site-title: 'Playfair Display', serif;
-    --font-weight-light: 300;
-    --font-weight-regular: 400;
-    --font-weight-semibold: 600;
+  --font-family-primary: 'Source Sans 3', sans-serif;
+  --font-family-headings: 'Spectral SC', serif;
+  --font-family-site-title: 'Playfair Display', serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
 
-    /* Odstępy */
-    --spacing-xxs: 0.25rem;  /* 4px */
-    --spacing-xs: 0.5rem;    /* 8px */
-    --spacing-sm: 1rem;      /* 16px */
-    --spacing-md: 1.5rem;    /* 24px */
-    --spacing-lg: 2rem;      /* 32px */
-    --spacing-xl: 3rem;      /* 48px */
-    --spacing-xxl: 4rem;     /* 64px */
+  --spacing-xxs: 0.25rem;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 4rem;
 
-    /* Cienie */
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.03);
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.05);
-    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
 
-    /* Zaokrąglenia */
-    --border-radius-sm: 4px;
-    --border-radius-md: 8px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
 }
 
-/* ==========================================================================
-   STYLE PODSTAWOWE I RESET
-   ========================================================================== */
-
-/* Globalny Reset i `body` */
+/* === 1. RESET I TYPOGRAFIA === */
 *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    font-size: 16px;
-    line-height: 1.6;
-    scroll-behavior: smooth;
+  font-size: 16px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: var(--font-family-primary);
-    font-weight: var(--font-weight-regular);
-    color: var(--color-text-dark);
-    background-color: var(--color-background-light);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-dark);
+  background-color: var(--color-background-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* 1.2. Podstawowa Typografia */
 h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote {
-    margin-bottom: var(--spacing-md); /* Domyślny odstęp dolny */
+  margin-bottom: var(--spacing-md);
 }
 
-/* Usuń dolny margines dla ostatniego elementu, aby uniknąć zbędnej przestrzeni */
 .content > *:last-child,
 .main-content > *:last-child,
 .recipe-content > *:last-child,
 .note-content > *:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 h1, h2, h4, h5, h6 {
-    font-family: var(--font-family-headings);
-    font-weight: var(--font-weight-regular);
-    color: var(--color-primary);
-    /* margin-top: var(--spacing-xs);*/
-   margin-top: 0;
+  font-family: var(--font-family-headings);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-primary);
+  margin-top: 0;
 }
 
-h1 { font-size: 2.8rem; }
-h2 { font-size: 2.2rem; }
-h3 { /* Nazwa przepisu, tytuł notatki w karcie */
-    font-family: var(--font-family-primary);
-    font-weight: var(--font-weight-semibold);
-    font-size: 1.8rem;
-    color: var(--color-primary);
-    margin-top: var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
+h1 { font-size: 2.6rem; }
+h2 { font-size: 2rem; }
+h3 {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-semibold);
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
 }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.3rem; }
-h6 { font-size: 1.1rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
 
 p {
-    font-weight: var(--font-weight-light);
-    margin-bottom: var(--spacing-sm); /* Mniejszy odstęp między akapitami */
+  font-weight: var(--font-weight-light);
+  margin-bottom: var(--spacing-sm);
 }
 
 a {
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: color 0.3s ease;
-    font-weight: var(--font-weight-regular);
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: var(--font-weight-regular);
 }
 a:hover {
-    color: var(--color-secondary);
+  color: var(--color-secondary);
 }
 
 ul, ol {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    margin-left: var(--spacing-md);
-    list-style-position: outside;
-    font-weight: var(--font-weight-regular);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-left: var(--spacing-md);
+  list-style-position: outside;
+  font-weight: var(--font-weight-regular);
 }
 
 .recipe-ingredients ul,
 .recipe-preparation ol {
-    list-style-position: inside;
+  list-style-position: inside;
 }
+
 .recipe-ingredients ul li::marker,
 .recipe-preparation ol li::marker {
-    color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 blockquote {
-    font-weight: var(--font-weight-regular);
-    font-size: 1.1rem;
-    line-height: 1.7;
-    padding: var(--spacing-md) var(--spacing-lg);
-    margin: var(--spacing-lg) auto;
-    background-color: var(--color-background-accent);
-    border-left: 5px solid var(--color-primary);
+  font-weight: var(--font-weight-regular);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin: var(--spacing-lg) auto;
+  background-color: var(--color-background-accent);
+  border-left: 5px solid var(--color-primary);
 }
 
-/* ==========================================================================
-   MEDIA QUERIES (RESPONSYWNOŚĆ)
-   ========================================================================== */
-
-/* Tablet (breakpoint: >= 768px) */
+/* === 2. RESPONSYWNOŚĆ === */
 @media (min-width: 768px) {
-    h1 { font-size: 3.5rem; }
-    h2 { font-size: 2rem; }
-    h3 { font-size: 1.6rem; }
-    .site-title { font-size: 3.5rem; }
-    .site-subtitle { font-size: 1.5rem; }
-    .site-description-short { font-size: 1.3rem; }
-
-    .content, .main-content { padding: var(--spacing-lg); }
-
-    .recipes-grid, .latest-recipes-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-    .recipes-grid, .latest-recipes-grid, .categories-grid, .notes-grid { gap: var(--spacing-lg); }
-
-    .recipe-single, .note-single, .error-404-container { padding: var(--spacing-lg); max-width: 900px; }
-    .notes-list-section .page-header, .category-header { max-width: 800px; }
-
-    .recipe-content-wrapper { grid-template-columns: minmax(250px, 1fr) 2fr; }
-    .recipe-main-info { align-items: flex-start; }
-    .recipe-ingredients { grid-column: 2 / 3; }
-
-    /* Poprawka dla rozmiaru h1 w .page-with-list na tabletach i większych */
-    .page-with-list > .page-header h1 {
-        font-size: 3.5rem; /* Zwiększono rozmiar, aby był zgodny z ogólnym h1 dla tej rozdzielczości */
-    }
-
-    .error-image { width: 400px; }
+  h1 { font-size: 3.2rem; }
+  h2 { font-size: 2.2rem; }
+  h3 { font-size: 1.6rem; }
+  .site-title { font-size: 3.5rem; }
+  .site-subtitle { font-size: 1.5rem; }
+  .site-description-short { font-size: 1.3rem; }
 }
 
-/* Desktop (breakpoint: >= 1024px) */
 @media (min-width: 1024px) {
-    h1 { font-size: 4rem; }
-    h2 { font-size: 2.2rem; }
-    h3 { font-size: 1.8rem; }
-    h4 { font-size: 1.6rem; }
-    .site-title { font-size: 4rem; }
-    .site-subtitle { font-size: 1.7rem; }
-    .site-description-short { font-size: 1.4rem; }
-
-    .content, .main-content { padding: var(--spacing-xl); }
-
-    .recipes-grid, .latest-recipes-grid, .categories-grid { grid-template-columns: repeat(4, 1fr); }
-    .notes-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .notes-list-section .notes-grid { grid-template-columns: 1fr; }
-
-    .recipe-single, .note-single, .error-404-container { padding: var(--spacing-xl); }
-    .notes-list-section .page-header, .category-header { max-width: 900px; }
-
-    /* Poprawka dla rozmiaru h1 w .page-with-list na desktopach */
-    .page-with-list > .page-header h1 {
-        font-size: 4rem; /* Zwiększono rozmiar, aby był zgodny z ogólnym h1 dla tej rozdzielczości */
-    }
+  h1 { font-size: 3.6rem; }
+  h2 { font-size: 2.4rem; }
+  h3 { font-size: 1.8rem; }
+  h4 { font-size: 1.6rem; }
+  .site-title { font-size: 4rem; }
+  .site-subtitle { font-size: 1.7rem; }
+  .site-description-short { font-size: 1.4rem; }
 }
