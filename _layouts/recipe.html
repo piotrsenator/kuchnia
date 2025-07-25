@@ -43,14 +43,18 @@ layout: default
             {% assign image_prefix = '/images/recipes/' %}
             {% assign raw_image_name = page.image_main %}
             {% assign default_placeholder_path = '/images/general/placeholder-recipe.jpg' %}
-            
-            {% assign final_image_path = default_placeholder_path %} {% comment %} Domyślnie ustawiamy na placeholder {% endcomment %}
 
-            {% if raw_image_name %} {% comment %} Sprawdzamy, czy obrazek jest zdefiniowany w front matter {% endcomment %}
+            {% comment %} Domyślnie ustawiamy na placeholder {% endcomment %}
+            {% assign final_image_path = default_placeholder_path %} 
+            
+            {% comment %} Sprawdzamy, czy obrazek jest zdefiniowany w front matter {% endcomment %}
+            {% if raw_image_name %} 
                 {% if raw_image_name contains '/' %}
-                    {% assign final_image_path = raw_image_name %} {% comment %} Jeśli podano pełną ścieżkę, użyj jej {% endcomment %}
+                    {% comment %} Jeśli podano pełną ścieżkę, użyj jej {% endcomment %}
+                    {% assign final_image_path = raw_image_name %} 
                 {% else %}
-                    {% assign final_image_path = image_prefix | append: raw_image_name %} {% comment %} W przeciwnym razie dodaj prefiks katalogu {% endcomment %}
+                    {% comment %} W przeciwnym razie dodaj prefiks katalogu {% endcomment %}
+                    {% assign final_image_path = image_prefix | append: raw_image_name %} 
                 {% endif %}
             {% endif %}
             
