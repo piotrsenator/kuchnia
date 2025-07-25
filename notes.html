@@ -5,30 +5,38 @@ permalink: /notes/
 ---
 
 <div class="content page-with-list">
-    <header class="page-header">
-        <h1>{{ page.title }}</h1>
-        <p class="page-description">Tutaj znajdziesz wszystkie moje przemyślenia, wskazówki i krótkie wpisy.</p>
+    <header class="notes-page__header">
+        <h1 class="notes-page__title">{{ page.title }}</h1>
+        <p class="notes-page__description">
+            Tutaj znajdziesz wszystkie moje przemyślenia, wskazówki i krótkie wpisy.
+        </p>
     </header>
 
     <section class="notes-list-section">
         {% if site.notes.size > 0 %}
             <div class="notes-grid">
                 {% for note in site.notes reversed %}
-
                     <div class="note-card note-box">
-                        <h3 class="note-title"><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
-                        <p class="note-meta">
-                            <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%d.%m.%Y" }}</time>
+                        <h3 class="note-card__title">
+                            <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+                        </h3>
+                        <p class="note-card__meta">
+                            <time datetime="{{ note.date | date_to_xmlschema }}">
+                                {{ note.date | date: "%d.%m.%Y" }}
+                            </time>
                             {% if note.author %} by {{ note.author }}{% endif %}
                         </p>
 
                         {% if note.excerpt %}
-                            <p class="note-excerpt">{{ note.excerpt | strip_html }}</p>
+                            <p class="note-card__excerpt">{{ note.excerpt | strip_html }}</p>
                         {% else %}
-                            <p class="note-excerpt">{{ note.content | strip_html | truncatewords: 30 }}</p>
+                            <p class="note-card__excerpt">{{ note.content | strip_html | truncatewords: 30 }}</p>
                         {% endif %}
-                        <div class="note-read-more-container">
-                            <a href="{{ '/notes/' | relative_url }}" class="button primary-button"> Wszystkie notatki </a>
+
+                        <div class="note-card__footer">
+                            <a href="{{ note.url | relative_url }}" class="button primary-button">
+                                Czytaj dalej
+                            </a>
                         </div>
                     </div>
                 {% endfor %}
