@@ -16,7 +16,7 @@ layout: default
         {% assign raw_image_name = page.image_main %}
         {% assign final_image_path_notes = nil %}
 
-        {% if raw_image_name %} {# Sprawdzamy, czy page.image_main ma jakąkolwiek wartość #}
+        {% if raw_image_name %}
             {% if raw_image_name contains '/' %}
                 {% comment %} Jeśli podano pełną ścieżkę (np. /assets/my-image.jpg), użyj jej {% endcomment %}
                 {% assign final_image_path_notes = raw_image_name %} 
@@ -26,9 +26,8 @@ layout: default
             {% endif %}
         {% endif %}
 
-        {% if final_image_path_notes %} {# Tylko jeśli final_image_path_notes zawiera ścieżkę #}
+        {% if final_image_path_notes %} 
         <aside class="note-main-info">
-            {# Używamy już obliczonej zmiennej final_image_path_notes #}
             <img src="{{ final_image_path_notes | relative_url }}" alt="{{ page.title | default: 'Zdjęcie notatki' }}" class="note-main-image">
         </aside>
         {% endif %}
