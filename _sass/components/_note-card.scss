@@ -1,56 +1,191 @@
-/* Karta Notatki (.note-card) */
-.note-card {
+/* ==========================================================================
+   4.3. Style Stron Notatek (Zoptymalizowane)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   4.3.1. Nagłówek i Opis Strony Listy (/notes/)
+   -------------------------------------------------------------------------- */
+
+.page-with-list > .page-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-md); /* Skrócony zapis margin */
+    padding: 0 var(--spacing-md) var(--spacing-xl); /* Góra 0, lewo/prawo 24px, dół 48px */
+}
+
+.page-with-list > .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.page-with-list > .page-header .page-description {
+    font-weight: var(--font-weight-light);
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   4.3.2. Wspólny Styl dla Boksów Notatek (Optymalizacja)
+   -------------------------------------------------------------------------- */
+
+/* NOWA klasa bazowa, która zawiera powtarzające się style */
+.note-box {
     background-color: var(--color-background-accent);
     border: 1px solid var(--color-secondary);
     border-radius: var(--border-radius-md);
-    overflow: hidden;
-    box-shadow: var(--box-shadow-md);
-    transition: transform 0.2s ease;
+    padding: var(--spacing-md);
+}
+
+/* --------------------------------------------------------------------------
+   4.3.3. Specyficzne Style dla Notatek
+   -------------------------------------------------------------------------- */
+
+/* Wpis notatki na stronie głównej (używa bazy .note-box) */
+.notes-section .note-entry {
+    box-shadow: var(--shadow-sm); /* Tylko unikalny cień */
+}
+
+.notes-section .note-entry h3 {
+    font-size: 1.6rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.notes-section .note-entry p {
+    font-size: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+
+/* Karta notatki na stronie listy (używa bazy .note-box) */
+.notes-list-section .note-card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-md); /* Inny, unikalny cień */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.notes-list-section .note-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.notes-list-section .note-card .note-title {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.notes-list-section .note-card .note-title a {
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+}
+
+.notes-list-section .note-card .note-title a:hover {
+    color: var(--color-text-dark);
+}
+
+.notes-list-section .note-card .note-meta {
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.notes-list-section .note-card .note-excerpt {
+    font-weight: var(--font-weight-light);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1; /* Pozwala sekcji rosnąć i wypychać przycisk na dół */
+}
+
+.notes-list-section .note-read-more-container {
+    text-align: right;
+    margin-top: auto; /* Wypycha przycisk na sam dół karty */
+}
+
+/* Strona pojedynczej notatki */
+/* Strona pojedynczej notatki */
+.note-single {
+    max-width: var(--max-content-width, 800px); /* Użyj max-width z zmienną lub stałą wartością dla całego kontenera */
+    margin: var(--spacing-sm) auto;
     padding: var(--spacing-sm);
-    text-align: left; /* Zmienione na left dla lepszej czytelności notatek */
+    background-color: var(--color-background-accent);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
+}
+.note-single .note-header { text-align: center; margin-bottom: var(--spacing-md); }
+.note-single .note-title { font-family: var(--font-family-headings); font-size: 2.5rem; margin-bottom: var(--spacing-xs); }
+/* .note-single .note-date - przenieś tę klasę do .note-footer-meta, bo tam jest renderowana */
 
-    &:hover {
-        transform: translateY(-5px);
+/* NOWE / ZAKTUALIZOWANE SEKCJE DLA GŁÓWNEGO OBRAZKA NOTATKI */
+
+.note-content-wrapper {
+    display: flex;
+    flex-direction: column; /* Na mobile układ kolumnowy */
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Kontener głównego obrazka notatki */
+.note-main-info {
+    width: 100%; /* Na mobile zajmuje całą szerokość */
+    max-width: 400px; /* Opcjonalnie: ograniczenie szerokości obrazka na desktopie */
+    margin: 0 auto var(--spacing-lg) auto; /* Wyśrodkuj na mobile i dodaj margines dolny */
+    flex-shrink: 0; /* Zapobiega kurczeniu się w flexboxie */
+}
+
+/* Sam główny obrazek notatki */
+.note-main-image {
+    max-width: 100%; /* KLUCZOWE: Obrazek nigdy nie będzie szerszy niż jego kontener */
+    height: auto; /* KLUCZOWE: Zachowuje proporcje obrazka */
+    display: block; /* Eliminuje zbędne spacje pod obrazkiem */
+    border-radius: var(--border-radius-md); /* Zaokrąglone rogi */
+    aspect-ratio: 16 / 9; /* Przykładowe proporcje (np. panoramiczny) */
+    object-fit: cover; /* Dopasuj obrazek do proporcji kontenera, przycinając jeśli trzeba */
+}
+
+/* Responsywność dla układu obrazka i treści notatki */
+@media (min-width: 768px) {
+    .note-content-wrapper {
+        flex-direction: row; /* Na desktopie układ rzędowy (obrazek obok tekstu) */
+        align-items: flex-start; /* Wyrównaj elementy do góry */
     }
-
-    &-link {
-        display: block;
-        color: inherit;
+    .note-main-info {
+        width: 35%; /* Ustaw szerokość obrazka na desktopie (np. 35% szerokości wrapper'a) */
+        margin: 0 var(--spacing-lg) 0 0; /* Margines po prawej od obrazka */
     }
-
-    &-image-container {
-        width: 100%;
-        padding-bottom: 56.25%; /* Proporcje 16:9 dla notatek */
-        position: relative;
-        overflow: hidden;
-        margin-bottom: var(--spacing-sm);
-        border-radius: var(--border-radius-sm); /* Zmienione na sm dla kart notatek */
-
-        img {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+    .note-main-content {
+        flex-grow: 1; /* Pozwól treści zająć resztę dostępnego miejsca */
     }
+}
 
-    &-title {
-        font-weight: var(--font-weight-semibold);
-        font-size: 1.1rem;
-        line-height: 1.3;
-        margin: var(--spacing-xs) 0;
-        color: var(--color-primary);
-        min-height: calc(2 * 1.1rem * 1.3);
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
 
-    &-date {
-        font-size: 0.85rem;
-        color: #777;
-        margin-bottom: var(--spacing-xs);
-    }
+/* Pozostałe style dla notatki, które już miałeś */
+.note-content img { /* To jest dla obrazków W TREŚCI Markdown */
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: var(--spacing-md) auto;
+    border-radius: var(--border-radius-md);
+    /* Usuń aspect-ratio i object-fit stąd, chyba że chcesz, aby WSZYSTKIE obrazy w treści miały te same proporcje */
+    /* aspect-ratio: 4/3; */
+    /* object-fit: cover; */
+}
+.note-content h2, .note-content h3, .note-content h4 { font-family: var(--font-family-headings); margin-top: var(--spacing-md); margin-bottom: var(--spacing-sm); }
+.note-content p, .note-content ul, .note-content ol, .note-content blockquote { font-weight: var(--font-weight-light); }
+.note-single-button-container { /* Zastępuje .back-to-categories-link, .back-to-home-notes-link */
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-xs);
+    border-top: 1px solid var(--color-secondary);
+}
+/* Przenieś styl .note-date do .note-footer-meta, bo tam jest klasa */
+.note-footer-meta {
+    text-align: right;
+    margin-top: var(--spacing-md);
+    font-size: 0.9em;
+    color: #777;
+}
+.note-footer-meta .note-date { /* Dodaj tę regułę, żeby styl .note-date był w stopce */
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-light);
 }
