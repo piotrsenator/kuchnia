@@ -13,6 +13,9 @@
     border-radius: var(--border-radius-sm);
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     text-align: center;
+    user-select: none;
+    border: 1px solid transparent;
+    text-decoration: none;
 }
 
 .button-container {
@@ -27,31 +30,30 @@
 .button.primary-button {
     background-color: transparent;
     color: var(--color-primary);
-    border: 1px solid var(--color-primary);
+    border-color: var(--color-primary);
 }
 
-.button.primary-button:hover {
+.button.primary-button:hover,
+.button.primary-button:focus {
     background-color: var(--color-primary);
     color: var(--color-background-light);
+    outline: none;
 }
 
 .button.secondary-button {
-    background-color: var(--color-primary); /* Zakładam, że --color-primary to Twój główny kolor tła dla secondary button */
+    background-color: var(--color-primary);
     color: var(--color-background-light);
     border: none;
 }
 
-.button.secondary-button:hover {
+.button.secondary-button:hover,
+.button.secondary-button:focus {
     background-color: var(--color-text-dark);
+    outline: none;
 }
 
-/* Zmodyfikowany .print-button (teraz bardzo uproszczony, ponieważ dziedziczy z .button i .secondary-button) */
+/* .print-button dziedziczy style z .button i .secondary-button */
 .print-button {
-    /* W zasadzie nie potrzebujemy tu żadnych stylów,
-       ponieważ przycisk drukuj ma już klasy `button` i `secondary-button`.
-       Te klasy nadają mu wygląd.
-       Pozostawiam ten selektor tylko na wypadek, gdybyś chciał w przyszłości
-       dodać do niego bardzo specyficzne, nadpisujące style, które
-       nie pasowałyby do ogólnego secondary-button.
-       Jeśli nie masz takich planów, możesz go nawet usunąć z CSS. */
+    /* Możesz tu dodać style specyficzne dla przycisku drukuj, jeśli będą potrzebne */
+    /* Aktualnie jest pusty i dziedziczy wszystkie właściwości */
 }
