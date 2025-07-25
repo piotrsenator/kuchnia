@@ -1,0 +1,109 @@
+/* Układ strony pojedynczej Notatki */
+.note-single {
+    max-width: var(--max-content-width, 800px);
+    margin: var(--spacing-sm) auto;
+    padding: var(--spacing-sm);
+    background-color: var(--color-background-accent);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow-lg);
+
+    .note-header {
+        text-align: center;
+        margin-bottom: var(--spacing-md);
+
+        .note-title {
+            font-family: var(--font-family-headings);
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        .note-description {
+            font-weight: var(--font-weight-light);
+            font-size: 1.2rem;
+            line-height: 1.5;
+            font-style: italic;
+            color: var(--color-text-dark);
+            margin-bottom: var(--spacing-lg);
+        }
+    }
+
+    .note-content-wrapper {
+        display: flex;
+        flex-direction: column; /* Na mobile układ kolumnowy */
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+
+        .note-main-info {
+            width: 100%;
+            max-width: 400px; /* Opcjonalnie: ograniczenie szerokości obrazka na desktopie */
+            margin: 0 auto var(--spacing-lg) auto;
+            flex-shrink: 0;
+
+            .note-main-image {
+                max-width: 100%;
+                height: auto;
+                display: block;
+                border-radius: var(--border-radius-md);
+                aspect-ratio: 16 / 9; /* Przykładowe proporcje dla obrazka głównego */
+                object-fit: cover;
+            }
+        }
+
+        .note-main-content {
+            flex-grow: 1;
+            line-height: 1.6;
+
+            h2, h3, h4 {
+                font-family: var(--font-family-headings);
+                font-size: 1.8rem;
+                margin-top: var(--spacing-lg);
+                margin-bottom: var(--spacing-md);
+                color: var(--color-primary);
+            }
+            p, ul, ol, blockquote {
+                font-weight: var(--font-weight-light);
+                margin-bottom: var(--spacing-md);
+            }
+            img { /* Obrazki wstawione w treści Markdown */
+                max-width: 100%;
+                height: auto;
+                display: block;
+                margin: var(--spacing-md) auto;
+                border-radius: var(--border-radius-md);
+                /* Usunięto aspect-ratio i object-fit, aby zachować oryginalne proporcje */
+            }
+        }
+    }
+
+    // Media query dla układu desktopowego
+    @media (min-width: 768px) {
+        .note-content-wrapper {
+            flex-direction: row; /* Na desktopie układ rzędowy (obrazek obok tekstu) */
+            align-items: flex-start;
+
+            .note-main-info {
+                width: 35%; /* Ustaw szerokość obrazka na desktopie */
+                margin: 0 var(--spacing-lg) 0 0;
+            }
+        }
+    }
+
+    .note-single-button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: var(--spacing-md);
+        padding-top: var(--spacing-xs);
+        border-top: 1px solid var(--color-secondary);
+    }
+    
+    .note-footer-meta {
+        text-align: right;
+        margin-top: var(--spacing-md);
+        font-size: 0.9em;
+        color: #777;
+
+        .note-date {
+            font-size: 0.9rem;
+            font-weight: var(--font-weight-light);
+        }
+    }
+}
