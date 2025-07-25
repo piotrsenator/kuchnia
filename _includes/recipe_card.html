@@ -4,11 +4,23 @@
             {% comment %}
             Logika wyświetlania obrazka dla karty:
             Preferuje recipe.image_main.
-            Jeśli recipe.image_main jest puste, używa site.data.placeholders.recipe_image.
-            W ostateczności używa domyślnej ścieżki /images/general/placeholder-recipe.jpg.
+            Jeśli recipe.image_main jest puste, używa placeholdera.
+            Obsługuje zarówno pełne ścieżki, jak i nazwy plików z domyślnego katalogu /images/recipes/.
             {% endcomment %}
-            {% assign default_placeholder_path = '/images/general/placeholder-recipe.jpg' %}
-            {% assign final_card_image_path = recipe.image_main | default: site.data.placeholders.recipe_image | default: default_placeholder_path %}
+            
+            {% assign image_prefix = '/images/recipes/' %}
+            {% assign raw_image_name = recipe.image_main %}
+            {% assign default_placeholder_path = '/images/general/placeholder-recipe.jpg' %} {# Może to być ten sam placeholder co dla pojedynczego przepisu #}
+            
+            {% assign final_card_image_path = default_placeholder_path %} {# Domyślnie ustawiamy na placeholder #}
+
+            {% if raw_image_name %} {# Sprawdzamy, czy obrazek jest zdefiniowany w front matter #}
+                {% if raw_image_name contains '/' %}
+                    {% assign final_card_image_path = raw_image_name %} {# Jeśli podano pełną ścieżkę (np. /assets/my-image.jpg), użyj jej #}
+                {% else %}
+                    {% assign final_card_image_path = image_prefix | append: raw_image_name %} {# W przeciwnym razie dodaj prefiks katalogu dla przepisów #}
+                {% endif %}
+            {% endif %}
             
             <img src="{{ final_card_image_path | relative_url }}" alt="{{ recipe.title | default: 'Brak zdjęcia przepisu' }}" loading="lazy">
         </div>
