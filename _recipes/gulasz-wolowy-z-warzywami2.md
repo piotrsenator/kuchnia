@@ -1,15 +1,12 @@
 ---
 title: Nowy gulasz wołowy z warzywami
 category: dania-glowne-miesne
-time: "2 godziny 30 minut"
-portions: "4"
 difficulty: "średni"
+date: 2024-07-22
+last_modified_at: 2024-07-22
 image_main: "/images/recipes/gulasz-wolowy-main.jpg"
-description: Rozgrzewający, aromatyczny gulasz wołowy z dużą ilością warzyw, idealny na chłodne dni.
-date: 2024-07-22 10:00:00 +0200 # <-- Dodaj datę publikacji
-last_modified_at: 2024-07-22 15:30:00 +0200 # <-- Dodaj opcjonalną datę modyfikacji
 
-ingredients: # <-- NOWA SEKCJA YAML
+## ingredients:
   - 500g wołowiny (np. łopatka, gicz)
   - 2 łyżki oleju roślinnego
   - 1 duża cebula, posiekana
@@ -24,7 +21,7 @@ ingredients: # <-- NOWA SEKCJA YAML
   - Sól i pieprz do smaku
   - Świeża natka pietruszki do posypania
 
-preparation: # <-- NOWA SEKCJA YAML
+## preparation:
   - Wołowinę opłucz, osusz i pokrój w kostkę o boku około 2-3 cm. Dopraw solą i pieprzem.
   - W dużym garnku lub głębokiej patelni rozgrzej olej. Obsmaż kawałki wołowiny partiami, aż zbrązowieją ze wszystkich stron. Odłóż mięso na bok.
   - Na tym samym tłuszczu podsmaż posiekaną cebulę, aż zmięknie i zeszkli się (około 5 minut). Dodaj czosnek i smaż jeszcze przez minutę, uważając, by się nie przypalił.
