@@ -1,5 +1,4 @@
 ---
-layout: recipe
 title: Nowy gulasz wołowy z warzywami
 category: dania-glowne-miesne
 difficulty: "średni"
