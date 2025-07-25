@@ -18,10 +18,10 @@ layout: default
 
         {% if raw_image_name %}
             {% if raw_image_name contains '/' %}
-                {% comment} Jeśli podano pełną ścieżkę (np. /assets/my-image.jpg), użyj jej {% endcomment %}
+                {% comment %} Jeśli podano pełną ścieżkę (np. /assets/my-image.jpg), użyj jej {% endcomment %}
                 {% assign final_image_path_notes = raw_image_name %} 
             {% else %}
-                {% comment}  W przeciwnym razie dodaj prefiks katalogu dla notatek {% endcomment %}
+                {% comment%}  W przeciwnym razie dodaj prefiks katalogu dla notatek {% endcomment %}
                 {% assign final_image_path_notes = image_prefix | append: raw_image_name %} 
             {% endif %}
         {% endif %}
