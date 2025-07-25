@@ -27,28 +27,20 @@ title: Strona Główna
         </div>
     </section>
 
-    <section class="notes-section" id="notatki-z-kuchni">
-        <h2>Notatki z Kuchni</h2>
-        <div class="notes-grid">
-            {% for note in site.notes limit: 3 %}
-                <div class="note-entry note-box">
-                    {% comment %}
-                    Linkowanie całego bloku notatki jest lepsze dla klikalności.
-                    {% endcomment %}
-                    <a href="{{ note.url | relative_url }}" class="note-link-wrapper" aria-label="Czytaj całą notatkę: {{ note.title | escape }}">
-                        <h3>{{ note.title }}</h3>
-                        <p class="note-excerpt">{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
-                    </a>
-                    {% comment %}
-                    Jeśli preferujesz osobny link "Czytaj więcej", możesz go przywrócić,
-                    ale pamiętaj o usunięciu linkowania całego bloku.
-                    <a href="{{ note.url | relative_url }}" class="read-more">Czytaj więcej &raquo;</a>
-                    {% endcomment %}
-                </div>
-            {% endfor %}
-        </div>
-        <div class="button-container">
-            <a href="{{ '/notes/' | relative_url }}" class="button primary-button">Wszystkie notatki</a>
-        </div>
-    </section>
+<section class="notes-section" id="notatki-z-kuchni">
+    <h2>Notatki z Kuchni</h2>
+    <div class="notes-grid">
+        {% for note in site.notes limit: 3 %}
+            <div class="note-entry note-box">
+                <a href="{{ note.url | relative_url }}" class="note-link-wrapper" aria-label="Czytaj całą notatkę: {{ note.title | escape }}">
+                    <h3 class="note-entry__title">{{ note.title }}</h3>
+                    <p class="note-entry__excerpt">{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="button-container">
+        <a href="{{ '/notes/' | relative_url }}" class="button primary-button">Wszystkie notatki</a>
+    </div>
+</section>
 </main>
