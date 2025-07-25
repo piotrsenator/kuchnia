@@ -1,105 +1,210 @@
 // Definiuj kolory jako zmienne Sass na początku pliku
-$primary-color: #8B4513;    // Brąz (saddlebrown)
-$secondary-color: #D2B48C;  // Brąz (tan)
-$accent-color: #B0C4DE;     // Niebiesko-szary (lightsteelblue)
-$text-light-color: #F5F5DC; // Beżowy (beige)
-$text-dark-color: #333333;  // Ciemnoszary
-$background-light-color: #FDF5E6; // Kremowy (oldlace)
+$primary-color: #A9643E;    // Nowy brąz
+$secondary-color: #BDB7AF;  // Nowy szary
+$accent-color: #F1EBE3;     // Nowy beżowy
+$text-dark-color: #2E2E2E;  // Ciemnoszary
+$background-light-color: #FAF5EF; // Jasny kremowy
 $background-accent-color: #FFFFFF; // Biały
+$white-color: #FFFFFF;     // Biały
+
+/* --- Definicje @font-face --- */
+// Pamiętaj, aby ścieżki były poprawne i pasowały do nazw Twoich plików .woff2
+// oraz do nazw fontów, które faktycznie masz w katalogu kuchnia/assets/fonts/
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/assets/fonts/playfair-display-v39-latin_latin-ext-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/assets/fonts/playfair-display-v39-latin_latin-ext-italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/assets/fonts/playfair-display-v39-latin_latin-ext-700.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Source Sans 3';
+    src: url('/assets/fonts/source-sans-3-v18-latin_latin-ext-300.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Source Sans 3';
+    src: url('/assets/fonts/source-sans-3-v18-latin_latin-ext-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Source Sans 3';
+    src: url('/assets/fonts/source-sans-3-v18-latin_latin-ext-600.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Spectral SC';
+    src: url('/assets/fonts/spectral-sc-v14-latin_latin-ext-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
 
 // Globalne Zmienne CSS (CSS Custom Properties)
 // Tutaj przypisujesz zmienne Sass do zmiennych CSS
 :root {
-    --font-family-base: 'Montserrat', sans-serif;
-    --font-family-headings: 'Merriweather', serif;
+    /* Kolory */
+    --color-primary: #{$primary-color};
+    --color-secondary: #{$secondary-color};
+    --color-accent: #{$accent-color};
+    --color-text-dark: #{$text-dark-color};
+    --color-background-light: #{$background-light-color};
+    --color-background-accent: #{$background-accent-color};
+    --color-white: #{$white-color};
+
+    /* Fonty */
+    --font-family-primary: 'Source Sans 3', sans-serif;
+    --font-family-headings: 'Spectral SC', serif;
+    --font-family-site-title: 'Playfair Display', serif;
 
     --font-weight-light: 300;
     --font-weight-regular: 400;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
 
-    --color-primary: #{$primary-color}; // Użyj interpolacji do przypisania zmiennej Sass
-    --color-secondary: #{$secondary-color};
-    --color-accent: #{$accent-color};
-    --color-text-light: #{$text-light-color};
-    --color-text-dark: #{$text-dark-color};
-    --color-background-light: #{$background-light-color};
-    --color-background-accent: #{$background-accent-color};
+    /* Odstępy */
+    --spacing-xxs: 0.25rem;  /* 4px */
+    --spacing-xs: 0.5rem;    /* 8px */
+    --spacing-sm: 1rem;      /* 16px */
+    --spacing-md: 1.5rem;    /* 24px */
+    --spacing-lg: 2rem;      /* 32px */
+    --spacing-xl: 3rem;      /* 48px */
+    --spacing-xxl: 4rem;     /* 64px */
 
-    // ... reszta Twoich zmiennych CSS
-    --spacing-xs: 0.5rem;   // 8px
-    --spacing-sm: 1rem;     // 16px
-    --spacing-md: 1.5rem;   // 24px
-    --spacing-lg: 2rem;     // 32px
-    --spacing-xl: 3rem;     // 48px;
+    /* Cienie */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
 
+    /* Zaokrąglenia */
     --border-radius-sm: 4px;
     --border-radius-md: 8px;
-    --border-radius-lg: 12px;
-
-    --box-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --box-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --box-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
-
-    --max-content-width: 1200px;
 }
-/* Styl bazowy */
+
+/* ==========================================================================
+   1. STYLE PODSTAWOWE I RESET
+   ========================================================================== */
+
+/* 1.1. Globalny Reset i `body` */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 html {
+    font-size: 16px;
+    line-height: 1.6;
     scroll-behavior: smooth;
 }
 
 body {
-    font-family: var(--font-family-base);
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: var(--color-background-light);
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-regular);
     color: var(--color-text-dark);
+    background-color: var(--color-background-light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-img {
-    max-width: 100%; /* Sprawia, że obraz nigdy nie jest szerszy niż jego rodzic */
-    height: auto;    /* Zachowuje proporcje obrazu */
-    display: block;  /* Usuwa dodatkową przestrzeń pod obrazkami */
+/* 1.2. Podstawowa Typografia */
+h1, h2, h3, h4, h5, h6, p, ul, ol, blockquote {
+    margin-bottom: var(--spacing-md); /* Domyślny odstęp dolny */
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h4, h5, h6 {
     font-family: var(--font-family-headings);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-regular);
     color: var(--color-primary);
-    line-height: 1.2;
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-md);
+    margin-top: 0;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
-h5 { font-size: 1rem; }
-h6 { font-size: 0.875rem; }
-
-@media (max-width: 768px) {
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.75rem; }
-    h3 { font-size: 1.35rem; }
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+h3 { /* Nazwa przepisu, tytuł notatki w karcie */
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-semibold);
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.3rem; }
+h6 { font-size: 1.1rem; }
 
 p {
-    margin-bottom: var(--spacing-sm);
+    font-weight: var(--font-weight-light);
+    margin-bottom: var(--spacing-sm); /* Mniejszy odstęp między akapitami */
 }
 
 a {
     color: var(--color-primary);
     text-decoration: none;
     transition: color 0.3s ease;
+    font-weight: var(--font-weight-regular);
 }
-
 a:hover {
     color: var(--color-secondary);
 }
 
 ul, ol {
-    margin-bottom: var(--spacing-sm);
-    padding-left: var(--spacing-md);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-left: var(--spacing-md);
+    list-style-position: outside;
+    font-weight: var(--font-weight-regular);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+blockquote {
+    font-weight: var(--font-weight-regular);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    padding: var(--spacing-md) var(--spacing-lg);
+    margin: var(--spacing-lg) auto;
+    background-color: var(--color-background-accent);
+    border-left: 5px solid var(--color-primary);
+}
+
+/* Media Queries dla podstawowej typografii */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.6rem; }
+    h4 { font-size: 1.4rem; }
+    h5 { font-size: 1.2rem; }
+    h6 { font-size: 1rem; }
+}
+
+@media (min-width: 1024px) {
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 2rem; }
 }
