@@ -14,10 +14,10 @@
  */
 
 /* ==========================================================================
-   0. KONFIGURACJA GLOBALNA
+   1. GLOBALNE USTAWIANIA I STYLE PODSTAWOWE
    ========================================================================== */
 
-/* 0.1. Definicje Fontów */
+/* Definicje Fontów */
 @font-face {
     font-family: 'Playfair Display';
     src: url('../fonts/playfair-display-v39-latin_latin-ext-regular.woff2') format('woff2');
@@ -54,7 +54,7 @@
     font-weight: 400; font-style: normal;
 }
 
-/* 0.2. Zmienne CSS (Custom Properties) */
+/* Zmienne CSS (Custom Properties) */
 :root {
     /* Kolory */
     --color-primary: #A9643E;
@@ -92,10 +92,10 @@
 }
 
 /* ==========================================================================
-   1. STYLE PODSTAWOWE I RESET
+   STYLE PODSTAWOWE I RESET
    ========================================================================== */
 
-/* 1.1. Globalny Reset i `body` */
+/* Globalny Reset i `body` */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -195,7 +195,7 @@ blockquote {
 }
 
 /* ==========================================================================
-   5. MEDIA QUERIES (RESPONSYWNOŚĆ)
+   MEDIA QUERIES (RESPONSYWNOŚĆ)
    ========================================================================== */
 
 /* Tablet (breakpoint: >= 768px) */
