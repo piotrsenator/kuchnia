@@ -5,7 +5,7 @@ difficulty: "średni"
 date: 2024-07-22
 last_modified_at: 2024-07-22
 image_main: "/images/recipes/gulasz-wolowy-main.jpg"
-
+---
 ## ingredients:
   - 500g wołowiny (np. łopatka, gicz)
   - 2 łyżki oleju roślinnego
