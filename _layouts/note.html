@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-
 <article class="note-single">
     <header class="note-single__header">
         <h1 class="note-single__title">{{ page.title }}</h1>
@@ -9,13 +8,11 @@ layout: default
             <p class="note-single__description">{{ page.description }}</p>
         {% endif %}
     </header>
-
     <div class="note-single__content-wrapper">
         {% comment %} Logika wyświetlania obrazka w notatkach {% endcomment %}
         {% assign image_prefix = '/images/notes/' %}
         {% assign raw_image_name = page.image_main %}
         {% assign final_image_path_notes = nil %}
-
         {% if raw_image_name %}
             {% if raw_image_name contains '/' %}
                 {% assign final_image_path_notes = raw_image_name %}
@@ -23,7 +20,6 @@ layout: default
                 {% assign final_image_path_notes = image_prefix | append: raw_image_name %}
             {% endif %}
         {% endif %}
-
         {% if final_image_path_notes %}
         <aside class="note-single__main-info">
             <img src="{{ final_image_path_notes | relative_url }}" alt="{{ page.title | default: 'Zdjęcie notatki' }}" class="note-single__main-image">
@@ -42,7 +38,7 @@ layout: default
     </div>
 
     <div class="note-single__footer">
-        {% assign month_names = "Styczeń,Luty,Marzec,Kwiecień,Maj,Czerwiec,Lipiec,Sierpień,Wrzesień,Październik,Listopad,Grudzień" | split: "," %}
+        {% assign month_names = "stycznia,lutego,marca,kwietnia,maja,czerwca,lipca,sierpnia,września,października,listopada,grudnia" | split: "," %}
 
         {% if page.last_modified_at %}
             {% assign day = page.last_modified_at | date: "%-d" %}
