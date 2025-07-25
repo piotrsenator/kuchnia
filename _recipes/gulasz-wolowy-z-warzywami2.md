@@ -1,6 +1,5 @@
 ---
-layout: recipe
-title: Gulasz wołowy z warzywami
+title: Nowy gulasz wołowy z warzywami
 category: dania-glowne-miesne
 time: "2 godziny 30 minut"
 portions: "4"
