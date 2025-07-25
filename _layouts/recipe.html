@@ -39,11 +39,22 @@ layout: default
 
     <div class="recipe-content-wrapper">
         <aside class="recipe-main-info">
-            {% comment %} Logika wyświetlania obrazka {% endcomment %}
+            {% comment %} Logika wyświetlania obrazka głównego przepisu z placeholderem {% endcomment %}
+            {% assign image_prefix = '/images/recipes/' %}
+            {% assign raw_image_name = page.image_main %}
             {% assign default_placeholder_path = '/images/general/placeholder-recipe.jpg' %}
-            {% assign final_image_path = page.image_main | default: site.data.placeholders.recipe_image | default: default_placeholder_path %}
             
-            <img src="{{ final_image_path | relative_url }}" alt="{{ page.title | default: 'Brak zdjęcia przepisu' }}" class="recipe-main-image">
+            {% assign final_image_path = default_placeholder_path %} {# Domyślnie ustawiamy na placeholder #}
+
+            {% if raw_image_name %} {# Sprawdzamy, czy obrazek jest zdefiniowany w front matter #}
+                {% if raw_image_name contains '/' %}
+                    {% assign final_image_path = raw_image_name %} {# Jeśli podano pełną ścieżkę, użyj jej #}
+                {% else %}
+                    {% assign final_image_path = image_prefix | append: raw_image_name %} {# W przeciwnym razie dodaj prefiks katalogu #}
+                {% endif %}
+            {% endif %}
+            
+            <img src="{{ final_image_path | relative_url }}" alt="{{ page.title | default: 'Zdjęcie przepisu' }}" class="recipe-main-image">
             
             {% comment %} Ukrywamy sekcję recipe-details na razie {% endcomment %}
             {% comment %}
