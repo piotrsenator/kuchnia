@@ -126,6 +126,7 @@
   box-shadow: var(--shadow-md);
   align-items: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 150px;
 }
 
 .note-card-horizontal:hover {
@@ -137,7 +138,7 @@
 .note-card__image-wrapper {
   flex-shrink: 0;
   width: 120px;
-  height: 120px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -172,5 +173,6 @@
   .note-card__image-wrapper {
     width: 100%;
     max-height: 200px;
+   height: auto;
   }
 }
