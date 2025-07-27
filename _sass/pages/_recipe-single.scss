@@ -91,13 +91,13 @@
 /* --- Sekcja przygotowania i uwag --- */
 .recipe-main-content {
   grid-column: 1 / -1;
-  margin-top: var(--spacing-md);
+  margin-top: 0; /* var(--spacing-md); */
 }
 
 .recipe-main-content h2 {
   font-size: 1.4rem;
   font-weight: 500;
-  margin-top: var(--spacing-md);
+  margin-top:0 /* var(--spacing-md);*/
   margin-bottom: var(--spacing-xs);
   font-family: var(--font-family-headings);
 }
