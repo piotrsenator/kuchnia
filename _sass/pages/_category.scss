@@ -5,6 +5,16 @@
 /* --------------------------------------------------------------------------
    4.4. Strona Kategorii
    -------------------------------------------------------------------------- */
+.category-page-wrapper {
+    max-width: 960px; /* Nieco mniejsza szerokość niż 1200px dla ogólnego .content, ale dostosowana do contentu strony kategorii */
+    margin: 0 auto; /* Wyśrodkowanie na stronie */
+    padding: var(--spacing-lg) var(--spacing-md); /* Wewnętrzny odstęp */
+    background-color: var(--color-white); /* Białe tło, jak w przepisach */
+    box-shadow: var(--shadow-md); /* Delikatny cień */
+    border-radius: var(--border-radius-md); /* Zaokrąglone rogi */
+    margin-top: var(--spacing-md); /* Odstęp od góry, jeśli jest potrzebny */
+    margin-bottom: var(--spacing-lg); /* Odstęp od dołu */
+}
 
 .category-header {
     text-align: center;
