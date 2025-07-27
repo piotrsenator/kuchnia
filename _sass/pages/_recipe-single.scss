@@ -38,7 +38,7 @@
 .recipe-content-wrapper {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   margin-top: var(--spacing-lg);
 
   @media (max-width: 768px) {
@@ -63,7 +63,7 @@
 
 /* --- Prawa kolumna: składniki --- */
 .recipe-ingredients-side {
-  padding-top: var(--spacing-xs);
+  padding-top:0; /* var(--spacing-xs); */
 }
 
 .recipe-ingredients-side h2 {
