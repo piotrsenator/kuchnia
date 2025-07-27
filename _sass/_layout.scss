@@ -9,7 +9,7 @@
   padding: var(--spacing-sm);
 }
 .main-page-content.content {
-  padding: 0 var(--spacing-sm);
+  padding: 0 var(--spacing-md);
 }
 .content.page-with-list {
   padding-left: 0;
@@ -84,7 +84,7 @@
 
   @page {
     size: A4 portrait;
-    margin: var(--spacing-md);
+    margin: var(--spacing-lg);
   }
 
   /* Ukryj niepotrzebne elementy */
