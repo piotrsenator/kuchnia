@@ -12,13 +12,6 @@
   padding-bottom: var(--spacing-xs);
   box-shadow: var(--shadow-md);
   transition: transform 0.2s ease;
-
-   /* Media Query dla ekranów mobilnych */
-  @media (max-width: 768px) { /* Przykład dla ekranów o szerokości do 768px */
-    width: 80%;
-    margin-left: auto; /* Wyśrodkowanie karty */
-    margin-right: auto; /* Wyśrodkowanie karty */
-  }
 }
 
 .recipe-card:hover {
