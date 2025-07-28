@@ -7,7 +7,7 @@ image_main: duszony-morszczuk-z-papryka.jpg
 tags: [morszczuk, papryka, ziemniaki, oliwki]
 ---
 
-## składniki (dla 2 osób):
+## Składniki:
  - 1 czerwona cebula
  - 2 papryki (np. czerwona i żółta)
  - 1 łagodna zielona papryczka (np. turecka)
@@ -22,7 +22,7 @@ tags: [morszczuk, papryka, ziemniaki, oliwki]
  - sól i pieprz do smaku
  - masło klarowane do smażenia ryby
 
-## przygotowanie:
+## Przygotowanie:
 1. Umyj ziemniaki i przekrój na pół (większe na ćwiartki).
 2. Oczyść papryki i papryczkę z gniazd nasiennych. Pokrój papryki na cienkie paski, papryczkę w cienkie plasterki.
 3. Pokrój cebulę w cienkie piórka, czosnek drobno posiekaj lub przeciśnij przez praskę.
