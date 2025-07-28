@@ -1,6 +1,6 @@
 ---
 title: Kaczka pieczona
-category: dania-miesne
+category: dania-glowne-miesne
 date: 2024-07-22
 last_modified_at: 2024-07-22
 tags: [kaczka, pieczona]
