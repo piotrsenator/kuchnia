@@ -12,16 +12,9 @@
     <meta property="og:description" content="{{ page.description | default: site.description }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
-    {% if page.image_main %}
-        {% assign og_twitter_image_path = page.image_main %}
-        {% comment %} Dodatkowa logika, jeśli page.image_main nie jest pełną ścieżką {% endcomment %}
-        {% unless og_twitter_image_path contains '/' %}
-            {% assign og_twitter_image_path = '/images/notes/' | append: og_twitter_image_path %}
-        {% endunless %}
-        <meta property="og:image" content="{{ site.url }}{{ og_twitter_image_path | relative_url }}">
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="{{ site.url }}{{ og_twitter_image_path | relative_url }}">
-    {% endif %}
+    <meta property="og:image" content="{{ site.url }}/kuchnia/images/general/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ site.url }}/kuchnia/images/general/og-image.jpg">
     <meta property="og:site_name" content="{{ site.title }}">
   
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
