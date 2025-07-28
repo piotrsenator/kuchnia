@@ -1,21 +1,18 @@
 ---
-title: O tym, że znowu rabarbar, czyli słodka obsesja
-date: 2025-06-05
-image_main: "o-tym-ze-znow-rabarbar-main.jpg"
+title: Consommé – klarowny bulion wykwintnej kuchni
+date: 2025-07-28
+image_main:
 ---
+### Consommé – klarowny bulion wykwintnej kuchni
 
-Mój ogródek (o ile można tak nazwać parę skrzynek na balkonie) pęka w szwach od rabarbaru. Po raz kolejny dopadła mnie wiosenna gorączka "co zrobić z tymi wszystkimi łodygami?". Przyznaję bez bicia – to obsesja.
+Consommé to wyjątkowo klarowny i aromatyczny bulion mięsny, który powstaje dzięki starannej obróbce i klarowaniu. Tradycyjnie przygotowuje się go na bazie mięsa wołowego, np. z części takich jak żeberka czy łata (plat de côte, paleron).
 
-### Krótka historia mojej miłości do rabarbaru
+Proces zaczyna się od zalania mięsa zimną wodą i powolnego podgrzewania. Po osiągnięciu pierwszego wrzenia usuwa się pianę (szumowiny), a następnie bulion gotuje się krótko przez 2–3 minuty. Do garnka dodaje się aromatyczną jarzynę: por, marchew, opiekaną cebulę, tymianek, liść laurowy, natkę pietruszki, goździki – podobnie jak do klasycznego pot-au-feu.
 
-Pamiętam, jak babcia piekła drożdżowe ciasto z rabarbarem i kruszonką. Ten słodko-kwaśny smak był dla mnie symbolem wiosny i beztroski. Dziś sam próbuję odtworzyć ten smak, choć z różnym skutkiem. Czasem wyjdzie ideał, czasem... no cóż, "eksperyment".
+Po drugim zagotowaniu usuwa się ponownie szumowiny, doprawia solą, pieprzem, jałowcem, kolendrą oraz białym winem. Gdy bulion mocno wrze, dodaje się kostkę lodu, by zahamować gwałtowne wrzenie i poprawić klarowność.
 
-Co roku obiecuję sobie, że spróbuję czegoś nowego z rabarbarem. Kompot? Już mam! Dżem? Słoiki stoją w spiżarni! Tarta? Ależ oczywiście! W tym sezonie postawiłem na **rabarbarowe crumble** z dodatkiem truskawek i owsa. Szybkie, proste i zawsze się udaje, nawet jeśli pieczesz pierwszy raz w życiu.
+Następnie wywar przecedza się przez sitko do czystego garnka i ponownie doprowadza do wrzenia.
 
-![Rabarbar w ogródku](/images/notes/o-tym-ze-znow-rabarbar-garden.jpg)
+Kluczowym etapem jest klarowanie: drobno krojony por łączy się z białkami jaj, które wlewa się do bulionu. Podgrzewanie zatrzymuje się, a białka, ściągając zanieczyszczenia, opadają na dno i unoszą się na powierzchnię, nadając consommé krystaliczną czystość.
 
-### Nie tylko na słodko!
-
-Wielu ludzi myśli o rabarbarze tylko w kontekście deserów. Błąd! Rabarbar świetnie sprawdza się w daniach wytrawnych. Spróbujcie kiedyś dodać go do sosu do wieprzowiny lub marynaty do kurczaka. Jego kwaskowatość pięknie równoważy smak mięsa. Ewentualnie, chutney z rabarbaru i imbiru? Pychota do serów.
-
-Może za rok przestanie być moją obsesją? Nie, raczej nie. I całe szczęście!
+W efekcie powstaje wyśmienity, klarowny i bogaty w smaku bulion, który samodzielnie stanowi delikatną zupę lub bazę do bardziej złożonych dań.
