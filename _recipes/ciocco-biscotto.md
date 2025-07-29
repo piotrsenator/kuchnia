@@ -5,7 +5,7 @@ date: 2025-07-29
 tags: [włoskie, czekoladowe, orzechowe]
 ---
 
-## Składniki
+## Składniki:
 
 - 350 g mąki 00  
 - 300 g cukru trzcinowego  
@@ -18,7 +18,7 @@ tags: [włoskie, czekoladowe, orzechowe]
 - 2 łyżeczki drożdży cukierniczych  
 - cukier puder do obtaczania  
 
-## Przygotowanie
+## Przygotowanie:
 
 1. Pokrusz gorzką czekoladę (najlepiej zrobić to w mikserze) i rozpuść ją w kąpieli wodnej.  
 2. Używając drewnianej szpatułki, utrzyj masło z cukrem trzcinowym na krem.  
@@ -31,7 +31,7 @@ tags: [włoskie, czekoladowe, orzechowe]
 9. Układaj kulki na blasze z papierem do pieczenia, zachowując odstępy.  
 10. Piecz w piekarniku nagrzanym do 180°C przez 25 minut.  
 
-## Uwagi
+## Uwagi:
 
 - Ciasteczka po upieczeniu są chrupiące i słodkie.  
 - Cukier puder nadaje im dekoracyjny, biały wygląd.  
