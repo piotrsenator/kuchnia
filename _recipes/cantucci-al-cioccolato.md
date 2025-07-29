@@ -1,6 +1,6 @@
 ---
 title: Cantucci al cioccolato
-category: ciasteczka
+category: desery
 date: 2025-07-29
 tags: [włoskie, toskańskie, czekoladowe]
 ---
