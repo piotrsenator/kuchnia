@@ -26,15 +26,26 @@
 }
 
 .category-header .category-title {
-    font-family: var(--font-family-headings);
-    font-size: 2.8rem;
-    margin-bottom: var(--spacing-xs);
-    color: var(--color-primary);
-    line-height: 1.2;
-    letter-spacing: 0.02em;
-    overflow-wrap: break-word;
-}
+  font-family: var(--font-family-headings);
+  font-size: 2.8rem;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-primary);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
 
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
+
+  @media (max-width: 600px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 1.6rem;
+  }
+}
 .category-header .category-description {
     font-weight: var(--font-weight-light);
     font-size: 1.2rem;
