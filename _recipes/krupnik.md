@@ -3,6 +3,7 @@ title: Krupnik z kaszą jaglaną
 category: zupy
 date: 2025-07-22
 last_modified_at: 2025-07-22
+image_main: krupnik.jpg
 tags: [kasza, klasyki]
 ---
 
