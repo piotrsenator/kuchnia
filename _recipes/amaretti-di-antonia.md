@@ -5,7 +5,7 @@ date: 2025-07-29
 tags: [włoskie, migdały, amaretti]
 ---
 
-## Składniki
+## Składniki:
 
 - 400 g obranych migdałów  
 - 380 g cukru  
@@ -19,7 +19,7 @@ tags: [włoskie, migdały, amaretti]
 - 30 obranych migdałów całych  
 - cukier puder do posypania (wedle uznania)  
 
-## Przygotowanie
+## Przygotowanie:
 
 1. Drobno posiekaj migdały razem z 330 g granulowanego cukru i wymieszaj w misce.  
 2. W małym rondlu rozpuść 50 g cukru pudru w wodzie na syrop, mieszaj aż cukier będzie wolno spływać z łyżki.  
