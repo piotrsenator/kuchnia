@@ -6,7 +6,7 @@ last_modified_at: 2025-07-29
 tags: [ogórki, przetwory, kiszone]
 ---
 
-## Składniki (na 6 słoików 0,7–0,9 l):
+## Składniki:
 - 4 szklanki wody
 - 1 szklanka octu
 - niepełna szklanka cukru
