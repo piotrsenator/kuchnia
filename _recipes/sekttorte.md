@@ -5,7 +5,7 @@ date: 2025-07-29
 tags: [niemieckie, jabłkowe]
 ---
 
-## Składniki
+## Składniki:
 
 - 125 g masła  
 - 125 g cukru  
@@ -20,7 +20,7 @@ tags: [niemieckie, jabłkowe]
 - 250 g śmietany kremówki  
 - 1 opakowanie cukru waniliowego (do ubijania śmietany)  
 
-## Przygotowanie
+## Przygotowanie:
 
 1. Zagnieć masło, cukier, cukier waniliowy, jajko i mąkę na ciasto, a następnie włóż je do lodówki.  
 2. Obierz i pokrój jabłka na kawałki.  
