@@ -6,7 +6,7 @@ last_modified_at: 2025-07-29
 tags: [dynia, przetwory, ocet]
 ---
 
-## Składniki (na 6 półlitrowych słoików):
+## Składniki:
 - 1,5 kg dyni Muscat (obranej, bez pestek, pokrojonej w kostkę)
 - 1 kg cukru
 - 0,5 l octu 10% (można zmienić na 1 szklankę octu na 4 szklanki wody)
