@@ -1,8 +1,8 @@
 ---
 title: Surówka z selera z orzechami i pietruszką
 category: salatki
-date: 2024-07-22
-last_modified_at: 2024-07-22
+date: 2025-07-22
+last_modified_at: 2025-07-22
 tags: [seler, jabłko, orzechy]
 ---
 
