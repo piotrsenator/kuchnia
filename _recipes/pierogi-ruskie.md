@@ -7,12 +7,14 @@ tags: [pierogi, farsz, ser, ziemniaki]
 ---
 
 ## Składniki:
+
 ### Ciasto:
 - 500 g mąki pszennej (tortowa lub zwykła)
 - 1 jajko średnie
 - 50 g masła
 - 1 szklanka wody (ok. 230–240 ml, przegotowana i schłodzona)
 - szczypta soli
+  
 ### Farsz:
 - 400 g sera białego (półtłusty lub tłusty, najlepiej polski trójkątny Piątnica)
 - 500 g ugotowanych ziemniaków (dzień wcześniej, ok. 700–800 g surowych)
