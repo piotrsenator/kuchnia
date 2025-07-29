@@ -1,8 +1,8 @@
 # _config.yml
 
 # Globalne ustawienia strony
-title: Z kuchni Piotra
-description: Domowe przepisy, sezonowe smaki i niekoniecznie rozsądne pomysły.
+title: Rodzinne gotowanie
+description: Rodzinne przepisy, domowe smaki i pomysły z kuchni.
 url: "https://kuchnia.senator.lu" # Twoja domena niestandardowa
 baseurl: "" # Pozostaw puste, ponieważ strona jest na domenie niestandardowej w głównym katalogu
 
