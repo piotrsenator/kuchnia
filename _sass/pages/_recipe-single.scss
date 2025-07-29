@@ -94,12 +94,22 @@
   margin-top: 0; /* var(--spacing-md); */
 }
 
-.recipe-main-content h2 {
-  font-size: 1.4rem;
-  font-weight: 500;
-  margin-top:0; /* var(--spacing-md);*/
-  margin-bottom: var(--spacing-xs);
-  font-family: var(--font-family-headings);
+.recipe-main-content {
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-top: 0; /* var(--spacing-md); */
+    margin-bottom: var(--spacing-xs);
+    font-family: var(--font-family-headings);
+  }
+
+  h3 {
+    font-size: 1.2rem; /* trochę mniejsze niż h2 */
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: var(--spacing-xs);
+    font-family: var(--font-family-headings);
+  }
 }
 
 .recipe-main-content ol,
