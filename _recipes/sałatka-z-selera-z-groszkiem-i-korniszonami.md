@@ -1,8 +1,8 @@
 ---
 title: Sałatka z selera z groszkiem i korniszonami
 category: salatki
-date: 2024-07-22
-last_modified_at: 2024-07-22
+date: 2025-07-22
+last_modified_at: 2025-07-22
 tags: [seler, groszek, jajka, orzechy]
 ---
 
