@@ -9,8 +9,10 @@ title: Strona Główna
             {% comment %}
             Pętla dla najnowszych przepisów. Limit ustawiony na 4.
             {% endcomment %}
-            {% for recipe in site.recipes limit: 4 %}
-                {% include recipe_card.html recipe=recipe %}
+            
+            {% assign sorted_recipes = site.recipes | sort: 'date' | reverse %}
+            {% for recipe in sorted_recipes limit: 4 %}
+              {% include recipe_card.html recipe=recipe %}
             {% endfor %}
         </div>
     </section>
