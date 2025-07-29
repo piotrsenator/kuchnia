@@ -19,7 +19,20 @@ title: Strona Główna
 
     <section class="categories-section" id="kategorie">
         <h2>Kategorie</h2>
-        <div class="notes-grid">
+        <div class="categories-grid">
+            {% for category in site.data.categories %}
+                <a href="{{ '/categories/' | relative_url }}{{ category.slug }}.html" class="category-card" aria-label="Zobacz kategorię: {{ category.name | escape }}">
+                    <h3 class="category-card-title">{{ category.name }}</h3>
+                    <span class="category-post-count">{{ site.recipes | where:"category", category.slug | size }} przepisów</span>
+                </a>
+            {% endfor %}
+        </div>
+
+    </section>
+
+<section class="notes-section" id="notatki-z-kuchni">
+    <h2>Notatki z Kuchni</h2>
+    <div class="notes-grid">
             {% assign sorted_notes = site.notes | sort: 'date' | reverse %}
             {% for note in sorted_notes limit: 3 %}
                 <div class="note-entry note-box">
@@ -29,20 +42,6 @@ title: Strona Główna
                     </a>
                 </div>
             {% endfor %}
-</div>
-
-    </section>
-
-<section class="notes-section" id="notatki-z-kuchni">
-    <h2>Notatki z Kuchni</h2>
-    <div class="notes-grid">
-        {% for note in site.notes limit: 3 %}
-            <div class="note-entry note-box">
-                <a href="{{ note.url | relative_url }}" class="note-link-wrapper" aria-label="Czytaj całą notatkę: {{ note.title | escape }}">
-                    <h3 class="note-entry__title">{{ note.title }}</h3>
-                    <p class="note-entry__excerpt">{{ note.excerpt | strip_html | truncatewords: 30 }}</p>
-                </a>
-            </div>
         {% endfor %}
     </div>
     <div class="button-container">
