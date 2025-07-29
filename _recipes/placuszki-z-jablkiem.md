@@ -3,6 +3,7 @@ title: Placuszki z jabłkiem
 category: desery
 date: 2025-07-29
 last_modified_at: 2025-07-29
+image_main: placuszki-z-jablkiem.jpg
 tags: [jabłko, drożdże, śniadanie]
 ---
 
