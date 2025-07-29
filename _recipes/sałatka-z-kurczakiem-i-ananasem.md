@@ -3,6 +3,7 @@ title: Sałatka z kurczakiem i ananasem
 category: salatki
 date: 2025-07-22
 last_modified_at: 2025-07-22
+image_main: sałatka-z-kurczakiem-i-ananasem.jpg
 tags: [kurczak, owoce, kukurydza]
 ---
 
