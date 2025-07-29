@@ -5,7 +5,7 @@ date: 2025-07-29
 tags: [włoskie, toskańskie, czekoladowe]
 ---
 
-## Składniki
+## Składniki:
 
 - 3 jajka  
 - 200 g cukru  
@@ -13,7 +13,7 @@ tags: [włoskie, toskańskie, czekoladowe]
 - 480 g mąki  
 - 100 g groszków czekoladowych  
 
-## Przygotowanie
+## Przygotowanie:
 
 1. W misce rozbij jajka, dodaj cukier i drożdże, wymieszaj.  
 2. Stopniowo dodawaj mąkę, mieszając ręcznie.  
@@ -24,6 +24,6 @@ tags: [włoskie, toskańskie, czekoladowe]
 7. Wyjmij z piekarnika i pokrój jeszcze ciepłe wałki ukośnie na kawałki.  
 8. Włóż od razu pokrojone kawałki ponownie do piekarnika maksymlanie na 5-10 minut, aż będą rumiane i chrupiące.  
 
-## Uwagi
+## Uwagi:
 
 - Cantucci są tradycyjnymi toskańskimi ciasteczkami o chrupiącej strukturze.  
