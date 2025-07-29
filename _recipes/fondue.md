@@ -1,8 +1,8 @@
 ---
-title: Fondue serowe z winem i kirszem
+title: Fondue serowe
 category: dania-wegetarianskie
-date: 2024-07-22
-last_modified_at: 2024-07-22
+date: 2025-07-22
+last_modified_at: 2025-07-22
 tags: [ser, klasyki, szwajcaria]
 ---
 
