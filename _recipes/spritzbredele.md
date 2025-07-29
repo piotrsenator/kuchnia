@@ -5,7 +5,7 @@ date: 2025-07-29
 tags: [świąteczne, kruche, tradycyjne, bredele]
 ---
 
-## Składniki
+## Składniki:
 
 - 500 g mąki tortowej (przesianej)  
 - 250 g masła (zimnego, mocno posiekanego)  
@@ -14,7 +14,7 @@ tags: [świąteczne, kruche, tradycyjne, bredele]
 - płaska łyżeczka proszku do pieczenia  
 - opcjonalnie 1 łyżka śmietany  
 
-## Przygotowanie
+## Przygotowanie:
 
 1. Wymieszaj miękkie masło, cukier i żółtka.  
 2. Dodaj przesianą mąkę, proszek do pieczenia i opcjonalnie śmietanę.  
@@ -25,7 +25,7 @@ tags: [świąteczne, kruche, tradycyjne, bredele]
 7. Przez maszynkę wyciskaj ciasto, formując małe ciasteczka, układaj na blasze z papierem do pieczenia.  
 8. Piecz w piekarniku nagrzanym do 180°C (góra/dół) lub 160°C (termoobieg) przez około 15 minut.  
 
-## Uwagi
+## Uwagi:
 
 - Ciasto jest kruche i bogate dzięki żółtkom.  
 - Schłodzenie ciasta ułatwia formowanie ciasteczek.  
