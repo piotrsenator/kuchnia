@@ -5,7 +5,7 @@ date: 2025-07-29
 tags: [włoskie, czekoladowe, piemonckie]
 ---
 
-## Składniki
+## Składniki:
 
 - 150 g mąki migdałowej  
 - 150 g mąki 00  
@@ -15,7 +15,7 @@ tags: [włoskie, czekoladowe, piemonckie]
 - 3 g grubej soli  
 - 150 g gorzkiej czekolady  
 
-## Przygotowanie
+## Przygotowanie:
 
 1. Wymieszaj mąkę 00 z mąką migdałową i cukrem.  
 2. Dodaj zimne masło i rozcieraj do uzyskania piaskowej konsystencji.  
@@ -26,7 +26,7 @@ tags: [włoskie, czekoladowe, piemonckie]
 7. Rozpuść gorzką czekoladę w kąpieli wodnej lub mikrofalówce.  
 8. Posmaruj jedno ciastko czekoladą (można użyć rękawa cukierniczego), przykryj drugim i schłodź w lodówce przez 10 minut przed podaniem.  
 
-## Uwagi
+## Uwagi:
 
 - Ciastka są delikatne, czekoladowe i kruche.  
 - Schłodzenie ciasta jest kluczowe dla łatwego formowania.  
