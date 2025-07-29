@@ -7,6 +7,7 @@ tags: [pierogi, pieczarki]
 ---
 
 ## Składniki:
+
 ### Ciasto:
 - 500 g mąki pszennej (tortowa lub zwykła)
 - 1 jajko średnie (do pierogów owocowych użyj tylko żółtka)
