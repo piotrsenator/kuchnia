@@ -3,6 +3,7 @@ title: Placuszki owsiane
 category: sniadania
 date: 2025-07-22
 last_modified_at: 2025-07-22
+image_main: placuszki-owsiane.jpg
 tags: [owsiane, banan, jajka]
 ---
 
@@ -17,3 +18,4 @@ tags: [owsiane, banan, jajka]
 2. Do bananowej masy dodaj jajka i płatki owsiane, energicznie wymieszaj.
 3. Nakładaj po 1 łyżce masy na rozgrzaną patelnię z odrobiną masła klarowanego lub oleju kokosowego.
 4. Smaż placuszki z obu stron na złoty kolor.
+
