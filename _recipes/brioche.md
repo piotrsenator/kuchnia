@@ -2,6 +2,7 @@
 title: Brioche
 category: desery
 date: 2025-07-29
+image_main: brioche.md
 tags: [drożdżowe, bułki, francuskie]
 ---
 
@@ -31,3 +32,4 @@ tags: [drożdżowe, bułki, francuskie]
 
 ## Uwagi:
 Ciasto można nadziewać dżemem – wkładając po łyżeczce do środka każdej kulki przed formowaniem.
+
